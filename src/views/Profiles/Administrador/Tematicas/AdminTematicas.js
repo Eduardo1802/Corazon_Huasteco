@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { app } from "../../../../config/firebase/firebase";
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
-import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Button } from "@mui/material";
+import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button } from "@mui/material";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditIcon from '@mui/icons-material/Edit';
@@ -9,28 +8,33 @@ import EditIcon from '@mui/icons-material/Edit';
 export const AdminTematicas = () => {
   
   const [proyectos, setProyectos] = useState([]);
+  // eslint-disable-next-line
   const [add, setAdd] = useState("");
+  // eslint-disable-next-line
   const [titulo, setTitulo] = useState("");
+  // eslint-disable-next-line
   const [descripcion, setDescripcion] = useState("");
-  const [informacion, setInformacion] = useState("");
+  // eslint-disable-next-line
   const [tematica, setTematica] = useState("");
+  // eslint-disable-next-line
   const [imagen, setImagen] = useState("");
+  // eslint-disable-next-line
   const [imgPortada, setImgPortada] = useState("");
 
   const styles = {
     table: {
-      border: "1px solid #ccc",
+      border: "1px solid",
+      borderColor: 'primary.main',
       "& th": {
         color: "#E0E0E0",
         // color: "#D9CAAD",
-        backgroundColor: "#59143A",
+        backgroundColor: "primary.main",
         textAlign: 'center',
       },
       "& td": {
-        backgroundColor: "#E0E0E0",
+        backgroundColor: "background.paper",
         border: "1px solid #ccc",
-        backgroundColor: '#E0E0E0',
-        color:"black"
+        color:"inherit",
       },
     },
   };
@@ -79,7 +83,17 @@ export const AdminTematicas = () => {
                     variant="contained"
                     onClick={crear}
                     // color="primary"
-                    sx={{color: "black", background:"#E0E0E0"}}
+                    
+                    sx={{
+                      display: { xs: "none", md: "flex" },
+                      textDecoration: "none",
+                      textTransform: "none",
+                      color: "inherit",
+                      "&:hover": {
+                        color: "primary.main",
+                        bgcolor: "background.default",
+                      },
+                    }}
                     startIcon={<AddCircleOutlineIcon/>}
                   >
                     Agregar
@@ -133,7 +147,7 @@ export const AdminTematicas = () => {
                     </TableCell>
                     <TableCell>
                         <Button
-                            variant="contained"
+                            variant="text"
                             color="primary"
                             // onClick={() => {
                             //   const confirmar = window.confirm(

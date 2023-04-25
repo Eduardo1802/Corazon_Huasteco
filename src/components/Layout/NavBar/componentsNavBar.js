@@ -1,6 +1,4 @@
 import {useScrollTrigger, Slide} from '@mui/material';
-import { Button }                from '@mui/material';
-import { styled }                from '@mui/material/styles';
 
 
 export function HideOnScroll(props) {
@@ -18,14 +16,4 @@ export function HideOnScroll(props) {
       </Slide>
     );
 }
-
-
-
-
-export const CustomizedBtn = styled(Button)`
-    color: #D9CAAD;
-    border: 0.1rem solid #D9CAAD;
-    text-transform: none;
-`;
-
 

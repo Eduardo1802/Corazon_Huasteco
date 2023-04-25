@@ -1,6 +1,8 @@
 import styled   from '@emotion/styled'
 import { Link } from 'react-router-dom'
 
+
+
 // contenedor de footer
 export const FooterContent = styled.footer`
   border-top: 1px solid #e1e1e1;
@@ -10,7 +12,7 @@ export const FooterContent = styled.footer`
 //componente router personalizado {link}
 export const LinkStyled = styled(Link)({
   display: "block", 
-  color: '#D9CAAD', 
+  color: "white", 
   textDecoration: "none",
 
   '&:hover': {

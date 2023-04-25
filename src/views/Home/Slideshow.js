@@ -16,7 +16,7 @@ const Slideshow = ({
 
 	const siguiente = useCallback(() => {
 		// Comprobamos que el slideshow tenga elementos
-		if(slideshow.current.children.length > 0){
+		if (slideshow.current && slideshow.current.children && slideshow.current.children.length > 0) {
 			console.log('Siguiente')
 
 			// Obtenemos el primer elemento del slideshow.
@@ -118,7 +118,7 @@ const ContenedorPrincipal = styled('div')({
     overflow: "hidden",
     transition: `0.3s ease all`,
     zIndex: 10,
-    maxHeight: 500,
+    maxHeight: "100vh",
     position: "relative",
     img: {
       width: "100%",

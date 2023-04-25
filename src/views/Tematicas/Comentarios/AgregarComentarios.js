@@ -10,7 +10,7 @@ import userImage from "../../../assets/img/perfil/noProfilePicture.jpg";
 
 const AgregarComentarios = ({tematica}) => {
   // VARIABLES
-  const {logout, user} = useAuth();
+  const {user} = useAuth();
   const [comentario, setComentario] = useState("");
   const [puntuacion, setPuntuacion] = useState("");
   const [mensajeAlerta, setMensajeAlerta] = useState(""); 

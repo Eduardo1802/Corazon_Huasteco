@@ -1,5 +1,5 @@
 import React,{ useEffect, useState } from 'react';
-import { Typography, Grid, Paper, CardMedia, Card, IconButton, Box} from '@mui/material'
+import { Typography, Grid, Paper, CardMedia, Card, IconButton} from '@mui/material'
 import { ItemsListCard2 } from '../../components/customs/ItemsListCard2'
 import { ItemListCard3 } from '../../components/customs/ItemListCard3'
 import { Facebook, Instagram, Twitter, Web, YouTube } from '@mui/icons-material';
@@ -10,12 +10,10 @@ import {useAuth} from "../../context/AuthContext"
 import AgregarComentarios from './Comentarios/AgregarComentarios';
 import userImage from "../../assets/img/perfil/noProfilePicture.jpg";
 import { app } from '../../config/firebase/firebase'
-import GroupSkeleton from "../Shop/groupSkeleton"
 
 export const DetalleTematicas = ({tematicas}) => {
   const params = useParams();
-  const {logout, user} = useAuth();
-  const [isLoading, setIsLoading] = useState(true);
+  const {user} = useAuth();
   const [proyectos, setProyectos] = useState([]);
   const [datos, setDatos] = useState("");
   const [actualizarInfo, setActualizarInfo] = useState(false);
@@ -34,6 +32,7 @@ export const DetalleTematicas = ({tematicas}) => {
     let tema = checa.tematica;
     let titulo = checa.titulo;
     obtenerInfo(tema,titulo);
+    // eslint-disable-next-line
   }, [params.id,actualizarInfo]);
 
     const tematicaMayusculas = datos.tematica ? datos.tematica.toUpperCase() : '';

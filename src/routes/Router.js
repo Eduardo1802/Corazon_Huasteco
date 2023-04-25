@@ -72,7 +72,6 @@ export const Router = ({isDarkMode, handleThemeChange}) => {
                 width: "100%",
                 margin: "0px auto",
                 bgcolor: "background.default",
-                border: "2px solid #ddd",
                 minHeight: "70vh", //altura de la pantalla, tambien se puede usar "auto"
               }}>
                 <ScrollToTop>

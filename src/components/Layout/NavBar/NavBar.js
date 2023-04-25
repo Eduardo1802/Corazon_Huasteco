@@ -5,7 +5,7 @@ import LoginRoundedIcon                from "@mui/icons-material/LoginRounded";
 
 import MenuIcon                        from "@mui/icons-material/Menu";
 import { doc, getDoc }                 from "firebase/firestore";
-import { CustomizedBtn, HideOnScroll } from "./componentsNavBar";
+import { HideOnScroll } from "./componentsNavBar";
 import { navLinks }                    from "./opNavLinks";
 import SimpleBackdrop                  from "../../customs/SimpleBackDrop";
 import { db }                          from "../../../config/firebase/firebaseDB";
@@ -131,7 +131,7 @@ export const NavBar = (props) => {
   return (
     <>
       <HideOnScroll {...props}>
-        <AppBar>
+        <AppBar color="primary" enableColorOnDark>
           <SimpleBackdrop open={open}/>
           {/* Primer tool */}
           {/* desktop*/}
@@ -145,7 +145,6 @@ export const NavBar = (props) => {
                 flexGrow: 1,
                 textDecoration: "none",
                 color: "inherit",
-                "&:hover": { color: "background.default" },
               }}
             >
               CORAZÓN HUASTECO
@@ -208,7 +207,7 @@ export const NavBar = (props) => {
                 fontWeight: 700,
                 color: "inherit",
                 textDecoration: "none",
-                "&:hover": { color: "background.default" },
+                
               }}
             >
               Corazón Huasteco
@@ -228,9 +227,8 @@ export const NavBar = (props) => {
                   sx={{
                     my: 2,
                     fontSize: 16,
-                    color: "background.default",                    
+                    color: "inherit",                    
                     display: "block",
-                    "&:hover": { color: "background.paper" },
                     textTransform: "capitalize",
                   }}
                   component={NavLink}
@@ -297,13 +295,14 @@ export const NavBar = (props) => {
               ) : (
                 <>
                   <Box>
-                    <CustomizedBtn
+                    <Button
                       component={Link}
                       to="/acceso"
                       endIcon={<LoginRoundedIcon />}
                       sx={{
                         display: { xs: "none", md: "flex" },
                         textDecoration: "none",
+                        textTransform: "none",
                         color: "inherit",
                         "&:hover": {
                           color: "primary.main",
@@ -312,7 +311,7 @@ export const NavBar = (props) => {
                       }}
                     >
                       Entrar
-                    </CustomizedBtn>
+                    </Button>
                     <IconButton
                       component={Link}
                       to="/acceso"

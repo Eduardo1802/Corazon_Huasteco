@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Paper, Typography, Rating } from '@mui/material'
+import { Card, CardActionArea, CardContent, CardMedia, Grid, Paper, Typography, Rating } from '@mui/material'
 
 import { Link } from 'react-router-dom'
 
@@ -55,6 +55,7 @@ export const ItemListCard3 = ({titulo='Titulo', descripcion="Desc", puntuacion, 
 
 function showContentText({showContent, titulo, descripcion, puntuacion}){
     puntuacion = parseInt(puntuacion)
+    // eslint-disable-next-line
     const textosPuntuacion = {
         0.5: "Inútil",
         1: "Inútil",

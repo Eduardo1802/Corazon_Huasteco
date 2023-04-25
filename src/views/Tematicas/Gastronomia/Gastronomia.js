@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Grid, Typography } from '@mui/material'
+import { Grid } from '@mui/material'
 import { app } from '../../../config/firebase/firebase'
 import { Outlet } from 'react-router-dom'
 import { ItemListCard } from '../../../components/customs/ItemListCard'
