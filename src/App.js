@@ -47,7 +47,7 @@ function App() {
       <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
         <Router isDarkMode={isDarkMode} handleThemeChange={handleThemeChange} />
       </ThemeProvider>
-      <style>{styles}</style>
+      <Box component={"style"}>{styles}</Box>
     </Box>
   );
 }

@@ -98,31 +98,32 @@ export const NavBar = (props) => {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        Corazón Huasteco
-      </Typography>
-      <Divider />
+    <>
+      <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+        <Typography variant="h6" sx={{ my: 2 }}>
+          Corazón Huasteco
+        </Typography>
+        <Divider />
+        <List>
+          {navLinks.map((item) => (
+            <ListItem key={item.title} disablePadding>
+              <ListItemButton
+                sx={{ textAlign: "left",  "&:hover": { color: "primary.main" } }}
+                component={Link}
+                to={`/${item.path}`}
+                >
+                <ListItemText primary={item.title} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Box>
       <List>
-        {navLinks.map((item) => (
-          <ListItem key={item.title} disablePadding>
-            <ListItemButton
-              sx={{ textAlign: "left",  "&:hover": { color: "primary.main" } }}
-              component={Link}
-              to={`/${item.path}`}
-            >
-              <ListItemText primary={item.title} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-          <ListItem disablePadding>
-            <ListItemButton>
-              
-              <Toggle isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/>
-            </ListItemButton>
-          </ListItem>
+        <ListItem >
+            <Toggle isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/>
+        </ListItem>
       </List>
-    </Box>
+    </>
   );
 
   const container =
