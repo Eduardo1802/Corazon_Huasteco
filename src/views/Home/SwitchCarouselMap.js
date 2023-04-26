@@ -47,6 +47,10 @@ export const SwitchCarouselMap = ({ irA }) => {
             </IconButton>
           </Box>
           <Box
+            data-aos="fade-right"
+            data-aos-anchor="#example-anchor"
+            data-aos-offset="150"
+            data-aos-duration="150"
             sx={{
               bgcolor: "background.default",
               padding: "5px",
@@ -62,7 +66,6 @@ export const SwitchCarouselMap = ({ irA }) => {
               Mapa
             </Button>
             <IconButton
-              
               sx={{
                 display: { xs: "flex", sm: "none", md: "none" },
                 color: "primary.main",
@@ -85,6 +88,10 @@ export const SwitchCarouselMap = ({ irA }) => {
           }}
         >
           <Box
+            data-aos="fade-left"
+            data-aos-anchor="#example-anchor"
+            data-aos-offset="150"
+            data-aos-duration="150"
             sx={{
               bgcolor: "background.default",
               padding: "5px",

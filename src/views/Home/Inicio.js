@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react'
 import Typography from '@mui/material/Typography'
-import { Container, Grid, Paper } from '@mui/material';
+import { Box, Container, Grid, Paper } from '@mui/material';
 import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
 import { contadorVisitas } from '../../utils/fnCountStatus';
 import { Carrusel } from './Carrusel';
 import { SwitchCarouselMap } from './SwitchCarouselMap';
+
 
 export const Inicio = () => {
   useEffect(() => {
@@ -13,15 +14,21 @@ export const Inicio = () => {
 
   return (
     <WrapperSingleRoute>
-      <SwitchCarouselMap irA="mapa" />
 
-      <Container maxWidth="xl">
-        <Carrusel />
-      </Container>
+      {/* CAROUSEL SECTION */}
+      <Box component="section">
+        <SwitchCarouselMap irA="mapa" />
+        <Container maxWidth="xl">
+          <Carrusel />
+        </Container>
+      </Box>
+
+      
 
       <Grid container>
         <Grid item md={6} xs={12}>
           <Paper
+            data-aos="zoom-in-right"
             sx={{
               p: { xs: 2, sm: 3, md: 5 },
               m: { xs: 1, sm: 3, md: 5 },
@@ -54,6 +61,7 @@ export const Inicio = () => {
           </Paper>
 
           <Paper
+            data-aos="zoom-in-right"
             sx={{
               p: { xs: 2, sm: 3, md: 5 },
               m: { xs: 1, sm: 3, md: 5 },
@@ -86,6 +94,7 @@ export const Inicio = () => {
           </Paper>
 
           <Paper
+            data-aos="zoom-in-right"
             sx={{
               p: { xs: 2, sm: 3, md: 5 },
               m: { xs: 1, sm: 3, md: 5 },
@@ -122,6 +131,7 @@ export const Inicio = () => {
 
         <Grid item md={6} xs={12}>
           <Paper
+            data-aos="zoom-in-up"
             sx={{
               p: { xs: 2, sm: 3, md: 5 },
               m: { xs: 1, sm: 3, md: 5 },
@@ -218,6 +228,7 @@ export const Inicio = () => {
             </Typography>
           </Paper>
           <Paper
+            data-aos="flip-right"
             sx={{
               p: { xs: 2, sm: 3, md: 5 },
               m: { xs: 1, sm: 3, md: 5 },
@@ -240,6 +251,7 @@ export const Inicio = () => {
             </Typography>
           </Paper>
           <Paper
+            data-aos="flip-right"
             sx={{
               p: { xs: 2, sm: 3, md: 5 },
               m: { xs: 1, sm: 3, md: 5 },
@@ -263,6 +275,7 @@ export const Inicio = () => {
           </Paper>
         </Grid>
       </Grid>
+
     </WrapperSingleRoute>
   );
 }

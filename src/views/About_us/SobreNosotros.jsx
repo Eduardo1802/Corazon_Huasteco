@@ -5,6 +5,8 @@ import { Bread }              from '../../components/customs/Bread';
 import { contadorVisitas }    from '../../utils/fnCountStatus';
 import imgAus                 from "../../assets/img/sobre-nosotros/imgSobreNosotros.jpg"
 import imgMural               from "../../assets/img/inicio/imgMural.jpg"
+import BasicTimeline from './BasicTimeline';
+import CustomizedTimeline from './CustomizedTimeline';
 
 
 export const SobreNosotros = () => {
@@ -21,7 +23,7 @@ export const SobreNosotros = () => {
       {/* TITULO */}
       <Grid container spacing={1}>
         <Grid item xs sx={{p:3}}> 
-          <Typography variant="h4" color="initial" sx={{textAlign: "center"}}>Sobre Nosotros</Typography>
+          <Typography variant="h4" color="primary" sx={{textAlign: "center"}}>Sobre Nosotros</Typography>
         </Grid>
       </Grid>{/*FIN DE TITULO*/}
 
@@ -102,6 +104,10 @@ export const SobreNosotros = () => {
             </Typography>
         </Grid>
       </Grid>{/*FIN DE VALORES*/}
+      <BasicTimeline/>
+
+      <CustomizedTimeline/>
+
     </WrapperSingleRoute>
   )
 }

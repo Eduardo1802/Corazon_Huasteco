@@ -14,16 +14,17 @@ function App() {
   const theme = isDarkMode ? darkTheme : lightTheme;
   // Aplica los estilos a toda la página
   const styles = `
-  * {
+  body {
     scrollbar-width: thin;
     scrollbar-color: ${theme.palette.primary.main} ${theme.palette.background.default};
+    ${/*overflow-x: hidden*/ ""}
   }
-  *::-webkit-scrollbar {
+  body::-webkit-scrollbar {
     width: 8px;
     height: 8px;
     background-color: ${theme.palette.background.default};
   }
-  *::-webkit-scrollbar-thumb {
+  body::-webkit-scrollbar-thumb {
     background-color: ${theme.palette.primary.main};
     border-radius: 20px;
   }

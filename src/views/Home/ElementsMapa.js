@@ -9,8 +9,8 @@ export const ContenedorMapa = styled(MapContainer)(({theme}) => ({
 
     justifyContent: "center",
 
-    width: "100vw",
-    height: "560px",
+    width: "100%",
+    height: "70vh",
     borderRadius: "0 0 10px 10px",
     borderBottomWidth: '5px',
     borderBottomStyle: 'solid',

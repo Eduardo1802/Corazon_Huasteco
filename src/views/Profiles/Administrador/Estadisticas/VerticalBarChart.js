@@ -25,29 +25,29 @@ export function VerticalBarChart({datos}) {
 
   // Datos
   const data = {
-    labels: datos.map((item) => item.id),
+    labels: datos.slice(-5).map((item) => item.id),
     datasets: [
       {
         label: 'Inicio',
-        data: datos.map((item) => item.data().inicio),
+        data: datos.slice(-5).map((item) => item.data().inicio),
         backgroundColor: 'rgb(115, 31, 62)',
       },
 
       {
         label: 'Sobre nosotros',
-        data: datos.map((item) => item.data()["sobre-nosotros"]),
+        data: datos.slice(-5).map((item) => item.data()["sobre-nosotros"]),
         backgroundColor: 'rgb(89, 30, 79)',
       },
   
       {
         label: 'Tematicas',
-        data: datos.map((item) => item.data().tematicas),
+        data: datos.slice(-5).map((item) => item.data().tematicas),
         backgroundColor: 'rgb(191, 154, 86)',
       },
   
       {
         label: 'Tienda',
-        data: datos.map((item) => item.data().tienda),
+        data: datos.slice(-5).map((item) => item.data().tienda),
         backgroundColor: 'rgb(166, 33, 69)',
       },
   

@@ -33,12 +33,12 @@ export function AreaChart({datos}) {
 
   // Datos
   const data = {
-    labels: datos.map((item) => item.id),
+    labels: datos.slice(-5).map((item) => item.id),
     datasets: [
       {
         fill: true,
         label: 'Inicio',
-        data: datos.map((item) => item.data().inicio),
+        data: datos.slice(-5).map((item) => item.data().inicio),
         borderColor: 'rgb(115, 31, 62)',
         backgroundColor: 'rgba(115, 31, 62, 0.5)',
         pointRadius: 7 // Establece el radio en píxeles de cada punto
@@ -46,7 +46,7 @@ export function AreaChart({datos}) {
       {
         fill: true,
         label: 'Sobre Nosotros',
-        data: datos.map((item) => item.data()["sobre-nosotros"]),
+        data: datos.slice(-5).map((item) => item.data()["sobre-nosotros"]),
         borderColor: 'rgb(89, 30, 79)',
         backgroundColor: 'rgba(89, 30, 79, 0.5)',
         pointRadius: 7 // Establece el radio en píxeles de cada punto
@@ -54,7 +54,7 @@ export function AreaChart({datos}) {
       {
         fill: true,
         label: 'Tematicas',
-        data: datos.map((item) => item.data().tematicas),
+        data: datos.slice(-5).map((item) => item.data().tematicas),
         borderColor: 'rgb(191, 154, 86)',
         backgroundColor: 'rgb(191, 154, 86, 0.5)',
         pointRadius: 7 // Establece el radio en píxeles de cada punto
@@ -62,7 +62,7 @@ export function AreaChart({datos}) {
       {
         fill: true,
         label: 'Tienda',
-        data: datos.map((item) => item.data().tienda),
+        data: datos.slice(-5).map((item) => item.data().tienda),
         borderColor: 'rgb(166, 33, 69)',
         backgroundColor: 'rgb(166, 33, 69, 0.5)',
         pointRadius: 7 // Establece el radio en píxeles de cada punto
