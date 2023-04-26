@@ -3,15 +3,17 @@ import styled from '@emotion/styled'
 import { MapContainer } from 'react-leaflet'
 
 
-export const ContenedorMapa = styled(MapContainer)`
-    display: flex;
-    flex-flow: row wrap;
+export const ContenedorMapa = styled(MapContainer)(({theme}) => ({
+    display: "flex",
+    flexFlow: "row wrap",
 
-    justify-content: center;
+    justifyContent: "center",
 
-    width: 100vw;
-    height: 560px;
-    border-radius: 0 0 10px 10px;
-    border-bottom: 5px solid #591D55;
-    background-color: #591D55;
-`
+    width: "100vw",
+    height: "560px",
+    borderRadius: "0 0 10px 10px",
+    borderBottomWidth: '5px',
+    borderBottomStyle: 'solid',
+    borderBottomColor: theme.palette.primary.main, 
+    backgroundColor: theme.palette.primary.main,
+}))
