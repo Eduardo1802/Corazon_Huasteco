@@ -2,7 +2,7 @@ import React, { useState, useEffect }  from "react";
 import { Link, NavLink, useNavigate }  from "react-router-dom";
 import { AppBar, Avatar, Box, Button, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Menu, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material";
 import LoginRoundedIcon                from "@mui/icons-material/LoginRounded";
-
+import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuIcon                        from "@mui/icons-material/Menu";
 import { doc, getDoc }                 from "firebase/firestore";
 import { HideOnScroll } from "./componentsNavBar";
@@ -111,13 +111,17 @@ export const NavBar = (props) => {
                 sx={{ textAlign: "left",  "&:hover": { color: "primary.main" } }}
                 component={Link}
                 to={`/${item.path}`}
-                >
+              >
+                <ListItemIcon>
+                  {item.icon}
+                </ListItemIcon>
                 <ListItemText primary={item.title} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
       </Box>
+      <Divider />
       <List>
         <ListItem >
             <Toggle isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/>
@@ -206,12 +210,14 @@ export const NavBar = (props) => {
                 display: { xs: "flex", md: "none" },
                 flexGrow: 1,
                 fontWeight: 700,
+                fontSize: {xs: 18, sm: 25},
+                letterSpacing: {xs: 0, sm: 2},
                 color: "inherit",
                 textDecoration: "none",
                 
               }}
             >
-              Corazón Huasteco
+              CORAZÓN HUASTECO
             </Typography>
 
             {/* pages --- desktop */}
@@ -223,14 +229,17 @@ export const NavBar = (props) => {
             >
               {navLinks.map((item) => (
                 <Button
+                  startIcon={item.icon}
                   key={item.title}
                   onClick={handleCloseNavMenu}
                   sx={{
-                    my: 2,
+                    // my: 2,
+                    mr: 1,
                     fontSize: 16,
                     color: "inherit",                    
-                    display: "block",
+                    display: "flex",
                     textTransform: "capitalize",
+                    "&:hover": { color: "background.default" },
                   }}
                   component={NavLink}
                   to={`/${item.path}`}

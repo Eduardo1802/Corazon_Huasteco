@@ -6,7 +6,6 @@ import { contadorVisitas } from '../../utils/fnCountStatus';
 import { Carrusel } from './Carrusel';
 import { SwitchCarouselMap } from './SwitchCarouselMap';
 
-
 export const Inicio = () => {
   useEffect(() => {
     contadorVisitas("inicio");
@@ -18,7 +17,7 @@ export const Inicio = () => {
       {/* CAROUSEL SECTION */}
       <Box component="section">
         <SwitchCarouselMap irA="mapa" />
-        <Container maxWidth="xl">
+        <Container maxWidth="xl" data-aos="flip-left">
           <Carrusel />
         </Container>
       </Box>

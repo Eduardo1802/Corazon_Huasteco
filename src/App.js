@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Router } from "./routes/Router";
 import {Box, ThemeProvider} from '@mui/material';
 import {lightTheme, darkTheme} from './styles/ThemeMui';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function App() {
   const [isDarkMode, setIsDarkmode] = useState(false);
@@ -31,6 +32,7 @@ function App() {
   `;
 
   useEffect(() => {
+    AOS.init();
     // Obtiene el valor del color que deseas para el modo claro y el modo oscuro
     const lightModeColor = lightTheme.palette.primary.main;
     const darkModeColor = darkTheme.palette.primary.main;
@@ -41,7 +43,8 @@ function App() {
       "content",
       isDarkMode ? darkModeColor : lightModeColor
     );
-  }, [isDarkMode]);
+    AOS.refresh();
+  }, [isDarkMode, theme]);
 
   return (
     <Box>

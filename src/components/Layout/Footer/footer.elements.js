@@ -10,12 +10,12 @@ export const FooterContent = styled.footer`
   padding-top: 5rem; 
 `
 //componente router personalizado {link}
-export const LinkStyled = styled(Link)({
-  display: "block", 
-  color: "white", 
+export const LinkStyled = styled(Link)(({ theme }) => ({
+  display: "block",
+  color: "white",
   textDecoration: "none",
 
   '&:hover': {
-      color: '#D9CAAD',
-  },
-})
+      color: theme.palette.background.default,
+  }
+}))

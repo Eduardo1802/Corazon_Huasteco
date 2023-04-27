@@ -29,7 +29,7 @@ export const Mapa = () => {
       <SwitchCarouselMap irA="carrusel" />
 
       {/* M A P A */}
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" data-aos="flip-right">
         <Box
           style={{
             display: "flex",
