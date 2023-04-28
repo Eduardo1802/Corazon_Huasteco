@@ -18,7 +18,7 @@ function App() {
   body {
     scrollbar-width: thin;
     scrollbar-color: ${theme.palette.primary.main} ${theme.palette.background.default};
-    ${/*overflow-x: hidden*/ ""}
+    overflow-x: hidden; /*oculta el scroll horizontal de toda la pagina*/
   }
   body::-webkit-scrollbar {
     width: 8px;
