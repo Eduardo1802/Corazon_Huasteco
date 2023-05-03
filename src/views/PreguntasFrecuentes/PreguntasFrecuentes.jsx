@@ -12,7 +12,7 @@ export const PreguntasFrecuentes = () => {
 
         <Box sx={{margin:"15px"}}>
             <Box sx={{display: "flex", flexFlow: "column wrap", alignItems: "center"}}>
-            <Typography variant="h5" color="initial" sx={{mb:5}}>
+            <Typography variant="h5" color="primary" sx={{mb:5}}>
                 Preguntas frecuentes
             </Typography>
 

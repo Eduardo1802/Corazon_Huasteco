@@ -85,7 +85,7 @@ export const Donaciones = () => {
       
       <Box sx={{margin:"15px"}}>
         <Box sx={{display: "flex", flexFlow: "column wrap", alignItems: "center"}}>
-          <Typography variant="body1" color="initial">
+          <Typography variant="body1" color="primary">
             Donaciones
           </Typography>
         </Box>

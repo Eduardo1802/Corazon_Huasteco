@@ -5,7 +5,7 @@ import LoginRoundedIcon                from "@mui/icons-material/LoginRounded";
 import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuIcon                        from "@mui/icons-material/Menu";
 import { doc, getDoc }                 from "firebase/firestore";
-import { HideOnScroll } from "./componentsNavBar";
+import { AnimatedIcon, HideOnScroll } from "./componentsNavBar";
 import { navLinks }                    from "./opNavLinks";
 import SimpleBackdrop                  from "../../customs/SimpleBackDrop";
 import { db }                          from "../../../config/firebase/firebaseDB";
@@ -141,6 +141,7 @@ export const NavBar = (props) => {
           {/* Primer tool */}
           {/* desktop*/}
           <Toolbar sx={{ display: { xs: "none", md: "flex" } }}>
+            <AnimatedIcon component={Link} to='/inicio'/>
             <Typography
               variant="h5"
               component={Link}
@@ -154,7 +155,6 @@ export const NavBar = (props) => {
             >
               CORAZÓN HUASTECO
             </Typography>
-            
             <Toggle isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/>
           </Toolbar>
 
@@ -184,7 +184,7 @@ export const NavBar = (props) => {
           <Toolbar>
             {/*disableGutters*/}
             {/* Icono menu --- mobile */}
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <Box sx={{ display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -206,18 +206,16 @@ export const NavBar = (props) => {
               component={Link}
               to="/inicio"
               sx={{
-                mr: 2,
                 display: { xs: "flex", md: "none" },
                 flexGrow: 1,
+                justifyContent: "center",
                 fontWeight: 700,
-                fontSize: {xs: 18, sm: 25},
-                letterSpacing: {xs: 0, sm: 2},
                 color: "inherit",
                 textDecoration: "none",
                 
               }}
-            >
-              CORAZÓN HUASTECO
+            >  
+              <AnimatedIcon/>
             </Typography>
 
             {/* pages --- desktop */}

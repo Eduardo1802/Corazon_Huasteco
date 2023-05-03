@@ -40,11 +40,11 @@ export const LoaderAnimation = () => {
       border-radius: 50%
   }
 
-  .pelotas:nth-child(2) {
+  .pelotas:nth-of-type(2) {
       animation-delay: .18s;
   }
 
-  .pelotas:nth-child(3) {
+  .pelotas:nth-of-type(3) {
       animation-delay: .37s;
   }
 

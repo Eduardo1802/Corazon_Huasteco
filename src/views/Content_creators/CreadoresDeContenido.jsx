@@ -14,7 +14,7 @@ export const CreadoresDeContenido = () => {
       <Bread migas={[{miga: "INICIO", ruta: "/inicio"},{miga: "CREADORES DE CONTENIDO", ruta: "/creadores-de-contenido"}]}/>
       <Box sx={{margin: "15px"}}>
         <Box sx={{display: "flex", flexFlow: "column wrap", alignItems: "center"}}>
-          <Typography variant="body1" color="initial">
+          <Typography variant="body1" color="primary">
             Creadores de cotenido
           </Typography>
         </Box>
