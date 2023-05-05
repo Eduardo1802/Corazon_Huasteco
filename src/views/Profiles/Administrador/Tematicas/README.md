@@ -1,1 +1,0 @@
-echo "# Corazon_Huasteco"

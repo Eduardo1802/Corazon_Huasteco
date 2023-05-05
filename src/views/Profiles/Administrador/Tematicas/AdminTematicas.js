@@ -1,26 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { app } from "../../../../config/firebase/firebase";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { db } from "../../../../config/firebase/firebaseDB";
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button } from "@mui/material";
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import { useParams } from 'react-router-dom';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import EditIcon from '@mui/icons-material/Edit';
-
+import AgregarTematicas from "./AgregarTematicas";
+import EditIcon from '@mui/icons-material/Edit'
+import SimpleBackdrop from "../../../../components/customs/SimpleBackDrop";
+import EditarTematicas from "./EditarTematicas"
 export const AdminTematicas = () => {
-  
   const [proyectos, setProyectos] = useState([]);
-  // eslint-disable-next-line
-  const [add, setAdd] = useState("");
-  // eslint-disable-next-line
-  const [titulo, setTitulo] = useState("");
-  // eslint-disable-next-line
-  const [descripcion, setDescripcion] = useState("");
-  // eslint-disable-next-line
-  const [tematica, setTematica] = useState("");
-  // eslint-disable-next-line
-  const [imagen, setImagen] = useState("");
-  // eslint-disable-next-line
-  const [imgPortada, setImgPortada] = useState("");
-
+  const [open, setOpen] = useState(false);
+  
   const styles = {
     table: {
       border: "1px solid",
@@ -38,25 +30,28 @@ export const AdminTematicas = () => {
       },
     },
   };
-  
-  const obtenerInfo = async () => {
-    const docList = await app.firestore().collection("tematicas").orderBy("tematica", "desc").get();
-    setProyectos(docList.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+
+  const eliminarProyecto = async (id) => {
+    const data = await app.firestore().collection("tematicas").doc(id).get();
+    await app.firestore().collection("tematicas").doc(id).delete();
+    const referencia = doc(db, `bajaTematicas/${id}`);
+    await getDoc(referencia);
+    setDoc(referencia, {
+      titulo: data.data().titulo,
+      tematica: data.data().tematica,
+      informacion: data.data().informacion,
+      imgPortada: data.data().imgPortada,
+      imagen:data.data().imagen,
+      descripcion: data.data().descripcion,
+    });
+    obtenerInfo();
+    console.log(`La tematica ${data.data().titulo} fue eliminada`);
   };
   
-  function crear() {
-    reset();
-    setAdd(true);
-  }
-
-  const reset = () => {
-    setTitulo("");
-    setDescripcion("");
-    setTematica("");
-    setImagen("");
-    setImgPortada("");
-    // setArchivo(null);
-    // setArchivoUrl("");
+  const obtenerInfo = async () => {
+    const docLict = await app.firestore().collection("tematicas").orderBy("tematica", "desc").get();
+    const proyectosData = docLict.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    setProyectos(proyectosData);
   };
 
   useEffect(() => {
@@ -65,6 +60,7 @@ export const AdminTematicas = () => {
 
   return (
     <div>
+      <SimpleBackdrop open={open} />
       {/* TABLA */}
       <Paper sx={{ width: '100%'}}>
         <TableContainer sx={{ maxHeight: 460, backgroundColor:"#E0E0E0"}}>
@@ -78,90 +74,70 @@ export const AdminTematicas = () => {
                 <TableCell>Logo</TableCell>
                 <TableCell>Imágen</TableCell>
                 <TableCell colSpan={2}>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    onClick={crear}
-                    // color="primary"
-                    
-                    sx={{
-                      display: { xs: "none", md: "flex" },
-                      textDecoration: "none",
-                      textTransform: "none",
-                      color: "inherit",
-                      "&:hover": {
-                        color: "primary.main",
-                        bgcolor: "background.default",
-                      },
-                    }}
-                    startIcon={<AddCircleOutlineIcon/>}
-                  >
-                    Agregar
-                  </Button>
+                  <AgregarTematicas/>
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {proyectos.map((proyecto) => (
                 <TableRow hover role="checkbox" tabIndex={-1} key={proyecto.id}>
-                <TableCell>{proyecto.titulo}</TableCell>
+                  <TableCell>{proyecto.titulo}</TableCell>
+                  <TableCell>
+                    {proyecto.descripcion ?
+                      proyecto.descripcion.split(" ").slice(0,40).join(" ") + "..."
+                      :
+                      "Sin descripcion"
+                    }
+                  </TableCell>
+                  <TableCell> 
+                    {proyecto.informacion ?
+                      proyecto.informacion.split(" ").slice(0,50).join(" ") + "..."
+                      :
+                      "Sin información"
+                    }
+                  </TableCell>
+                  <TableCell>{proyecto.tematica}</TableCell>
+                  <TableCell>                    
+                    <img
+                      alt={proyecto.imgPortada}
+                      src={proyecto.imgPortada}
+                      style={{ width: "100px", height: "100px" }}
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <img
+                      alt={proyecto.imagen}
+                      src={proyecto.imagen}
+                      style={{ width: "100px", height: "100px" }}
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <EditarTematicas tematica={proyecto.id}/>
+                    {/* <Button
+                      variant="contained"
+                      color="primary"
+                      startIcon={<EditIcon/>}
+                    >
+                      Editar
+                    </Button> */}
+                  </TableCell>
                     <TableCell>
-                      {proyecto.descripcion ?
-                        proyecto.descripcion.split(" ").slice(0,40).join(" ") + "..."
-                        :
-                        "Sin descripcion"
-                      }
-                    </TableCell>
-                    <TableCell> 
-                      {proyecto.informacion ?
-                        proyecto.informacion.split(" ").slice(0,50).join(" ") + "..."
-                        :
-                        "Sin información"
-                      }
-                    </TableCell>
-                    <TableCell>{proyecto.tematica}</TableCell>
-                    <TableCell>                    
-                      <img
-                        alt={proyecto.imgPortada}
-                        src={proyecto.imgPortada}
-                        style={{ width: "100px", height: "100px" }}
-                      />
-                    </TableCell>
-                    <TableCell>
-                      <img
-                        alt={proyecto.imagen}
-                        src={proyecto.imagen}
-                        style={{ width: "100px", height: "100px" }}
-                      />
-                    </TableCell>
-                    <TableCell>
-                        <Button
-                          type="submit"
+                      <Button
                           variant="contained"
-                          // onClick={() => editarProyecto(proyecto.id)}
                           color="primary"
-                          startIcon={<EditIcon/>}
+                          startIcon={<DeleteOutlineIcon/>}
+                          onClick={() => {
+                            const confirmar = window.confirm(
+                              `¿Estás seguro de que quieres eliminar la temática ${proyecto.titulo}?`
+                            );
+                            if (confirmar) {
+                              eliminarProyecto(proyecto.id);
+                            }
+                          }}
                         >
-                          Editar
-                        </Button>       
-                    </TableCell>
-                    <TableCell>
-                        <Button
-                            variant="text"
-                            color="primary"
-                            // onClick={() => {
-                            //   const confirmar = window.confirm(
-                            //     `¿Estás seguro de que quieres eliminar el producto ${proyecto.nombre}?`
-                            //   );
-                            //   if (confirmar) {
-                            //     eliminarProyecto(proyecto.id);
-                            //   }
-                            // }}
-                            startIcon={<DeleteOutlineIcon/>}
-                          >
-                            Eliminar
-                          </Button>
-                    </TableCell>
+                          Eliminar
+                        </Button>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
