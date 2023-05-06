@@ -12,16 +12,24 @@ import {
   TableRow,
   Typography,
   Snackbar,
+  Paper,
 } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 import { app } from "../../../../config/firebase/firebase";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../../../config/firebase/firebaseDB";
 import { categorias, colores } from "./optionListRegistro";
+import SimpleBackdrop from "../../../../components/customs/SimpleBackDrop";
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import EditIcon from '@mui/icons-material/Edit';
+import CloseIcon from '@mui/icons-material/Close';
+
 export const AdminProductos = () => {
   const [proyectos, setProyectos] = useState([]);
   const [estado, setEstado] = useState(false);
   const [add, setAdd] = useState("");
+  const [open, setOpen] = useState(false);
 
   // Obtener datos de Firebase al cargar la página
   useEffect(() => {
@@ -31,6 +39,24 @@ export const AdminProductos = () => {
   const obtenerInfo = async () => {
     const docList = await app.firestore().collection("producto").get();
     setProyectos(docList.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+  };
+
+  const styles = {
+    table: {
+      border: "1px solid",
+      borderColor: 'primary.main',
+      "& th": {
+        color: "#E0E0E0",
+        // color: "#D9CAAD",
+        backgroundColor: "primary.main",
+        textAlign: 'center',
+      },
+      "& td": {
+        backgroundColor: "background.paper",
+        border: "1px solid #ccc",
+        color:"inherit",
+      },
+    },
   };
 
   // Eliminar un proyecto por su ID
@@ -182,227 +208,238 @@ export const AdminProductos = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   return (
     <div>
-      <Snackbar
-        open={snackbarOpen}
-        autoHideDuration={4000}
-        onClose={() => setSnackbarOpen(false)}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-      >
-        <MuiAlert
-          elevation={6}
-          variant="filled"
-          severity={variant ? variant : "info"}
+      <SimpleBackdrop open={open} />
+      {/* TABLA */}
+      <Paper sx={{ width: '100%'}}>
+        <Snackbar
+          open={snackbarOpen}
+          autoHideDuration={4000}
+          onClose={() => setSnackbarOpen(false)}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
         >
-          {error}
-        </MuiAlert>
-      </Snackbar>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
-        <TableContainer style={{ flex: "3" }}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Imagen</TableCell>
-                <TableCell>Nombre</TableCell>
-                <TableCell>Descripción</TableCell>
-                <TableCell>Categoría</TableCell>
-                <TableCell>Color</TableCell>
-                <TableCell>Precio</TableCell>
-                <TableCell>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    onClick={crear}
-                    color="primary"
-                  >
-                    {estado ? "Cerrar" : "Agregar"}
-                  </Button>
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {proyectos.map((proyecto) => (
-                <TableRow key={proyecto.id}>
-                  <TableCell>
-                    <img
-                      alt={proyecto.url}
-                      src={proyecto.url}
-                      style={{ width: "100px", height: "100px" }}
-                    />
-                  </TableCell>
-                  <TableCell>{proyecto.nombre}</TableCell>
-                  <TableCell>{proyecto.descripcion}</TableCell>
-                  <TableCell>{proyecto.categoria}</TableCell>
-                  <TableCell>{proyecto.color}</TableCell>
-                  <TableCell>{proyecto.costo}</TableCell>
-                  <TableCell>
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      onClick={() => {
-                        const confirmar = window.confirm(
-                          `¿Estás seguro de que quieres eliminar el producto ${proyecto.nombre}?`
-                        );
-                        if (confirmar) {
-                          eliminarProyecto(proyecto.id);
-                        }
-                      }}
-                    >
-                      Eliminar
-                    </Button>
+          <MuiAlert
+            elevation={6}
+            variant="filled"
+            severity={variant ? variant : "info"}
+          >
+            {error}
+          </MuiAlert>
+        </Snackbar>
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
+          <TableContainer sx={{ maxHeight: 1000, backgroundColor:"#E0E0E0", flex: "3"}}>
+            <Table stickyHeader aria-label="sticky table" sx={styles.table}>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Imagen</TableCell>
+                  <TableCell>Nombre</TableCell>
+                  <TableCell>Descripción</TableCell>
+                  <TableCell>Categoría</TableCell>
+                  <TableCell>Color</TableCell>
+                  <TableCell>Precio</TableCell>
+                  <TableCell colSpan={2}>
                     <Button
                       type="submit"
                       variant="contained"
-                      onClick={() => editarProyecto(proyecto.id)}
-                      color="primary"
+                      onClick={crear}
+                      sx={{color: "black", background:"#E0E0E0"}}
+                      startIcon={estado ?<CloseIcon/>:<AddCircleOutlineIcon/>}
                     >
-                      Editar
+                      {estado ? "Cerrar" : "Agregar"}
                     </Button>
                   </TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <div style={{ flex: "1", marginLeft: "20px" }}>
-          <Collapse in={estado}>
-            <Typography variant="h4" align="center">
-            {add ? "Agregar" : "Editar"} Producto
-            </Typography>
-            <input type="file" onChange={archivoHandler} required />
-            <img src={archivoUrl} style={{ maxWidth: "100%" }} alt="producto" />
+              </TableHead>
+              <TableBody>
+                {proyectos.map((proyecto) => (
+                  <TableRow key={proyecto.id}>
+                    <TableCell>
+                      <img
+                        alt={proyecto.url}
+                        src={proyecto.url}
+                        style={{ width: "100px", height: "100px" }}
+                      />
+                    </TableCell>
+                    <TableCell>{proyecto.nombre}</TableCell>
+                    <TableCell>{proyecto.descripcion}</TableCell>
+                    <TableCell>{proyecto.categoria}</TableCell>
+                    <TableCell>{proyecto.color}</TableCell>
+                    <TableCell>{proyecto.costo}</TableCell>
+                    <TableCell>
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        startIcon={<EditIcon/>}
+                        onClick={() => editarProyecto(proyecto.id)}
+                        color="primary"
+                      >
+                        Editar
+                      </Button>
+                    </TableCell>
+                    <TableCell>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        startIcon={<DeleteOutlineIcon/>}
+                        onClick={() => {
+                          const confirmar = window.confirm(
+                            `¿Estás seguro de que quieres eliminar el producto ${proyecto.nombre}?`
+                          );
+                          if (confirmar) {
+                            eliminarProyecto(proyecto.id);
+                          }
+                        }}
+                      >
+                        Eliminar
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <div style={{ flex: "1", marginLeft: "20px" }}>
+            <Collapse in={estado}>
+              <Typography variant="h4" color="#FFFFFF" sx={{ backgroundColor: 'primary.main', textAlign: "center", marginBottom:"5px", marginTop:"5px"}}>
+                {add ? "Agregar" : "Editar"} Producto
+              </Typography>
+              <input type="file" onChange={archivoHandler} required />
+              <img src={archivoUrl} style={{ maxWidth: "100%" }} alt="producto" />
 
-            <br />
-            <br />
-            <TextField
-              label="Nombre del producto"
-              value={nombreProducto || ""}
-              onChange={(e) => setnombreProducto(e.target.value)}
-              required
-              error={
-                nombreProducto.length === 0 ||
-                nombreProducto.length < 5 ||
-                nombreProducto.length > 30
-              }
-              helperText={
-                nombreProducto.length === 0
-                  ? "El nombre del producto no puede estar vacío"
-                  : nombreProducto.length < 5
-                  ? "El nombre del producto debe tener al menos 5 caracteres"
-                  : nombreProducto.length > 30
-                  ? "El nombre del producto  no puede tener más de 30 caracteres"
-                  : ""
-              }
-            />
-            <br />
-            <br />
-            <TextField
-              label="Costo"
-              type="number"
-              value={costo}
-              onChange={(e) => setcosto(e.target.value)}
-              required
-              error={costo === "" || costo < 30 || costo > 2500}
-              helperText={
-                costo === ""
-                  ? "El precio no puede estar vacío"
-                  : costo < 30
-                  ? "El precio no puede costar menos de $30"
-                  : costo > 2500
-                  ? "El precio no puede costar más de $2500"
-                  : ""
-              }
-            />
-            <br />
-            <br />
-            <TextField
-              label="Descripcion"
-              value={descripcion || ""}
-              onChange={(e) => setdescripcion(e.target.value)}
-              required
-              error={
-                descripcion.length === 0 ||
-                descripcion.length < 30 ||
-                descripcion.length > 150
-              }
-              helperText={
-                descripcion.length === 0
-                  ? "La descripticon del producto no puede estar vacío"
-                  : descripcion.length < 30
-                  ? "La descripticon del producto debe tener al menos 30 caracteres"
-                  : descripcion.length > 150
-                  ? "La descripticon del producto no puede tener más de 150 caracteres"
-                  : ""
-              }
-            />
-            <br />
-            <br />
-            <TextField
-              fullWidth
-              select
-              label="Categoría"
-              type="text"
-              name="categoria"
-              onChange={(e) => setcategoria(e.target.value)}
-              value={categoria || ""}
-              autoComplete="off"
-              required
-              error={categoria.length === 0}
-              helperText={
-                categoria.length === 0
-                  ? "La categoría del producto no puede estar vacía"
-                  : ""
-              }
-            >
-              {categorias.map((cate) => (
-                <MenuItem key={cate.value} value={cate.value}>
-                  {cate.label}
-                </MenuItem>
-              ))}
-            </TextField>
+              <br />
+              <br />
+              <TextField
+                label="Nombre del producto"
+                value={nombreProducto || ""}
+                onChange={(e) => setnombreProducto(e.target.value)}
+                required
+                error={
+                  nombreProducto.length === 0 ||
+                  nombreProducto.length < 5 ||
+                  nombreProducto.length > 30
+                }
+                helperText={
+                  nombreProducto.length === 0
+                    ? "El nombre del producto no puede estar vacío"
+                    : nombreProducto.length < 5
+                    ? "El nombre del producto debe tener al menos 5 caracteres"
+                    : nombreProducto.length > 30
+                    ? "El nombre del producto  no puede tener más de 30 caracteres"
+                    : ""
+                }
+              />
+              <br />
+              <br />
+              <TextField
+                label="Costo"
+                type="number"
+                value={costo}
+                onChange={(e) => setcosto(e.target.value)}
+                required
+                error={costo === "" || costo < 30 || costo > 2500}
+                helperText={
+                  costo === ""
+                    ? "El precio no puede estar vacío"
+                    : costo < 30
+                    ? "El precio no puede costar menos de $30"
+                    : costo > 2500
+                    ? "El precio no puede costar más de $2500"
+                    : ""
+                }
+              />
+              <br />
+              <br />
+              <TextField
+                label="Descripcion"
+                value={descripcion || ""}
+                onChange={(e) => setdescripcion(e.target.value)}
+                required
+                error={
+                  descripcion.length === 0 ||
+                  descripcion.length < 30 ||
+                  descripcion.length > 150
+                }
+                helperText={
+                  descripcion.length === 0
+                    ? "La descripticon del producto no puede estar vacío"
+                    : descripcion.length < 30
+                    ? "La descripticon del producto debe tener al menos 30 caracteres"
+                    : descripcion.length > 150
+                    ? "La descripticon del producto no puede tener más de 150 caracteres"
+                    : ""
+                }
+              />
+              <br />
+              <br />
+              <TextField
+                fullWidth
+                select
+                label="Categoría"
+                type="text"
+                name="categoria"
+                onChange={(e) => setcategoria(e.target.value)}
+                value={categoria || ""}
+                autoComplete="off"
+                required
+                error={categoria.length === 0}
+                helperText={
+                  categoria.length === 0
+                    ? "La categoría del producto no puede estar vacía"
+                    : ""
+                }
+              >
+                {categorias.map((cate) => (
+                  <MenuItem key={cate.value} value={cate.value}>
+                    {cate.label}
+                  </MenuItem>
+                ))}
+              </TextField>
 
-            <br />
-            <br />
-            <TextField
-              fullWidth
-              select
-              label="Color"
-              type="text"
-              name="color"
-              onChange={(e) => setcolor(e.target.value)}
-              value={color || ""}
-              autoComplete="off"
-              error={color.length === 0}
-              helperText={
-                color.length === 0
-                  ? "La categoría del producto no puede estar vacía"
-                  : ""
-              }
-            >
-              {colores.map((color) => (
-                <MenuItem key={color.value} value={color.value}>
-                  {color.label}
-                </MenuItem>
-              ))}
-            </TextField>
-            <br />
-            <br />
-            <input
-              type="hidden"
-              name="id"
-              value={idDoc}
-              onChange={(e) => setIdoc(e.target.value)}
-            />
-            <Button
-              type="submit"
-              variant="contained"
-              onClick={add ? handleSubmit : actualizarProyecto}
-              color="primary"
-            >
-              {add ? "Agregar" : "Editar"}
-            </Button>
-          </Collapse>
+              <br />
+              <br />
+              <TextField
+                fullWidth
+                select
+                label="Color"
+                type="text"
+                name="color"
+                onChange={(e) => setcolor(e.target.value)}
+                value={color || ""}
+                autoComplete="off"
+                error={color.length === 0}
+                helperText={
+                  color.length === 0
+                    ? "La categoría del producto no puede estar vacía"
+                    : ""
+                }
+              >
+                {colores.map((color) => (
+                  <MenuItem key={color.value} value={color.value}>
+                    {color.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+              <br />
+              <br />
+              <input
+                type="hidden"
+                name="id"
+                value={idDoc}
+                onChange={(e) => setIdoc(e.target.value)}
+              />
+              <Button
+                type="submit"
+                variant="contained"
+                fullWidth
+                onClick={add ? handleSubmit : actualizarProyecto}
+                sx={{marginBottom:"15px"}}
+                color="primary"
+              >
+                {add ? "Agregar" : "Editar"}
+              </Button>
+            </Collapse>
+          </div>
         </div>
-      </div>
+      </Paper>
     </div>
   );
 };

@@ -9,6 +9,7 @@ import AgregarTematicas from "./AgregarTematicas";
 import EditIcon from '@mui/icons-material/Edit'
 import SimpleBackdrop from "../../../../components/customs/SimpleBackDrop";
 import EditarTematicas from "./EditarTematicas"
+
 export const AdminTematicas = () => {
   const [proyectos, setProyectos] = useState([]);
   const [open, setOpen] = useState(false);
