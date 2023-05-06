@@ -25,6 +25,8 @@ export const AdminUsuarios = () => {
   const [variant, setVariant] = useState("");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [error, setError] = useState("");
+  const [open, setOpen] = useState(false);
+
   // Obtener datos de Firebase al cargar la página
   useEffect(() => {
     obtenerInfo();
@@ -77,7 +79,7 @@ export const AdminUsuarios = () => {
   
   return (
     <div>
-      {/* <SimpleBackdrop open={open} /> */}
+      <SimpleBackdrop open={open} />
       {/* TABLA */}
       <Paper sx={{ width: '100%'}}>
       <TableContainer sx={{ maxHeight: 460, backgroundColor:"#E0E0E0"}}>

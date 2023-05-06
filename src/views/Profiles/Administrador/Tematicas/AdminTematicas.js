@@ -113,13 +113,6 @@ export const AdminTematicas = () => {
                   </TableCell>
                   <TableCell>
                     <EditarTematicas tematica={proyecto.id}/>
-                    {/* <Button
-                      variant="contained"
-                      color="primary"
-                      startIcon={<EditIcon/>}
-                    >
-                      Editar
-                    </Button> */}
                   </TableCell>
                     <TableCell>
                       <Button

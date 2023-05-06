@@ -11,6 +11,7 @@ import { AdminUsuarios } from './Usuarios/AdminUsuarios';
 import { AdminDonaciones } from './Donaciones/AdminDonaciones';
 import { AdminPersonalizar } from './Personalizar/AdminPersonalizar';
 import { AdminConfiguracion } from './Configuracion/AdminConfiguracion';
+import { AdminComentarios } from './Comentarios/AdminComentarios';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import AnalyticsRoundedIcon from '@mui/icons-material/AnalyticsRounded';
 import TopicRoundedIcon from '@mui/icons-material/TopicRounded';
@@ -19,6 +20,7 @@ import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
 import VolunteerActivismRoundedIcon from '@mui/icons-material/VolunteerActivismRounded';
 import DesignServicesRoundedIcon from '@mui/icons-material/DesignServicesRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
+import AddCommentIcon from '@mui/icons-material/AddComment';
 import { collection, getDocs, query } from 'firebase/firestore';
 import { db } from '../../../config/firebase/firebaseDB';
 
@@ -99,9 +101,10 @@ export default function BasicTabsAdministrador() {
         <Tab label="Tematicas"    icon={<TopicRoundedIcon/>}             iconPosition="start" {...a11yProps(2)} />
         <Tab label="Productos"    icon={<CategoryRoundedIcon/>}          iconPosition="start" {...a11yProps(3)} />
         <Tab label="Usuarios"     icon={<GroupRoundedIcon/>}             iconPosition="start" {...a11yProps(4)} />
-        <Tab label="Donaciones"   icon={<VolunteerActivismRoundedIcon/>} iconPosition="start" {...a11yProps(5)} />
-        <Tab label="Personalizar" icon={<DesignServicesRoundedIcon/>}    iconPosition="start" {...a11yProps(6)} />
-        <Tab label="Configuración" icon={<SettingsRoundedIcon/>}         iconPosition="start" {...a11yProps(7)} />
+        <Tab label="Comentarios"  icon={<AddCommentIcon/>}               iconPosition="start" {...a11yProps(5)} />
+        <Tab label="Donaciones"   icon={<VolunteerActivismRoundedIcon/>} iconPosition="start" {...a11yProps(6)} />
+        <Tab label="Personalizar" icon={<DesignServicesRoundedIcon/>}    iconPosition="start" {...a11yProps(7)} />
+        <Tab label="Configuración" icon={<SettingsRoundedIcon/>}         iconPosition="start" {...a11yProps(8)} />
       </Tabs>
       <TabPanel value={value} index={0}>
         <AdminInicio/>
@@ -119,12 +122,15 @@ export default function BasicTabsAdministrador() {
         <AdminUsuarios/>
       </TabPanel>
       <TabPanel value={value} index={5}>
-        <AdminDonaciones/>
+        <AdminComentarios/>
       </TabPanel>
       <TabPanel value={value} index={6}>
-        <AdminPersonalizar/>
+        <AdminDonaciones/>
       </TabPanel>
       <TabPanel value={value} index={7}>
+        <AdminPersonalizar/>
+      </TabPanel>
+      <TabPanel value={value} index={8}>
         <AdminConfiguracion/>
       </TabPanel>
     </Box>
