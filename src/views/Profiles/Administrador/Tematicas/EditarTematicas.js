@@ -125,7 +125,7 @@ const EditarTematicas = (props) => {
                         }
                     />
 
-                    <Label> Imagen complementaria a la snopsis:</Label>
+                    <Label> Imágen complementaría a la sinopsis:</Label>
                     <input type="file" onChange={archivoHandler} required/>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <img src={imgPortada} style={{ maxWidth: "100%" }}/>
@@ -146,12 +146,12 @@ const EditarTematicas = (props) => {
                               : descripcion.length < 30
                               ? "La sinopsis debe tener al menos 30 caracteres"
                               : descripcion.length > 300
-                              ? "La sinopsis no puede tener más de 150 caracteres"
+                              ? "La sinopsis no puede tener más de 300 caracteres"
                               : ""
                         }
                     />
                   
-                    <Label>Imagen complementaria a la información:</Label>
+                    <Label>Imágen complementaría a la información:</Label>
                     <input type="file" onChange={archivoHandler2} required/>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <img src={imagen} style={{ maxWidth: "100%" }}/>
