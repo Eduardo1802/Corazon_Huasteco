@@ -29,6 +29,10 @@ function App() {
     background-color: ${theme.palette.primary.main};
     border-radius: 20px;
   }
+  ::selection {
+    color: ${theme.palette.background.default};
+    background: ${theme.palette.primary.main};
+  }
   `;
 
   useEffect(() => {

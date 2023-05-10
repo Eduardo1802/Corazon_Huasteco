@@ -14,8 +14,10 @@ const EditarTematicas = (props) => {
     const [titulo, setTitulo] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [imgPortada, setImgPortada] = useState("");
+    //eslint-disable-next-line
     const [logo, setLogo] = useState("");  
     const [imagen, setImagen] = useState("");
+    //eslint-disable-next-line
     const [img, setImg] = useState("");
     const [info, setInfo] = useState("");
     const [tematic, setTematic] = useState("");
@@ -56,6 +58,7 @@ const EditarTematicas = (props) => {
 
     useEffect(() => {
         obtenerInfo();
+        //eslint-disable-next-line
     }, []);
 
     const handleClickOpen = () => {
@@ -128,7 +131,7 @@ const EditarTematicas = (props) => {
                     <Label> Imágen complementaría a la sinopsis:</Label>
                     <input type="file" onChange={archivoHandler} required/>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <img src={imgPortada} style={{ maxWidth: "100%" }}/>
+                        <img src={imgPortada} alt="img" style={{ maxWidth: "100%" }}/>
                     </div>
 
                     <TextField
@@ -154,7 +157,7 @@ const EditarTematicas = (props) => {
                     <Label>Imágen complementaría a la información:</Label>
                     <input type="file" onChange={archivoHandler2} required/>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <img src={imagen} style={{ maxWidth: "100%" }}/>
+                        <img src={imagen} alt="img" style={{ maxWidth: "100%" }}/>
                     </div>
 
                     <TextField

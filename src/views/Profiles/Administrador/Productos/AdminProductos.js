@@ -29,6 +29,7 @@ export const AdminProductos = () => {
   const [proyectos, setProyectos] = useState([]);
   const [estado, setEstado] = useState(false);
   const [add, setAdd] = useState("");
+  //eslint-disable-next-line
   const [open, setOpen] = useState(false);
 
   // Obtener datos de Firebase al cargar la página

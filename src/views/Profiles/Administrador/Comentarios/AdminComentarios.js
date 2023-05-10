@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { app } from "../../../../config/firebase/firebase";
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, /* updateDoc */ } from "firebase/firestore";
 import { db } from "../../../../config/firebase/firebaseDB";
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button } from "@mui/material";
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import SimpleBackdrop from "../../../../components/customs/SimpleBackDrop";
 
 export const AdminComentarios = () => {
     const [proyectos, setProyectos] = useState([]);
+    //eslint-disable-next-line
     const [open, setOpen] = useState(false);
     const styles = {
         table: {

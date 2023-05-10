@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import {Button,TextField,Dialog,DialogTitle,IconButton,DialogContent,MenuItem,Alert} from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import MuiAlert from "@mui/material/Alert";
+//import MuiAlert from "@mui/material/Alert";
 import { app } from "../../../../config/firebase/firebase";
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
-import { db } from "../../../../config/firebase/firebaseDB";
+// import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+// import { db } from "../../../../config/firebase/firebaseDB";
 import { categorias } from "./OptionListTematicas";
 import { Label } from 'semantic-ui-react';
 
@@ -202,7 +202,7 @@ const AgregarTematicas = () => {
                     <Label> Imagen complementaria a la snopsis:</Label>
                     <input type="file" onChange={archivoHandler} required/>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <img src={logoUrl} style={{ maxWidth: "100%" }}/>
+                      <img src={logoUrl} alt='logoUrl' style={{ maxWidth: "100%" }}/>
                     </div>
 
                     <TextField
@@ -232,7 +232,7 @@ const AgregarTematicas = () => {
                     <Label>Imagen complementaria a la información:</Label>
                     <input type="file" onChange={archivoHandler2} required/>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <img src={imagenUrl} style={{ maxWidth: "100%" }}/>
+                      <img src={imagenUrl} alt='imagenUrl' style={{ maxWidth: "100%" }}/>
                     </div>
 
                     <TextField

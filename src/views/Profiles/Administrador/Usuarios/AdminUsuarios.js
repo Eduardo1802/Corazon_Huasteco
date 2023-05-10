@@ -25,6 +25,7 @@ export const AdminUsuarios = () => {
   const [variant, setVariant] = useState("");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [error, setError] = useState("");
+  //eslint-disable-next-line
   const [open, setOpen] = useState(false);
 
   // Obtener datos de Firebase al cargar la página

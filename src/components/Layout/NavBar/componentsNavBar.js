@@ -1,6 +1,7 @@
 import {useScrollTrigger, Slide, Box} from '@mui/material';
 import logo from '../../../assets/img/app/imgLogoHuejutla.png'
 
+// esto permite ocoultar el nav al hacer scroll
 export function HideOnScroll(props) {
     const { children, window } = props;
     // Note that you normally won't need to set the window ref as useScrollTrigger

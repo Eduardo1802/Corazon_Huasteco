@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react'
 import Typography from '@mui/material/Typography'
-import { Box, Container, Grid, Paper } from '@mui/material';
+import { /* Box, Container, */ Grid, Paper } from '@mui/material';
 import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
 import { contadorVisitas } from '../../utils/fnCountStatus';
 import { Carrusel } from './Carrusel';
-import { SwitchCarouselMap } from './SwitchCarouselMap';
+// import { SwitchCarouselMap } from './SwitchCarouselMap';
 
 export const Inicio = () => {
   useEffect(() => {
@@ -15,14 +15,13 @@ export const Inicio = () => {
     <WrapperSingleRoute>
 
       {/* CAROUSEL SECTION */}
-      <Box component="section">
+      {/* <Box component="section">
         <SwitchCarouselMap irA="mapa" />
         <Container maxWidth="xl" data-aos="flip-left">
-          <Carrusel />
         </Container>
-      </Box>
-
+      </Box> */}
       
+      <Carrusel />
 
       <Grid container>
         <Grid item md={6} xs={12}>

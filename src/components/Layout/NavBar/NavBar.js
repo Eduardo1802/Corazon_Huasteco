@@ -1,5 +1,5 @@
 import React, { useState, useEffect }  from "react";
-import { Link, NavLink, useNavigate }  from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate }  from "react-router-dom";
 import { AppBar, Avatar, Box, Button, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Menu, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material";
 import LoginRoundedIcon                from "@mui/icons-material/LoginRounded";
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -12,11 +12,17 @@ import { db }                          from "../../../config/firebase/firebaseDB
 import { useAuth }                     from "../../../context/AuthContext";
 import imgUser from "../../../assets/img/perfil/imgUser.jpg";
 import { Toggle } from "../../../views/Home/Toggle";
+// import './Navbar.css'
+import './logica'
 
 const drawerWidth = 240;
 // const settings = ['Perfil', 'Cuenta', 'Panel', 'Cerrar Sesión'];
 
 export const NavBar = (props) => {
+  const location = useLocation();
+  const isHome = location.pathname === "/inicio";
+  const navBackgroundStyle = isHome ? { backgroundColor: "rgba(0, 0, 0, .3)" } : { backgroundColor: "primary" };
+
   const {isDarkMode} = props;
   const {handleThemeChange} = props;
   const { logout, user } = useAuth();
@@ -136,7 +142,7 @@ export const NavBar = (props) => {
   return (
     <>
       <HideOnScroll {...props}>
-        <AppBar color="primary" enableColorOnDark>
+        <AppBar sx={navBackgroundStyle} enableColorOnDark id="header-principal" >
           <SimpleBackdrop open={open}/>
           {/* Primer tool */}
           {/* desktop*/}
@@ -343,8 +349,17 @@ export const NavBar = (props) => {
         </AppBar>
       </HideOnScroll>
       {/* separadores de nav y cotenido */}
-      <Toolbar sx={{ display: { xs: "none", md: "flex" } }} />
-      <Toolbar />
+      {
+        isHome 
+        ? 
+          null
+        : 
+        <>
+          <Toolbar sx={{ display: { xs: "none", md: "flex" } }} />
+          <Toolbar />
+        </>
+      }
+      
     </>
   );
 };
