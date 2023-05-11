@@ -13,12 +13,16 @@ import { useAuth }                     from "../../../context/AuthContext";
 import imgUser from "../../../assets/img/perfil/imgUser.jpg";
 import { Toggle } from "../../../views/Home/Toggle";
 // import './Navbar.css'
-import './logica'
+// import './logica'
+import { Elder } from "./logica";
+import { useTheme } from "@emotion/react";
 
 const drawerWidth = 240;
 // const settings = ['Perfil', 'Cuenta', 'Panel', 'Cerrar Sesión'];
 
 export const NavBar = (props) => {
+  const theme = useTheme();
+  Elder(theme.palette.primary.main);
   const location = useLocation();
   const isHome = location.pathname === "/inicio";
   const navBackgroundStyle = isHome ? { backgroundColor: "rgba(0, 0, 0, .3)" } : { backgroundColor: "primary" };
