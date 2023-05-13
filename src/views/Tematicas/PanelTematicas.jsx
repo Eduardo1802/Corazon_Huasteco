@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Grid, Typography } from '@mui/material'
+import { Grid, Paper, Typography } from '@mui/material'
 import { app } from '../../config/firebase/firebase'
 import { Outlet } from 'react-router-dom'
 import { ItemListCard } from '../../components/customs/ItemListCard'
@@ -7,6 +7,7 @@ import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute'
 import { Bread } from '../../components/customs/Bread'
 import GroupSkeleton from "../Shop/groupSkeleton"
 import { contadorVisitas } from '../../utils/fnCountStatus'
+import { HomeRounded, LabelRounded } from '@mui/icons-material';
 
 export const PanelTematicas = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -31,46 +32,38 @@ export const PanelTematicas = () => {
 
   return (
     <WrapperSingleRoute> 
-      <Grid 
-        container 
-        rowSpacing={1} 
-        columnSpacing={{xs: 1, sm: 3, md: 5}}
-      >{/*BreadCrumbs*/ }
-        <Grid item xs> 
-          <Bread migas={[{miga: "INICIO", ruta: "/inicio"},{miga: "TEMATICAS", ruta: "/tematicas"},]}/>
-        </Grid>
-
-        <Grid item xs={12} sx={{mb:4}}> 
-          <Typography variant='h4' component='p' gutterBottom align='center' color="primary.main" m={2}>
-            Explora las diferentes Tematicas 
-          </Typography>
-        </Grid>
-      </Grid>
+      {/* Breadcrumbs */}
+      <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "TEMATICAS", ruta: "/tematicas", icono: <LabelRounded/>},]}/>
 
       {/* L I S T A D O   D E   T E M A T I C A S */}
-
-      <Grid container spacing={1}> {/* G R I D  G R A L. */}
-        {
-          isLoading ? (
-            <GroupSkeleton/>
-          )
-          :
-          (proyectos.map(proyecto => {
-            return (
-              <Grid item xs={12} sm={6} md={4} key={proyecto.id}>
-                <ItemListCard
-                  key={proyecto.id}
-                  id={proyecto.id}
-                  titulo={proyecto.data().titulo}
-                  descripcion={proyecto.data().descripcion}
-                  ancla={proyecto.data().ancla}
-                  img={proyecto.data().img} />
-              </Grid>
+      <Paper>
+        <Grid container spacing={1}> {/* G R I D  G R A L. */}
+          <Grid item xs={12} sx={{p:3}}> 
+            <Typography variant="h4" color="primary" textAlign='center' >Explora las diferentes tematicas</Typography>
+          </Grid>
+          {
+            isLoading ? (
+              <GroupSkeleton/>
             )
-          }))
-        }
-      </Grid>
-
+            :
+            (proyectos.map(proyecto => {
+              return (
+                <Grid item xs={12} sm={6} md={4} key={proyecto.id}>
+                  <ItemListCard
+                    key={proyecto.id}
+                    id={proyecto.id}
+                    titulo={proyecto.data().titulo}
+                    descripcion={proyecto.data().descripcion}
+                    ancla={proyecto.data().ancla}
+                    img={proyecto.data().img}
+                    shoWActions={false}
+                   />  
+                </Grid>
+              )
+            }))
+          }
+        </Grid>
+      </Paper>
       <Outlet/> {/* R O U T E R  O U T L E T */}{/**SALIDA DE LA SUBRUTA */}
     </WrapperSingleRoute>
   )

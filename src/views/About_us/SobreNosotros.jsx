@@ -5,6 +5,7 @@ import { Bread }              from '../../components/customs/Bread';
 import { contadorVisitas }    from '../../utils/fnCountStatus';
 import TimelineUsLarge from './TimelineUsLarge';
 import TimelineUsSmall from './TimelineUsSmall';
+import { HomeRounded, BusinessRounded } from '@mui/icons-material';
 
 // import CustomizedTimeline from './CustomizedTimeline';
 
@@ -18,7 +19,7 @@ export const SobreNosotros = () => {
   return (
     <WrapperSingleRoute>
       {/* Breadcrumbs */}
-      <Bread migas={[{miga: "INICIO", ruta: "/inicio"},{miga: "SOBRE NOSOTROS", ruta: "/sobre-nosotros"}]}/>
+      <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "SOBRE NOSOTROS", ruta: "/sobre-nosotros", icono: <BusinessRounded/>}]}/>
 
       <Paper>
         <Grid container spacing={1}>

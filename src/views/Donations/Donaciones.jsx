@@ -13,7 +13,7 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
 import { Bread } from '../../components/customs/Bread';
-
+import { HomeRounded, PaidRounded } from '@mui/icons-material';
 
 
 const steps = ['Monto', 'Metodo', 'Pago'];
@@ -76,87 +76,89 @@ export const Donaciones = () => {
 
   return (
     <WrapperSingleRoute>
-      <Grid container spacing={1}>
-        <Grid item xs={12}>
-          <Bread migas={[{miga: "INICIO", ruta: "/inicio"},{miga: "DONACIONES", ruta: "/donaciones"}]}/>
-        </Grid>
-      </Grid>
-
-      
-      <Box sx={{margin:"15px"}}>
-        <Box sx={{display: "flex", flexFlow: "column wrap", alignItems: "center"}}>
-          <Typography variant="body1" color="primary">
-            Donaciones
-          </Typography>
-        </Box>
-      </Box>
+      {/* Breadcrumbs */}
+      <Bread
+        migas={[
+          { miga: "INICIO", ruta: "/inicio", icono: <HomeRounded /> },
+          { miga: "DONACIONES", ruta: "/donaciones", icono: <PaidRounded /> },
+        ]}
+      />
 
       {/* STEPPER */}
-      <Grid content spacing={1}>
-        <Grid item xs m={2} p={3}>
-          <Paper>
-            <Box sx={{ width: '100%', p:5 }}>
-            <Stepper activeStep={activeStep}>
-              {steps.map((label, index) => {
-                const stepProps = {};
-                const labelProps = {};
-                if (isStepOptional(index)) {
-                  labelProps.optional = (
-                    <Typography variant="caption">Optional</Typography>
-                  );
-                }
-                if (isStepSkipped(index)) {
-                  stepProps.completed = false;
-                }
-                return (
-                  <Step key={label} {...stepProps}>
-                    <StepLabel {...labelProps}>{label}</StepLabel>
-                  </Step>
-                );
-              })}
-            </Stepper>
-      {activeStep === steps.length ? (
-        <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>
-            All steps completed - you&apos;re finished
-          </Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-            <Box sx={{ flex: '1 1 auto' }} />
-            <Button onClick={handleReset}>Reset</Button>
-          </Box>
-        </React.Fragment>
-      ) : (
-        <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-            <Button
-              color="inherit"
-              disabled={activeStep === 0}
-              onClick={handleBack}
-              sx={{ mr: 1 }}
-            >
-              Back
-            </Button>
-            <Box sx={{ flex: '1 1 auto' }} />
-            {isStepOptional(activeStep) && (
-              <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                Skip
-              </Button>
-            )}
+      <Paper>
+        <Grid container spacing={1}>
+          <Grid item xs={12} sx={{p:3}}> 
+            <Typography variant="h4" color="primary" sx={{textAlign: "center"}}>Donaciones</Typography>
+          </Grid>
 
-            <Button onClick={handleNext}>
-              {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-            </Button>
-          </Box>
-        </React.Fragment>
-      )}
-            </Box>
-          </Paper>
+          <Grid item xs={12} m={2} p={3}>
+            <Paper>
+              <Box sx={{ width: "100%", p: 5 }}>
+                <Stepper activeStep={activeStep}>
+                  {steps.map((label, index) => {
+                    const stepProps = {};
+                    const labelProps = {};
+                    if (isStepOptional(index)) {
+                      labelProps.optional = (
+                        <Typography variant="caption">Optional</Typography>
+                      );
+                    }
+                    if (isStepSkipped(index)) {
+                      stepProps.completed = false;
+                    }
+                    return (
+                      <Step key={label} {...stepProps}>
+                        <StepLabel {...labelProps}>{label}</StepLabel>
+                      </Step>
+                    );
+                  })}
+                </Stepper>
+                {activeStep === steps.length ? (
+                  <React.Fragment>
+                    <Typography sx={{ mt: 2, mb: 1 }}>
+                      All steps completed - you&apos;re finished
+                    </Typography>
+                    <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+                      <Box sx={{ flex: "1 1 auto" }} />
+                      <Button onClick={handleReset}>Reset</Button>
+                    </Box>
+                  </React.Fragment>
+                ) : (
+                  <React.Fragment>
+                    <Typography sx={{ mt: 2, mb: 1 }}>
+                      Step {activeStep + 1}
+                    </Typography>
+                    <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+                      <Button
+                        color="inherit"
+                        disabled={activeStep === 0}
+                        onClick={handleBack}
+                        sx={{ mr: 1 }}
+                      >
+                        Back
+                      </Button>
+                      <Box sx={{ flex: "1 1 auto" }} />
+                      {isStepOptional(activeStep) && (
+                        <Button
+                          color="inherit"
+                          onClick={handleSkip}
+                          sx={{ mr: 1 }}
+                        >
+                          Skip
+                        </Button>
+                      )}
+
+                      <Button onClick={handleNext}>
+                        {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                      </Button>
+                    </Box>
+                  </React.Fragment>
+                )}
+              </Box>
+            </Paper>
+          </Grid>
         </Grid>
-      </Grid>
-      
-
-
+      </Paper>
     </WrapperSingleRoute>
-  )
+  );
 }

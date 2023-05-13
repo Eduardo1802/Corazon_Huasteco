@@ -7,7 +7,7 @@ import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute'
 import { Bread } from '../../components/customs/Bread';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
+import { HomeRounded, StoreRounded, LocalOfferRounded } from '@mui/icons-material';
 
 
 
@@ -33,7 +33,7 @@ export const DetalleProduct = ({productos}) => {
             columnSpacing={{xs: 1, sm: 3, md: 5}}
         >
             <Grid item xs > 
-                <Bread migas={[{miga: "INICIO", ruta: "/inicio"},{miga: "TIENDA", ruta: "/tienda"},{miga: `${datos.nombre}`, ruta: "/tienda/:id"}]}/>
+                <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "TIENDA", ruta: "/tienda", icono: <StoreRounded/>},{miga: `${datos.nombre}`, ruta: `/tienda/${params.id}`, icono: <LocalOfferRounded/>}]}/>
             </Grid>
         </Grid>
         

@@ -2,11 +2,11 @@ import React    from 'react'
 import { Card, CardActionArea, CardActions, CardContent, CardMedia, Paper, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 
-export const ItemListCard = ({titulo='Titulo', descripcion="Desc", ancla, img="#", showContent=true, heightImg=270, widthImg }) => {
+export const ItemListCard = ({titulo='Titulo', descripcion="Desc", ancla, img="#", showContent=true, heightImg=270, widthImg, shoWActions=true }) => {
   return (
     <Paper 
         sx={{
-            p:1, m:1, bgcolor: "background.default", 
+            /* p:1 , */ m:1, /* bgcolor: "background.default",  */
             display: "flex", justifyContent: "center"
         }} 
         elevation={0}
@@ -18,7 +18,7 @@ export const ItemListCard = ({titulo='Titulo', descripcion="Desc", ancla, img="#
                 "&:hover": { 
                     transform: "scale(1.05)"
                 },
-                bgcolor: "background.paper"
+                // bgcolor: "background.paper"
             }}
         >
             <CardActionArea 
@@ -41,9 +41,15 @@ export const ItemListCard = ({titulo='Titulo', descripcion="Desc", ancla, img="#
                 {showContentText({showContent, titulo, descripcion})}
                 
             </CardActionArea>
-            <CardActions>
+            {
+                shoWActions === true ? 
+                <CardActions>
                 
-            </CardActions>
+                </CardActions>
+                :
+                <></>
+            }
+            
         </Card>
     </Paper>
   )

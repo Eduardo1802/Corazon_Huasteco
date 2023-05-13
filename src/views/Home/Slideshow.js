@@ -125,7 +125,8 @@ const ContenedorPrincipal = styled('div')({
 	  height: "100%",
       verticalAlign: "top",
 	  objectFit: "cover",
-	  objectPosition: "center"
+	  objectPosition: "center",
+	  filter: "brightness(70%) contrast(130%)", // Agrega el filtro a la imagen
     },
   });
 

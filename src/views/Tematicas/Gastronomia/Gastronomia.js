@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom'
 import { ItemListCard } from '../../../components/customs/ItemListCard'
 import { WrapperSingleRoute } from '../../../components/customs/WrapperSingleRoute'
 import { Bread } from '../../../components/customs/Bread'
+import { HomeRounded, LabelRounded, RestaurantRounded } from '@mui/icons-material';
 import GroupSkeleton from "../../Shop/groupSkeleton"
 
 export const Gastronomia = () => {
@@ -38,7 +39,7 @@ export const Gastronomia = () => {
         columnSpacing={{ xs: 1, sm: 3, md: 5 }}  
       >
         <Grid item xs={12}>
-        <Bread migas={[{miga: "INICIO", ruta: "/inicio"},{miga: "TEMATICAS", ruta: "/tematicas"},{miga: "GASTRONOMIA", ruta: "/tematicas/gastronomia"}]}/>
+        <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "TEMATICAS", ruta: "/tematicas", icono: <LabelRounded/>},{miga: "GASTRONOMIA", ruta: "/tematicas/gastronomia", icono: <RestaurantRounded/>}]}/>
         </Grid>
       </Grid>
 

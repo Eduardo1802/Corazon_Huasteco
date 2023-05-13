@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Box, Grid, Toolbar, TextField, MenuItem, Button } from '@mui/material'
 import { app } from '../../config/firebase/firebase'
 import SearchIcon from '@mui/icons-material/Search';
+import { HomeRounded, StoreRounded } from '@mui/icons-material';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import { ItemListCard } from '../../components/customs/ItemListCard';
@@ -95,7 +96,7 @@ export const Tienda = () => {
       <Grid container>
         {/* B R E A D C R U M B S */}
         <Grid item xs={12}>
-          <Bread migas={[{ miga: "INICIO", ruta: "/inicio" }, { miga: "TIENDA", ruta: "/tienda" }]} />
+          <Bread migas={[{ miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/> }, { miga: "TIENDA", ruta: "/tienda", icono: <StoreRounded/> }]} />
         </Grid>
       </Grid>
 

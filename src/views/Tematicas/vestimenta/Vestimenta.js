@@ -6,6 +6,7 @@ import { ItemListCard } from '../../../components/customs/ItemListCard'
 import { WrapperSingleRoute } from '../../../components/customs/WrapperSingleRoute'
 import { Bread } from '../../../components/customs/Bread'
 import GroupSkeleton from "../../Shop/groupSkeleton"
+import { HomeRounded, LabelRounded, Checkroom } from '@mui/icons-material';
 
 export const Vestimenta = () => {
 
@@ -37,7 +38,7 @@ export const Vestimenta = () => {
         columnSpacing={{ xs: 1, sm: 3, md: 5 }}  
       >
         <Grid item xs={12}>
-          <Bread migas={[{miga: "INICIO", ruta: "/inicio"},{miga: "TEMATICAS", ruta: "/tematicas"},{miga: "VESTIMENTA", ruta: "/tematicas/vestimenta"}]}/>
+          <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "TEMATICAS", ruta: "/tematicas", icono: <LabelRounded/>},{miga: "VESTIMENTA", ruta: "/tematicas/vestimenta", icono: <Checkroom/>}]}/>
         </Grid>
       </Grid>
 
