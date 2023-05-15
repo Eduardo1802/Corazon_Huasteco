@@ -26,6 +26,6 @@ export const IconButtonStyled = styled(IconButton)(({ theme }) => ({
   transition: "all 0.3s ease-in-out",
   '&:hover': {
       color: theme.palette.background.default,
-      transform: "scale(1.2)",
+      transform: "rotate(-10deg) scale(1.2)",
   }
 }))
