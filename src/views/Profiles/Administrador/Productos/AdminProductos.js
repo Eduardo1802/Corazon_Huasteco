@@ -20,10 +20,10 @@ import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../../../config/firebase/firebaseDB";
 import { categorias, colores } from "./optionListRegistro";
 import SimpleBackdrop from "../../../../components/customs/SimpleBackDrop";
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import EditIcon from '@mui/icons-material/Edit';
-import CloseIcon from '@mui/icons-material/Close';
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import EditIcon from "@mui/icons-material/Edit";
+import CloseIcon from "@mui/icons-material/Close";
 
 export const AdminProductos = () => {
   const [proyectos, setProyectos] = useState([]);
@@ -45,17 +45,17 @@ export const AdminProductos = () => {
   const styles = {
     table: {
       border: "1px solid",
-      borderColor: 'primary.main',
+      borderColor: "primary.main",
       "& th": {
         color: "#E0E0E0",
         // color: "#D9CAAD",
         backgroundColor: "primary.main",
-        textAlign: 'center',
+        textAlign: "center",
       },
       "& td": {
         backgroundColor: "background.paper",
         border: "1px solid #ccc",
-        color:"inherit",
+        color: "inherit",
       },
     },
   };
@@ -73,6 +73,8 @@ export const AdminProductos = () => {
       costo: data.data().costo,
       descripcion: data.data().descripcion,
       url: data.data().url,
+      cantidad: data.data(),
+      cantidad,
     });
     obtenerInfo();
     setVariant("info");
@@ -84,6 +86,7 @@ export const AdminProductos = () => {
   const [nombreProducto, setnombreProducto] = useState("");
   const [descripcion, setdescripcion] = useState("");
   const [categoria, setcategoria] = useState("");
+  const [cantidad, setcantidad] = useState("");
   const [color, setcolor] = useState("");
   const [costo, setcosto] = useState("");
   const [idDoc, setIdoc] = useState("");
@@ -98,6 +101,7 @@ export const AdminProductos = () => {
     setcosto("");
     setArchivo(null);
     setArchivoUrl("");
+    setcantidad("");
   };
   const archivoHandler = async (e) => {
     const archivos = e.target.files[0];
@@ -133,6 +137,7 @@ export const AdminProductos = () => {
     if (!descripcion) return;
     if (!categoria) return;
     if (!color) return;
+    if (!cantidad) return;
 
     const storageRef = app.storage().ref();
     const archivoPath = storageRef.child(`productos/${new Date().getTime()}`);
@@ -149,6 +154,7 @@ export const AdminProductos = () => {
       categoria: categoria,
       color: color,
       costo: costo,
+      cantidad: cantidad,
     });
     reset();
     obtenerInfo();
@@ -169,10 +175,17 @@ export const AdminProductos = () => {
     setcategoria(proyecto.categoria);
     setcolor(proyecto.color);
     setcosto(proyecto.costo);
+    setcantidad(proyecto.cantidad);
     setIdoc(id);
   };
 
   const actualizarProyecto = async (e) => {
+    if (!nombreProducto) return;
+    if (!costo) return;
+    if (!descripcion) return;
+    if (!categoria) return;
+    if (!color) return;
+    if (!cantidad) return;
     const documentRef = doc(db, `producto/${idDoc}`);
     if (archivoUrl === null) {
       await updateDoc(documentRef, {
@@ -181,6 +194,7 @@ export const AdminProductos = () => {
         categoria: categoria,
         color: color,
         costo: costo,
+        cantidad: cantidad,
       });
     } else {
       await updateDoc(documentRef, {
@@ -190,6 +204,7 @@ export const AdminProductos = () => {
         categoria: categoria,
         color: color,
         costo: costo,
+        cantidad: cantidad,
       });
     }
     reset();
@@ -211,7 +226,7 @@ export const AdminProductos = () => {
     <div>
       <SimpleBackdrop open={open} />
       {/* TABLA */}
-      <Paper sx={{ width: '100%'}}>
+      <Paper sx={{ width: "100%" }}>
         <Snackbar
           open={snackbarOpen}
           autoHideDuration={4000}
@@ -227,7 +242,9 @@ export const AdminProductos = () => {
           </MuiAlert>
         </Snackbar>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
-          <TableContainer sx={{ maxHeight: 1000, backgroundColor:"#E0E0E0", flex: "3"}}>
+          <TableContainer
+            sx={{ maxHeight: 1000, backgroundColor: "#E0E0E0", flex: "3" }}
+          >
             <Table stickyHeader aria-label="sticky table" sx={styles.table}>
               <TableHead>
                 <TableRow>
@@ -237,13 +254,16 @@ export const AdminProductos = () => {
                   <TableCell>Categoría</TableCell>
                   <TableCell>Color</TableCell>
                   <TableCell>Precio</TableCell>
+                  <TableCell>Cantidad</TableCell>
                   <TableCell colSpan={2}>
                     <Button
                       type="submit"
                       variant="contained"
                       onClick={crear}
-                      sx={{color: "black", background:"#E0E0E0"}}
-                      startIcon={estado ?<CloseIcon/>:<AddCircleOutlineIcon/>}
+                      sx={{ color: "black", background: "#E0E0E0" }}
+                      startIcon={
+                        estado ? <CloseIcon /> : <AddCircleOutlineIcon />
+                      }
                     >
                       {estado ? "Cerrar" : "Agregar"}
                     </Button>
@@ -265,11 +285,12 @@ export const AdminProductos = () => {
                     <TableCell>{proyecto.categoria}</TableCell>
                     <TableCell>{proyecto.color}</TableCell>
                     <TableCell>{proyecto.costo}</TableCell>
+                    <TableCell>{proyecto.cantidad}</TableCell>
                     <TableCell>
                       <Button
                         type="submit"
                         variant="contained"
-                        startIcon={<EditIcon/>}
+                        startIcon={<EditIcon />}
                         onClick={() => editarProyecto(proyecto.id)}
                         color="primary"
                       >
@@ -280,7 +301,7 @@ export const AdminProductos = () => {
                       <Button
                         variant="contained"
                         color="primary"
-                        startIcon={<DeleteOutlineIcon/>}
+                        startIcon={<DeleteOutlineIcon />}
                         onClick={() => {
                           const confirmar = window.confirm(
                             `¿Estás seguro de que quieres eliminar el producto ${proyecto.nombre}?`
@@ -300,11 +321,24 @@ export const AdminProductos = () => {
           </TableContainer>
           <div style={{ flex: "1", marginLeft: "20px" }}>
             <Collapse in={estado}>
-              <Typography variant="h4" color="#FFFFFF" sx={{ backgroundColor: 'primary.main', textAlign: "center", marginBottom:"5px", marginTop:"5px"}}>
+              <Typography
+                variant="h4"
+                color="#FFFFFF"
+                sx={{
+                  backgroundColor: "primary.main",
+                  textAlign: "center",
+                  marginBottom: "5px",
+                  marginTop: "5px",
+                }}
+              >
                 {add ? "Agregar" : "Editar"} Producto
               </Typography>
               <input type="file" onChange={archivoHandler} required />
-              <img src={archivoUrl} style={{ maxWidth: "100%" }} alt="producto" />
+              <img
+                src={archivoUrl}
+                style={{ maxWidth: "100%" }}
+                alt="producto"
+              />
 
               <br />
               <br />
@@ -325,6 +359,28 @@ export const AdminProductos = () => {
                     ? "El nombre del producto debe tener al menos 5 caracteres"
                     : nombreProducto.length > 30
                     ? "El nombre del producto  no puede tener más de 30 caracteres"
+                    : ""
+                }
+              />
+              <br />
+              <br />
+              <TextField
+                label="Cantidad"
+                value={cantidad || ""}
+                onChange={(e) => setcantidad(e.target.value)}
+                required
+                error={
+                  cantidad.length === 0 ||
+                  parseInt(cantidad) === 0 ||
+                  parseInt(cantidad) > 999
+                }
+                helperText={
+                  cantidad.length === 0
+                    ? "La cantidad no puede estar vacía"
+                    : parseInt(cantidad) === 0
+                    ? "La cantidad no puede ser cero"
+                    : parseInt(cantidad) > 999
+                    ? "La cantidad no puede ser mayor a 999"
                     : ""
                 }
               />
@@ -432,7 +488,7 @@ export const AdminProductos = () => {
                 variant="contained"
                 fullWidth
                 onClick={add ? handleSubmit : actualizarProyecto}
-                sx={{marginBottom:"15px"}}
+                sx={{ marginBottom: "15px" }}
                 color="primary"
               >
                 {add ? "Agregar" : "Editar"}
