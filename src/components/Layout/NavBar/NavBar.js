@@ -11,7 +11,7 @@ import SimpleBackdrop                  from "../../customs/SimpleBackDrop";
 import { db }                          from "../../../config/firebase/firebaseDB";
 import { useAuth }                     from "../../../context/AuthContext";
 import imgUser from "../../../assets/img/perfil/imgUser.jpg";
-import { Toggle } from "../../../views/Home/Toggle";
+import { ToggleTheme } from "../../customs/ToggleTheme";
 // import './Navbar.css'
 // import './logica'
 import { Elder } from "./logica";
@@ -134,7 +134,7 @@ export const NavBar = (props) => {
       <Divider />
       <List>
         <ListItem >
-            <Toggle isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/>
+            <ToggleTheme isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/>
         </ListItem>
       </List>
     </>
@@ -165,7 +165,7 @@ export const NavBar = (props) => {
             >
               CORAZÓN HUASTECO
             </Typography>
-            <Toggle isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/>
+            <ToggleTheme isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/>
           </Toolbar>
 
           {/* Salida del drawer --- mobile */}

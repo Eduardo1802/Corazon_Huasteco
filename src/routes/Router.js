@@ -11,7 +11,7 @@ import { CreadoresDeContenido } from '../views/Content_creators/CreadoresDeConte
 import { Donaciones }           from '../views/Donations/Donaciones'
 import { Error }                from '../views/Error/Error'
 import { Inicio }               from '../views/Home/Inicio'
-import { Mapa }                 from '../views/Home/Mapa'
+import { Mapa }                 from '../views/Home/Mapa/Mapa'
 import { PreguntasFrecuentes }  from '../views/PreguntasFrecuentes/PreguntasFrecuentes'
 import { Registro }             from '../views/Registro/Registro'
 import { RestorePassword }      from '../views/RestorePass/RestorePassword'

@@ -4,7 +4,6 @@ import { TileLayer } from "react-leaflet";
 import { Marker } from "react-leaflet";
 import { Popup } from "react-leaflet";
 import { ContenedorMapa } from "./ElementsMapa";
-import { SwitchCarouselMap } from "./SwitchCarouselMap";
 import { Container } from "@mui/material";
 
 //TODO LO DE ANALYTICS DE FIREBASE
@@ -25,8 +24,6 @@ export const Mapa = () => {
 
   return (
     <div>
-      {/* B O T O N   P A R A   V O L V E R   A   L A   P A G I N A   D E  I N I C I O */}
-      <SwitchCarouselMap irA="carrusel" />
 
       {/* M A P A */}
       <Container maxWidth="xl" data-aos="flip-right">

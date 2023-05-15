@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 
-export const Toggle = ({isDarkMode, handleThemeChange}) => {
+export const ToggleTheme = ({isDarkMode, handleThemeChange}) => {
   return (
     <Box sx={{styles}}>
         <Box component={"input"} type="checkbox" id="toggle_checkbox" checked={isDarkMode} onChange={handleThemeChange} />

@@ -1,23 +1,131 @@
 import React, {useEffect} from 'react'
 import Typography from '@mui/material/Typography'
-import { Grid, Paper } from '@mui/material';
+import { Paper, Button, Box, useMediaQuery, Grid, useTheme } from '@mui/material';
 import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
 import { contadorVisitas } from '../../utils/fnCountStatus';
-import { Carrusel } from './Carrusel';
+import { Carrusel } from './Carrusel/Carrusel';
+import { Link } from 'react-router-dom';
 
 export const Inicio = () => {
+
+  const isSmallScreen = useMediaQuery('(max-width:600px)');
+  const theme = useTheme();
+
   useEffect(() => {
     contadorVisitas("inicio");
   }, [])
 
   return (
     <WrapperSingleRoute>
-
       <Carrusel />
 
-      
+      <Paper component='section' sx={{height: '100vh', display: "flex", justifyContent: "center", alignItems: "center"}}>
+        <Box px={{xs: 3, sm: 5, md: 10}} py={8}>
+          <Box >
+            <Typography variant={isSmallScreen ? 'h3' : 'h2'} component="h1" gutterBottom>
+              Cultura de La Huasteca Hidalguense
+            </Typography>
+          </Box>
+          <Box>
+            <Typography variant={isSmallScreen ? 'h6' : 'h5'} component="h2" gutterBottom mb={3}>
+              La cultura de La Huasteca Hidalguense es una rica mezcla de historia, tradiciones, gastronomía y artesanías que se han desarrollado a lo largo del tiempo en la región.
+            </Typography>
+          </Box>
+          <Box>
+            <Button variant="contained" color="primary" size='large' component={Link} to="/mapa">
+              <Typography variant={isSmallScreen ? 'button': 'h6'}> 
+                Descubre La Huasteca Hidalguense
+              </Typography>
+            </Button>
+          </Box>
+        </Box>
+      </Paper>
 
-      <Paper>
+
+      <Paper component='section' sx={{minHeight: '100vh', display: "flex", justifyContent: "center", alignItems: "center", background: theme.palette.background.default}}>
+        <Box px={{xs: 3, sm: 5, md: 10}} py={8}>    
+          <Grid container spacing={2} >
+            <Grid item xs={12}>
+              <Typography variant={isSmallScreen ? 'h4' : 'h3'} component="h1" gutterBottom>
+                Historia de La Huasteca Hidalguense
+              </Typography>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <Paper sx={{p: 3, height: "100%"}} elevation={3}>
+                <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h1" gutterBottom>
+                  Antecedentes prehispánicos
+                </Typography>
+                <Typography variant={isSmallScreen ? 'h6' : 'h5'} component="h2" gutterBottom mb={3}>
+                  La Huasteca Hidalguense fue habitada originalmente por pueblos indígenas que desarrollaron culturas únicas y ricas en tradiciones.
+                </Typography>
+              </Paper>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <Paper sx={{p: 3, height: "100%"}} elevation={3}>
+                <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h1" gutterBottom>
+                  Época colonial
+                </Typography>
+                <Typography variant={isSmallScreen ? 'h6' : 'h5'} component="h2" gutterBottom mb={3}>
+                  La llegada de los españoles a la región tuvo un gran impacto en la cultura y tradiciones huastecas, siendo una época de cambios y mestizaje.
+                </Typography>
+              </Paper>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <Paper sx={{p: 3, height: "100%"}} elevation={3}>
+                <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h1" gutterBottom>
+                  Independencia y revolución                </Typography>
+                <Typography variant={isSmallScreen ? 'h6' : 'h5'} component="h2" gutterBottom mb={3}>
+                  La región fue escenario de importantes episodios de la historia mexicana, como la guerra de independencia y la revolución mexicana.                </Typography>
+              </Paper>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <Paper sx={{p: 3, height: "100%"}} elevation={3}>
+                <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h1" gutterBottom>
+                  Hoy en día                </Typography>
+                <Typography variant={isSmallScreen ? 'h6' : 'h5'} component="h2" gutterBottom mb={3}>
+                  La Huasteca Hidalguense es reconocida por su patrimonio cultural y turístico, y es un lugar que invita a visitar y conocer su historia.
+                </Typography>
+              </Paper>
+            </Grid>
+          </Grid>
+        </Box>
+      </Paper>
+
+
+
+      <Paper component='section' sx={{minHeight: '100vh', display: "flex", justifyContent: "center", alignItems: "center"}}>
+        <Box px={{xs: 3, sm: 5, md: 10}} py={8}>    
+          <Grid container spacing={2} >
+            <Grid item xs={12}>
+              <Typography variant={isSmallScreen ? 'h4' : 'h3'} component="h1" gutterBottom>
+                Ubicación Geográfica y Características de la Región             
+              </Typography>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <Paper sx={{p: 3, height: "100%"}} elevation={0}>
+                <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h1" gutterBottom>
+                  Ubicación Geográfica
+                </Typography>
+                <Typography variant={isSmallScreen ? 'h6' : 'h5'} component="h2" gutterBottom mb={3}>
+                  La Huasteca Hidalguense se encuentra en el noreste del estado de Hidalgo, y colinda con los estados de San Luis Potosí, Veracruz, Puebla y Querétaro.
+                </Typography>
+              </Paper>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <Paper sx={{p: 3, height: "100%"}} elevation={0}>
+                <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h1" gutterBottom>
+                  Características de la Región
+                </Typography>
+                <Typography variant={isSmallScreen ? 'h6' : 'h5'} component="h2" gutterBottom mb={3}>
+                  La región cuenta con una gran diversidad geográfica, que incluye montañas, ríos, cascadas y una rica flora y fauna.
+                </Typography>
+              </Paper>
+            </Grid>
+          </Grid>
+        </Box>
+      </Paper>
+
+      {/* <Paper>
         <Grid container>
           <Grid item md={6} xs={12}>
             <Paper
@@ -268,8 +376,7 @@ export const Inicio = () => {
             </Paper>
           </Grid>
         </Grid>
-      </Paper>
-
+      </Paper> */}
     </WrapperSingleRoute>
   );
 }

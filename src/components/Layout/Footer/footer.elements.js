@@ -1,4 +1,5 @@
 import styled   from '@emotion/styled'
+import { IconButton } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 
@@ -17,5 +18,14 @@ export const LinkStyled = styled(Link)(({ theme }) => ({
 
   '&:hover': {
       color: theme.palette.background.default,
+  }
+}))
+
+export const IconButtonStyled = styled(IconButton)(({ theme }) => ({
+  color: "white",
+  transition: "all 0.3s ease-in-out",
+  '&:hover': {
+      color: theme.palette.background.default,
+      transform: "scale(1.2)",
   }
 }))

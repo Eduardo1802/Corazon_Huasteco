@@ -118,8 +118,13 @@ const ContenedorPrincipal = styled('div')({
     overflow: "hidden",
     transition: `0.3s ease all`,
     zIndex: 10,
-    maxHeight: "100vh",
+    height: "100vh",
     position: "relative",
+
+	"@media screen and (max-width: 768px)": {
+		height: "95vh",
+	},
+
     img: {
       width: "100%",
 	  height: "100%",
@@ -139,8 +144,10 @@ const ContenedorPrincipal = styled('div')({
     position: "absolute",
     bottom: 0,
     "@media screen and (max-width: 700px)": {
-      position: "relative",
-      background: "#000",
+    //   position: "relative",
+    //   background: "#000",
+	  fontSize: "2rem",
+	  lineHeight: "2rem",
     },
   }));
 

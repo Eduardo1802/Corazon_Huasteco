@@ -1,9 +1,9 @@
 import { Box } from '@mui/material'
 import { Slideshow, Slide, TextoSlide} from "./Slideshow"
 import React from 'react'
-import img1 from "./../../assets/img/inicio/Foto-centro-02.jpg"
-import img2 from "./../../assets/img/inicio/catedral-02.jpg"
-import img3 from "./../../assets/img/inicio/imgMural-02.jpg"
+import img1 from "../../../assets/img/inicio/Foto-centro-02.jpg"
+import img2 from "../../../assets/img/inicio/catedral-02.jpg"
+import img3 from "../../../assets/img/inicio/imgMural-02.jpg"
 import { Link } from 'react-router-dom'
 
 export const Carrusel = () => {
@@ -11,7 +11,6 @@ export const Carrusel = () => {
     <Box component={"main"} sx={{        
         width: "100%",
         overflow: "hidden",
-        
     }}>
         <Slideshow controles={true} autoplay={true} /*velocidad='500' intervalo='3000'*/>
             <Slide>
