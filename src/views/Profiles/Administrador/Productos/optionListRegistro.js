@@ -1,4 +1,19 @@
 
+export const tipos_productos = [
+    { value: 'Todos', label: 'Todos'},
+    { value: 'Portavela', label: 'Portavela'},
+    { value: 'Plato', label: 'Plato' },
+    { value: 'Tequilero', label: 'Tequilero' },
+    { value: 'Tortillero', label: 'Tortillero' },
+    { value: 'Taza', label: 'Taza' },
+    { value: 'Canasta', label: 'Canasta' },
+    { value: 'Casuela', label: 'Casuela' },
+    { value: 'Copalero', label: 'Copalero' },
+    { value: 'Jarron', label: 'Jarron' },
+    { value: 'Florero', label: 'Florero' },
+    { value: 'Olla', label: 'Olla' },
+]
+
 export const categorias = [
     { value: 'Portavela', label: 'Portavela'},
     { value: 'Plato', label: 'Plato' },

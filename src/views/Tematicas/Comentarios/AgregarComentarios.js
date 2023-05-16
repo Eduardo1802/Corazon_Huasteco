@@ -53,7 +53,7 @@ const AgregarComentarios = ({tematica}) => {
   const handleSubmit = async (e) => {
     e.preventDefault(); // prevenir envío por defecto
     const docList = await app.firestore().collection("comentarios").get();
-    const comentariosDelUsuario  = docList.docs.filter((doc) => doc.data().usuario === user.email);
+    const comentariosDelUsuario  = docList.docs.filter((doc) => doc.data().usuario === user.email &&  doc.data().titulo === titulo );
     const contienePalabraProhibida = palabrasProhibidas.some((palabra) => comentario.toLowerCase().includes(palabra));
     console.log(comentariosDelUsuario);
     if(comentario.length === 0){
@@ -84,7 +84,7 @@ const AgregarComentarios = ({tematica}) => {
       setTimeout(() => {
         setMostrarAlerta(false); 
       }, 2000);
-    }else if(comentariosDelUsuario.length > 1){
+    }else if(comentariosDelUsuario.length >= 1){
         // console.log("Usuario ya ha comentado.");
         setTipoAlerta("error");
         setMensajeAlerta("Ya existe un comentario con el usuario "+user.email);

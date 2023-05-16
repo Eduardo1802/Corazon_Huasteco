@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { app } from "../../../../config/firebase/firebase";
-import { doc, getDoc, setDoc, /* updateDoc */ } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../../../config/firebase/firebaseDB";
-import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button } from "@mui/material";
-// import { useParams } from 'react-router-dom';
+import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, Grid, Box, TextField, MenuItem } from "@mui/material";
+import { useParams } from 'react-router-dom';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import SimpleBackdrop from "../../../../components/customs/SimpleBackDrop";
+import {tipo_tematicas} from "./OptionListTematicas"
+import { Form } from "semantic-ui-react"
 
 export const AdminComentarios = () => {
     const [proyectos, setProyectos] = useState([]);
-    //eslint-disable-next-line
     const [open, setOpen] = useState(false);
+    const [tipo_rol, setTipo_rol] = useState("");
+
     const styles = {
         table: {
           border: "1px solid",
@@ -37,7 +40,7 @@ export const AdminComentarios = () => {
     };
 
     const eliminarProyecto = async (id) => {
-        const data = await app.firestore().collection("comentarios").doc(id).get();
+        const data = await app.firestore().collection("comentarios").doc(id).orderBy("tematica", "desc").get();
         await app.firestore().collection("comentarios").doc(id).delete();
         const referencia = doc(db, `bajaComentarios/${id}`);
         await getDoc(referencia);
@@ -53,6 +56,21 @@ export const AdminComentarios = () => {
         console.log(`El comentario del usuario${data.data().usuario} fue eliminado`);
     };
 
+    const handleSearch = async () => {
+        try {
+          console.log(tipo_rol)
+          if (tipo_rol === "todos" || tipo_rol === "") {
+            obtenerInfo();
+          }else{
+            const docList = await app.firestore().collection("comentarios").get();
+            const info_tematicas = docList.docs.filter((doc) => doc.data().tematica === tipo_rol );
+            setProyectos(info_tematicas.map((doc) => doc.data()));
+          }
+        } catch (error) {
+          console.error(error);
+        }
+    };
+    
     useEffect(() => {
         obtenerInfo();
     }, []);
@@ -60,6 +78,42 @@ export const AdminComentarios = () => {
     return (
         <div>
             <SimpleBackdrop open={open} />
+            <Grid container>
+        {/* Contenido */}
+        <Grid
+          container
+          rowSpacing={1}
+          columnSpacing={1}
+          sx={{bgcolor: "background.paper", p:1}}
+        >
+          {/* Buscador */}
+          <Grid item md={4} sm={6} xs={6}>
+            <TextField
+              component={Form.Input}
+              fullWidth
+              select
+              label="Tematica"
+              type="text"
+              onChange={(e) => setTipo_rol(e.target.value)}
+              value={tipo_rol || ""}
+              autoComplete="off"
+              >
+                {tipo_tematicas.map((cate) => (
+                  <MenuItem key={cate.value} value={cate.value}>
+                    {cate.label}
+                  </MenuItem>
+                ))}
+            </TextField>
+          </Grid> 
+          <Grid item  md={4} sm={12} xs={12}>
+            <Box display="flex" height="100%">
+              <Button fullWidth  variant="contained" onClick={handleSearch} > 
+                Clasificar
+              </Button>
+            </Box>
+          </Grid>
+        </Grid>
+      </Grid>
             {/* TABLA */}
             <Paper sx={{ width: '100%'}}>
                 <TableContainer sx={{ maxHeight: 460, backgroundColor:"#E0E0E0"}}>

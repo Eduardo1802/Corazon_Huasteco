@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import {
+  Box,
   TextField,
+  Grid,
   MenuItem,
   Collapse,
   Button,
@@ -13,49 +15,98 @@ import {
   Typography,
   Snackbar,
   Paper,
+  Toolbar,
 } from "@mui/material";
+import InputBase from '@mui/material/InputBase';
+import { styled, alpha } from '@mui/material/styles';
 import MuiAlert from "@mui/material/Alert";
 import { app } from "../../../../config/firebase/firebase";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../../../config/firebase/firebaseDB";
-import { categorias, colores } from "./optionListRegistro";
+import { categorias, colores, tipos_productos } from "./optionListRegistro";
 import SimpleBackdrop from "../../../../components/customs/SimpleBackDrop";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import EditIcon from "@mui/icons-material/Edit";
-import CloseIcon from "@mui/icons-material/Close";
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import EditIcon from '@mui/icons-material/Edit';
+import CloseIcon from '@mui/icons-material/Close';
+import SearchIcon from '@mui/icons-material/Search';
+import { Form } from "semantic-ui-react"
 
 export const AdminProductos = () => {
   const [proyectos, setProyectos] = useState([]);
   const [estado, setEstado] = useState(false);
   const [add, setAdd] = useState("");
-  //eslint-disable-next-line
+  const [tablaProyectos, setTablaProyectos] = useState([]);
   const [open, setOpen] = useState(false);
+  const [busqueda, setBusqueda] = useState("");
+  const [tipo, setTipo] = useState("");
+  const [archivoUrl, setArchivoUrl] = useState("");
+  const [nombreProducto, setnombreProducto] = useState("");
+  const [descripcion, setdescripcion] = useState("");
+  const [categoria, setcategoria] = useState("");
+  const [color, setcolor] = useState("");
+  const [costo, setcosto] = useState("");
+  const [idDoc, setIdoc] = useState("");
+  const [archivo, setArchivo] = useState("");
+  const [error, setError] = useState("");
+  const [variant, setVariant] = useState("");
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [cantidad, setcantidad] = useState("");
 
+  const handleChange = e => {
+    setBusqueda(e.target.value);
+    filtrar(e.target.value.toString().toUpperCase());
+    console.log(e.target.value);
+  }
+
+  const filtrar = (terminoBusqueda) => {
+    const resultadoBusqueda = tablaProyectos.filter((elemento) => {
+      return elemento.data().nombre.includes(terminoBusqueda);
+    });
+    setProyectos(resultadoBusqueda.map((doc) => ({ id: doc.id, ...doc.data() })));
+  };
+  
+  const handleSearch = async () => {
+    try {
+      console.log(tipo)
+      if (tipo === "Todos" || tipo === "") {
+        obtenerInfo();
+      }else{
+        const docList = await app.firestore().collection("producto").get();
+        const info_prductos = docList.docs.filter((doc) => doc.data().categoria === tipo );
+        setProyectos(info_prductos.map((doc) => doc.data()));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   // Obtener datos de Firebase al cargar la página
   useEffect(() => {
     obtenerInfo();
   }, []);
 
   const obtenerInfo = async () => {
-    const docList = await app.firestore().collection("producto").get();
+    const docList = await app.firestore().collection("producto").orderBy("categoria", "desc").get();
+    setTablaProyectos(docList.docs.map((doc) => doc));
     setProyectos(docList.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
   };
+
 
   const styles = {
     table: {
       border: "1px solid",
-      borderColor: "primary.main",
+      borderColor: 'primary.main',
       "& th": {
         color: "#E0E0E0",
         // color: "#D9CAAD",
         backgroundColor: "primary.main",
-        textAlign: "center",
+        textAlign: 'center',
       },
       "& td": {
         backgroundColor: "background.paper",
         border: "1px solid #ccc",
-        color: "inherit",
+        color:"inherit",
+        textAlign: 'center',
       },
     },
   };
@@ -81,17 +132,6 @@ export const AdminProductos = () => {
     setError(`El produto ${data.data().nombre} fue eliminado`);
     setSnackbarOpen(true);
   };
-
-  const [archivoUrl, setArchivoUrl] = useState("");
-  const [nombreProducto, setnombreProducto] = useState("");
-  const [descripcion, setdescripcion] = useState("");
-  const [categoria, setcategoria] = useState("");
-  const [cantidad, setcantidad] = useState("");
-  const [color, setcolor] = useState("");
-  const [costo, setcosto] = useState("");
-  const [idDoc, setIdoc] = useState("");
-  const [archivo, setArchivo] = useState("");
-  const [error, setError] = useState("");
 
   const reset = () => {
     setnombreProducto("");
@@ -180,13 +220,13 @@ export const AdminProductos = () => {
   };
 
   const actualizarProyecto = async (e) => {
+    const documentRef = doc(db, `producto/${idDoc}`);
     if (!nombreProducto) return;
     if (!costo) return;
     if (!descripcion) return;
     if (!categoria) return;
     if (!color) return;
     if (!cantidad) return;
-    const documentRef = doc(db, `producto/${idDoc}`);
     if (archivoUrl === null) {
       await updateDoc(documentRef, {
         nombre: nombreProducto,
@@ -220,13 +260,65 @@ export const AdminProductos = () => {
     setAdd(true);
     setEstado(!estado);
   }
-  const [variant, setVariant] = useState("");
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
+
   return (
     <div>
       <SimpleBackdrop open={open} />
+      {/* Contenido */}
+      <Grid
+        container
+        rowSpacing={1}
+        columnSpacing={1}
+        sx={{bgcolor: "background.paper", p:1}}
+      >
+        {/* B U S C A D O R 1 */}
+        <Grid item xs={12} >
+          <Toolbar>
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Buscar…"
+                inputProps={{ 'aria-label': 'search' }}
+                value={busqueda}
+                onChange={handleChange}
+                />
+            </Search>
+          </Toolbar>
+        </Grid>
+
+        {/* B U S C A D O R 2 -- FIltros*/}
+        <Grid item md={4} sm={6} xs={6}>
+          <TextField
+            component={Form.Input}
+            fullWidth
+            select
+            label="Categoria"
+            type="text"
+            name="categoria"
+            onChange={(e) => setTipo(e.target.value)}
+            value={tipo || ""}
+            autoComplete="off"
+            >
+            {tipos_productos.map((cate) => (
+              <MenuItem key={cate.value} value={cate.value}>
+                {cate.label}
+              </MenuItem>
+            ))}
+          </TextField>
+        </Grid>
+
+        <Grid item  md={4} sm={12} xs={12}>
+          <Box display="flex" height="100%">
+            <Button fullWidth  variant="contained" onClick={handleSearch}> 
+              Clasificar
+            </Button>
+          </Box>
+        </Grid>
+      </Grid>
       {/* TABLA */}
-      <Paper sx={{ width: "100%" }}>
+      <Paper sx={{ width: '100%'}}>
         <Snackbar
           open={snackbarOpen}
           autoHideDuration={4000}
@@ -242,12 +334,11 @@ export const AdminProductos = () => {
           </MuiAlert>
         </Snackbar>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
-          <TableContainer
-            sx={{ maxHeight: 1000, backgroundColor: "#E0E0E0", flex: "3" }}
-          >
+          <TableContainer sx={{ maxHeight: 1000, backgroundColor:"#E0E0E0", flex: "3"}}>
             <Table stickyHeader aria-label="sticky table" sx={styles.table}>
               <TableHead>
                 <TableRow>
+                <TableCell>Núm</TableCell>
                   <TableCell>Imagen</TableCell>
                   <TableCell>Nombre</TableCell>
                   <TableCell>Descripción</TableCell>
@@ -260,10 +351,8 @@ export const AdminProductos = () => {
                       type="submit"
                       variant="contained"
                       onClick={crear}
-                      sx={{ color: "black", background: "#E0E0E0" }}
-                      startIcon={
-                        estado ? <CloseIcon /> : <AddCircleOutlineIcon />
-                      }
+                      sx={{color: "black", background:"#E0E0E0"}}
+                      startIcon={estado ?<CloseIcon/>:<AddCircleOutlineIcon/>}
                     >
                       {estado ? "Cerrar" : "Agregar"}
                     </Button>
@@ -271,8 +360,9 @@ export const AdminProductos = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {proyectos.map((proyecto) => (
+                {proyectos.map((proyecto,index) => (
                   <TableRow key={proyecto.id}>
+                    <TableCell>{index + 1}</TableCell>
                     <TableCell>
                       <img
                         alt={proyecto.url}
@@ -290,7 +380,7 @@ export const AdminProductos = () => {
                       <Button
                         type="submit"
                         variant="contained"
-                        startIcon={<EditIcon />}
+                        startIcon={<EditIcon/>}
                         onClick={() => editarProyecto(proyecto.id)}
                         color="primary"
                       >
@@ -301,7 +391,7 @@ export const AdminProductos = () => {
                       <Button
                         variant="contained"
                         color="primary"
-                        startIcon={<DeleteOutlineIcon />}
+                        startIcon={<DeleteOutlineIcon/>}
                         onClick={() => {
                           const confirmar = window.confirm(
                             `¿Estás seguro de que quieres eliminar el producto ${proyecto.nombre}?`
@@ -321,24 +411,11 @@ export const AdminProductos = () => {
           </TableContainer>
           <div style={{ flex: "1", marginLeft: "20px" }}>
             <Collapse in={estado}>
-              <Typography
-                variant="h4"
-                color="#FFFFFF"
-                sx={{
-                  backgroundColor: "primary.main",
-                  textAlign: "center",
-                  marginBottom: "5px",
-                  marginTop: "5px",
-                }}
-              >
+              <Typography variant="h4" color="#FFFFFF" sx={{ backgroundColor: 'primary.main', textAlign: "center", marginBottom:"5px", marginTop:"5px"}}>
                 {add ? "Agregar" : "Editar"} Producto
               </Typography>
               <input type="file" onChange={archivoHandler} required />
-              <img
-                src={archivoUrl}
-                style={{ maxWidth: "100%" }}
-                alt="producto"
-              />
+              <img src={archivoUrl} style={{ maxWidth: "100%" }} alt="producto" />
 
               <br />
               <br />
@@ -488,7 +565,7 @@ export const AdminProductos = () => {
                 variant="contained"
                 fullWidth
                 onClick={add ? handleSubmit : actualizarProyecto}
-                sx={{ marginBottom: "15px" }}
+                sx={{marginBottom:"15px"}}
                 color="primary"
               >
                 {add ? "Agregar" : "Editar"}
@@ -500,3 +577,50 @@ export const AdminProductos = () => {
     </div>
   );
 };
+
+
+// DISEÑOS DEL BUSCADOR
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  '&:hover': {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginLeft: 0,
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(1),
+    width: 'auto',
+  },
+}));
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: 'inherit',
+  borderWidth: '1px',
+  borderStyle: 'solid',
+  borderColor: theme.palette.primary.main,
+  '& .MuiInputBase-input': {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '12ch',
+      '&:focus': {
+        width: '20ch',
+      },
+    },
+  },
+})); //FIN DE DISEÑO DE BUSCADOR

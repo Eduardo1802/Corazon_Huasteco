@@ -13,7 +13,6 @@ const EditarTema = (props) => {
     const [titulo, setTitulo] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [img, setImg] = useState("");
-    //eslint-disable-next-line
     const [logo, setLogo] = useState("");  
 
     const [mensajeAlerta, setMensajeAlerta] = useState(""); 
@@ -61,7 +60,6 @@ const EditarTema = (props) => {
 
     useEffect(() => {
         obtenerInfo();
-        //eslint-disable-next-line
     }, []);
 
     return (
@@ -118,7 +116,7 @@ const EditarTema = (props) => {
                     <Label> Imágen complementaría a la descripción:</Label>
                     <input type="file" onChange={archivoHandler} required/>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop:"15px", marginBottom:"15px" }}>
-                        <img src={img} alt="img" style={{ maxWidth: "100%" }}/>
+                        <img src={img} style={{ maxWidth: "100%" }}/>
                     </div>
 
                     <Button

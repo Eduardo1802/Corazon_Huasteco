@@ -1,164 +1,106 @@
-import React from 'react'
-//TODO LO DE ANALYTICS DE FIREBASE
-// import { analytics } from '../App/firebase';
-// import { perf } from '../App/firebase'
-// import { logEvent } from 'firebase/analytics';
-// import { trace } from 'firebase/performance'
+import React,{useState} from 'react'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box';
-import { Grid, Paper } from '@mui/material';
+import { Grid, Paper, TextField } from '@mui/material';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
 import { Bread } from '../../components/customs/Bread';
-import { HomeRounded, PaidRounded } from '@mui/icons-material';
+import {useAuth} from "../../context/AuthContext"
 
-
-const steps = ['Monto', 'Metodo', 'Pago'];
+const pasos = ['Se debe iniciar sesión para poder donar.','Formulario', 'Metodo', 'Pago'];
 
 export const Donaciones = () => {
+  const {user} = useAuth();
+  const [monto, setMonto] = useState(0);
+  const [proceso, setProceso] = useState(0);
 
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [skipped, setSkipped] = React.useState(new Set());
 
-  const isStepOptional = (step) => {
-    return step === 1;
+  const pasos1 = async () => {
+    setProceso(1)
+    console.log(proceso)
   };
-
-  const isStepSkipped = (step) => {
-    return skipped.has(step);
-  };
-
-  const handleNext = () => {
-    let newSkipped = skipped;
-    if (isStepSkipped(activeStep)) {
-      newSkipped = new Set(newSkipped.values());
-      newSkipped.delete(activeStep);
-    }
-
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped(newSkipped);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleSkip = () => {
-    if (!isStepOptional(activeStep)) {
-      // You probably want to guard against something like this,
-      // it should never occur unless someone's actively trying to break something.
-      throw new Error("You can't skip a step that isn't optional.");
-    }
-
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped((prevSkipped) => {
-      const newSkipped = new Set(prevSkipped.values());
-      newSkipped.add(activeStep);
-      return newSkipped;
-    });
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-  };
-
-  // useEffect(() => {
-  //   logEvent(analytics, 'visitas pagina donaciones');
-    
-  //   const t = trace(perf, "test_trace");
-  //   t.putAttribute("experiment", "A");
-  // }, []);  
-
-  
 
   return (
     <WrapperSingleRoute>
-      {/* Breadcrumbs */}
-      <Bread
-        migas={[
-          { miga: "INICIO", ruta: "/inicio", icono: <HomeRounded /> },
-          { miga: "DONACIONES", ruta: "/donaciones", icono: <PaidRounded /> },
-        ]}
-      />
+      <Grid container spacing={1}>
+        <Grid item xs={12}>
+          <Bread migas={[{miga: "INICIO", ruta: "/inicio"},{miga: "DONACIONES", ruta: "/donaciones"}]}/>
+        </Grid>
+      </Grid>
+
+      <Box sx={{margin:"15px"}}>
+        <Box sx={{display: "flex", flexFlow: "column wrap", alignItems: "center"}}>
+          <Typography variant="body1" color="primary">
+            Donaciones
+          </Typography>
+        </Box>
+      </Box>
 
       {/* STEPPER */}
-      <Paper>
-        <Grid container spacing={1}>
-          <Grid item xs={12} sx={{p:3}}> 
-            <Typography variant="h4" color="primary" sx={{textAlign: "center"}}>Donaciones</Typography>
-          </Grid>
-
-          <Grid item xs={12} m={2} p={3}>
-            <Paper>
-              <Box sx={{ width: "100%", p: 5 }}>
-                <Stepper activeStep={activeStep}>
-                  {steps.map((label, index) => {
-                    const stepProps = {};
-                    const labelProps = {};
-                    if (isStepOptional(index)) {
-                      labelProps.optional = (
-                        <Typography variant="caption">Optional</Typography>
-                      );
-                    }
-                    if (isStepSkipped(index)) {
-                      stepProps.completed = false;
-                    }
-                    return (
-                      <Step key={label} {...stepProps}>
-                        <StepLabel {...labelProps}>{label}</StepLabel>
-                      </Step>
-                    );
-                  })}
+      <Grid content spacing={1}>
+        <Grid item xs m={2} p={3}>
+          <Paper>
+            <Box sx={{ width: '100%', p:5, display:"flex", justifyContent: "center"}}>
+              {user ? (    
+                <Stepper>
+                  {/* PASO 1: MONTO */}
+                  <Step>
+                    <StepLabel>{pasos[1]}</StepLabel>
+                    <Grid
+                      container
+                      rowSpacing={1}
+                      columnSpacing={1}
+                      sx={{ bgcolor: "background.paper", p: 1}}
+                    >
+                      <TextField
+                      label="Usuario"
+                      value={user ? user.email : user.displayName}
+                      fullWidth
+                      // onChange={(e) => setTitulo(e.target.value)}
+                      multiline
+                      type={"hidden"}
+                      sx={{marginBottom: "15px", marginTop:"15px"}}
+                      />
+                      <TextField
+                        label="Monto"
+                        value={monto}
+                        fullWidth
+                        onChange={(e) => {
+                          // Verificar si el valor ingresado es un número
+                          if (!isNaN(Number(e.target.value))) {
+                            setMonto(e.target.value);
+                          }
+                        }}
+                        onKeyPress={(e) => {
+                          // Permitir solo números
+                          if (isNaN(Number(e.key))) {
+                            e.preventDefault();
+                          }
+                        }}
+                      />
+                      <Button fullWidth  variant="contained" onClick="" sx={{ marginTop:"15px"}}> 
+                        Donar
+                      </Button>
+                    </Grid>
+                  </Step>
+                </Stepper> 
+              ) : (
+                <Stepper>
+                  <Step>
+                    <StepLabel>{pasos[0]}</StepLabel>
+                  </Step>
                 </Stepper>
-                {activeStep === steps.length ? (
-                  <React.Fragment>
-                    <Typography sx={{ mt: 2, mb: 1 }}>
-                      All steps completed - you&apos;re finished
-                    </Typography>
-                    <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-                      <Box sx={{ flex: "1 1 auto" }} />
-                      <Button onClick={handleReset}>Reset</Button>
-                    </Box>
-                  </React.Fragment>
-                ) : (
-                  <React.Fragment>
-                    <Typography sx={{ mt: 2, mb: 1 }}>
-                      Step {activeStep + 1}
-                    </Typography>
-                    <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-                      <Button
-                        color="inherit"
-                        disabled={activeStep === 0}
-                        onClick={handleBack}
-                        sx={{ mr: 1 }}
-                      >
-                        Back
-                      </Button>
-                      <Box sx={{ flex: "1 1 auto" }} />
-                      {isStepOptional(activeStep) && (
-                        <Button
-                          color="inherit"
-                          onClick={handleSkip}
-                          sx={{ mr: 1 }}
-                        >
-                          Skip
-                        </Button>
-                      )}
-
-                      <Button onClick={handleNext}>
-                        {activeStep === steps.length - 1 ? "Finish" : "Next"}
-                      </Button>
-                    </Box>
-                  </React.Fragment>
-                )}
-              </Box>
-            </Paper>
-          </Grid>
+              )}
+            </Box>
+          </Paper>
         </Grid>
-      </Paper>
+      </Grid>
+      
+
+
     </WrapperSingleRoute>
-  );
+  )
 }
