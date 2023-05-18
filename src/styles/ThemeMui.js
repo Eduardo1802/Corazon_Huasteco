@@ -2,22 +2,17 @@ import {createTheme} from "@mui/material";
 
 export const lightTheme = createTheme({
     palette: {
-      // type: 'light',
       mode: 'light',
       primary: {
         main: '#59143a',
-        light: '#93184d',
-        dark: '#7e1746',
+        light: '#741A4C',
+        dark: '#531336',
       },
       secondary: {
         main: '#591d55',
-        light: '#942271',
-        dark: '#7f2167',
+        light: '#6c2367',
+        dark: '#4d194a',
       },
-      // text: {
-      //   primary: '#59143a',
-      //   secondary: '#000',
-      // },
       background: {
         paper: '#e0e0e0',
         default: '#D9CAAD',
@@ -29,26 +24,52 @@ export const darkTheme = createTheme({
     palette: {
       mode: 'dark',
       primary: {
-        main: '#a71953',
-        light: '#b71a56',
-        dark: '#93184d',
+        main: '#851E57',
+        light: '#962262',
+        dark: '#741A4C',
       },
       secondary: {
-        main: '#aa237b',
-        light: '#bb2381',
-        dark: '#942271',
+        main: '#7b2876',
+        light: '#8b2d84',
+        dark: '#6c2367',
       },
-      // text: {
-      //   primary: '#eb97c3',
-      //   secondary: '#ffffff',
-      //   disabled: '#ffffff',
-      //   hint: '#ffffff',
-        
-        
-      // },
-      // background: {
-      //   default: '#b2a58e',
-      //   paper: '#2A2D2F',
-      // },
     },
   });
+
+
+  // paleta inicial de colores
+// export const lightTheme = createTheme({
+//   palette: {
+//     mode: 'light',
+//     primary: {
+//       main: '#59143a',
+//       light: '#93184d',
+//       dark: '#7e1746',
+//     },
+//     secondary: {
+//       main: '#591d55',
+//       light: '#942271',
+//       dark: '#7f2167',
+//     },
+//     background: {
+//       paper: '#e0e0e0',
+//       default: '#D9CAAD',
+//     },
+//   },
+// });
+  
+// export const darkTheme = createTheme({
+//     palette: {
+//       mode: 'dark',
+//       primary: {
+//         main: '#a71953',
+//         light: '#b71a56',
+//         dark: '#93184d',
+//       },
+//       secondary: {
+//         main: '#aa237b',
+//         light: '#bb2381',
+//         dark: '#942271',
+//       },
+//     },
+//   });
