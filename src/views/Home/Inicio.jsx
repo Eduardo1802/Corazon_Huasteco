@@ -10,7 +10,7 @@ import { MapRounded } from '@mui/icons-material';
 
 export const Inicio = () => {
 
-  const isSmallScreen = useMediaQuery('(max-width:600px)');
+  const isSmallScreen = useMediaQuery('(max-width:900px)');
   // const theme = useTheme();
 
   useEffect(() => {
@@ -19,8 +19,11 @@ export const Inicio = () => {
 
   return (
     <WrapperSingleRoute>
+      {/* FIRST SECTION -- CAROUSEL */}
       <Carrusel />
 
+
+      {/* SECOND SECTION */}
       <Paper component='section' 
         sx={{
           margin: "4px 8px", 
@@ -33,7 +36,7 @@ export const Inicio = () => {
       >
         <Box px={{xs: 3, sm: 5, md: 10}} py={8}>
           <Box >
-            <Typography variant={isSmallScreen ? 'h3' : 'h2'} component="h1" gutterBottom>
+            <Typography variant={isSmallScreen ? 'h4' : 'h3'} component="h1" gutterBottom>
               Cultura de La Huasteca Hidalguense
             </Typography>
           </Box>
@@ -66,7 +69,7 @@ export const Inicio = () => {
       </Paper>
 
       
-      
+      {/* THIRD SECTION */}
       <Paper component='section' 
         sx={{
           margin: "4px 8px", 
@@ -89,7 +92,7 @@ export const Inicio = () => {
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Antecedentes prehispánicos
                 </Typography>
-                <Typography variant={isSmallScreen ? 'h6' : 'h5'} component="p" gutterBottom mb={3}>
+                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
                   La Huasteca Hidalguense fue habitada originalmente por pueblos indígenas que desarrollaron culturas únicas y ricas en tradiciones.
                 </Typography>
               </Paper>
@@ -99,7 +102,7 @@ export const Inicio = () => {
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Época colonial
                 </Typography>
-                <Typography variant={isSmallScreen ? 'h6' : 'h5'} component="p" gutterBottom mb={3}>
+                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
                   La llegada de los españoles a la región tuvo un gran impacto en la cultura y tradiciones huastecas, siendo una época de cambios y mestizaje.
                 </Typography>
               </Paper>
@@ -108,7 +111,7 @@ export const Inicio = () => {
               <Paper sx={{p: 3, height: "100%"}} elevation={5}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Independencia y revolución                </Typography>
-                <Typography variant={isSmallScreen ? 'h6' : 'h5'} component="p" gutterBottom mb={3}>
+                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
                   La región fue escenario de importantes episodios de la historia mexicana, como la guerra de independencia y la revolución mexicana.                </Typography>
               </Paper>
             </Grid>
@@ -116,7 +119,7 @@ export const Inicio = () => {
               <Paper sx={{p: 3, height: "100%"}} elevation={5}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Hoy en día                </Typography>
-                <Typography variant={isSmallScreen ? 'h6' : 'h5'} component="p" gutterBottom mb={3}>
+                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
                   La Huasteca Hidalguense es reconocida por su patrimonio cultural y turístico, y es un lugar que invita a visitar y conocer su historia.
                 </Typography>
               </Paper>
@@ -126,7 +129,7 @@ export const Inicio = () => {
       </Paper>
 
       
-
+      {/* FOURTH SECTION */}
       <Paper component='section' 
         sx={{
           margin: "4px 8px", 
@@ -145,21 +148,21 @@ export const Inicio = () => {
               </Typography>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Paper sx={{p: 3, height: "100%"}} elevation={0}>
+              <Paper sx={{p:1, height: "100%"}} elevation={0}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Ubicación Geográfica
                 </Typography>
-                <Typography variant={isSmallScreen ? 'h6' : 'h5'} component="p" gutterBottom mb={3}>
+                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
                   La Huasteca Hidalguense se encuentra en el noreste del estado de Hidalgo, y colinda con los estados de San Luis Potosí, Veracruz, Puebla y Querétaro.
                 </Typography>
               </Paper>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Paper sx={{p: 3, height: "100%"}} elevation={0}>
+              <Paper sx={{p:1, height: "100%"}} elevation={0}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Características de la Región
                 </Typography>
-                <Typography variant={isSmallScreen ? 'h6' : 'h5'} component="p" gutterBottom mb={3}>
+                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
                   La región cuenta con una gran diversidad geográfica, que incluye montañas, ríos, cascadas y una rica flora y fauna.
                 </Typography>
               </Paper>
@@ -188,6 +191,57 @@ export const Inicio = () => {
           </Grid>
         </Box>
       </Paper>
+
+
+      {/* FIVE SECTION */}
+      <Paper component='section' 
+        sx={{
+          margin: "4px 8px", 
+          minHeight: '98vh', 
+          display: "flex", 
+          justifyContent: "center", 
+          alignItems: "center", 
+          // background: `linear-gradient(150deg, ${theme.palette.background.paper} 25%, ${theme.palette.primary.dark}b7 77%, ${theme.palette.primary.light} 95%)`
+        }}      
+      >
+        <Box px={{xs: 3, sm: 5, md: 10}} py={8}>    
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <Typography variant={isSmallScreen ? 'h4' : 'h3'} component="h2" gutterBottom>
+                Lenguas habladas en la Región
+              </Typography>
+            </Grid>
+            <Grid item xs display='flex' justifyContent='center' alignItems='center' flexDirection="column">
+              <img src="https://vignette.wikia.nocookie.net/mapgames/images/5/59/Atlantean.png/revision/latest?cb=20140824204917&path-prefix=es" width={300} height={200} alt='nahuatl' />
+              <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom textAlign='center'>Náhuatl</Typography>
+              <Typography variant="body1" textAlign='center' 
+                sx={{fontSize: "1.25rem"}}
+              >
+                El náhuatl es una lengua originaria de la región que sigue siendo hablada por algunos habitantes locales.
+              </Typography>
+            </Grid>
+            <Grid item xs display='flex' justifyContent='center' alignItems='center' flexDirection="column">
+              <img src="https://i.pinimg.com/originals/d4/86/b3/d486b392d504e001120d81e6d82a2ba7.jpg" width={300} height={200} alt='tenek' />
+              <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom textAlign='center'>Tének</Typography>
+              <Typography variant="body1" textAlign='center' 
+                sx={{fontSize: "1.25rem"}}
+              >
+                El tének, también conocido como huasteco, es otra lengua originaria de la región que todavía se habla hoy en día.
+              </Typography>
+            </Grid>
+            <Grid item xs display='flex' justifyContent='center' alignItems='center' flexDirection="column">
+              <img src="https://www.huastecamexico.com/img/logo_programa_big.jpg" width={300} height={200} alt='español' />
+              <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom textAlign='center'>Español</Typography>
+              <Typography variant="body1" textAlign='center' 
+                sx={{fontSize: "1.25rem"}}
+              >
+                El español es el idioma oficial y se habla en toda la región, siendo un lenguaje que u
+              </Typography>
+            </Grid>
+          </Grid>
+        </Box>
+      </Paper>
+
 
       {/* <Paper>
         <Grid container>
