@@ -17,17 +17,7 @@ function App() {
   const styles = `
   body {
     scrollbar-width: thin;
-    scrollbar-color: ${theme.palette.primary.main} ${theme.palette.background.default};
     overflow-x: hidden; /*oculta el scroll horizontal de toda la pagina*/
-  }
-  body::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-    background-color: ${theme.palette.background.default};
-  }
-  body::-webkit-scrollbar-thumb {
-    background-color: ${theme.palette.primary.main};
-    border-radius: 20px;
   }
   ::selection {
     color: ${theme.palette.background.default};
