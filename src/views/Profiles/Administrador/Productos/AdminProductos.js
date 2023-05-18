@@ -578,7 +578,7 @@ export const AdminProductos = () => {
                 }
                 helperText={
                   descripcion.length === 0
-                    ? "La descripticon del producto no puede estar vacío"
+                    ? "La descripticon del producto no puede estar vacio"
                     : descripcion.length < 30
                     ? "La descripticon del producto debe tener al menos 30 caracteres"
                     : descripcion.length > 150
