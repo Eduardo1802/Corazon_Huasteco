@@ -16,21 +16,29 @@ import {
   Snackbar,
   Paper,
   Toolbar,
+  Dialog,
+  DialogTitle,
+  DialogContent,
 } from "@mui/material";
-import InputBase from '@mui/material/InputBase';
-import { styled, alpha } from '@mui/material/styles';
+import InputBase from "@mui/material/InputBase";
+import { styled, alpha } from "@mui/material/styles";
 import MuiAlert from "@mui/material/Alert";
 import { app } from "../../../../config/firebase/firebase";
+import firebase from "../../../../config/firebase/firebaseDB";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../../../config/firebase/firebaseDB";
 import { categorias, colores, tipos_productos } from "./optionListRegistro";
 import SimpleBackdrop from "../../../../components/customs/SimpleBackDrop";
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import EditIcon from '@mui/icons-material/Edit';
-import CloseIcon from '@mui/icons-material/Close';
-import SearchIcon from '@mui/icons-material/Search';
-import { Form } from "semantic-ui-react"
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import EditIcon from "@mui/icons-material/Edit";
+import CloseIcon from "@mui/icons-material/Close";
+import SearchIcon from "@mui/icons-material/Search";
+import { Form } from "semantic-ui-react";
+import { async } from "q";
+import { set } from "lodash";
+import { setUserLogHandler } from "@firebase/logger";
+import { useAuth } from "../../../../context/AuthContext";
 
 export const AdminProductos = () => {
   const [proyectos, setProyectos] = useState([]);
@@ -46,34 +54,43 @@ export const AdminProductos = () => {
   const [categoria, setcategoria] = useState("");
   const [color, setcolor] = useState("");
   const [costo, setcosto] = useState("");
+  const [costot, setcostot] = useState("");
   const [idDoc, setIdoc] = useState("");
   const [archivo, setArchivo] = useState("");
   const [error, setError] = useState("");
   const [variant, setVariant] = useState("");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [cantidad, setcantidad] = useState("");
-
-  const handleChange = e => {
+  const [openDialog, setOpenDialog] = useState(false);
+  const [eliminar, setEliminar] = useState(false);
+  const { logout, user } = useAuth();
+  const [costoTotal, setCostoTotal] = useState("0.00");
+  
+  const handleChange = (e) => {
     setBusqueda(e.target.value);
     filtrar(e.target.value.toString().toUpperCase());
     console.log(e.target.value);
-  }
+  };
 
   const filtrar = (terminoBusqueda) => {
     const resultadoBusqueda = tablaProyectos.filter((elemento) => {
       return elemento.data().nombre.includes(terminoBusqueda);
     });
-    setProyectos(resultadoBusqueda.map((doc) => ({ id: doc.id, ...doc.data() })));
+    setProyectos(
+      resultadoBusqueda.map((doc) => ({ id: doc.id, ...doc.data() }))
+    );
   };
-  
+
   const handleSearch = async () => {
     try {
-      console.log(tipo)
+      console.log(tipo);
       if (tipo === "Todos" || tipo === "") {
         obtenerInfo();
-      }else{
+      } else {
         const docList = await app.firestore().collection("producto").get();
-        const info_prductos = docList.docs.filter((doc) => doc.data().categoria === tipo );
+        const info_prductos = docList.docs.filter(
+          (doc) => doc.data().categoria === tipo
+        );
         setProyectos(info_prductos.map((doc) => doc.data()));
       }
     } catch (error) {
@@ -86,30 +103,75 @@ export const AdminProductos = () => {
   }, []);
 
   const obtenerInfo = async () => {
-    const docList = await app.firestore().collection("producto").orderBy("categoria", "desc").get();
+    const docList = await app
+      .firestore()
+      .collection("producto")
+      .orderBy("categoria", "desc")
+      .get();
     setTablaProyectos(docList.docs.map((doc) => doc));
     setProyectos(docList.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
   };
 
-
   const styles = {
     table: {
       border: "1px solid",
-      borderColor: 'primary.main',
+      borderColor: "primary.main",
       "& th": {
         color: "#E0E0E0",
         // color: "#D9CAAD",
         backgroundColor: "primary.main",
-        textAlign: 'center',
+        textAlign: "center",
       },
       "& td": {
         backgroundColor: "background.paper",
         border: "1px solid #ccc",
-        color:"inherit",
-        textAlign: 'center',
+        color: "inherit",
+        textAlign: "center",
       },
     },
   };
+  // const realizarCompra = async (e) => {
+  //   e.preventDefault();
+  
+  //   const coleccionRef = app.firestore().collection("ventas");
+  //   const fechaActual = new Date();
+  
+  //   for (let i = 0; i < 15; i++) {
+  //     const cantidadAleatoria = Math.floor(Math.random() * 4) + 1;
+  //     const costoTotalAleatorio = calcularCostoTotal(cantidadAleatoria);
+  
+  //     await coleccionRef.doc().set({
+  //       fecha: fechaActual,
+  //       usuario: user.uid,
+  //       nombreProducto: nombreProducto,
+  //       categoria: categoria,
+  //       color: color,
+  //       costoUnitario: costo,
+  //       cantidadProducto: cantidadAleatoria,
+  //       costo_total: costoTotalAleatorio,
+  //       metodoPago: "tarjeta de credito",
+  //     });
+  //   }
+  
+  //   setEliminar(false);
+  // };
+  
+  // const calcularCostoTotal = (cantidad) => {
+  //   const cantidadNum = parseFloat(cantidad);
+  //   const costoNum = parseFloat(costo);
+  //   const resultado = (cantidadNum * costoNum).toFixed(2);
+  
+  //   if (isNaN(resultado)) {
+  //     return 0;
+  //   } else {
+  //     return resultado;
+  //   }
+  // };
+  
+  // useEffect(() => {
+  //   calcularCostoTotal(cantidad); // Llamada inicial para el valor original de cantidad
+  // }, [cantidad]);
+  
 
   // Eliminar un proyecto por su ID
   const eliminarProyecto = async (id) => {
@@ -125,12 +187,23 @@ export const AdminProductos = () => {
       descripcion: data.data().descripcion,
       url: data.data().url,
       cantidad: data.data(),
-      cantidad,
     });
     obtenerInfo();
     setVariant("info");
     setError(`El produto ${data.data().nombre} fue eliminado`);
     setSnackbarOpen(true);
+    reset();
+    setEliminar(true);
+    const proyecto = proyectos.find((proyecto) => proyecto.id === id);
+    console.log("proyecto seleccionado:", proyecto);
+    setArchivoUrl(proyecto.url);
+    setnombreProducto(proyecto.nombre);
+    setdescripcion(proyecto.descripcion);
+    setcategoria(proyecto.categoria);
+    setcolor(proyecto.color);
+    setcosto(proyecto.costo);
+    setcantidad(proyecto.cantidad);
+    setIdoc(id);
   };
 
   const reset = () => {
@@ -269,10 +342,10 @@ export const AdminProductos = () => {
         container
         rowSpacing={1}
         columnSpacing={1}
-        sx={{bgcolor: "background.paper", p:1}}
+        sx={{ bgcolor: "background.paper", p: 1 }}
       >
         {/* B U S C A D O R 1 */}
-        <Grid item xs={12} >
+        <Grid item xs={12}>
           <Toolbar>
             <Search>
               <SearchIconWrapper>
@@ -280,10 +353,10 @@ export const AdminProductos = () => {
               </SearchIconWrapper>
               <StyledInputBase
                 placeholder="Buscar…"
-                inputProps={{ 'aria-label': 'search' }}
+                inputProps={{ "aria-label": "search" }}
                 value={busqueda}
                 onChange={handleChange}
-                />
+              />
             </Search>
           </Toolbar>
         </Grid>
@@ -300,7 +373,7 @@ export const AdminProductos = () => {
             onChange={(e) => setTipo(e.target.value)}
             value={tipo || ""}
             autoComplete="off"
-            >
+          >
             {tipos_productos.map((cate) => (
               <MenuItem key={cate.value} value={cate.value}>
                 {cate.label}
@@ -309,16 +382,16 @@ export const AdminProductos = () => {
           </TextField>
         </Grid>
 
-        <Grid item  md={4} sm={12} xs={12}>
+        <Grid item md={4} sm={12} xs={12}>
           <Box display="flex" height="100%">
-            <Button fullWidth  variant="contained" onClick={handleSearch}> 
+            <Button fullWidth variant="contained" onClick={handleSearch}>
               Clasificar
             </Button>
           </Box>
         </Grid>
       </Grid>
       {/* TABLA */}
-      <Paper sx={{ width: '100%'}}>
+      <Paper sx={{ width: "100%" }}>
         <Snackbar
           open={snackbarOpen}
           autoHideDuration={4000}
@@ -334,11 +407,13 @@ export const AdminProductos = () => {
           </MuiAlert>
         </Snackbar>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
-          <TableContainer sx={{ maxHeight: 1000, backgroundColor:"#E0E0E0", flex: "3"}}>
+          <TableContainer
+            sx={{ maxHeight: 1000, backgroundColor: "#E0E0E0", flex: "3" }}
+          >
             <Table stickyHeader aria-label="sticky table" sx={styles.table}>
               <TableHead>
                 <TableRow>
-                <TableCell>Núm</TableCell>
+                  <TableCell>Núm</TableCell>
                   <TableCell>Imagen</TableCell>
                   <TableCell>Nombre</TableCell>
                   <TableCell>Descripción</TableCell>
@@ -351,8 +426,10 @@ export const AdminProductos = () => {
                       type="submit"
                       variant="contained"
                       onClick={crear}
-                      sx={{color: "black", background:"#E0E0E0"}}
-                      startIcon={estado ?<CloseIcon/>:<AddCircleOutlineIcon/>}
+                      sx={{ color: "black", background: "#E0E0E0" }}
+                      startIcon={
+                        estado ? <CloseIcon /> : <AddCircleOutlineIcon />
+                      }
                     >
                       {estado ? "Cerrar" : "Agregar"}
                     </Button>
@@ -360,7 +437,7 @@ export const AdminProductos = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {proyectos.map((proyecto,index) => (
+                {proyectos.map((proyecto, index) => (
                   <TableRow key={proyecto.id}>
                     <TableCell>{index + 1}</TableCell>
                     <TableCell>
@@ -380,7 +457,7 @@ export const AdminProductos = () => {
                       <Button
                         type="submit"
                         variant="contained"
-                        startIcon={<EditIcon/>}
+                        startIcon={<EditIcon />}
                         onClick={() => editarProyecto(proyecto.id)}
                         color="primary"
                       >
@@ -391,7 +468,7 @@ export const AdminProductos = () => {
                       <Button
                         variant="contained"
                         color="primary"
-                        startIcon={<DeleteOutlineIcon/>}
+                        startIcon={<DeleteOutlineIcon />}
                         onClick={() => {
                           const confirmar = window.confirm(
                             `¿Estás seguro de que quieres eliminar el producto ${proyecto.nombre}?`
@@ -401,6 +478,7 @@ export const AdminProductos = () => {
                           }
                         }}
                       >
+                        {/* Comprar */}
                         Eliminar
                       </Button>
                     </TableCell>
@@ -411,11 +489,24 @@ export const AdminProductos = () => {
           </TableContainer>
           <div style={{ flex: "1", marginLeft: "20px" }}>
             <Collapse in={estado}>
-              <Typography variant="h4" color="#FFFFFF" sx={{ backgroundColor: 'primary.main', textAlign: "center", marginBottom:"5px", marginTop:"5px"}}>
+              <Typography
+                variant="h4"
+                color="#FFFFFF"
+                sx={{
+                  backgroundColor: "primary.main",
+                  textAlign: "center",
+                  marginBottom: "5px",
+                  marginTop: "5px",
+                }}
+              >
                 {add ? "Agregar" : "Editar"} Producto
               </Typography>
               <input type="file" onChange={archivoHandler} required />
-              <img src={archivoUrl} style={{ maxWidth: "100%" }} alt="producto" />
+              <img
+                src={archivoUrl}
+                style={{ maxWidth: "100%" }}
+                alt="producto"
+              />
 
               <br />
               <br />
@@ -443,6 +534,7 @@ export const AdminProductos = () => {
               <br />
               <TextField
                 label="Cantidad"
+                type="number"
                 value={cantidad || ""}
                 onChange={(e) => setcantidad(e.target.value)}
                 required
@@ -494,7 +586,7 @@ export const AdminProductos = () => {
                 }
                 helperText={
                   descripcion.length === 0
-                    ? "La descripticon del producto no puede estar vacío"
+                    ? "La descripticon del producto no puede estar vacio"
                     : descripcion.length < 30
                     ? "La descripticon del producto debe tener al menos 30 caracteres"
                     : descripcion.length > 150
@@ -565,11 +657,95 @@ export const AdminProductos = () => {
                 variant="contained"
                 fullWidth
                 onClick={add ? handleSubmit : actualizarProyecto}
-                sx={{marginBottom:"15px"}}
+                sx={{ marginBottom: "15px" }}
                 color="primary"
               >
                 {add ? "Agregar" : "Editar"}
               </Button>
+            </Collapse>
+          </div>
+          <div style={{ flex: "1", marginLeft: "20px" }}>
+            <Collapse in={eliminar}>
+              <Typography
+                variant="h4"
+                color="#FFFFFF"
+                sx={{
+                  backgroundColor: "primary.main",
+                  textAlign: "center",
+                  marginBottom: "5px",
+                  marginTop: "5px",
+                }}
+              >
+                Compar Producto
+              </Typography>
+              <input type="file" onChange={archivoHandler} required />
+              <img
+                src={archivoUrl}
+                style={{ maxWidth: "100%" }}
+                alt="producto"
+              />
+
+              <br />
+              <br />
+              <TextField
+                label="Nombre del producto"
+                value={nombreProducto || ""}
+                onChange={(e) => setnombreProducto(e.target.value)}
+                required
+                error={
+                  nombreProducto.length === 0 ||
+                  nombreProducto.length < 5 ||
+                  nombreProducto.length > 30
+                }
+                helperText={
+                  nombreProducto.length === 0
+                    ? "El nombre del producto no puede estar vacío"
+                    : nombreProducto.length < 5
+                    ? "El nombre del producto debe tener al menos 5 caracteres"
+                    : nombreProducto.length > 30
+                    ? "El nombre del producto  no puede tener más de 30 caracteres"
+                    : ""
+                }
+              />
+              <br />
+              <br />
+              <TextField
+                label="Cantidad"
+                type="number"
+                value={cantidad || ""}
+                onChange={(e) => setcantidad(e.target.value)}
+              />
+              <br />
+              <br />
+              <TextField
+                label="Costo unitario"
+                type="number"
+                value={costo || ""}
+                onChange={(e) => setcosto(e.target.value)}
+                required
+              />
+              <TextField
+                label="Costo total"
+                type="number"
+                value={costoTotal}
+                required
+              />
+              <input
+                type="hidden"
+                name="id"
+                value={idDoc}
+                onChange={(e) => setIdoc(e.target.value)}
+              />
+              {/* <Button
+                type="submit"
+                variant="contained"
+                fullWidth
+                onClick={realizarCompra}
+                sx={{ marginBottom: "15px" }}
+                color="primary"
+              >
+                comprar
+              </Button> */}
             </Collapse>
           </div>
         </div>
@@ -578,48 +754,47 @@ export const AdminProductos = () => {
   );
 };
 
-
 // DISEÑOS DEL BUSCADOR
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
+const Search = styled("div")(({ theme }) => ({
+  position: "relative",
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
+  "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
   marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
+  width: "100%",
+  [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(1),
-    width: 'auto',
+    width: "auto",
   },
 }));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
+const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+  height: "100%",
+  position: "absolute",
+  pointerEvents: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  borderWidth: '1px',
-  borderStyle: 'solid',
+  color: "inherit",
+  borderWidth: "1px",
+  borderStyle: "solid",
   borderColor: theme.palette.primary.main,
-  '& .MuiInputBase-input': {
+  "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '12ch',
-      '&:focus': {
-        width: '20ch',
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      width: "12ch",
+      "&:focus": {
+        width: "20ch",
       },
     },
   },

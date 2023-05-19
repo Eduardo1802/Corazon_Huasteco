@@ -27,7 +27,8 @@ import { collection, getDocs, query } from 'firebase/firestore';
 import { db } from '../../../config/firebase/firebaseDB';
 import AttachMoneyIcon from '@mui/icons-material/AddBusiness';
 import { AdminVentas } from './Ventas/AdminVentas';
-
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import { AdminProveedor } from './Proveedor/AdminProveedor';
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -105,11 +106,12 @@ export default function BasicTabsAdministrador() {
         <Tab label="Tematicas"    icon={<TopicRoundedIcon/>}             iconPosition="start" {...a11yProps(3)} />
         <Tab label="Productos"    icon={<CategoryRoundedIcon/>}          iconPosition="start" {...a11yProps(4)} />
         <Tab label="Usuarios"     icon={<GroupRoundedIcon/>}             iconPosition="start" {...a11yProps(5)} />
-        <Tab label="Ventas"       icon={<AttachMoneyIcon/>}         iconPosition="start" {...a11yProps(6)} />
-        <Tab label="Comentarios"  icon={<AddCommentIcon/>}               iconPosition="start" {...a11yProps(7)} />
-        <Tab label="Donaciones"   icon={<VolunteerActivismRoundedIcon/>} iconPosition="start" {...a11yProps(8)} />
-        <Tab label="Personalizar" icon={<DesignServicesRoundedIcon/>}    iconPosition="start" {...a11yProps(9)} />
-        <Tab label="Configuración" icon={<SettingsRoundedIcon/>}         iconPosition="start" {...a11yProps(10)} />
+        <Tab label="Ventas"       icon={<AttachMoneyIcon/>}              iconPosition="start" {...a11yProps(6)} />
+        <Tab label="Proveedor"    icon={<LocalShippingIcon/>}            iconPosition="start" {...a11yProps(7)} />
+        <Tab label="Comentarios"  icon={<AddCommentIcon/>}               iconPosition="start" {...a11yProps(8)} />
+        <Tab label="Donaciones"   icon={<VolunteerActivismRoundedIcon/>} iconPosition="start" {...a11yProps(9)} />
+        <Tab label="Personalizar" icon={<DesignServicesRoundedIcon/>}    iconPosition="start" {...a11yProps(10)} />
+        <Tab label="Configuración" icon={<SettingsRoundedIcon/>}         iconPosition="start" {...a11yProps(11)} />
       </Tabs>
       <TabPanel value={value} index={0}>
         <AdminInicio/>
@@ -133,15 +135,18 @@ export default function BasicTabsAdministrador() {
         <AdminVentas/>
       </TabPanel>
       <TabPanel value={value} index={7}>
-        <AdminComentarios/>
+        <AdminProveedor/>
       </TabPanel>
       <TabPanel value={value} index={8}>
-        <AdminDonaciones/>
+        <AdminComentarios/>
       </TabPanel>
       <TabPanel value={value} index={9}>
-        <AdminPersonalizar/>
+        <AdminDonaciones/>
       </TabPanel>
       <TabPanel value={value} index={10}>
+        <AdminPersonalizar/>
+      </TabPanel>
+      <TabPanel value={value} index={11}>
         <AdminConfiguracion/>
       </TabPanel>
     </Box>
