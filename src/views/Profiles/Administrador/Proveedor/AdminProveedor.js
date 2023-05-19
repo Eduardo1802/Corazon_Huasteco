@@ -51,7 +51,7 @@ export const AdminProveedor = () => {
           <Table stickyHeader aria-label="sticky table" sx={styles.table}>
             <TableHead>
               <TableRow>
-                <TableCell>Num.</TableCell>
+                <TableCell>Núm.</TableCell>
                 <TableCell>Nombre de la Empresa</TableCell>
                 <TableCell>Especialización</TableCell>
                 <TableCell>Nombre de el Encargado</TableCell>
