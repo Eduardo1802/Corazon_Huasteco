@@ -41,7 +41,6 @@ import { setUserLogHandler } from "@firebase/logger";
 import { useAuth } from "../../../../context/AuthContext";
 
 export const AdminProductos = () => {
-  
   const [proyectos, setProyectos] = useState([]);
   const [estado, setEstado] = useState(false);
   const [add, setAdd] = useState("");
@@ -66,17 +65,7 @@ export const AdminProductos = () => {
   const [eliminar, setEliminar] = useState(false);
   const { logout, user } = useAuth();
   const [costoTotal, setCostoTotal] = useState("0.00");
-  const calcularCostoTotal = () => {
-    const cantidadNum = parseFloat(cantidad);
-  const costoNum = parseFloat(costo);
-  const resultado = (cantidadNum * costoNum).toFixed(2);
-
-    if (isNaN(resultado)) {
-      setCostoTotal(0);
-    } else {
-      setCostoTotal(resultado);
-    }
-  };
+  
   const handleChange = (e) => {
     setBusqueda(e.target.value);
     filtrar(e.target.value.toString().toUpperCase());
@@ -112,9 +101,6 @@ export const AdminProductos = () => {
   useEffect(() => {
     obtenerInfo();
   }, []);
-  useEffect(() => {
-    calcularCostoTotal();
-  }, [cantidad, costo]);
 
   const obtenerInfo = async () => {
     const docList = await app
@@ -149,22 +135,44 @@ export const AdminProductos = () => {
   
     const coleccionRef = app.firestore().collection("ventas");
     const fechaActual = new Date();
-    await coleccionRef.doc(`${fechaActual.getTime()}`).set({
-      fecha: fechaActual,
-      usuario: user.uid,
-      nombreProducto: nombreProducto,
-      categoria: categoria,
-      color: color,
-      costoUnitario: costo,
-      cantidadProducto: cantidad,
-      costo_total: costoTotal,
-      metodoPago: "tarjeta de credito",
-    });
+  
+    for (let i = 0; i < 15; i++) {
+      const cantidadAleatoria = Math.floor(Math.random() * 4) + 1;
+      const costoTotalAleatorio = calcularCostoTotal(cantidadAleatoria);
+  
+      await coleccionRef.doc().set({
+        fecha: fechaActual,
+        usuario: user.uid,
+        nombreProducto: nombreProducto,
+        categoria: categoria,
+        color: color,
+        costoUnitario: costo,
+        cantidadProducto: cantidadAleatoria,
+        costo_total: costoTotalAleatorio,
+        metodoPago: "tarjeta de credito",
+      });
+    }
   
     setEliminar(false);
   };
   
+  const calcularCostoTotal = (cantidad) => {
+    const cantidadNum = parseFloat(cantidad);
+    const costoNum = parseFloat(costo);
+    const resultado = (cantidadNum * costoNum).toFixed(2);
   
+    if (isNaN(resultado)) {
+      return 0;
+    } else {
+      return resultado;
+    }
+  };
+  
+  useEffect(() => {
+    calcularCostoTotal(cantidad); // Llamada inicial para el valor original de cantidad
+  }, [cantidad]);
+  
+
   // Eliminar un proyecto por su ID
   const eliminarProyecto = async (id) => {
     // const data = await app.firestore().collection("producto").doc(id).get();
