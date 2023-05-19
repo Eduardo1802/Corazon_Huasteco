@@ -21,6 +21,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import SimpleBackdrop from "../../../../components/customs/SimpleBackDrop";
 import { tipo_pago } from "./OptionListPago";
 import { Form } from "semantic-ui-react";
+import { format } from "date-fns"; 
 
 export const AdminVentas = () => {
   const [proyectos, setProyectos] = useState([]);
