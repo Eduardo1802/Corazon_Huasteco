@@ -6,7 +6,7 @@ import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
 import { useParams } from 'react-router-dom';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import SimpleBackdrop from "../../../../components/customs/SimpleBackDrop";
-import {tipo_tematicas} from "./OptionListTematicas"
+import {tipo_tematicas} from "../Comentarios/OptionListTematicas";
 import { Form } from "semantic-ui-react"
 
 export const AdminComentarios = () => {
