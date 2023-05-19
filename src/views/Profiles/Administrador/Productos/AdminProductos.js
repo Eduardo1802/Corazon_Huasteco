@@ -130,73 +130,72 @@ export const AdminProductos = () => {
       },
     },
   };
-  const realizarCompra = async (e) => {
-    e.preventDefault();
+  // const realizarCompra = async (e) => {
+  //   e.preventDefault();
   
-    const coleccionRef = app.firestore().collection("ventas");
-    const fechaActual = new Date();
+  //   const coleccionRef = app.firestore().collection("ventas");
+  //   const fechaActual = new Date();
   
-    for (let i = 0; i < 15; i++) {
-      const cantidadAleatoria = Math.floor(Math.random() * 4) + 1;
-      const costoTotalAleatorio = calcularCostoTotal(cantidadAleatoria);
+  //   for (let i = 0; i < 15; i++) {
+  //     const cantidadAleatoria = Math.floor(Math.random() * 4) + 1;
+  //     const costoTotalAleatorio = calcularCostoTotal(cantidadAleatoria);
   
-      await coleccionRef.doc().set({
-        fecha: fechaActual,
-        usuario: user.uid,
-        nombreProducto: nombreProducto,
-        categoria: categoria,
-        color: color,
-        costoUnitario: costo,
-        cantidadProducto: cantidadAleatoria,
-        costo_total: costoTotalAleatorio,
-        metodoPago: "tarjeta de credito",
-      });
-    }
+  //     await coleccionRef.doc().set({
+  //       fecha: fechaActual,
+  //       usuario: user.uid,
+  //       nombreProducto: nombreProducto,
+  //       categoria: categoria,
+  //       color: color,
+  //       costoUnitario: costo,
+  //       cantidadProducto: cantidadAleatoria,
+  //       costo_total: costoTotalAleatorio,
+  //       metodoPago: "tarjeta de credito",
+  //     });
+  //   }
   
-    setEliminar(false);
-  };
+  //   setEliminar(false);
+  // };
   
-  const calcularCostoTotal = (cantidad) => {
-    const cantidadNum = parseFloat(cantidad);
-    const costoNum = parseFloat(costo);
-    const resultado = (cantidadNum * costoNum).toFixed(2);
+  // const calcularCostoTotal = (cantidad) => {
+  //   const cantidadNum = parseFloat(cantidad);
+  //   const costoNum = parseFloat(costo);
+  //   const resultado = (cantidadNum * costoNum).toFixed(2);
   
-    if (isNaN(resultado)) {
-      return 0;
-    } else {
-      return resultado;
-    }
-  };
+  //   if (isNaN(resultado)) {
+  //     return 0;
+  //   } else {
+  //     return resultado;
+  //   }
+  // };
   
-  useEffect(() => {
-    calcularCostoTotal(cantidad); // Llamada inicial para el valor original de cantidad
-  }, [cantidad]);
+  // useEffect(() => {
+  //   calcularCostoTotal(cantidad); // Llamada inicial para el valor original de cantidad
+  // }, [cantidad]);
   
 
   // Eliminar un proyecto por su ID
   const eliminarProyecto = async (id) => {
-    // const data = await app.firestore().collection("producto").doc(id).get();
-    // await app.firestore().collection("producto").doc(id).delete();
-    // const referencia = doc(db, `bajaProductos/${id}`);
-    // await getDoc(referencia);
-    // setDoc(referencia, {
-    //   name: data.data().nombre,
-    //   categoria: data.data().categoria,
-    //   color: data.data().color,
-    //   costo: data.data().costo,
-    //   descripcion: data.data().descripcion,
-    //   url: data.data().url,
-    //   cantidad: data.data(),
-    // });
-    // obtenerInfo();
-    // setVariant("info");
-    // setError(`El produto ${data.data().nombre} fue eliminado`);
-    // setSnackbarOpen(true);
+    const data = await app.firestore().collection("producto").doc(id).get();
+    await app.firestore().collection("producto").doc(id).delete();
+    const referencia = doc(db, `bajaProductos/${id}`);
+    await getDoc(referencia);
+    setDoc(referencia, {
+      name: data.data().nombre,
+      categoria: data.data().categoria,
+      color: data.data().color,
+      costo: data.data().costo,
+      descripcion: data.data().descripcion,
+      url: data.data().url,
+      cantidad: data.data(),
+    });
+    obtenerInfo();
+    setVariant("info");
+    setError(`El produto ${data.data().nombre} fue eliminado`);
+    setSnackbarOpen(true);
     reset();
     setEliminar(true);
     const proyecto = proyectos.find((proyecto) => proyecto.id === id);
     console.log("proyecto seleccionado:", proyecto);
-
     setArchivoUrl(proyecto.url);
     setnombreProducto(proyecto.nombre);
     setdescripcion(proyecto.descripcion);
@@ -471,15 +470,16 @@ export const AdminProductos = () => {
                         color="primary"
                         startIcon={<DeleteOutlineIcon />}
                         onClick={() => {
-                          // const confirmar = window.confirm(
-                          //   `¿Estás seguro de que quieres eliminar el producto ${proyecto.nombre}?`
-                          // );
-                          //if (confirmar) {
-                          eliminarProyecto(proyecto.id);
-                          //}
+                          const confirmar = window.confirm(
+                            `¿Estás seguro de que quieres eliminar el producto ${proyecto.nombre}?`
+                          );
+                          if (confirmar) {
+                            eliminarProyecto(proyecto.id);
+                          }
                         }}
                       >
-                        Comprar
+                        {/* Comprar */}
+                        Eliminar
                       </Button>
                     </TableCell>
                   </TableRow>
@@ -736,7 +736,7 @@ export const AdminProductos = () => {
                 value={idDoc}
                 onChange={(e) => setIdoc(e.target.value)}
               />
-              <Button
+              {/* <Button
                 type="submit"
                 variant="contained"
                 fullWidth
@@ -745,7 +745,7 @@ export const AdminProductos = () => {
                 color="primary"
               >
                 comprar
-              </Button>
+              </Button> */}
             </Collapse>
           </div>
         </div>
