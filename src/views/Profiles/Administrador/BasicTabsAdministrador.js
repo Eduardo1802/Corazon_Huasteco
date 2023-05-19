@@ -107,7 +107,7 @@ export default function BasicTabsAdministrador() {
         <Tab label="Productos"    icon={<CategoryRoundedIcon/>}          iconPosition="start" {...a11yProps(4)} />
         <Tab label="Usuarios"     icon={<GroupRoundedIcon/>}             iconPosition="start" {...a11yProps(5)} />
         <Tab label="Ventas"       icon={<AttachMoneyIcon/>}              iconPosition="start" {...a11yProps(6)} />
-        <Tab label="Proveedor"    icon={<LocalShippingIcon/>}            iconPosition="start" {...a11yProps(7)} />
+        <Tab label="Proveedores"    icon={<LocalShippingIcon/>}            iconPosition="start" {...a11yProps(7)} />
         <Tab label="Comentarios"  icon={<AddCommentIcon/>}               iconPosition="start" {...a11yProps(8)} />
         <Tab label="Donaciones"   icon={<VolunteerActivismRoundedIcon/>} iconPosition="start" {...a11yProps(9)} />
         <Tab label="Personalizar" icon={<DesignServicesRoundedIcon/>}    iconPosition="start" {...a11yProps(10)} />
