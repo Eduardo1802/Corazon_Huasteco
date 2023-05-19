@@ -22,6 +22,7 @@ export const roles = [
     { value: 'administrador', label: 'administrador' },
     { value: 'supervisor', label: 'supervisor' },
     { value: 'colaborador', label: 'colaborador' },
+    { value: 'proveedor', label: 'proveedor' },
 ]
 
 export const tipo_roles = [
@@ -30,5 +31,5 @@ export const tipo_roles = [
     { value: 'administrador', label: 'Administrador' },
     { value: 'supervisor', label: 'Supervisor' },
     { value: 'colaborador', label: 'Colaborador' },
-    { value: 'proveedor', label: 'Proveedor' },
+    { value: 'proveedor', label: 'proveedor' },
 ]
