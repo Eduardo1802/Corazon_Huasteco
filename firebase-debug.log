@@ -1,0 +1,37 @@
+[debug] [2023-05-20T20:25:14.383Z] ----------------------------------------------------------------------
+[debug] [2023-05-20T20:25:14.386Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\meyer\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-05-20T20:25:14.387Z] CLI Version:   11.23.1
+[debug] [2023-05-20T20:25:14.387Z] Platform:      win32
+[debug] [2023-05-20T20:25:14.387Z] Node Version:  v18.12.1
+[debug] [2023-05-20T20:25:14.390Z] Time:          Sat May 20 2023 15:25:14 GMT-0500 (hora de verano central)
+[debug] [2023-05-20T20:25:14.391Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-05-20T20:25:14.397Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2023-05-20T20:25:14.598Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-05-20T20:25:14.599Z] > authorizing via signed-in user (20200710@uthh.edu.mx)
+[debug] [2023-05-20T20:25:14.600Z] [iam] checking project corazon-huasteco-bfbcc for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-05-20T20:25:14.602Z] > refreshing access token with scopes: []
+[debug] [2023-05-20T20:25:14.604Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-05-20T20:25:14.604Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-05-20T20:25:24.760Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-05-20T20:25:24.761Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-05-20T20:25:24.773Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/corazon-huasteco-bfbcc:testIamPermissions [none]
+[debug] [2023-05-20T20:25:24.773Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/corazon-huasteco-bfbcc:testIamPermissions x-goog-quota-user=projects/corazon-huasteco-bfbcc
+[debug] [2023-05-20T20:25:24.774Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/corazon-huasteco-bfbcc:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-05-20T20:25:31.113Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/corazon-huasteco-bfbcc:testIamPermissions 200
+[debug] [2023-05-20T20:25:31.114Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/corazon-huasteco-bfbcc:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-05-20T20:25:31.119Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/corazon-huasteco-bfbcc [none]
+[debug] [2023-05-20T20:25:35.172Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/corazon-huasteco-bfbcc 200
+[debug] [2023-05-20T20:25:35.172Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/corazon-huasteco-bfbcc {"projectId":"corazon-huasteco-bfbcc","projectNumber":"636785870470","displayName":"corazon huasteco","name":"projects/corazon-huasteco-bfbcc","resources":{"hostingSite":"corazon-huasteco-bfbcc","realtimeDatabaseInstance":"corazon-huasteco-bfbcc-default-rtdb","storageBucket":"corazon-huasteco-bfbcc.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_506784d6-f4c8-4328-8746-eb7333d0167f"}
+[info] 
+[info] === Deploying to 'corazon-huasteco-bfbcc'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2023-05-20T20:25:35.218Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/corazon-huasteco-bfbcc/versions [none]
+[debug] [2023-05-20T20:25:35.218Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/corazon-huasteco-bfbcc/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2023-05-20T20:25:52.294Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\meyer\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:253:49)
+    at listOnTimeout (node:internal/timers:564:17)
+    at process.processTimers (node:internal/timers:507:7)
+[error] 
+[error] Error: An unexpected error has occurred.
