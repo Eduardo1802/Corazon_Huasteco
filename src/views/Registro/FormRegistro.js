@@ -287,9 +287,9 @@ export const FormRegistro = () => {
                 value={formik.values.zipCode || cp}
                 autoComplete="off"
                 variant="outlined"
-                //error={Boolean(formik.errors.zipCode) || color === "error"}
-               // helperText={formik.errors.zipCode || mensaje}
-               // style={{ color: color === "error" ? "red" : "" }} // Establece el estilo de color del helperText
+                error={Boolean(formik.errors.zipCode) || color === "error"}
+               helperText={formik.errors.zipCode || mensaje}
+               style={{ color: color === "error" ? "red" : "" }} // Establece el estilo de color del helperText
               />
             </Grid>
           </Grid>
@@ -332,7 +332,7 @@ export const FormRegistro = () => {
                 disabled={estado ? true : false}
               />
             </Grid>
-            {/* <Grid item xs={12} md={3}>
+            <Grid item xs={12} md={3}>
               <Box sx={{height: "100%", display: "flex", alignItems: "center"}}>  
                 <Button
                   type="submit"
@@ -344,7 +344,7 @@ export const FormRegistro = () => {
                   {estado ? "Editar" : "Validar"}
                 </Button>
               </Box>
-            </Grid> */}
+            </Grid>
           </Grid>
 
           {/* SUBCONTENEDOR */}
