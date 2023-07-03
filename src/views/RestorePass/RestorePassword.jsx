@@ -16,7 +16,7 @@ import imgLogo from "../../assets/img/app/imgLogoHuejutla.png"
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 import { usePassword, handleMouseDownPassword } from '../../context/UsePassword';
-import { useFormikConfig } from '../Registro/useFormikConfig';
+import { useFormikConfig } from '../Register/useFormikConfig';
 import { db } from '../../config/firebase/firebaseDB'
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 

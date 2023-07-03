@@ -9,7 +9,7 @@ import { ItemListCard } from '../../components/customs/ItemListCard';
 import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
 import { Bread } from '../../components/customs/Bread';
 import GroupSkeleton from './groupSkeleton';
-import { categoria, colores } from "../Registro/optionListRegistro"
+import { categoria, colores } from "../Register/optionListRegistro"
 import { Form } from "semantic-ui-react"
 import { contadorVisitas } from '../../utils/fnCountStatus';
 export const Tienda = () => {
