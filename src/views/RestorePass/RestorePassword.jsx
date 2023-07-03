@@ -179,7 +179,7 @@ export const RestorePassword = () => {
     };
 
     return (
-        <WrapperSingleRoute>
+        <Box sx={{bgcolor: "background.default"}}>
             {/* Breadcrumbs */}
             <Bread migas={[{ miga: "INICIO", ruta: "/inicio" }, { miga: "ACCESO", ruta: "/acceso" }, { miga: "RESTAURAR CONTRASEÑA", ruta: "/acceso/restaurar-pass" }]} />
 
@@ -407,6 +407,6 @@ export const RestorePassword = () => {
                     </Container>
                 </Grid>
             </Grid>
-        </WrapperSingleRoute>
+        </Box>
     )
 }

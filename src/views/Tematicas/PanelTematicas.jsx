@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Grid, Paper, Typography } from '@mui/material'
+import { Box, Grid, Paper, Typography } from '@mui/material'
 import { app } from '../../config/firebase/firebase'
 import { Outlet } from 'react-router-dom'
 import { ItemListCard } from '../../components/customs/ItemListCard'
@@ -31,12 +31,12 @@ export const PanelTematicas = () => {
   }, [])
 
   return (
-    <WrapperSingleRoute> 
+    <Box sx={{bgcolor: "background.default"}}>
       {/* Breadcrumbs */}
       <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "TEMATICAS", ruta: "/tematicas", icono: <LabelRounded/>},]}/>
 
       {/* L I S T A D O   D E   T E M A T I C A S */}
-      <Paper>
+      <Paper elevation={0}>
         <Grid container spacing={1}> {/* G R I D  G R A L. */}
           <Grid item xs={12} sx={{p:3}}> 
             <Typography variant="h4" color="primary" textAlign='center' >Explora las diferentes tematicas</Typography>
@@ -65,6 +65,6 @@ export const PanelTematicas = () => {
         </Grid>
       </Paper>
       <Outlet/> {/* R O U T E R  O U T L E T */}{/**SALIDA DE LA SUBRUTA */}
-    </WrapperSingleRoute>
+    </Box>
   )
 }

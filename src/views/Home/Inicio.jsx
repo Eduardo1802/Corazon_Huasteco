@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react'
 import Typography from '@mui/material/Typography'
-import { Paper, Button, Box, useMediaQuery, Grid, useTheme, List, ListItem, ListItemIcon, ListItemText, Container, Divider } from '@mui/material';
+import { Paper, Button, Box, useMediaQuery, Grid, useTheme, List, ListItem, ListItemIcon, ListItemText, Container, Divider, Chip } from '@mui/material';
 import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
 import { contadorVisitas } from '../../utils/fnCountStatus';
 import { Carrusel } from './Carrusel/Carrusel';
 import { Link } from 'react-router-dom';
 import ArrowRightAltOutlinedIcon from '@mui/icons-material/ArrowRightAltOutlined';
 import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
-import { MapOutlined, LooksOneOutlined, LooksTwoOutlined, Looks3Outlined, Looks4Outlined } from '@mui/icons-material';
+import { MapOutlined, LooksOneOutlined, LooksTwoOutlined, Looks3Outlined, Looks4Outlined, HistoryEdu, FmdGoodRounded, FlagRounded, MusicNoteRounded, LocalOfferRounded, LanguageRounded, RestaurantRounded } from '@mui/icons-material';
 import lenguas1 from '../../assets/img/inicio/lenguas1.jpg'
 import lenguas2 from '../../assets/img/inicio/lenguas2.jpg'
 import lenguas3 from '../../assets/img/inicio/lenguas3.jpg'
@@ -15,6 +15,8 @@ import danzas1 from '../../assets/img/inicio/danzas1.jpg'
 import danzas2 from '../../assets/img/inicio/danzas2.jpg'
 import danzas3 from '../../assets/img/inicio/danzas3.jpg'
 import backImg from '../../assets/img/inicio/paisaje1.jpg'
+import { AnimatedIcon } from '../../components/Layout/NavBar/componentsNavBar';
+
 
 export const Inicio = () => {
 
@@ -26,7 +28,7 @@ export const Inicio = () => {
   }, [])
 
   return (
-    <WrapperSingleRoute>
+    <Box>
       {/* SECTION ONE -- CAROUSEL */}
       <Carrusel />
 
@@ -46,7 +48,7 @@ export const Inicio = () => {
           // background: `linear-gradient(150deg, ${theme.palette.background.paper} 25%, ${theme.palette.primary.dark}b7 77%, ${theme.palette.primary.light} 95%)`
         }}
       >
-        <Container maxWidth='lg' sx={{backgroundColor: theme.palette.background.paper, p:1, borderRadius: 1}} data-aos="fade-up">
+        <Container maxWidth='lg' sx={{backgroundColor: theme.palette.background.paper, p:3, borderRadius: 1}} data-aos="fade-up">
           <Box >
             <Typography variant={isSmallScreen ? 'h4' : 'h3'} component="h1" gutterBottom>
               Cultura de La Huasteca Hidalguense
@@ -96,6 +98,9 @@ export const Inicio = () => {
               <Typography variant={isSmallScreen ? 'h4' : 'h3'} component="h2" gutterBottom>
                 Historia de La Huasteca Hidalguense
               </Typography>
+              <Divider>
+                <Chip color="primary" variant='outlined' label={<HistoryEdu/>} />
+              </Divider>
             </Grid>
             <Grid item md={6} xs={12}>
               <Paper data-aos="fade-up" data-aos-delay="100" sx={{p: 3, height: "100%", background: `${theme.palette.primary.light}80`}} elevation={1}>
@@ -108,7 +113,7 @@ export const Inicio = () => {
               </Paper>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Paper data-aos="fade-up" data-aos-delay="200" sx={{p: 3, height: "100%", background: `${theme.palette.primary.light}80`}} elevation={1}>
+              <Paper data-aos="fade-up" data-aos-delay="150" sx={{p: 3, height: "100%", background: `${theme.palette.primary.light}80`}} elevation={1}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Época colonial
                 </Typography>
@@ -118,7 +123,7 @@ export const Inicio = () => {
               </Paper>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Paper data-aos="fade-up" data-aos-delay="300" sx={{p: 3, height: "100%", background: `${theme.palette.primary.light}80`}} elevation={1}>
+              <Paper data-aos="fade-up" data-aos-delay="200" sx={{p: 3, height: "100%", background: `${theme.palette.primary.light}80`}} elevation={1}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Independencia y revolución                </Typography>
                 <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
@@ -126,7 +131,7 @@ export const Inicio = () => {
               </Paper>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Paper data-aos="fade-up" data-aos-delay="400" sx={{p: 3, height: "100%", background: `${theme.palette.primary.light}80`}} elevation={1}>
+              <Paper data-aos="fade-up" data-aos-delay="250" sx={{p: 3, height: "100%", background: `${theme.palette.primary.light}80`}} elevation={1}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Hoy en día                </Typography>
                 <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
@@ -156,9 +161,12 @@ export const Inicio = () => {
               <Typography variant={isSmallScreen ? 'h4' : 'h3'} component="h2" gutterBottom>
                 Ubicación Geográfica y Características de la Región             
               </Typography>
+              <Divider>
+                <Chip color="primary" variant='outlined' label={<FmdGoodRounded/>} />
+              </Divider>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Paper data-aos="fade-up" sx={{p:1, height: "100%"}} elevation={0}>
+              <Paper data-aos="fade-up" data-aos-delay="100" sx={{p:1, height: "100%"}} elevation={0}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Ubicación Geográfica
                 </Typography>
@@ -168,7 +176,7 @@ export const Inicio = () => {
               </Paper>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Paper data-aos="fade-up" sx={{p:1, height: "100%"}} elevation={0}>
+              <Paper data-aos="fade-up" data-aos-delay="150" sx={{p:1, height: "100%"}} elevation={0}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Características de la Región
                 </Typography>
@@ -207,7 +215,7 @@ export const Inicio = () => {
       <Paper component='section' 
         sx={{
           // margin: "4px 8px", 
-          minHeight: '58vh', 
+          minHeight: '98vh', 
           display: "flex", 
           justifyContent: "center", 
           alignItems: "center", 
@@ -220,8 +228,11 @@ export const Inicio = () => {
               <Typography variant={isSmallScreen ? 'h4' : 'h3'} component="h2" gutterBottom>
                 Lenguas habladas en la Región
               </Typography>
+              <Divider>
+                <Chip color="primary" variant='outlined' label={<LanguageRounded/>} />
+              </Divider>
             </Grid>
-            <Grid data-aos="flip-left" data-aos-delay="100" item xs display='flex' justifyContent='flex-start' alignItems='center' flexDirection="column">
+            <Grid data-aos="fade-down" data-aos-delay="100" item xs display='flex' justifyContent='flex-start' alignItems='center' flexDirection="column">
               <img src={lenguas1} width={300} height={200} alt='nahuatl' />
               <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom textAlign='center'>Náhuatl</Typography>
               <Typography variant="body1" textAlign='center' 
@@ -230,7 +241,7 @@ export const Inicio = () => {
                 El náhuatl es una lengua originaria de la región que sigue siendo hablada por algunos habitantes locales.
               </Typography>
             </Grid>
-            <Grid data-aos="flip-left" data-aos-delay="200" item xs display='flex' justifyContent='flex-start' alignItems='center' flexDirection="column">
+            <Grid data-aos="fade-down" data-aos-delay="150" item xs display='flex' justifyContent='flex-start' alignItems='center' flexDirection="column">
               <img src={lenguas2} width={300} height={200} alt='tenek' />
               <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom textAlign='center'>Tének</Typography>
               <Typography variant="body1" textAlign='center' 
@@ -239,7 +250,7 @@ export const Inicio = () => {
                 El tének, también conocido como huasteco, es otra lengua originaria de la región que todavía se habla hoy en día.
               </Typography>
             </Grid>
-            <Grid data-aos="flip-left" data-aos-delay="300" item xs display='flex' justifyContent='flex-start' alignItems='center' flexDirection="column">
+            <Grid data-aos="fade-down" data-aos-delay="200" item xs display='flex' justifyContent='flex-start' alignItems='center' flexDirection="column">
               <img src={lenguas3} width={300} height={200} alt='español' />
               <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom textAlign='center'>Español</Typography>
               <Typography variant="body1" textAlign='center' 
@@ -270,6 +281,9 @@ export const Inicio = () => {
               <Typography variant={isSmallScreen ? 'h4' : 'h3'} component="h2" gutterBottom>
                 Artesanías Representativas de la Cultura Huasteca
               </Typography>
+              <Divider>
+                <Chip color="primary" variant='outlined' label={<LocalOfferRounded/>} />
+              </Divider>
             </Grid>
             <Grid item md={6} xs={12} display='flex'>
               <Box>
@@ -288,7 +302,7 @@ export const Inicio = () => {
               <Box>
                 <LooksTwoOutlined fontSize='large'/>
               </Box>
-              <Box data-aos="zoom-in" data-aos-delay="200" sx={{px: 3, height: "100%"}}>
+              <Box data-aos="zoom-in" data-aos-delay="150" sx={{px: 3, height: "100%"}}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Cestería
                 </Typography>
@@ -301,7 +315,7 @@ export const Inicio = () => {
               <Box>
                 <Looks3Outlined fontSize='large'/>
               </Box>
-              <Box data-aos="zoom-in" data-aos-delay="300" sx={{px: 3, height: "100%"}}>
+              <Box data-aos="zoom-in" data-aos-delay="200" sx={{px: 3, height: "100%"}}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Talabartería
                 </Typography>
@@ -314,7 +328,7 @@ export const Inicio = () => {
               <Box>
                 <Looks4Outlined fontSize='large'/>
               </Box>
-              <Box data-aos="zoom-in" data-aos-delay="400" sx={{px: 3, height: "100%"}}>
+              <Box data-aos="zoom-in" data-aos-delay="250" sx={{px: 3, height: "100%"}}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Esculturas de madera 
                 </Typography>
@@ -342,11 +356,14 @@ export const Inicio = () => {
           }} 
         >
           <Container maxWidth='lg'>    
-            <Grid container spacing={2} py={8} sx={{background: theme.palette.background.paper, borderRadius:1}}>
+            <Grid container  p={3} sx={{background: theme.palette.background.paper, borderRadius:1}}>
               <Grid item xs={12}>
                 <Typography variant={isSmallScreen ? 'h4' : 'h3'} component="h2" gutterBottom>
                   Gastronomía Típica de La Huasteca Hidalguense
                 </Typography>
+                <Divider>
+                <Chip color="primary" variant='outlined' label={<RestaurantRounded/>} />
+              </Divider>
               </Grid>
               <Grid item md={4} sm={6} xs={12}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
@@ -538,8 +555,11 @@ export const Inicio = () => {
               <Typography variant={isSmallScreen ? 'h4' : 'h3'} component="h2" gutterBottom>
                 Danzas y Música Tradicionales
               </Typography>
+              <Divider>
+                <Chip color="primary" variant='outlined' label={<MusicNoteRounded/>} />
+              </Divider>
             </Grid>
-            <Grid data-aos="flip-left" data-aos-delay="100" item xs display='flex' justifyContent='flex-start' alignItems='center' flexDirection="column">
+            <Grid data-aos="fade-down" data-aos-delay="100" item xs display='flex' justifyContent='flex-start' alignItems='center' flexDirection="column">
               <img src={danzas1} width={260} height={260} alt='nahuatl' />
               <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom textAlign='center'>Danza del Huapango</Typography>
               <Typography variant="body1" textAlign='center' 
@@ -548,7 +568,7 @@ export const Inicio = () => {
                 El huapango es una danza folclórica que se baila al son de la música típica huasteca, y que representa el mestizaje cultural de la región.
               </Typography>
             </Grid>
-            <Grid data-aos="flip-left" data-aos-delay="200" item xs display='flex' justifyContent='flex-start' alignItems='center' flexDirection="column">
+            <Grid data-aos="fade-down" data-aos-delay="150" item xs display='flex' justifyContent='flex-start' alignItems='center' flexDirection="column">
               <img src={danzas2} width={260} height={260} alt='tenek' />
               <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom textAlign='center'>Jarabe Huasteco</Typography>
               <Typography variant="body1" textAlign='center' 
@@ -557,7 +577,7 @@ export const Inicio = () => {
                 El jarabe huasteco es una danza que combina elementos indígenas y españoles, y que destaca por su energía y alegría.
               </Typography>
             </Grid>
-            <Grid data-aos="flip-left" data-aos-delay="300" item xs display='flex' justifyContent='flex-start' alignItems='center' flexDirection="column">
+            <Grid data-aos="fade-down" data-aos-delay="200" item xs display='flex' justifyContent='flex-start' alignItems='center' flexDirection="column">
               <img src={danzas3} width={260} height={260} alt='español' />
               <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom textAlign='center'>Música Huasteca</Typography>
               <Typography variant="body1" textAlign='center' 
@@ -566,7 +586,6 @@ export const Inicio = () => {
                 La música huasteca se caracteriza por el uso de instrumentos como el violín, la guitarra quinta huapanguera y la jarana huasteca.              </Typography>
             </Grid>
           </Grid>
-          <Divider/>
         </Container>
       </Paper>
 
@@ -588,6 +607,9 @@ export const Inicio = () => {
               <Typography variant={isSmallScreen ? 'h4' : 'h3'} component="h2" gutterBottom>
                 Fiestas y Celebraciones Importantes en la Región
               </Typography>
+              <Divider>
+                <Chip color="primary" variant='outlined' label={<FlagRounded/>} />
+              </Divider>
             </Grid>
             <Grid item md={4} sm={6} xs={12}>
               <Paper data-aos="fade-up" data-aos-delay="100" sx={{p: 3, height: "100%"}} elevation={1}>
@@ -600,7 +622,7 @@ export const Inicio = () => {
               </Paper>
             </Grid>
             <Grid item md={4} sm={6} xs={12}>
-              <Paper data-aos="fade-up" data-aos-delay="200" sx={{p: 3, height: "100%"}} elevation={1}>
+              <Paper data-aos="fade-up" data-aos-delay="150" sx={{p: 3, height: "100%"}} elevation={1}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Feria de San Francisco de Asís
                 </Typography>
@@ -610,7 +632,7 @@ export const Inicio = () => {
               </Paper>
             </Grid>
             <Grid item md={4} sm={12} xs={12}>
-              <Paper data-aos="fade-up" data-aos-delay="300" sx={{p: 3, height: "100%"}} elevation={1}>
+              <Paper data-aos="fade-up" data-aos-delay="200" sx={{p: 3, height: "100%"}} elevation={1}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Carnaval Huasteco
                 </Typography>
@@ -626,6 +648,7 @@ export const Inicio = () => {
 
       {/* SECTION TEN -- QUIERO IR...*/}
       <Paper component='section' 
+        elevation={0}
         sx={{
           // margin: "4px 8px", 
           minHeight: '38vh', 
@@ -638,11 +661,12 @@ export const Inicio = () => {
       >
         <Container maxWidth='lg'>
           <Box>
+            <AnimatedIcon/>
             <Typography variant={isSmallScreen ? 'body1' : 'h5'} sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
               ¿Listo para explorar La Huasteca Hidalguense? ¡No te pierdas la oportunidad de conocer una de las regiones más auténticas y hermosas de México! Haz clic en el botón y descubre todo lo que La Huasteca Hidalguense tiene para ofrecer.
             </Typography>
           </Box>
-          <Box>
+          <Box data-aos="fade-up">
             <Button variant="contained" color="primary" size='large' component={Link} to="/tematicas"
               sx={{
                 position: "relative",
@@ -917,6 +941,6 @@ export const Inicio = () => {
           </Grid>
         </Grid>
       </Paper> */}
-    </WrapperSingleRoute>
+    </Box>
   );
 }

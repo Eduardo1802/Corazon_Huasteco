@@ -1,5 +1,5 @@
 import React                  from 'react'
-import {Grid, Paper}          from '@mui/material';
+import {Box, Grid, Paper}          from '@mui/material';
 import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
 import { Bread }              from '../../components/customs/Bread';
 import { FormAcceso }         from './FormAcceso';
@@ -7,7 +7,7 @@ import { ImgAcceso }          from './ImgAcceso';
 
 export const Acceso = () => {
   return (
-    <WrapperSingleRoute>
+    <Box sx={{bgcolor: "background.default"}}>
       {/* Breadcrumbs */}
       <Bread migas={[{miga: "INICIO", ruta: "/inicio"},{miga: "ACCESO", ruta: "/acceso"}]}/>
       
@@ -26,6 +26,6 @@ export const Acceso = () => {
         </Grid>
       </Paper>
       {/* <Link to="cesar">Cifrado cesar</Link> */}
-    </WrapperSingleRoute>
+    </Box>
   )
 }

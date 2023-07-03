@@ -58,7 +58,7 @@ export const Solicitud = () => {
 
 
   return (
-    <WrapperSingleRoute>
+    <Box sx={{bgcolor: "background.default"}}>
       <Bread migas={[{miga: "INICIO", ruta: "/inicio"},{miga: "REGISTRO", ruta: "/registro"},{miga: "SOLICITUD", ruta: "/registro/colaborador"}]}/>
 
       <Box sx={{margin:"15px"}}>
@@ -135,6 +135,6 @@ export const Solicitud = () => {
                
         </Box>
       </Box>
-    </WrapperSingleRoute>
+    </Box>
   )
 }
