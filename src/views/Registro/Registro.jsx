@@ -1,6 +1,6 @@
 import React from 'react'
 // naterial components
-import {Grid, Paper} from '@mui/material';
+import {Box, Grid, Paper} from '@mui/material';
 // aditional components
 import { Bread }              from '../../components/customs/Bread';
 import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
@@ -9,7 +9,7 @@ import { FormRegistro }       from './FormRegistro';
 
 export const Registro = () => {
   return (
-    <WrapperSingleRoute>
+    <Box sx={{bgcolor: "background.default"}}>
       {/* BREADCRUMBS */}
       <Bread migas={[{miga: "INICIO", ruta: "/inicio"},{miga: "REGISTRO", ruta: "/registro"}]}/>
 
@@ -28,6 +28,6 @@ export const Registro = () => {
         </Grid>
       </Paper>     
       
-    </WrapperSingleRoute>
+    </Box>
   )
 }

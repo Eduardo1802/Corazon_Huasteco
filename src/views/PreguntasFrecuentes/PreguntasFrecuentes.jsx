@@ -7,10 +7,10 @@ import { Bread } from '../../components/customs/Bread';
 
 export const PreguntasFrecuentes = () => {
   return (
-    <WrapperSingleRoute>
+    <Box sx={{bgcolor: "background.default"}}>
         <Bread migas={[{miga: "INICIO", ruta: "/inicio"},{miga: "PREGUNTAS FRECUENTES", ruta: "/preguntas-frecuentes"}]}/>
 
-        <Box sx={{margin:"15px"}}>
+        <Box sx={{padding:"15px"}}>
             <Box sx={{display: "flex", flexFlow: "column wrap", alignItems: "center"}}>
             <Typography variant="h5" color="primary" sx={{mb:5}}>
                 Preguntas frecuentes
@@ -20,6 +20,6 @@ export const PreguntasFrecuentes = () => {
 
             </Box>
         </Box>
-    </WrapperSingleRoute>
+    </Box>
   )
 }

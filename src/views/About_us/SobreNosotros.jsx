@@ -17,11 +17,11 @@ export const SobreNosotros = () => {
   }, [])
 
   return (
-    <WrapperSingleRoute>
+    <Box sx={{bgcolor: "background.default"}}>
       {/* Breadcrumbs */}
       <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "SOBRE NOSOTROS", ruta: "/sobre-nosotros", icono: <BusinessRounded/>}]}/>
 
-      <Paper>
+      <Paper elevation={0}>
         <Grid container spacing={1}>
           <Grid item xs sx={{p:3}}> 
             <Typography variant="h4" color="primary" sx={{textAlign: "center"}}>Sobre Nosotros</Typography>
@@ -36,6 +36,6 @@ export const SobreNosotros = () => {
       </Paper>
 
 
-    </WrapperSingleRoute>
+    </Box>
   )
 }

@@ -92,7 +92,7 @@ export const Tienda = () => {
     }
   };
   return (
-    <WrapperSingleRoute> {/**CONTENEDOR GLOBAL */}
+    <Box sx={{bgcolor: "background.default"}}> {/**CONTENEDOR GLOBAL */}
       <Grid container>
         {/* B R E A D C R U M B S */}
         <Grid item xs={12}>
@@ -138,7 +138,7 @@ export const Tienda = () => {
             autoComplete="off"
             >
             {categoria.map((categoria) => (
-              <MenuItem key={categoria.value} value={categoria.value}>
+              <MenuItem  key={categoria.value} value={categoria.value}>
                 {categoria.label}
               </MenuItem>
             ))}
@@ -205,7 +205,7 @@ export const Tienda = () => {
           }
         </Grid>
       </Box>
-    </WrapperSingleRoute>
+    </Box>
   )
 }
 

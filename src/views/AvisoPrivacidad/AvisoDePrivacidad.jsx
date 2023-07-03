@@ -24,7 +24,7 @@ export const AvisoDePrivacidad = () => {
 
 
   return (
-    <WrapperSingleRoute>
+    <Box sx={{bgcolor: "background.default"}}>
       {/* Breadcrumbs */}
       <Bread migas={[{miga: "INICIO", ruta: "/inicio"},{miga: "AVISO DE PRIVACIDAD", ruta: "/aviso-de-privacidad"}]}/>
 
@@ -310,6 +310,6 @@ export const AvisoDePrivacidad = () => {
         </Box>
       </Box> */}
       
-    </WrapperSingleRoute>
+    </Box>
   )
 }

@@ -7,7 +7,7 @@ import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute'
 
 export const Error = () => {
   return (
-    <WrapperSingleRoute>
+    <Box sx={{bgcolor: "background.default"}}>
       <Grid container>
         <Grid item xs>
           <Grid container>
@@ -37,6 +37,6 @@ export const Error = () => {
       </Grid>
 
         
-    </WrapperSingleRoute>
+    </Box>
   )
 }
