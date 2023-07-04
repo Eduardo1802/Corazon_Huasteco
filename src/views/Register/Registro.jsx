@@ -6,16 +6,17 @@ import { Bread }              from '../../components/customs/Bread';
 import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
 import { ImgRegistro }        from './ImgRegistro';
 import { FormRegistro }       from './FormRegistro';
+import { HomeRounded, HowToRegRounded } from '@mui/icons-material';
 
 export const Registro = () => {
   return (
     <Box sx={{bgcolor: "background.default"}}>
       {/* BREADCRUMBS */}
-      <Bread migas={[{miga: "INICIO", ruta: "/inicio"},{miga: "REGISTRO", ruta: "/registro"}]}/>
+      <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "REGISTRO", ruta: "/registro", icono: <HowToRegRounded/>}]}/>
 
       {/* CONTENIDO */}
-      <Paper>
-        <Grid container>
+      <Paper elevation={0}>
+        <Grid container spacing={1}>
           {/* IMAGEN */}
           <Grid item md={5} sm={4} xs={12} order={{md:2, sm:2, xs:1}} display={{md: "block", sm: "block", xs: "none"}}> 
             <ImgRegistro/>

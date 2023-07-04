@@ -4,16 +4,17 @@ import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute'
 import { Bread }              from '../../components/customs/Bread';
 import { FormAcceso }         from './FormAcceso';
 import { ImgAcceso }          from './ImgAcceso';
+import { HomeRounded, LoginRounded } from '@mui/icons-material';
 
 export const Acceso = () => {
   return (
     <Box sx={{bgcolor: "background.default"}}>
       {/* Breadcrumbs */}
-      <Bread migas={[{miga: "INICIO", ruta: "/inicio"},{miga: "ACCESO", ruta: "/acceso"}]}/>
+      <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "ACCESO", ruta: "/acceso", icono: <LoginRounded/>}]}/>
       
       {/* CONTENIDO */}
-      <Paper>
-        <Grid container>
+      <Paper elevation={0}>
+        <Grid container spacing={1}>
           {/* IMAGEN */}
           <Grid item md={7} sm={6} xs={12} order={{md:1, sm:1, xs:2}} display={{md: "block", sm: "block", xs: "none"}}> 
             <ImgAcceso/>

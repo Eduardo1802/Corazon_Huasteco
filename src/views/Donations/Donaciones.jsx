@@ -16,6 +16,7 @@ import { Paypal } from './Paypal';
 import { Oxxo } from './Oxxo';
 import { Transferencia } from './Transferencia';
 import { ImgRegistro }        from './ImgRegistro';
+import { HomeRounded, VolunteerActivismRounded } from '@mui/icons-material';
 
 
 const pasos = ['Se debe iniciar sesión para poder donar.','Formulario Tarjeta', 'Formulario Paypal', 'Formulario Oxxo', 'Formulario Transferencia'];
@@ -87,16 +88,14 @@ export const Donaciones = () => {
 
   return (
     <Box sx={{bgcolor: "background.default"}}>
-      <Grid container spacing={1}>
-        <Grid item xs={12}>
-          <Bread migas={[{miga: "INICIO", ruta: "/inicio"},{miga: "DONACIONES", ruta: "/donaciones"}]}/>
-        </Grid>
-      </Grid>
+      
+      <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "DONACIONES", ruta: "/donaciones", icono: <VolunteerActivismRounded/>}]}/>
+      
 
       {/* STEPPER */}
-      <Paper sx={{bgcolor: "background.paper"}}>
-        <Grid content spacing={1}>
-          <Grid item xs m={2} p={3}>
+      <Paper elevation={0}>
+        <Grid container spacing={1}>
+          <Grid item xs m={2} p={3} sx={{p:3}}>
             {/* TITULO */}
             <Grid item xs={12} sx={{p:3}}> 
               <Typography variant="h4" color="primary" sx={{textAlign: "center"}}>Donaciones</Typography>

@@ -7,7 +7,7 @@ export const ImgAcceso = () => {
         component="img"
         image={imgMural}
         alt="Mural"
-        sx={{height: "70vh"}}
+        sx={{height: "70vh",mt:-1}}
     />
   )
 }

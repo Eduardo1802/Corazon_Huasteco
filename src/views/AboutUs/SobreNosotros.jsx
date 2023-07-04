@@ -20,7 +20,7 @@ export const SobreNosotros = () => {
     <Box sx={{bgcolor: "background.default"}}>
       {/* Breadcrumbs */}
       <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "SOBRE NOSOTROS", ruta: "/sobre-nosotros", icono: <BusinessRounded/>}]}/>
-
+      
       <Paper elevation={0}>
         <Grid container spacing={1}>
           <Grid item xs sx={{p:3}}> 

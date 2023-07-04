@@ -14,6 +14,5 @@ export const ContenedorMapa = styled(MapContainer)(({theme}) => ({
     borderRadius: "0 0 10px 10px",
     borderBottomWidth: '5px',
     borderBottomStyle: 'solid',
-    borderBottomColor: theme.palette.primary.main, 
-    backgroundColor: theme.palette.primary.main,
+    
 }))

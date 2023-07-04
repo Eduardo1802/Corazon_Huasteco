@@ -93,12 +93,7 @@ export const Tienda = () => {
   };
   return (
     <Box sx={{bgcolor: "background.default"}}> {/**CONTENEDOR GLOBAL */}
-      <Grid container>
-        {/* B R E A D C R U M B S */}
-        <Grid item xs={12}>
-          <Bread migas={[{ miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/> }, { miga: "TIENDA", ruta: "/tienda", icono: <StoreRounded/> }]} />
-        </Grid>
-      </Grid>
+      <Bread migas={[{ miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/> }, { miga: "TIENDA", ruta: "/tienda", icono: <StoreRounded/> }]} />
 
       {/* Contenido */}
       <Grid

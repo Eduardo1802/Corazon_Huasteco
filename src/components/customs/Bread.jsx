@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Breadcrumbs, Link as MuiLink } from '@mui/material'
+import { Box, Breadcrumbs, Link as MuiLink, Paper } from '@mui/material'
 import { Link } from 'react-router-dom'
 import MuiSvgIcon from '@mui/material/SvgIcon';
 
@@ -7,7 +7,7 @@ export const Bread = (props) => {
     const { migas } = props
 
   return (
-    <Box sx={{p: 2}}>
+    <Box sx={{p: 2, bgcolor: "background.default"}} component={Paper}> {/*se puede comentar el fondo, y componente para ajustar algunas cosas */}
         <Breadcrumbs aria-label="breadcrumb" separator="/">
         {migas.map((item, index) => (
             <MigaDePan
