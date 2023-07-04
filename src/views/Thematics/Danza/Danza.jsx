@@ -53,7 +53,7 @@ export const Danza = () => {
           :
           (proyectos.map(proyecto => {
             return (
-              <Grid item xs={12} sm={6} md={4} key={proyecto.id}>
+              <Grid item xs={12} sm={12} md={6} lg={4} xl={3} key={proyecto.id}>
                 <ItemListCard
                   key={proyecto.id}
                   id={proyecto.id}
