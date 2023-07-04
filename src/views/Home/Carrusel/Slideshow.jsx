@@ -92,12 +92,12 @@ const Slideshow = ({
 				{children}
 			</ContenedorSlideshow>
 			{controles && <Controles>
-				<Tooltip title="imagen anterior" arrow placement='right'>
+				<Tooltip title="Imagen anterior" arrow placement='right'>
 					<Boton onClick={anterior}>
 						<KeyboardArrowLeftIcon fontSize='large'/>
 					</Boton>
 				</Tooltip>
-				<Tooltip title="imagen siguiente" arrow placement='left'>
+				<Tooltip title="Imagen siguiente" arrow placement='left'>
 					<Boton derecho={"true"} onClick={siguiente}>
 						<KeyboardArrowRightIcon fontSize='large'/>
 					</Boton>
@@ -125,8 +125,14 @@ const ContenedorPrincipal = styled('div')({
     height: "100vh",
     position: "relative",
 
-	"@media screen and (max-width: 768px)": {
-		height: "95vh",
+	"@media screen and (max-width: 899px)": {
+		height: "65vh",
+
+		'&':{
+			img: {
+				objectFit: "contain",
+			}
+		},
 	},
 
     img: {
@@ -145,13 +151,17 @@ const ContenedorPrincipal = styled('div')({
     width: "100%",
     padding: "10px 60px",
     textAlign: "center",
+	fontSize: "1.5rem",
     position: "absolute",
     bottom: 0,
-    "@media screen and (max-width: 700px)": {
+    "@media screen and (max-width: 899px)": {
     //   position: "relative",
     //   background: "#000",
 	  fontSize: "2rem",
 	  lineHeight: "2rem",
+	  '& > p': {
+		  margin: 0,
+	  }
     },
   }));
 

@@ -5,7 +5,7 @@ import LoginRoundedIcon                from "@mui/icons-material/LoginRounded";
 import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuIcon                        from "@mui/icons-material/Menu";
 import { doc, getDoc }                 from "firebase/firestore";
-import { AnimatedIcon, HideOnScroll } from "./componentsNavBar";
+import { AnimatedIcon, HideOnScroll, ElevationScroll } from "./componentsNavBar";
 import { navLinks }                    from "./opNavLinks";
 import SimpleBackdrop                  from "../../customs/SimpleBackDrop";
 import { db }                          from "../../../config/firebase/firebaseDB";
@@ -16,6 +16,7 @@ import { ToggleTheme } from "../../customs/ToggleTheme";
 // import './logica'
 import { Elder } from "./logica";
 import { useTheme } from "@emotion/react";
+import { ToggleThemeSticky } from "../../customs/ToggleThemeSticky";
 
 const drawerWidth = 240;
 // const settings = ['Perfil', 'Cuenta', 'Panel', 'Cerrar Sesión'];
@@ -25,7 +26,7 @@ export const NavBar = (props) => {
   Elder(theme.palette.primary.main);
   const location = useLocation();
   const isHome = location.pathname === "/inicio";
-  const navBackgroundStyle = isHome ? { backgroundColor: "rgba(0, 0, 0, .4)" } : { backgroundColor: "primary" };
+  const navBackgroundStyle = isHome ? { backgroundColor: "rgba(0, 0, 0, .075)" } : { backgroundColor: `${theme.palette.primary.main}FF` };
 
   const {isDarkMode} = props;
   const {handleThemeChange} = props;
@@ -140,7 +141,8 @@ export const NavBar = (props) => {
       <Divider />
       <List>
         <ListItem >
-            <ToggleTheme isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/>
+            {/* <ToggleTheme isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/> */}
+            <ToggleThemeSticky isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/>
         </ListItem>
       </List>
     </>
@@ -151,7 +153,7 @@ export const NavBar = (props) => {
 
   return (
     <>
-      <HideOnScroll {...props}>
+      <ElevationScroll {...props}>
         <AppBar sx={navBackgroundStyle} enableColorOnDark id="header-principal" >
           <SimpleBackdrop open={open}/>
           {/* Primer tool */}
@@ -177,12 +179,14 @@ export const NavBar = (props) => {
               </Typography>            
             </Tooltip>
             </Box>
-            <ToggleTheme isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/>
+            {/* <ToggleTheme isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/> */}
+            <ToggleThemeSticky isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/>
           </Toolbar>
 
           {/* Salida del drawer --- mobile */}
           <Box component="nav">
             <Drawer
+              disableScrollLock
               container={container}
               variant="temporary"
               open={mobileOpen}
@@ -215,30 +219,32 @@ export const NavBar = (props) => {
                 onClick={handleDrawerToggle}
                 color="inherit"
               >
-                <Tooltip title="Más opciones de navegación">
+                <Tooltip title="Menú de navegación" arrow>
                   <MenuIcon />
                 </Tooltip>
               </IconButton>
             </Box>
 
             {/* logo --- mobile */}
-            <Typography
-              variant="h5"
-              noWrap
-              component={Link}
-              to="/inicio"
-              sx={{
-                display: { xs: "flex", md: "none" },
-                flexGrow: 1,
-                justifyContent: "center",
-                fontWeight: 700,
-                color: "inherit",
-                textDecoration: "none",
-                
-              }}
-            >  
-              <AnimatedIcon/>
-            </Typography>
+            <Tooltip title="Volver al inicio" arrow placement="bottom">
+              <Typography
+                variant="h5"
+                noWrap
+                component={Link}
+                to="/inicio"
+                sx={{
+                  display: { xs: "flex", md: "none" },
+                  flexGrow: 1,
+                  justifyContent: "center",
+                  fontWeight: 700,
+                  color: "inherit",
+                  textDecoration: "none",
+                  
+                }}
+              >  
+                <AnimatedIcon/>
+              </Typography>
+            </Tooltip>
 
             {/* pages --- desktop */}
             <Box
@@ -350,28 +356,30 @@ export const NavBar = (props) => {
                     >
                       Entrar
                     </Button>
-                    <IconButton
-                      component={Link}
-                      to="/acceso"
-                      sx={{
-                        display: { xs: "flex", md: "none" },
-                        textDecoration: "none",
-                        color: "inherit",
-                        "&:hover": {
-                          color: "primary.main",
-                          bgcolor: "background.default",
-                        },
-                      }}
-                    >
-                      <LoginRoundedIcon />
-                    </IconButton>
+                    <Tooltip title="Inicio de sesión" arrow>
+                      <IconButton
+                        component={Link}
+                        to="/acceso"
+                        sx={{
+                          display: { xs: "flex", md: "none" },
+                          textDecoration: "none",
+                          color: "inherit",
+                          "&:hover": {
+                            color: "primary.main",
+                            bgcolor: "background.default",
+                          },
+                        }}
+                      >
+                        <LoginRoundedIcon />
+                      </IconButton>
+                    </Tooltip>
                   </Box>
                 </>
               )}
             </Box>
           </Toolbar>
         </AppBar>
-      </HideOnScroll>
+      </ElevationScroll>
       {/* separadores de nav y cotenido */}
       {
         isHome 

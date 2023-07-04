@@ -37,7 +37,7 @@ export const Inicio = () => {
       <Paper component='section' 
         sx={{
           // margin: "4px 8px", 
-          minHeight: '98vh', 
+          minHeight: '60vh', 
           display: "flex", 
           justifyContent: "center", 
           alignItems: "center", 
