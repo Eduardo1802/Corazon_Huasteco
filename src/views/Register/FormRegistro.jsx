@@ -42,6 +42,7 @@ import SimpleBackdrop from "../../components/customs/SimpleBackDrop";
 import { sexos, tipos, secreta } from "./optionListRegistro";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import AlertDialog from "../../components/customs/AlertDialog";
 
 export const FormRegistro = () => {
   const [email, setEmail] = useState("");
@@ -140,7 +141,7 @@ export const FormRegistro = () => {
   }, [cp, result]);
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="md">
       <Paper sx={{ p: 2 }} elevation={0}>
       <Typography variant="h4" color="primary" textAlign='center'>Crea una cuenta nueva</Typography>
         <SimpleBackdrop open={open} />
@@ -462,12 +463,8 @@ export const FormRegistro = () => {
                   />
                 } 
                 label={<>
-                  <Typography>
-                    Acepto los {" "}
-                    <LinkMUI variant="contained" onClick={()=> alert("hola mundo")}>
-                      términos y condiciones 
-                    </LinkMUI>
-                  </Typography>
+                  <AlertDialog/>
+            
                 </>} 
               />
 

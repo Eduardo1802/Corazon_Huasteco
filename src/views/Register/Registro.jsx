@@ -18,12 +18,12 @@ export const Registro = () => {
       <Paper elevation={0}>
         <Grid container spacing={1}>
           {/* IMAGEN */}
-          <Grid item md={5} sm={4} xs={12} order={{md:2, sm:2, xs:1}} display={{md: "block", sm: "block", xs: "none"}}> 
+          <Grid item xl={5} lg={4} md={3} sm={1} xs={12} order={{md:2, sm:2, xs:1}} display={{md: "block", sm: "block", xs: "none"}}> 
             <ImgRegistro/>
           </Grid>
           
           {/* FORMULARIO */}
-          <Grid item md={7} sm={8} xs={12} order={{md:1, sm:1, xs:2}} sx={{display: "flex", alignItems:"center"}}>
+          <Grid item xl={7} lg={8} md={9} sm={11} xs={12} order={{md:1, sm:1, xs:2}} sx={{display: "flex", alignItems:"center"}}>
             <FormRegistro/>
           </Grid>
         </Grid>

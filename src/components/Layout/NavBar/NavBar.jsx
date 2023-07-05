@@ -159,7 +159,7 @@ export const NavBar = (props) => {
           {/* Primer tool */}
           {/* desktop*/}
           <Toolbar sx={{ display: { xs: "none", md: "flex" }}}>
-            <AnimatedIcon component={Link} to='/inicio'/>
+            <AnimatedIcon component={Link} to='/inicio' isDarkMode={isDarkMode}/>
             <Box sx={{/* border: "3px solid blue", */ flexGrow:1}}>
 
             <Tooltip title="Volver al inicio" arrow placement="right">
