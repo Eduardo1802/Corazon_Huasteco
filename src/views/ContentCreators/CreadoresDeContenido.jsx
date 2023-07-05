@@ -18,9 +18,7 @@ export const CreadoresDeContenido = () => {
         <Grid container spacing={1}>
           <Grid item xs sx={{p:3}}>
             <Box sx={{display: "flex", flexFlow: "column wrap", alignItems: "center"}}>
-              <Typography variant="body1" color="primary">
-                Creadores de cotenido
-              </Typography>
+              <Typography variant="h4" color="primary" textAlign='center' >Creadores de contenido</Typography>
             </Box>
           </Grid>
         </Grid>

@@ -15,6 +15,7 @@ import {
   InputAdornment,
   Checkbox,
   FormControlLabel,
+  Link as LinkMUI
 } from "@mui/material";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
@@ -141,13 +142,7 @@ export const FormRegistro = () => {
   return (
     <Container maxWidth="sm">
       <Paper sx={{ p: 2 }} elevation={0}>
-        <Typography
-          variant="h5"
-          color="primary.dark"
-          sx={{ textAlign: "center", margin: "15px 0" }}
-        >
-          Crea una cuenta nueva
-        </Typography>
+      <Typography variant="h4" color="primary" textAlign='center'>Crea una cuenta nueva</Typography>
         <SimpleBackdrop open={open} />
 
         {error && <BasicAlerts message={error} />}
@@ -466,7 +461,14 @@ export const FormRegistro = () => {
                     inputProps={{ "aria-label": "Aceptar términos y condiciones" }}
                   />
                 } 
-                label="Acepto los términos y condiciones" 
+                label={<>
+                  <Typography>
+                    Acepto los {" "}
+                    <LinkMUI variant="contained" onClick={()=> alert("hola mundo")}>
+                      términos y condiciones 
+                    </LinkMUI>
+                  </Typography>
+                </>} 
               />
 
               {formik.touched.checkBoxValue && formik.errors.checkBoxValue ? (

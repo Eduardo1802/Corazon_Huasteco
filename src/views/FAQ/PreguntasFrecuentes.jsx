@@ -15,9 +15,7 @@ export const PreguntasFrecuentes = () => {
         <Paper elevation={0}>
           <Grid container spacing={1}>
             <Grid item xs={12} sx={{p:3}}>
-              <Typography variant="h5" color="primary" sx={{mb:5}} textAlign="center">
-                  Preguntas frecuentes
-              </Typography>
+            <Typography variant="h4" color="primary" textAlign='center' my={3}>Preguntas frecuentes</Typography>
             </Grid>
             <Grid item xs={12} sx={{p:3}}>
               <Box sx={{padding:"15px"}}>

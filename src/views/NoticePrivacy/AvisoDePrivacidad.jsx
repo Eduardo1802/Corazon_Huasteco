@@ -33,9 +33,7 @@ export const AvisoDePrivacidad = () => {
       <Paper elevation={0}>
         <Grid container spacing={1}>
           <Grid item xs={12}>
-            <Typography variant="h4" color="primary" sx={{textAlign: "center", margin: "15px 0"}}>
-              Aviso de privacidad
-            </Typography>
+          <Typography variant="h4" color="primary" textAlign='center'>Aviso de privacidad</Typography>
           </Grid>
           {/* Contenido */}
           <Grid item xs={12}>

@@ -95,11 +95,11 @@ export const Donaciones = () => {
       {/* STEPPER */}
       <Paper elevation={0}>
         <Grid container spacing={1}>
+          <Grid item xs={12} sx={{p:3}}> 
+            <Typography variant="h4" color="primary" textAlign='center'>Donaciones</Typography>
+          </Grid>
           <Grid item xs m={2} p={3} sx={{p:3}}>
             {/* TITULO */}
-            <Grid item xs={12} sx={{p:3}}> 
-              <Typography variant="h4" color="primary" sx={{textAlign: "center"}}>Donaciones</Typography>
-            </Grid>
 
             {/* CONTENIDO */}
             <Paper sx={{bgcolor: "background.paper"}}>

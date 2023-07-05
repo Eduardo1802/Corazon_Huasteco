@@ -24,7 +24,7 @@ export const SobreNosotros = () => {
       <Paper elevation={0}>
         <Grid container spacing={1}>
           <Grid item xs sx={{p:3}}> 
-            <Typography variant="h4" color="primary" sx={{textAlign: "center"}}>Sobre Nosotros</Typography>
+            <Typography variant="h4" color="primary" textAlign='center' >Sobre nosotros</Typography>
           </Grid>
         </Grid>
         <Box sx={{display: {xs:"none", sm:"none", md:"flex", lg:"flex", xl: "flex"}}}>

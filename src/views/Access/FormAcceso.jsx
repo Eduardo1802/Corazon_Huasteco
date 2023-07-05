@@ -46,9 +46,7 @@ export const FormAcceso = () => {
   return (
     <Container maxWidth="sm">
         <Paper sx={{p:2}} elevation={0}>
-            <Typography textAlign="center" my={3} variant="h5" color="primary.dark">
-                Inicia sesión en Corazón Huasteco
-            </Typography>
+            <Typography variant="h4" color="primary" textAlign='center' my={3}>Inicia sesión en Corazón Huasteco</Typography>
             {/* mensajes */}
             <SimpleBackdrop open={open}/>{/*alerta y loading*/}
             <Snackbar

@@ -206,9 +206,7 @@ export const RestorePassword = () => {
                                     <img src={imgLogo} alt="logo" width="100vw" />
                                 </Box>
 
-                                <Typography textAlign="center" variant="h5" component="p" gutterBottom color="primary.main">
-                                    Restaurar contraseña
-                                </Typography>
+                                <Typography variant="h4" color="primary" textAlign='center' my={3}>Restaurar contraseña</Typography>
                                 <Collapse in={validar}>
                                     <Typography textAlign="center" variant="body2" component="p" gutterBottom color="primary.main" sx={{ mb: 2 }}>
                                         Ingresa tu correo para recuperar tu cuenta
