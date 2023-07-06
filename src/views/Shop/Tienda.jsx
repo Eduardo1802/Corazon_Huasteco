@@ -6,7 +6,6 @@ import { HomeRounded, StoreRounded } from '@mui/icons-material';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import { ItemListCard } from '../../components/customs/ItemListCard';
-import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
 import { Bread } from '../../components/customs/Bread';
 import GroupSkeleton from './groupSkeleton';
 import { categoria, colores } from "../Register/optionListRegistro"
@@ -14,10 +13,9 @@ import { Form } from "semantic-ui-react"
 import { contadorVisitas } from '../../utils/fnCountStatus';
 export const Tienda = () => {
   // PARA LA BUSQUEDA NORMAL
-  const [proyectos, setProyectos] = useState([]);
-  const [tablaProyectos, setTablaProyectos] = useState([]);
+  const [proyectosCargados, setProyectosCargados] = useState([]);
+  const [proyectosFiltrados, setProyectosFiltrados] = useState([]);
   const [busqueda, setBusqueda] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
   const [categori, setCategori] = useState("");
   const [color, setColor] = useState("");
   const handleChange = e => {
@@ -28,37 +26,27 @@ export const Tienda = () => {
 
   const filtrar = (terminoBusqueda) => {
      // eslint-disable-next-line
-    var resultadoBusqueda = tablaProyectos.filter((elemento) => {
-      if (elemento.data().nombre.includes(terminoBusqueda)) {
-        return elemento;
-      }
-    });
-    setProyectos(resultadoBusqueda);
-    setDocs(resultadoBusqueda);
+    const resultadoBusqueda = proyectosFiltrados.filter((elemento) => 
+      elemento.data().nombre.includes(terminoBusqueda)
+    );
+    setProyectosCargados(resultadoBusqueda);
+    setDocumentos(resultadoBusqueda);
   }
 
   // eslint-disable-next-line
-  const [docs, setDocs] = useState([]);
+  const [documentos, setDocumentos] = useState([]);
 
   const obtenerInfo = async () => {
     const docList = await app.firestore().collection("producto").get();
-    setDocs(docList.docs.map((doc) => doc));
-    setProyectos(docList.docs.map((doc) => doc));
-    setTablaProyectos(docList.docs.map((doc) => doc));
+    setDocumentos(docList.docs.map((doc) => doc));
+    setProyectosCargados(docList.docs.map((doc) => doc));
+    setProyectosFiltrados(docList.docs.map((doc) => doc));
+    
   }
 
   useEffect(() => {
-    
     contadorVisitas("tienda");
-    
     obtenerInfo()
-    // Simulamos una carga de datos de 2 segundos
-    const timeoutId = setTimeout(() => {
-      // Una vez que se han cargado los datos, actualizamos el estado
-      setIsLoading(false);
-    }, 1000);
-    // Limpiamos el timeout si el componente se desmonta antes de que termine la carga
-    return () => clearTimeout(timeoutId);
   }, [])
   const handleSearch = async () => {
     try {
@@ -67,26 +55,24 @@ export const Tienda = () => {
       if (categori === "Todos" || categori === "") {
         if (color === "Todos" || color === "") {
           const docList = await app.firestore().collection("producto").get();
-          setProyectos(docList.docs.map((doc) => doc));
+          setProyectosCargados(docList.docs.map((doc) => doc));
         }
         else {
           const snapshot = await query.where('color', '==', color).get();
-          setProyectos(snapshot.docs.map((doc) => doc));
+          setProyectosCargados(snapshot.docs.map((doc) => doc));
         }
       } else {
 
         if (color === "Todos" || color === "") {
           const snapshot = await query.where('categoria', '==', categori).get();
-          setProyectos(snapshot.docs.map((doc) => doc));
+          setProyectosCargados(snapshot.docs.map((doc) => doc));
         } else {
           const snapshot = await query.where('categoria', '==', categori)
             .where('color', '==', color)
             .get();
-          setProyectos(snapshot.docs.map((doc) => doc));
+          setProyectosCargados(snapshot.docs.map((doc) => doc));
         }
       }
-
-
     } catch (error) {
       console.error(error);
     }
@@ -167,24 +153,16 @@ export const Tienda = () => {
             </Button>
           </Box>
         </Grid>
-            
       </Grid>
-
-
-
-
-
-
-      
 
       <Box sx={{ m: 3, flexGrow: 1 }}> {/*O R A N G E*/}
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           {
-            isLoading ? (
+            proyectosCargados.length === 0 ? (
               <GroupSkeleton />
             )
               :
-              (proyectos.map(proyecto => {
+              (proyectosCargados.map(proyecto => {
                 return (
                   <Grid item xs={12} sm={12} md={6} lg={4} xl={3} key={proyecto.id}>
                     <ItemListCard
@@ -203,9 +181,6 @@ export const Tienda = () => {
     </Box>
   )
 }
-
-
-
 
 // DISEÑOS DEL BUSCADOR
 const Search = styled('div')(({ theme }) => ({
