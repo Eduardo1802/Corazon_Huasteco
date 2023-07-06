@@ -26,7 +26,7 @@ export const Mapa = () => {
 
   return (
     <Box sx={{bgcolor: "background.default"}}>
-      <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "SOBRE NOSOTROS", ruta: "/sobre-nosotros", icono: <MapRounded/>}]}/>
+      <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "MAPA", ruta: "/mapa", icono: <MapRounded/>}]}/>
       {/* M A P A */}
       <Paper elevation={0}>
         <Container maxWidth="sx" data-aos="flip-right">

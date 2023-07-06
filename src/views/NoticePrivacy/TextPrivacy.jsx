@@ -1,10 +1,15 @@
-import { Box, Paper, Typography } from '@mui/material';
+import { Box, Paper, Typography, Table, TableBody, TableCell, TableContainer, TableRow, useTheme } from '@mui/material';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import React from 'react'
 
+
 export const TextPrivacy = () => {
+
+  const theme = useTheme();
+
   return (
     <Paper
+      elevation={1}
       sx={{
         mr: { xs: 1, sm: 10, md: 15 },
         ml: { xs: 1, sm: 10, md: 15 },
@@ -34,9 +39,35 @@ export const TextPrivacy = () => {
       <Typography
         variant="body1"
         component="p"
-        sx={{ border: "5px solid red", mt: 1 }}
+        sx={{mt: 1 }}
       >
-        Aqui va una tabla
+        <TableContainer component={Paper}>
+          <Table style={{ border: `1px solid ${theme.palette.divider}` }}>
+            <TableBody>
+              <TableRow>
+                <TableCell style={{ border: `1px solid ${theme.palette.divider}`, textAlign: 'center' }}>Finalidad</TableCell>
+                <TableCell style={{ border: `1px solid ${theme.palette.divider}`, textAlign: 'center' }}>¿Requieren consentimiento del titular?</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell style={{ border: `1px solid ${theme.palette.divider}`, textAlign: 'center' }}>Colaborar brindando información</TableCell>
+                <TableCell style={{ border: `1px solid ${theme.palette.divider}`, textAlign: 'center' }}>
+                  <Table style={{ border: `1px solid ${theme.palette.divider}` }}>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell style={{ border: `1px solid ${theme.palette.divider}`, textAlign: 'center' }}>No</TableCell>
+                        <TableCell style={{ border: `1px solid ${theme.palette.divider}`, textAlign: 'center' }}>Si</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell style={{ border: `1px solid ${theme.palette.divider}`, textAlign: 'center' }}></TableCell>
+                        <TableCell style={{ border: `1px solid ${theme.palette.divider}`, textAlign: 'center' }}>x</TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Typography>
       <Typography variant="body1" component="p" sx={{ mt: 1 }}>
         Para llevar a cabo las finalidades descritas en el presente aviso de
@@ -97,9 +128,22 @@ export const TextPrivacy = () => {
       <Typography
         variant="body1"
         component="p"
-        sx={{ border: "5px solid blue", mt: 1 }}
+        sx={{ mt: 1 }}
       >
-        Aqui va otra tabla
+        <TableContainer component={Paper}>
+          <Table style={{ border: `1px solid ${theme.palette.divider}` }}>
+            <TableBody>
+              <TableRow>
+                <TableCell style={{ border: `1px solid ${theme.palette.divider}`, textAlign: 'center' }}>Destinatario de los datos personales</TableCell>
+                <TableCell style={{ border: `1px solid ${theme.palette.divider}`, textAlign: 'center' }}>Finalidad</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell style={{ border: `1px solid ${theme.palette.divider}`, textAlign: 'center' }}>Casa de la cultura</TableCell>
+                <TableCell style={{ border: `1px solid ${theme.palette.divider}`, textAlign: 'center' }}>Verificación e integridad de los datos</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Typography>
 
       <Typography
@@ -183,7 +227,7 @@ export const TextPrivacy = () => {
       <Box>
         <Typography variant="body1" component="p">
           Página de Internet:{" "}
-          <a href="https://uthh.online/corazonhuasteco/main.html">
+          <a href="https://uthh.online/corazon.divider.html">
             Corazón huasteco
           </a>
         </Typography>
