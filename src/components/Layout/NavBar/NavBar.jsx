@@ -195,7 +195,7 @@ export const NavBar = (props) => {
                 keepMounted: true, // Better open performance on mobile.
               }}
               sx={{
-                display: { xs: "block", sm: "block" },
+                display: { xs: "block", sm: "block", md: "none" },
                 "& .MuiDrawer-paper": {
                   boxSizing: "border-box",
                   width: drawerWidth,

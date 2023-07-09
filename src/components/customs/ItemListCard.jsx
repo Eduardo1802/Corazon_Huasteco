@@ -1,5 +1,5 @@
 import React    from 'react'
-import { Card, CardActionArea, CardActions, CardContent, CardMedia, Paper, Typography } from '@mui/material'
+import { Card, CardActionArea, CardActions, CardContent, CardMedia, Paper, Typography, Button } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 export const ItemListCard = ({titulo='Titulo', descripcion="Desc", ancla, img="#", showContent=true, heightImg=270, widthImg, shoWActions=true }) => {
@@ -44,7 +44,6 @@ export const ItemListCard = ({titulo='Titulo', descripcion="Desc", ancla, img="#
             {
                 shoWActions === true ? 
                 <CardActions>
-                
                 </CardActions>
                 :
                 <></>
