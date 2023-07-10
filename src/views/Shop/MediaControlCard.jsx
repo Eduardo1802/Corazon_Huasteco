@@ -3,13 +3,16 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActions } from '@mui/material';
+import { Button, CardActions, useTheme } from '@mui/material';
 import { ChevronRightRounded, LocalGroceryStoreRounded} from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
 export default function MediaControlCard({proyecto, handleClickOpen}) {
+
+  const theme = useTheme();
+
   return (
-    <Card sx={{ transition: "0.2s", "&:hover": {transform: "scale(1.03)"}, display: 'flex', flexDirection: {xs: "column", sm: "row", md: "row"}, minHeight: {xs: 100, sm: 150, md:200, lg:250, xl:"100%"}, borderRadius: 2 }}>
+    <Card sx={{ transition: "0.2s", "&:hover": {transform: "scale(1.03)"}, display: 'flex', flexDirection: {xs: "column", sm: "row", md: "row"}, minHeight: {xs: 100, sm: 150, md:200, lg:250, xl:"100%"}, borderRadius: 2, border: `1px dashed ${theme.palette.primary.light}` }}>
       <CardMedia
         onClick={() => handleClickOpen(proyecto)}
         component="img"

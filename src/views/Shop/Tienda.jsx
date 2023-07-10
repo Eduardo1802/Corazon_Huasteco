@@ -3,7 +3,7 @@ import { Box, Grid, Toolbar, TextField, MenuItem, Button } from '@mui/material'
 import { app } from '../../config/firebase/firebase'
 import SearchIcon from '@mui/icons-material/Search';
 import { HomeRounded, StoreRounded } from '@mui/icons-material';
-import { ItemListCard } from '../../components/customs/ItemListCard';
+// import { ItemListCard } from '../../components/customs/ItemListCard';
 import { Bread } from '../../components/customs/Bread';
 import GroupSkeleton from './groupSkeleton';
 import { categoria, colores } from "../Register/optionListRegistro"
@@ -89,7 +89,7 @@ export const Tienda = () => {
   };
 
   return (
-    <Box sx={{bgcolor: "background.default"}}> {/**CONTENEDOR GLOBAL */}
+    <Box sx={{bgcolor: "background.paper"}}> {/**CONTENEDOR GLOBAL */}
       <Bread migas={[{ miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/> }, { miga: "TIENDA", ruta: "/tienda", icono: <StoreRounded/> }]} />
 
       {/* Contenido */}
@@ -163,7 +163,7 @@ export const Tienda = () => {
         </Grid>
       </Grid>
 
-      <Box sx={{ m: {xs:1, md:3}, flexGrow: 1 }}> {/*Listado*/}
+      <Box sx={{ p: {xs:1, md:3}, flexGrow: 1 }}> {/*Listado*/}
         <Grid container spacing={{ xs: 3, sm: 2, md: 2 }}>
           {
             proyectosCargados.length === 0 ? (
