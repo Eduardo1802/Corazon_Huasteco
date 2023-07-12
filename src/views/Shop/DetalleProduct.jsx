@@ -5,13 +5,16 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
 import { Bread } from '../../components/customs/Bread';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { HomeRounded, StoreRounded, LocalOfferRounded } from '@mui/icons-material';
+import Carrito from './Carrito';
+import { CarritoContext } from '../../context/CarritoContext';
 
 
 
 export const DetalleProduct = ({productos}) => {
+    const { aumentarContador } = useContext(CarritoContext);
 
     const [datos, setDatos] = useState("");
     
@@ -34,6 +37,7 @@ export const DetalleProduct = ({productos}) => {
         >
             <Grid item xs > 
                 <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "TIENDA", ruta: "/tienda", icono: <StoreRounded/>},{miga: `${datos.nombre}`, ruta: `/tienda/${params.id}`, icono: <LocalOfferRounded/>}]}/>
+                <Carrito/>
             </Grid>
         </Grid>
         
@@ -90,7 +94,7 @@ export const DetalleProduct = ({productos}) => {
                     <Box textAlign="left" p={3}>
                         <Stack spacing={2} direction="row">
                             <Button variant="contained" startIcon={<AttachMoneyIcon/>}>Buy</Button>
-                            <Button variant="outlined" startIcon={<ShoppingCartIcon/>}>Add car</Button>
+                            <Button variant="outlined" startIcon={<ShoppingCartIcon/>} onClick={aumentarContador}>Add car</Button>
                         </Stack>
                     </Box>
                 </Paper>

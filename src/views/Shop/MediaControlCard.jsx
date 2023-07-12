@@ -6,9 +6,12 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActions, useTheme } from '@mui/material';
 import { ChevronRightRounded, LocalGroceryStoreRounded} from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { CarritoContext } from '../../context/CarritoContext';
 
 export default function MediaControlCard({proyecto, handleClickOpen}) {
 
+  const { contador, aumentarContador, disminuirContador } = useContext(CarritoContext);
   const theme = useTheme();
 
   return (
@@ -34,7 +37,7 @@ export default function MediaControlCard({proyecto, handleClickOpen}) {
               <Button variant='contained' size='small' endIcon={<ChevronRightRounded/>} component={Link} to={proyecto.id}>
                   Ver
               </Button>
-              <Button variant='outlined' size='small' endIcon={<LocalGroceryStoreRounded/>} sx={{ml:2}}>
+              <Button variant='outlined' size='small' endIcon={<LocalGroceryStoreRounded/>} sx={{ml:2}} onClick={aumentarContador}>
                   Añadir
               </Button>
           </CardActions>

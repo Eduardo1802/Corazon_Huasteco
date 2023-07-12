@@ -9,9 +9,10 @@ import GroupSkeleton from './groupSkeleton';
 import { categoria, colores } from "../Register/optionListRegistro"
 import { Form } from "semantic-ui-react"
 import { contadorVisitas } from '../../utils/fnCountStatus';
-import { Search, SearchIconWrapper, StyledInputBase } from './Elements.Tienda';
+import { Search, SearchIconWrapper, StyledInputBase } from './elements/Elements.Tienda';
 import MediaControlCard from './MediaControlCard';
-import FullScreenDialog from './FullScreenDialog';
+import FullScreenDialog from './elements/FullScreenDialog';
+import Carrito from './Carrito';
 
 export const Tienda = () => {
   // logica para abrir dialog
@@ -91,6 +92,7 @@ export const Tienda = () => {
   return (
     <Box sx={{bgcolor: "background.paper"}}> {/**CONTENEDOR GLOBAL */}
       <Bread migas={[{ miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/> }, { miga: "TIENDA", ruta: "/tienda", icono: <StoreRounded/> }]} />
+      <Carrito/>
 
       {/* Contenido */}
       <Grid container rowSpacing={1} columnSpacing={1}

@@ -43,6 +43,7 @@ import { useEffect, useState } from 'react'
 import { DetalleTematicas } from '../views/Thematics/DetalleTematicas'
 import { getTematicas } from '../utils/fnTematica'
 import { DividerCurve } from '../components/customs/DividerCurve'
+import { CarritoProvider } from '../context/CarritoContext'
 
 export const Router = ({isDarkMode, handleThemeChange}) => {
 
@@ -68,51 +69,53 @@ export const Router = ({isDarkMode, handleThemeChange}) => {
       <BrowserRouter>
         {/* <CheckConnection> */}
           <AuthProvider>
-            <NavBar isDarkMode={isDarkMode} handleThemeChange={handleThemeChange} />
-                <ScrollToTop>
-                  <Routes>
-                    {/*rutasDeAplicacion*/}
-                    <Route path='/'                       element={<Navigate to='/inicio'/>}/>
-                    <Route path='/inicio'                 element={<Inicio/>} />
-                    <Route path='/mapa'                   element={<Mapa/> } />
-                    <Route path='/sobre-nosotros'         element={<SobreNosotros/>} />
-                    <Route path='/donaciones'             element={<Donaciones/>} />
-                    <Route path='/creadores-de-contenido' element={<CreadoresDeContenido/>} />
-                    <Route path='/tienda'                 element={<Tienda/>} />
-                    <Route path='/tienda/:id'             element={<DetalleProduct productos={productos}/> } />
-                    <Route path='/aviso-de-privacidad'    element={<AvisoDePrivacidad/>} />
-                    <Route path='/preguntas-frecuentes'   element={<PreguntasFrecuentes/>} />
-                    
-                    {/* SubRutas -- tematicas */}
-                    <Route path="/tematicas/" /*AquiSePuedeRenderizarUnNavTematicas*/ >
-                          <Route index element={<PanelTematicas/>}/*yAquiSePuedeRenderizarUnListTematicas*/  />
-                          <Route path="vestimenta"          element={<Vestimenta />} />
-                          <Route path="danza"               element={<Danza/>} />
-                          <Route path="gastronomia"         element={<Gastronomia/>} />
-                          <Route path="musica"              element={<Musica/>} />
-                          <Route path="tradiciones"         element={<Tradiciones/>} />
-                          <Route path="*"                   element={<Error/>} />
-                      </Route>
-                    <Route path='tematicas/:id'     element={<DetalleTematicas tematicas={tematicas}/> } />
+            <CarritoProvider>
+              <NavBar isDarkMode={isDarkMode} handleThemeChange={handleThemeChange} />
+                  <ScrollToTop>
+                    <Routes>
+                      {/*rutasDeAplicacion*/}
+                      <Route path='/'                       element={<Navigate to='/inicio'/>}/>
+                      <Route path='/inicio'                 element={<Inicio/>} />
+                      <Route path='/mapa'                   element={<Mapa/> } />
+                      <Route path='/sobre-nosotros'         element={<SobreNosotros/>} />
+                      <Route path='/donaciones'             element={<Donaciones/>} />
+                      <Route path='/creadores-de-contenido' element={<CreadoresDeContenido/>} />
+                      <Route path='/tienda'                 element={<Tienda/>} />
+                      <Route path='/tienda/:id'             element={<DetalleProduct productos={productos}/> } />
+                      <Route path='/aviso-de-privacidad'    element={<AvisoDePrivacidad/>} />
+                      <Route path='/preguntas-frecuentes'   element={<PreguntasFrecuentes/>} />
+                      
+                      {/* SubRutas -- tematicas */}
+                      <Route path="/tematicas/" /*AquiSePuedeRenderizarUnNavTematicas*/ >
+                            <Route index element={<PanelTematicas/>}/*yAquiSePuedeRenderizarUnListTematicas*/  />
+                            <Route path="vestimenta"          element={<Vestimenta />} />
+                            <Route path="danza"               element={<Danza/>} />
+                            <Route path="gastronomia"         element={<Gastronomia/>} />
+                            <Route path="musica"              element={<Musica/>} />
+                            <Route path="tradiciones"         element={<Tradiciones/>} />
+                            <Route path="*"                   element={<Error/>} />
+                        </Route>
+                      <Route path='tematicas/:id'     element={<DetalleTematicas tematicas={tematicas}/> } />
 
-                    {/* Perfiles -- usuarios */}
-                    <Route path='/user/consultor'     element={<ProtectedRoute>       <Consultor/>      </ProtectedRoute>} />
-                    <Route path='/user/colaborador'   element={<ProtecteRoutCol>     <Colaborador/>    </ProtecteRoutCol>  } />
-                    <Route path='/user/supervisor'    element={<ProtectedRoutSuper>   <Supervisor/>   </ProtectedRoutSuper>    } />
-                    <Route path='/user/administrador' element={<ProtecteRoutAdmi>   <Administrador/>    </ProtecteRoutAdmi>   } />
-                    {/* acceso -- registro */}
-                    <Route path='/acceso'               element={<Acceso/>} />
-                    <Route path='/acceso/restaurar-pass'element={<RestorePassword/>} />
-                    <Route path='/acceso/cesar'         element={<CifradoCesar/>} />
-                    <Route path='/registro'             element={<Registro/>} />
-                    <Route path='/registro/colaborador' element={<Solicitud/>} />
-                    {/* vista -- error */}
-                    <Route path="*" element={<Error/>} />
-                  </Routes>
-                </ScrollToTop>
+                      {/* Perfiles -- usuarios */}
+                      <Route path='/user/consultor'     element={<ProtectedRoute>       <Consultor/>      </ProtectedRoute>} />
+                      <Route path='/user/colaborador'   element={<ProtecteRoutCol>     <Colaborador/>    </ProtecteRoutCol>  } />
+                      <Route path='/user/supervisor'    element={<ProtectedRoutSuper>   <Supervisor/>   </ProtectedRoutSuper>    } />
+                      <Route path='/user/administrador' element={<ProtecteRoutAdmi>   <Administrador/>    </ProtecteRoutAdmi>   } />
+                      {/* acceso -- registro */}
+                      <Route path='/acceso'               element={<Acceso/>} />
+                      <Route path='/acceso/restaurar-pass'element={<RestorePassword/>} />
+                      <Route path='/acceso/cesar'         element={<CifradoCesar/>} />
+                      <Route path='/registro'             element={<Registro/>} />
+                      <Route path='/registro/colaborador' element={<Solicitud/>} />
+                      {/* vista -- error */}
+                      <Route path="*" element={<Error/>} />
+                    </Routes>
+                  </ScrollToTop>
 
-            <DividerCurve/>
-            <Footer/>
+              <DividerCurve/>
+              <Footer/>
+            </CarritoProvider>
           </AuthProvider>
         {/* </CheckConnection> */}
       </BrowserRouter>
