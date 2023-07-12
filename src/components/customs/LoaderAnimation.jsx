@@ -61,15 +61,17 @@ export const LoaderAnimation = () => {
   `;
 
   return (
-    <Box sx={{styles}}>
-      <Box className="container" >
-          <Box className="cargando">
-              <Box className="pelotas"></Box>
-              <Box className="pelotas"></Box>
-              <Box className="pelotas"></Box>
-              <Typography component="span" className="texto-cargando" color="primary">Cargando... </Typography>
-          </Box>
-      </Box>
+    <Box sx={{background: theme.palette.background.paper}}>
+        <Box sx={{styles}}>
+        <Box className="container" >
+            <Box className="cargando">
+                <Box className="pelotas"></Box>
+                <Box className="pelotas"></Box>
+                <Box className="pelotas"></Box>
+                <Typography component="span" className="texto-cargando" color="primary">Cargando... </Typography>
+            </Box>
+        </Box>
+        </Box>
     </Box>
   )
 }

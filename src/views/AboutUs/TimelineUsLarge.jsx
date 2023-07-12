@@ -8,7 +8,7 @@ import TimelineDot from '@mui/lab/TimelineDot';
 import { TimelineOppositeContent } from '@mui/lab';
 import imgAus                 from "../../assets/img/sobre-nosotros/imgSobreNosotros.jpg"
 import imgMural               from "../../assets/img/inicio/imgMural.jpg"
-import { Card, CardActionArea, CardMedia, Box, Typography } from '@mui/material';
+import { Card, CardMedia, Box, Typography } from '@mui/material';
 
 export default function TimelineUsLarge() {
   return (
@@ -22,14 +22,12 @@ export default function TimelineUsLarge() {
               bgcolor: "background.paper"
             }}
           >
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height={"100%"}
-                image={imgAus}
-                alt="sobre-nosotros"
-              />
-            </CardActionArea>
+            <CardMedia
+              component="img"
+              height={"100%"}
+              image={imgAus}
+              alt="sobre-nosotros"
+            />
           </Card>   
         </TimelineOppositeContent>
         <TimelineSeparator>
@@ -56,14 +54,12 @@ export default function TimelineUsLarge() {
               bgcolor: "background.paper"
             }}
           >
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height={"100%"}
-                image={imgMural}
-                alt="sobre-nosotros"
-              />
-            </CardActionArea>
+            <CardMedia
+              component="img"
+              height={"100%"}
+              image={imgMural}
+              alt="sobre-nosotros"
+            />
           </Card>   
         </TimelineOppositeContent>
         <TimelineSeparator>

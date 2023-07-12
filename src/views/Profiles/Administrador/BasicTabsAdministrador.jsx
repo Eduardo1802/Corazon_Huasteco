@@ -29,7 +29,7 @@ import AttachMoneyIcon from '@mui/icons-material/AddBusiness';
 import { AdminVentas } from './Ventas/AdminVentas';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { AdminProveedor } from './Proveedor/AdminProveedor';
-function TabPanel(props) {
+function TabPanel(props) {  
   const { children, value, index, ...other } = props;
 
   return (
