@@ -3,7 +3,6 @@ import { Typography, Grid, Paper, CardMedia, Card, IconButton, Box} from '@mui/m
 import { ItemsListCard2 } from '../../components/customs/ItemsListCard2'
 import { ItemListCard3 } from '../../components/customs/ItemListCard3'
 import { Facebook, Instagram, Twitter, Web, YouTube } from '@mui/icons-material';
-import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
 import { Bread } from '../../components/customs/Bread';
 import { useParams } from 'react-router-dom';
 import {useAuth} from "../../context/AuthContext"
@@ -32,8 +31,7 @@ export const DetalleTematicas = ({tematicas}) => {
     let tema = checa.tematica;
     let titulo = checa.titulo;
     obtenerInfo(tema,titulo);
-    // eslint-disable-next-line
-  }, [params.id,actualizarInfo]);
+  }, [/* params.id,actualizarInfo */]);
 
     const tematicaMayusculas = datos.tematica ? datos.tematica.toUpperCase() : '';
     const tituloMayusculas = datos.titulo ? datos.titulo.toUpperCase() : '';
@@ -41,22 +39,14 @@ export const DetalleTematicas = ({tematicas}) => {
   
   return (
     <Box sx={{bgcolor: "background.default"}}>
-      {/* BREADCRUMBS */}
-      <Grid 
-        container
-        rowSpacing={1}
-        columnSpacing={{ xs: 1, sm: 3, md: 5 }}  
-      >
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 3, md: 5 }}>
         <Grid item xs={12}>
           <Bread migas={[{miga: "INICIO", ruta: "/inicio"},{miga: "TEMATICAS", ruta: "/tematicas"},{miga: `${tematicaMayusculas}`, ruta: `/tematicas/${tematicaMinusculas}`},{miga: `${tituloMayusculas}`}]}/>
         </Grid>
       </Grid>
       
       {/* CONTENEDOR DE LA VISTA */}
-      <Grid 
-        container
-        spacing={1}
-      >
+      <Grid container spacing={1}>
         {/* COLUMNA IZQUIERDA */}
         <Grid item xs={12} sm={7} md={8}>
           {/* ELEMENTO 1 IMAGEN */}
@@ -128,9 +118,7 @@ export const DetalleTematicas = ({tematicas}) => {
             ) : (
               console.log("Inicia Sesión")
               )}
-
             {/* L I S T A R   C O M E N T A R I O S */}
-
             {
               (proyectos.map(proyecto => {
                 return (
@@ -148,31 +136,6 @@ export const DetalleTematicas = ({tematicas}) => {
                 )
               })) 
             }    
-
-
-
-
-             {/* {
-              isLoading ? (
-                <GroupSkeleton/>
-              )
-              :
-              (proyectos.map(proyecto => {
-                return (
-                  // <Grid container>
-                    <Grid item xs={12} sm={6} md={4} key={proyecto.id} sx={{minWidth:"100%"}}>
-                      <ItemListCard3
-                        key={proyecto.id}
-                        id={proyecto.id}
-                        titulo={proyecto.data().usuario}
-                        descripcion={proyecto.data().comentario}
-                        puntuacion={proyecto.data().puntuacion}
-                        img={userImage}/>
-                    </Grid>
-                  // </Grid>
-                )
-              })) 
-            }  */}
             
             {/* T E R M I N A    L I S T A R    C O M E N T A R I O S */}
           </Paper>
