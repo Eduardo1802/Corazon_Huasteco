@@ -122,7 +122,7 @@ const AgregarComentarios = ({tematica}) => {
 
   return (
     <div>
-      <Button variant="contained" startIcon={<AddCommentIcon/>} onClick={handleClickOpen}>Agregar Comenterio</Button>        
+      <Button variant="contained" startIcon={<AddCommentIcon/>} onClick={handleClickOpen}>Agregar Comentario</Button>        
       <Dialog
         open={openDialog}
         onClose={handleClose}

@@ -3,7 +3,6 @@ import { Box, Grid, Paper, Typography } from '@mui/material'
 import { app } from '../../config/firebase/firebase'
 import { Outlet } from 'react-router-dom'
 import { ItemListCard } from '../../components/customs/ItemListCard'
-import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute'
 import { Bread } from '../../components/customs/Bread'
 import GroupSkeleton from "../Shop/groupSkeleton"
 import { contadorVisitas } from '../../utils/fnCountStatus'

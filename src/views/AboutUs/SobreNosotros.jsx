@@ -1,14 +1,11 @@
 import React, { useEffect }   from 'react'
 import { Grid,  Typography, Paper, Box } from '@mui/material';
-import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
 import { Bread }              from '../../components/customs/Bread';
 import { contadorVisitas }    from '../../utils/fnCountStatus';
 import TimelineUsLarge from './TimelineUsLarge';
 import TimelineUsSmall from './TimelineUsSmall';
 import { HomeRounded, BusinessRounded } from '@mui/icons-material';
-
 // import CustomizedTimeline from './CustomizedTimeline';
-
 
 export const SobreNosotros = () => {
 
