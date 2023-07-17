@@ -4,6 +4,7 @@ export const CarritoContext = createContext();
 
 export const CarritoProvider = ({ children }) => {
   const [contador, setContador] = useState(0);
+  const [open, setOpen] = useState(false);
 
   const aumentarContador = () => {
     setContador(contador + 1);
@@ -15,12 +16,23 @@ export const CarritoProvider = ({ children }) => {
     }
   };
 
+  const abrirDialog = () => {
+    setOpen(true);
+  };
+
+  const cerrarDialog = () => {
+    setOpen(false);
+  };
+
   return (
     <CarritoContext.Provider
       value={{
         contador,
         aumentarContador,
         disminuirContador,
+        open,
+        abrirDialog,
+        cerrarDialog,
       }}
     >
       {children}

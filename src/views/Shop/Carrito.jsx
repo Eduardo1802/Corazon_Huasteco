@@ -9,44 +9,80 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import MailIcon from '@mui/icons-material/Mail';
 import { CarritoContext } from '../../context/CarritoContext';
 import { ShoppingCartRounded } from '@mui/icons-material';
-import { Paper, useTheme } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Paper, useTheme } from '@mui/material';
 
 const Carrito = () => {
-  const { contador } = useContext(CarritoContext);
+  const { contador, open, abrirDialog, cerrarDialog } = useContext(CarritoContext);
   const theme = useTheme();
 
   return (
-    <Box
-      sx={{
-        position: "fixed",
-        right: -15,
-        zIndex: 1,
+    <>
+      <Box
+        onClick={abrirDialog}
+        sx={{
+          cursor: "pointer",
+          position: "fixed",
+          right: -15,
+          zIndex: 1,
 
-        color: 'action.active',
-        display: 'flex',
-        flexDirection: 'column',
-        '& > *': {
-          marginBottom: 2,
-        },
-        '& .MuiBadge-root': {
-          marginRight: 4,
-        },
-      }}
-    >
-      <Paper elevation={0} sx={{p:1, border: `3px solid ${theme.palette.primary.main}`, borderRightColor: "transparent"}}>
-        <Badge color="secondary" badgeContent={contador}>
-          <ShoppingCartRounded />
-        </Badge>
-        {/* <ButtonGroup>
-          <Button aria-label="reduce" onClick={disminuirContador}>
+          color: 'action.active',
+          display: 'flex',
+          flexDirection: 'column',
+          '& > *': {
+            marginBottom: 2,
+          },
+          '& .MuiBadge-root': {
+            marginRight: 4,
+          },
+        }}
+      >
+        <Paper elevation={0} sx={{p:1, border: `3px solid ${theme.palette.primary.main}`, borderRightColor: "transparent"}}>
+          <Badge color="secondary" badgeContent={contador}>
+            <ShoppingCartRounded />
+          </Badge>
+          {/* <ButtonGroup>
+            <Button aria-label="reduce" onClick={disminuirContador}>
             <RemoveIcon fontSize="small" />
-          </Button>
-          <Button aria-label="increase" onClick={aumentarContador}>
+            </Button>
+            <Button aria-label="increase" onClick={aumentarContador}>
             <AddIcon fontSize="small" />
+            </Button>
+          </ButtonGroup> */}
+        </Paper>
+      </Box>
+
+
+      
+      <Dialog
+        fullWidth
+        disableScrollLock
+        open={open}
+        onClose={cerrarDialog}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          Carrito de compras
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Item 1
+          </DialogContentText>
+          <DialogContentText id="alert-dialog-description">
+            Item 2
+          </DialogContentText>
+          <DialogContentText id="alert-dialog-description">
+            Item 3
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button variant='outlined' onClick={cerrarDialog}>Cerrar</Button>
+          <Button variant='contained' onClick={cerrarDialog} autoFocus>
+            Comprar
           </Button>
-        </ButtonGroup> */}
-      </Paper>
-    </Box>
+        </DialogActions>
+      </Dialog>
+    </>
   );
 };
 
