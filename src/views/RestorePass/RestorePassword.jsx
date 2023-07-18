@@ -16,9 +16,10 @@ import imgLogo from "../../assets/img/app/imgLogoHuejutla.png"
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 import { usePassword, handleMouseDownPassword } from '../../context/UsePassword';
-import { useFormikConfig } from '../Registro/useFormikConfig';
+import { useFormikConfig } from '../Register/useFormikConfig';
 import { db } from '../../config/firebase/firebaseDB'
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { HomeRounded, LoginRounded, RestoreRounded } from '@mui/icons-material';
 
 export const RestorePassword = () => {
     //obtener el dato del correo
@@ -179,9 +180,9 @@ export const RestorePassword = () => {
     };
 
     return (
-        <WrapperSingleRoute>
+        <Box sx={{bgcolor: "background.default"}}>
             {/* Breadcrumbs */}
-            <Bread migas={[{ miga: "INICIO", ruta: "/inicio" }, { miga: "ACCESO", ruta: "/acceso" }, { miga: "RESTAURAR CONTRASEÑA", ruta: "/acceso/restaurar-pass" }]} />
+            <Bread migas={[{ miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/> }, { miga: "ACCESO", ruta: "/acceso", icono: <LoginRounded/> }, { miga: "RESTAURAR CONTRASEÑA", ruta: "/acceso/restaurar-pass", icono: <RestoreRounded/> }]} />
 
             {/* Contenido */}
             <Snackbar
@@ -196,217 +197,217 @@ export const RestorePassword = () => {
             </Snackbar>
 
 
-            <Grid container spacing={1}>
-                <Grid item xs>
-                    <Container maxWidth="xs" >
-                        <Paper elevation={3} sx={{ p: { md: 5, sm: 4, xs: 3 }, mb: 3 }}>
-                            <Box sx={{ display: "flex", justifyContent: "center", mb: 3 }}>
-                                <img src={imgLogo} alt="logo" width="100vw" />
-                            </Box>
+            <Paper elevation={0}>
+                <Grid container spacing={1}>
+                    <Grid item xs>
+                        <Container maxWidth="xs" >
+                            <Paper elevation={0} sx={{ p: { md: 5, sm: 4, xs: 3 }, mb: 3 }}>
+                                <Box sx={{ display: "flex", justifyContent: "center", mb: 3 }}>
+                                    <img src={imgLogo} alt="logo" width="100vw" />
+                                </Box>
 
-                            <Typography textAlign="center" variant="h5" component="p" gutterBottom color="primary.main">
-                                Restaurar contraseña
-                            </Typography>
-                            <Collapse in={validar}>
-                                <Typography textAlign="center" variant="body2" component="p" gutterBottom color="primary.main" sx={{ mb: 2 }}>
-                                    Ingresa tu correo para recuperar tu cuenta
-                                </Typography>
-                            </Collapse>
-
-                            <Box
-                                sx={{
-                                    '& > :not(style)': { my: { md: 1, sm: 0.75, xs: 0.50 } },
-                                }}
-                            >
-                                <Collapse in={estado}>
-
-                                    <TextField
-                                        fullWidth
-                                        label="Correo electronico"
-                                        type='email'
-                                        name="email"
-                                        id="email"
-                                        onChange={handleChange}
-                                        autoComplete="off"
-                                    />
-                                    <Button sx={{ mt: 1 }} fullWidth variant="contained" onClick={handleResetPassword}>
-                                        Enviar
-                                    </Button>
-                                </Collapse>
+                                <Typography variant="h4" color="primary" textAlign='center' my={3}>Restaurar contraseña</Typography>
                                 <Collapse in={validar}>
-                                    <Collapse in={!estado}>
+                                    <Typography textAlign="center" variant="body2" component="p" gutterBottom color="primary.main" sx={{ mb: 2 }}>
+                                        Ingresa tu correo para recuperar tu cuenta
+                                    </Typography>
+                                </Collapse>
+
+                                <Box
+                                    sx={{
+                                        '& > :not(style)': { my: { md: 1, sm: 0.75, xs: 0.50 } },
+                                    }}
+                                >
+                                    <Collapse in={estado}>
 
                                         <TextField
                                             fullWidth
                                             label="Correo electronico"
-                                            type='email1'
-                                            name="email1"
-                                            id="email1"
-                                            value={textFieldValue || ""}
-                                            onChange={(e) => setTextFieldValue(e.target.value)}
+                                            type='email'
+                                            name="email"
+                                            id="email"
+                                            onChange={handleChange}
                                             autoComplete="off"
                                         />
-                                        <Button sx={{ mt: 1 }} type='submit' fullWidth variant="contained" onClick={handleButtonClick}>
-                                            Validar
+                                        <Button sx={{ mt: 1 }} fullWidth variant="contained" onClick={handleResetPassword}>
+                                            Enviar
                                         </Button>
                                     </Collapse>
-
-                                </Collapse>
-
-
-
-                                <Collapse in={pregunta}>
-                                    <Box
-                                        sx={{
-                                            '& > :not(style)': { my: { md: 1, sm: 0.75, xs: 0.50 } },
-                                        }}
-                                    >
-                                        {/* Pregunta secreta */}
-                                        <Typography textAlign="center" variant="body2" component="p" gutterBottom color="primary.main" sx={{ mb: 2 }}>
-                                            Introduce tu respuesta a la pregunta secreta
-                                        </Typography>
-                                        <TextField
-                                            fullWidth
-                                            type='text'
-                                            name="secretQuestion"
-                                            value={data.secretQuestion || "Pregunta secreta"}
-                                            autoComplete="off"
-                                        />
-
-                                        {/* Respuesta a pregunta */}
-                                        <TextField
-                                            fullWidth
-                                            label="Respuesta de la pregunta secreta"
-                                            type={showPassword ? "text" : "password"}
-                                            name="secretQuestionAnswer"
-                                            onChange={(e) => {
-                                                formik.handleChange(e);
-                                                setRes(e.target.value);
-                                            }}
-                                            error={formik.errors.secretQuestionAnswer ? true : false}
-                                            helperText={formik.errors.secretQuestionAnswer}
-                                            value={formik.values.secretQuestionAnswer}
-                                            autoComplete="off"
-                                            InputProps={{
-                                                endAdornment: (
-                                                    <InputAdornment position="end">
-                                                        <IconButton
-                                                            aria-label="toggle password visibility"
-                                                            onClick={handleClickShowPassword}
-                                                            onMouseDown={handleMouseDownPassword}
-                                                        >
-                                                            {showPassword ? <Visibility /> : <VisibilityOff />}
-                                                        </IconButton>
-                                                    </InputAdornment>
-                                                ),
-                                            }}
-                                        />
-
-                                        <Button type='button' variant="contained" fullWidth onClick={validarPregunta}>
-                                            Validar
-                                        </Button>
-
-                                    </Box>
-                                </Collapse>
-                                <Collapse in={nuevo}>
-                                    <Box
-                                        sx={{
-                                            '& > :not(style)': { my: { md: 1, sm: 0.75, xs: 0.50 } },
-                                        }}
-                                    >
-                                        {/* CONTRASEÑA */}
-                                        <Typography textAlign="center" variant="body2" component="p" gutterBottom color="primary.main" sx={{ mb: 2 }}>
-                                            Introduce tu nueva contraseña
-                                        </Typography>
-
-
-                                        <Box
-                                            component={Form}
-                                            sx={{
-                                                "& > :not(style)": { my: { md: 1, sm: 0.75, xs: 0.5 } },
-                                            }}
-                                        >
-
+                                    <Collapse in={validar}>
+                                        <Collapse in={!estado}>
 
                                             <TextField
                                                 fullWidth
-                                                label="Contraseña"
-                                                type={showPassword ? "text" : "password"}
-                                                name="password"
-                                                onChange={(e) => {
-                                                    formik.handleChange(e);
-                                                    setFieldValue(e.target.value);
-                                                }}
-                                                error={formik.errors.password ? true : false}
-                                                helperText={formik.errors.password}
-                                                value={formik.values.password || fieldValue}
+                                                label="Correo electronico"
+                                                type='email1'
+                                                name="email1"
+                                                id="email1"
+                                                value={textFieldValue || ""}
+                                                onChange={(e) => setTextFieldValue(e.target.value)}
                                                 autoComplete="off"
-                                                InputProps={{
-                                                    endAdornment: (
-                                                        <InputAdornment position="end">
-                                                            <IconButton
-                                                                aria-label="toggle password visibility"
-                                                                onClick={handleClickShowPassword}
-                                                                onMouseDown={handleMouseDownPassword}
-                                                            >
-                                                                {showPassword ? <Visibility /> : <VisibilityOff />}
-                                                            </IconButton>
-                                                        </InputAdornment>
-                                                    ),
-                                                }}
                                             />
-
-                                            {/* REPETIR CONTRASEÑA */}
-                                            <TextField
-                                                fullWidth
-                                                label="Repetir contraseña"
-                                                type={showPassword ? "text" : "password"}
-                                                name="repeatPassword"
-                                                onChange={formik.handleChange}
-                                                error={formik.errors.repeatPassword ? true : false}
-                                                helperText={formik.errors.repeatPassword}
-                                                value={formik.values.repeatPassword}
-                                                autoComplete="off"
-                                                InputProps={{
-                                                    endAdornment: (
-                                                        <InputAdornment position="end">
-                                                            <IconButton
-                                                                aria-label="toggle password visibility"
-                                                                onClick={handleClickShowPassword}
-                                                                onMouseDown={handleMouseDownPassword}
-                                                            >
-                                                                {showPassword ? <Visibility /> : <VisibilityOff />}
-                                                            </IconButton>
-                                                        </InputAdornment>
-                                                    ),
-                                                }}
-                                            />
-                                        </Box>
-
-                                        <Grid  >
-                                            <Button type='button' fullWidth variant="contained" onClick={handleUpdate}>
+                                            <Button sx={{ mt: 1 }} type='submit' fullWidth variant="contained" onClick={handleButtonClick}>
                                                 Validar
                                             </Button>
-                                        </Grid>
+                                        </Collapse>
+
+                                    </Collapse>
 
 
 
-                                    </Box>
-                                </Collapse>
+                                    <Collapse in={pregunta}>
+                                        <Box
+                                            sx={{
+                                                '& > :not(style)': { my: { md: 1, sm: 0.75, xs: 0.50 } },
+                                            }}
+                                        >
+                                            {/* Pregunta secreta */}
+                                            <Typography textAlign="center" variant="body2" component="p" gutterBottom color="primary.main" sx={{ mb: 2 }}>
+                                                Introduce tu respuesta a la pregunta secreta
+                                            </Typography>
+                                            <TextField
+                                                fullWidth
+                                                type='text'
+                                                name="secretQuestion"
+                                                value={data.secretQuestion || "Pregunta secreta"}
+                                                autoComplete="off"
+                                            />
 
-                                <Collapse in={validar}>
-                                    <Divider>o</Divider>
-                                </Collapse>
+                                            {/* Respuesta a pregunta */}
+                                            <TextField
+                                                fullWidth
+                                                label="Respuesta de la pregunta secreta"
+                                                type={showPassword ? "text" : "password"}
+                                                name="secretQuestionAnswer"
+                                                onChange={(e) => {
+                                                    formik.handleChange(e);
+                                                    setRes(e.target.value);
+                                                }}
+                                                error={formik.errors.secretQuestionAnswer ? true : false}
+                                                helperText={formik.errors.secretQuestionAnswer}
+                                                value={formik.values.secretQuestionAnswer}
+                                                autoComplete="off"
+                                                InputProps={{
+                                                    endAdornment: (
+                                                        <InputAdornment position="end">
+                                                            <IconButton
+                                                                aria-label="toggle password visibility"
+                                                                onClick={handleClickShowPassword}
+                                                                onMouseDown={handleMouseDownPassword}
+                                                            >
+                                                                {showPassword ? <Visibility /> : <VisibilityOff />}
+                                                            </IconButton>
+                                                        </InputAdornment>
+                                                    ),
+                                                }}
+                                            />
 
-                                <Button variant="contained" fullWidth onClick={cambiarEstado}>
-                                    {estado ? "Pregunta secreta" : "Correo"}
-                                </Button>
+                                            <Button type='button' variant="contained" fullWidth onClick={validarPregunta}>
+                                                Validar
+                                            </Button>
 
-                            </Box>
-                        </Paper>
-                    </Container>
+                                        </Box>
+                                    </Collapse>
+                                    <Collapse in={nuevo}>
+                                        <Box
+                                            sx={{
+                                                '& > :not(style)': { my: { md: 1, sm: 0.75, xs: 0.50 } },
+                                            }}
+                                        >
+                                            {/* CONTRASEÑA */}
+                                            <Typography textAlign="center" variant="body2" component="p" gutterBottom color="primary.main" sx={{ mb: 2 }}>
+                                                Introduce tu nueva contraseña
+                                            </Typography>
+
+
+                                            <Box
+                                                component={Form}
+                                                sx={{
+                                                    "& > :not(style)": { my: { md: 1, sm: 0.75, xs: 0.5 } },
+                                                }}
+                                            >
+
+
+                                                <TextField
+                                                    fullWidth
+                                                    label="Contraseña"
+                                                    type={showPassword ? "text" : "password"}
+                                                    name="password"
+                                                    onChange={(e) => {
+                                                        formik.handleChange(e);
+                                                        setFieldValue(e.target.value);
+                                                    }}
+                                                    error={formik.errors.password ? true : false}
+                                                    helperText={formik.errors.password}
+                                                    value={formik.values.password || fieldValue}
+                                                    autoComplete="off"
+                                                    InputProps={{
+                                                        endAdornment: (
+                                                            <InputAdornment position="end">
+                                                                <IconButton
+                                                                    aria-label="toggle password visibility"
+                                                                    onClick={handleClickShowPassword}
+                                                                    onMouseDown={handleMouseDownPassword}
+                                                                >
+                                                                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                                                                </IconButton>
+                                                            </InputAdornment>
+                                                        ),
+                                                    }}
+                                                />
+
+                                                {/* REPETIR CONTRASEÑA */}
+                                                <TextField
+                                                    fullWidth
+                                                    label="Repetir contraseña"
+                                                    type={showPassword ? "text" : "password"}
+                                                    name="repeatPassword"
+                                                    onChange={formik.handleChange}
+                                                    error={formik.errors.repeatPassword ? true : false}
+                                                    helperText={formik.errors.repeatPassword}
+                                                    value={formik.values.repeatPassword}
+                                                    autoComplete="off"
+                                                    InputProps={{
+                                                        endAdornment: (
+                                                            <InputAdornment position="end">
+                                                                <IconButton
+                                                                    aria-label="toggle password visibility"
+                                                                    onClick={handleClickShowPassword}
+                                                                    onMouseDown={handleMouseDownPassword}
+                                                                >
+                                                                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                                                                </IconButton>
+                                                            </InputAdornment>
+                                                        ),
+                                                    }}
+                                                />
+                                            </Box>
+
+                                            <Grid  >
+                                                <Button type='button' fullWidth variant="contained" onClick={handleUpdate}>
+                                                    Validar
+                                                </Button>
+                                            </Grid>
+
+
+
+                                        </Box>
+                                    </Collapse>
+
+                                    <Collapse in={validar}>
+                                        <Divider>o</Divider>
+                                    </Collapse>
+
+                                    <Button variant="contained" fullWidth onClick={cambiarEstado}>
+                                        {estado ? "Pregunta secreta" : "Correo"}
+                                    </Button>
+
+                                </Box>
+                            </Paper>
+                        </Container>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </WrapperSingleRoute>
+            </Paper>
+        </Box>
     )
 }
