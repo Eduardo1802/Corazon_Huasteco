@@ -1,7 +1,8 @@
-import { Box, Button, FormControl, FormControlLabel, FormGroup, Grid, Stack, Switch, TextField } from "@mui/material";
+import { Box, Button, FormControl, FormControlLabel, FormGroup, Grid, Stack, Switch, TextField, ThemeProvider } from "@mui/material";
 import { useEffect, useState } from "react";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../../../config/firebase/firebaseDB";
+import { CheckCircleOutlineRounded, RestoreRounded, UpdateRounded } from "@mui/icons-material";
 
 const ColorPaletteForm = () => {
   const [themeMode, setThemeMode] = useState('light');
@@ -160,16 +161,18 @@ const ColorPaletteForm = () => {
         </Grid> 
         <Grid item xs={12} sm={8}>
             <Box>
-                Aqui puedes ver una vista de como se verían algunos elementos de la aplicación con los nuevos colores
-                <Button variant="contained">hola buenas</Button>
+                <ThemeProvider theme={themeMode}>
+                  Aqui puedes ver una vista de como se verían algunos elementos de la aplicación con los nuevos colores
+                  <Button variant="contained">hola buenas</Button>
+                </ThemeProvider>
             </Box>
         </Grid>
         <Grid item xs={12} sx={{paddingTop: 1}}>
             <Stack direction="row" spacing={1}>
-                <Button variant="contained" color="success" onClick={handleUpdatePalette}>
+                <Button variant="contained" color="success" onClick={handleUpdatePalette} endIcon={<CheckCircleOutlineRounded/>}>
                     Actualizar
                 </Button>
-                <Button variant="outlined" color="warning" onClick={handleResetPalette}>
+                <Button variant="contained" color="warning" onClick={handleResetPalette} endIcon={<RestoreRounded/>}>
                     Restablecer
                 </Button>
             </Stack>

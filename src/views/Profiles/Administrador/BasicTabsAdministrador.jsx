@@ -86,9 +86,6 @@ export default function BasicTabsAdministrador() {
   }, [])
   // FIN DE CONSULTA
 
-  
-  
-
   return (
     <Box>
       <Tabs
@@ -102,16 +99,14 @@ export default function BasicTabsAdministrador() {
       >
         <Tab label="Inicio"       icon={<HomeRoundedIcon/>}              iconPosition="start" {...a11yProps(0)} />
         <Tab label="Estadisticas" icon={<AnalyticsRoundedIcon/>}         iconPosition="start" {...a11yProps(1)} />
-        <Tab label="Temas"        icon={<BallotIcon/>}                   iconPosition="start" {...a11yProps(2)} />
-        <Tab label="Tematicas"    icon={<TopicRoundedIcon/>}             iconPosition="start" {...a11yProps(3)} />
-        <Tab label="Productos"    icon={<CategoryRoundedIcon/>}          iconPosition="start" {...a11yProps(4)} />
-        <Tab label="Usuarios"     icon={<GroupRoundedIcon/>}             iconPosition="start" {...a11yProps(5)} />
-        <Tab label="Ventas"       icon={<AttachMoneyIcon/>}              iconPosition="start" {...a11yProps(6)} />
-        <Tab label="Proveedores"    icon={<LocalShippingIcon/>}            iconPosition="start" {...a11yProps(7)} />
-        <Tab label="Comentarios"  icon={<AddCommentIcon/>}               iconPosition="start" {...a11yProps(8)} />
-        <Tab label="Donaciones"   icon={<VolunteerActivismRoundedIcon/>} iconPosition="start" {...a11yProps(9)} />
-        <Tab label="Personalizar" icon={<DesignServicesRoundedIcon/>}    iconPosition="start" {...a11yProps(10)} />
-        <Tab label="Configuración" icon={<SettingsRoundedIcon/>}         iconPosition="start" {...a11yProps(11)} />
+        <Tab label="Productos"    icon={<CategoryRoundedIcon/>}          iconPosition="start" {...a11yProps(2)} />
+        <Tab label="Usuarios"     icon={<GroupRoundedIcon/>}             iconPosition="start" {...a11yProps(3)} />
+        <Tab label="Ventas"       icon={<AttachMoneyIcon/>}              iconPosition="start" {...a11yProps(4)} />
+        <Tab label="Proveedores"    icon={<LocalShippingIcon/>}          iconPosition="start" {...a11yProps(5)} />
+        <Tab label="Comentarios"  icon={<AddCommentIcon/>}               iconPosition="start" {...a11yProps(6)} />
+        <Tab label="Donaciones"   icon={<VolunteerActivismRoundedIcon/>} iconPosition="start" {...a11yProps(7)} />
+        <Tab label="Personalizar" icon={<DesignServicesRoundedIcon/>}    iconPosition="start" {...a11yProps(8)} />
+        <Tab label="Configuración" icon={<SettingsRoundedIcon/>}         iconPosition="start" {...a11yProps(9)} />
       </Tabs>
       <TabPanel value={value} index={0}>
         <AdminInicio/>
@@ -120,33 +115,27 @@ export default function BasicTabsAdministrador() {
         <AdminEstadisticas datos={datos}/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <AdminTemas/>
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        <AdminTematicas/>
-      </TabPanel>
-      <TabPanel value={value} index={4}>
         <AdminProductos/>
       </TabPanel>
-      <TabPanel value={value} index={5}>
+      <TabPanel value={value} index={3}>
         <AdminUsuarios/>
       </TabPanel>
-      <TabPanel value={value} index={6}>
+      <TabPanel value={value} index={4}>
         <AdminVentas/>
       </TabPanel>
-      <TabPanel value={value} index={7}>
+      <TabPanel value={value} index={5}>
         <AdminProveedor/>
       </TabPanel>
-      <TabPanel value={value} index={8}>
+      <TabPanel value={value} index={6}>
         <AdminComentarios/>
       </TabPanel>
-      <TabPanel value={value} index={9}>
+      <TabPanel value={value} index={7}>
         <AdminDonaciones/>
       </TabPanel>
-      <TabPanel value={value} index={10}>
+      <TabPanel value={value} index={8}>
         <AdminPersonalizar/>
       </TabPanel>
-      <TabPanel value={value} index={11}>
+      <TabPanel value={value} index={9}>
         <AdminConfiguracion/>
       </TabPanel>
     </Box>

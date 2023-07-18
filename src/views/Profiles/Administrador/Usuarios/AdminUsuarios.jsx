@@ -102,12 +102,11 @@ export const AdminUsuarios = () => {
   return (
     <div>
       <SimpleBackdrop open={open} />
-      <Grid container>
+      <Grid container spacing={0}>
         {/* Contenido */}
         <Grid
           container
-          rowSpacing={1}
-          columnSpacing={1}
+          spacing={0}
           sx={{bgcolor: "background.paper", p:1}}
         >
           {/* Buscador */}
