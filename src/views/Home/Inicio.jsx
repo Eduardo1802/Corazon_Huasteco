@@ -36,6 +36,7 @@ export const Inicio = () => {
       {/* SECTION TWO -- CULTURA DE LA HUASTECA...*/}
       <Paper component='section' 
         sx={{
+          borderRadius: 0,
           // margin: "4px 8px", 
           minHeight: '60vh', 
           display: "flex", 
@@ -48,7 +49,7 @@ export const Inicio = () => {
           // background: `linear-gradient(150deg, ${theme.palette.background.paper} 25%, ${theme.palette.primary.dark}b7 77%, ${theme.palette.primary.light} 95%)`
         }}
       >
-        <Container maxWidth='lg' sx={{backgroundColor: theme.palette.background.paper, p:3, borderRadius: 1}} data-aos="fade-up">
+        <Container maxWidth='lg' sx={{backgroundColor: theme.palette.background.paper, p:3, borderRadius: 0}} >
           <Box >
             <Typography variant={isSmallScreen ? 'h4' : 'h3'} component="h1" gutterBottom>
               Cultura de La Huasteca Hidalguense
@@ -59,7 +60,7 @@ export const Inicio = () => {
               La cultura de La Huasteca Hidalguense es una rica mezcla de historia, tradiciones, gastronomía y artesanías que se han desarrollado a lo largo del tiempo en la región.
             </Typography>
           </Box>
-          <Box>
+          <Box data-aos="fade-up">
             <Button variant="contained" color="primary" size='large' component={Link} to="/tematicas"
               sx={{
                 position: "relative",
@@ -84,6 +85,7 @@ export const Inicio = () => {
       {/* SECTION THREE -- HISTORIA DE LA HUASTECA...*/}
       <Paper component='section' 
         sx={{
+          borderRadius: 0,
           // margin: "4px 8px", 
           minHeight: '98vh', 
           display: "flex", 
@@ -103,38 +105,38 @@ export const Inicio = () => {
               </Divider>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Paper data-aos="fade-up" data-aos-delay="100" sx={{p: 3, height: "100%", background: `${theme.palette.primary.light}80`}} elevation={1}>
+              <Paper  sx={{p: 3, height: "100%", background: `${theme.palette.primary.light}80`}} elevation={1}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Antecedentes prehispánicos
                 </Typography>
-                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
+                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3} data-aos="fade-up" data-aos-delay="75">
                   La Huasteca Hidalguense fue habitada originalmente por pueblos indígenas que desarrollaron culturas únicas y ricas en tradiciones.
                 </Typography>
               </Paper>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Paper data-aos="fade-up" data-aos-delay="150" sx={{p: 3, height: "100%", background: `${theme.palette.primary.light}80`}} elevation={1}>
+              <Paper  sx={{p: 3, height: "100%", background: `${theme.palette.primary.light}80`}} elevation={1}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Época colonial
                 </Typography>
-                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
+                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3} data-aos="fade-up" data-aos-delay="100">
                   La llegada de los españoles a la región tuvo un gran impacto en la cultura y tradiciones huastecas, siendo una época de cambios y mestizaje.
                 </Typography>
               </Paper>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Paper data-aos="fade-up" data-aos-delay="200" sx={{p: 3, height: "100%", background: `${theme.palette.primary.light}80`}} elevation={1}>
+              <Paper  sx={{p: 3, height: "100%", background: `${theme.palette.primary.light}80`}} elevation={1}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Independencia y revolución                </Typography>
-                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
+                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3} data-aos="fade-up" data-aos-delay="125">
                   La región fue escenario de importantes episodios de la historia mexicana, como la guerra de independencia y la revolución mexicana.                </Typography>
               </Paper>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Paper data-aos="fade-up" data-aos-delay="250" sx={{p: 3, height: "100%", background: `${theme.palette.primary.light}80`}} elevation={1}>
+              <Paper  sx={{p: 3, height: "100%", background: `${theme.palette.primary.light}80`}} elevation={1}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Hoy en día                </Typography>
-                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
+                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3} data-aos="fade-up" data-aos-delay="150">
                   La Huasteca Hidalguense es reconocida por su patrimonio cultural y turístico, y es un lugar que invita a visitar y conocer su historia.
                 </Typography>
               </Paper>
@@ -147,6 +149,7 @@ export const Inicio = () => {
       {/* SECTION FOUR -- UBICACIÓN GEOGRAFÍCA...*/}
       <Paper component='section' 
         sx={{
+          borderRadius: 0,
           // margin: "4px 8px", 
           minHeight: '58vh', 
           display: "flex", 
@@ -166,7 +169,7 @@ export const Inicio = () => {
               </Divider>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Paper data-aos="fade-up" data-aos-delay="100" sx={{p:1, height: "100%"}} elevation={0}>
+              <Paper /* data-aos="fade-up" data-aos-delay="100" */ sx={{p:1, height: "100%"}} elevation={0}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Ubicación Geográfica
                 </Typography>
@@ -176,7 +179,7 @@ export const Inicio = () => {
               </Paper>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Paper data-aos="fade-up" data-aos-delay="150" sx={{p:1, height: "100%"}} elevation={0}>
+              <Paper /* data-aos="fade-up" data-aos-delay="150" */ sx={{p:1, height: "100%"}} elevation={0}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Características de la Región
                 </Typography>
@@ -214,6 +217,7 @@ export const Inicio = () => {
       {/* SECTION FIVE -- LENGUAS HABLADAS...*/}
       <Paper component='section' 
         sx={{
+          borderRadius: 0,
           // margin: "4px 8px", 
           minHeight: '98vh', 
           display: "flex", 
@@ -267,6 +271,7 @@ export const Inicio = () => {
       {/* SECTION SIX -- ARTESANIAS REPRESEN...*/}
       <Paper component='section' 
         sx={{
+          borderRadius: 0,
           // margin: "4px 8px", 
           minHeight: '58vh', 
           display: "flex", 
@@ -541,6 +546,7 @@ export const Inicio = () => {
       {/* SECTION EIGTH -- DANZAS Y MÚSICA...*/}
       <Paper component='section' 
         sx={{
+          borderRadius: 0,
           // margin: "4px 8px", 
           minHeight: '58vh', 
           display: "flex", 
@@ -593,6 +599,7 @@ export const Inicio = () => {
       {/* SECTION NINE -- FIESTAS Y CELEBRACIONES...*/}
       <Paper component='section' 
         sx={{
+          borderRadius: 0,
           // margin: "4px 8px", 
           minHeight: '88vh', 
           display: "flex", 
@@ -612,7 +619,7 @@ export const Inicio = () => {
               </Divider>
             </Grid>
             <Grid item md={4} sm={6} xs={12}>
-              <Paper data-aos="fade-up" data-aos-delay="100" sx={{p: 3, height: "100%"}} elevation={1}>
+              <Paper /* data-aos="fade-up" data-aos-delay="100" */ sx={{p: 3, height: "100%"}} elevation={1}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Día de Muertos
                 </Typography>
@@ -622,7 +629,7 @@ export const Inicio = () => {
               </Paper>
             </Grid>
             <Grid item md={4} sm={6} xs={12}>
-              <Paper data-aos="fade-up" data-aos-delay="150" sx={{p: 3, height: "100%"}} elevation={1}>
+              <Paper /* data-aos="fade-up" data-aos-delay="150" */ sx={{p: 3, height: "100%"}} elevation={1}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Feria de San Francisco de Asís
                 </Typography>
@@ -632,7 +639,7 @@ export const Inicio = () => {
               </Paper>
             </Grid>
             <Grid item md={4} sm={12} xs={12}>
-              <Paper data-aos="fade-up" data-aos-delay="200" sx={{p: 3, height: "100%"}} elevation={1}>
+              <Paper /* data-aos="fade-up" data-aos-delay="200" */ sx={{p: 3, height: "100%"}} elevation={1}>
                 <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
                   Carnaval Huasteco
                 </Typography>
@@ -650,6 +657,7 @@ export const Inicio = () => {
       <Paper component='section' 
         elevation={0}
         sx={{
+          borderRadius: 0,
           // margin: "4px 8px", 
           minHeight: '38vh', 
           display: "flex", 
