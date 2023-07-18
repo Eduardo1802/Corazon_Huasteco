@@ -19,6 +19,7 @@ const options = [
   "usuarios",
   "usuarios_correo",
   "visitas",
+  "settingsApp"
 ];
 
 export const AdminConfiguracion = () => {

@@ -69,7 +69,7 @@ export function AnimatedIcon(props){
   .moneda-animate::after{
       content: '';
       display: inline-block;
-      background-image: url(${isDarkMode ? logo3 : logo2});
+      background-image: url(${isDarkMode === 'dark' ? logo3 : logo2});
       width: 60px;
       height: 60px;
       position: absolute;

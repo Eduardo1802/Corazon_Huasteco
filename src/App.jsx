@@ -1,51 +1,59 @@
 import React, { useEffect, useState } from "react";
 import { Router } from "./routes/Router";
-import {Box, ThemeProvider} from '@mui/material';
-import {lightTheme, darkTheme} from './styles/ThemeMui';
+import { Box, ThemeProvider, createTheme, CircularProgress } from '@mui/material';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "./config/firebase/firebaseDB";
+AOS.init();
 
 function App() {
-  const [isDarkMode, setIsDarkmode] = useState(false);
+  const [themeMode, setThemeMode] = useState('light');
+  const [palette, setPalette] = useState({});
+  const [loading, setLoading] = useState(true);
 
-  const handleThemeChange = () => {
-    setIsDarkmode((prevMode) => !prevMode);
+  const fetchData = async (themeMode) => {
+    try {
+      const docRef = doc(db, 'settingsApp', 'C5sl8yZRgXubsme5uBws');
+      const docSnapshot = await getDoc(docRef);
+      const data = docSnapshot.data();
+      setPalette(data[themeMode]);
+      setLoading(false); // Marcar la carga como completada
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   };
 
-  const theme = isDarkMode ? darkTheme : lightTheme;
-  // Aplica los estilos a toda la página
-  const styles = `
-  body {
-    scrollbar-width: thin;
-    overflow-x: hidden; /*oculta el scroll horizontal de toda la pagina*/
-  }
-  ::selection {
-    color: ${theme.palette.background.default};
-    background: ${theme.palette.primary.main};
-  }
-  `;
-
   useEffect(() => {
-    AOS.init();
-    // Obtiene el valor del color que deseas para el modo claro y el modo oscuro
-    const lightModeColor = lightTheme.palette.primary.main;
-    const darkModeColor = darkTheme.palette.primary.main;
+    fetchData(themeMode);
+  }, [themeMode]);
 
-    // Actualiza el valor de la etiqueta "theme-color" utilizando el valor del color correspondiente al modo claro/oscuro
-    const metaThemeColor = document.querySelector("meta[name=theme-color]");
-    metaThemeColor.setAttribute(
-      "content",
-      isDarkMode ? darkModeColor : lightModeColor
-    );
+  const handleThemeToggle = () => {
+    setThemeMode((prevThemeMode) => (prevThemeMode === 'light' ? 'dark' : 'light'));
     AOS.refresh();
-  }, [isDarkMode, theme]);
+  };
+
+  const theme = createTheme({
+    palette: {
+      mode: themeMode,
+      ...palette,
+    },
+  });
+
+  if (loading) {
+    // Mostrar un mensaje de carga mientras los datos se están cargando
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+        <CircularProgress />
+      </Box>
+    );
+  }
 
   return (
     <Box>
-      <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
-        <Router isDarkMode={isDarkMode} handleThemeChange={handleThemeChange} />
+      <ThemeProvider theme={theme}>
+        <Router isDarkMode={themeMode} handleThemeChange={handleThemeToggle} />
       </ThemeProvider>
-      <Box component={"style"}>{styles}</Box>
     </Box>
   );
 }
