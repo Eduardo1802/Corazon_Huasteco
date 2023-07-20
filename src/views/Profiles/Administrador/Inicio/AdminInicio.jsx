@@ -1,61 +1,25 @@
-import {
-  Box,
-  Chip,
-  Container,
-  Divider,
-  Grid,
-  Stack,
-  Typography,
-} from "@mui/material";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import SimpleBackdrop from "../../../../components/customs/SimpleBackDrop";
-import { WrapperSingleRoute } from "../../../../components/customs/WrapperSingleRoute";
+import React from "react";
+import {Box, Chip, Container, Grid, Stack, Typography, useMediaQuery} from "@mui/material";
 import { useAuth } from "../../../../context/AuthContext";
-import "firebase/firestore";
 import noProfileUser from "../../../../assets/img/perfil/noProfilePicture.jpg";
-import banner from "../../../../assets/img/perfil/banner.jpg";
 import AdminPanelSettingsRoundedIcon from "@mui/icons-material/AdminPanelSettingsRounded";
-import { EditProfile } from "./EditProfile";
+import { EditProfile } from "../../../../components/customs/EditProfile";
+import { BannerProfile } from "../../../../components/customs/BannerProfile";
 
 export const AdminInicio = () => {
-  const { logout, user } = useAuth();
-  const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
+  const { user } = useAuth();
+  const isSmallScreen = useMediaQuery('(max-width:900px)');
 
   console.log("vista administrador: id del usuario =>", user.uid);
 
-  // eslint-disable-next-line
-  const handleLogout = async () => {
-    try {
-      setOpen(true);
-      await logout();
-      navigate("/");
-      setOpen(false);
-    } catch (error) {
-      setOpen(true);
-      console.log(error.message);
-      setOpen(false);
-    }
-  };
-
   return (
     <Box>
-      <SimpleBackdrop open={open} />
       {/* CONTENEDOR GRID */}
       <Grid container sx={{ bgcolor: "background.paper" }}>
         {/* BANNER */}
-        <Grid
-          item
-          xs={12}
-          sx={{
-            height: "20vh",
-            backgroundImage: `url(${banner})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
-        />
+        <Grid item xs={12}>
+          <BannerProfile />
+        </Grid>
         {/*FIN BANNER */}
 
         {/* FLOAT CONT */}
@@ -145,30 +109,8 @@ export const AdminInicio = () => {
 
         <Container maxWidth="md" sx={{ marginTop: "-90px", p: 3 }}>
           <hr />
-          <Typography color="text.secondary">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.
-          </Typography>
-
-          <Divider variant="middle" />
-
-          <Typography color="text.secondary">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.
+          <Typography color="text.secondary" sx={{fontStyle: "italic"}} variant={isSmallScreen ? "body1" : "h5"}>
+            "Eres el motor que impulsa nuestra empresa hacia la excelencia en el ámbito cultural. Valoramos tu dedicación y liderazgo estratégico para llevar adelante nuestra visión de destacar en el municipio de Huejutla de Reyes, Hidalgo, y proyectar nuestra cultura a nivel nacional e internacional. Trabajemos juntos para promover la libre expresión cultural y llevar nuestra región al mundo. ¡Tu compromiso es fundamental para alcanzar nuestros objetivos!"
           </Typography>
         </Container>
       </Grid>

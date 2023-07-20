@@ -20,6 +20,7 @@ export const EditProfile = ({userImage}) => {
     <div>
         <Button variant="contained" startIcon={<EditIcon/>} onClick={handleClickOpen}>Editar Perfil</Button>
         <Dialog
+            disableScrollLock
             open={openDialog}
             onClose={handleClose}
             aria-labelledby="alert-dialog-title"

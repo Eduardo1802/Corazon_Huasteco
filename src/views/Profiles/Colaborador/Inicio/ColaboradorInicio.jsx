@@ -1,51 +1,25 @@
 import React, { useState } from "react";
-import { WrapperSingleRoute } from "../../../../components/customs/WrapperSingleRoute";
-import SimpleBackdrop from "../../../../components/customs/SimpleBackDrop";
-import { Box, Chip, Container, Grid, Stack, Typography } from "@mui/material";
-import banner from "../../../../assets/img/perfil/banner.jpg";
-import noProfileUser from "../../../../assets/img/perfil/noProfilePicture.jpg";
-import { useNavigate } from "react-router-dom";
+import { Box, Chip, Container, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 import { useAuth } from "../../../../context/AuthContext";
+import noProfileUser from "../../../../assets/img/perfil/noProfilePicture.jpg";
 import Groups3RoundedIcon from "@mui/icons-material/Groups3Rounded";
+import { EditProfile } from "../../../../components/customs/EditProfile";
+import { BannerProfile } from "../../../../components/customs/BannerProfile";
 
 export const ColaboradorInicio = () => {
-  const { logout, user } = useAuth();
-  const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
+  const { user } = useAuth();
+  const isSmallScreen = useMediaQuery("(max-width:900px)");
 
   console.log("vista colaborador: id del usuario =>", user.uid);
 
-  // eslint-disable-next-line
-  const handleLogout = async () => {
-    try {
-      setOpen(true);
-      await logout();
-      navigate("/");
-      setOpen(false);
-    } catch (error) {
-      setOpen(true);
-      console.log(error.message);
-      setOpen(false);
-    }
-  };
-
   return (
     <Box>
-      <SimpleBackdrop open={open} />
       {/* CONTENEDOR GRID */}
       <Grid container sx={{ bgcolor: "background.paper" }}>
         {/* BANNER */}
-        <Grid
-          item
-          xs={12}
-          sx={{
-            height: "20vh",
-            backgroundImage: `url(${banner})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
-        />
+        <Grid item xs={12}>
+          <BannerProfile/>
+        </Grid>
         {/*FIN BANNER */}
 
         {/* FLOAT CONT */}
@@ -126,7 +100,7 @@ export const ColaboradorInicio = () => {
                 p: 3,
               }}
             >
-              {/* <EditProfile userImage={noProfileUser} /> */}
+              <EditProfile userImage={noProfileUser} />
             </Box>
           </Grid>
           {/* FIN BOTON EDITAR PERFIL */}
@@ -135,6 +109,9 @@ export const ColaboradorInicio = () => {
 
         <Container maxWidth="md" sx={{ marginTop: "-90px", p: 3 }}>
           <hr />
+          <Typography color="text.secondary" sx={{fontStyle: "italic"}} variant={isSmallScreen ? "body1" : "h5"}>
+            "En nuestra empresa, compartimos la pasión por la cultura y su difusión. Valoramos tu participación activa y tu dedicación para llevar adelante nuestra visión de proyectar la cultura de nuestra región a nivel nacional e internacional. Trabajemos juntos para promover la creación, la investigación y el desarrollo cultural. ¡Tu aporte es esencial para lograrlo!"
+          </Typography>
         </Container>
       </Grid>
       {/* FIN CONTENEDOR GRID */}

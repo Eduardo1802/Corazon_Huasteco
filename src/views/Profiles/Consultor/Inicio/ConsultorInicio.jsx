@@ -1,51 +1,25 @@
-import React, { useState } from 'react'
-import { Box, Chip, Container, Grid, Stack, Typography } from '@mui/material'
-import { WrapperSingleRoute } from '../../../../components/customs/WrapperSingleRoute'
-import { useNavigate } from 'react-router-dom';
-import SimpleBackdrop from '../../../../components/customs/SimpleBackDrop';
+import React from 'react'
+import { Box, Chip, Container, Grid, Stack, Typography, useMediaQuery } from '@mui/material'
 import { useAuth } from '../../../../context/AuthContext';
 import noProfileUser from "../../../../assets/img/perfil/noProfilePicture.jpg"
-import banner from "../../../../assets/img/perfil/banner.jpg"
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
+import { EditProfile } from '../../../../components/customs/EditProfile';
+import { BannerProfile } from '../../../../components/customs/BannerProfile';
 
 export const ConsultorInicio = () => {
-  const {logout, user} = useAuth();
-  const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
+  const {user} = useAuth();
+  const isSmallScreen = useMediaQuery('(max-width:900px)');
 
   console.log("vista consultor: id del usuario =>", user.uid);
-  
-  // eslint-disable-next-line
-  const handleLogout = async() => {
-    try{
-      setOpen(true);
-      await logout();
-      navigate('/');
-      setOpen(false);
-    }catch(error){
-      setOpen(true);
-      console.log(error.message);
-      setOpen(false);
-    }
-  }
 
   return (
     <Box>
-      <SimpleBackdrop open={open} />
       {/* CONTENEDOR GRID */}
       <Grid container sx={{ bgcolor: "background.paper" }}>
         {/* BANNER */}
-        <Grid
-          item
-          xs={12}
-          sx={{
-            height: "20vh",
-            backgroundImage: `url(${banner})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
-        />
+        <Grid item xs={12}>
+          <BannerProfile/>
+        </Grid>
         {/*FIN BANNER */}
 
         {/* FLOAT CONT */}
@@ -126,7 +100,7 @@ export const ConsultorInicio = () => {
                 p: 3,
               }}
             >
-              {/* <EditProfile userImage={noProfileUser} /> */}
+              <EditProfile userImage={noProfileUser} />
             </Box>
           </Grid>
           {/* FIN BOTON EDITAR PERFIL */}
@@ -135,6 +109,9 @@ export const ConsultorInicio = () => {
 
         <Container maxWidth="md" sx={{ marginTop: "-90px", p: 3 }}>
           <hr />
+          <Typography color="text.secondary" sx={{fontStyle: "italic"}} variant={isSmallScreen ? "body1" : "h5"}>
+            "En nuestra empresa, valoramos tu experiencia y pasión por la cultura. Trabajamos juntos para promover la libre expresión cultural, fomentar la creatividad y estimular la investigación en el ámbito científico, literario y artístico. Tu contribución es fundamental para enriquecer nuestros proyectos. ¡Únete a nosotros y juntos impulsemos la cultura y su difusión!"
+          </Typography>
         </Container>
       </Grid>
       {/* FIN CONTENEDOR GRID */}

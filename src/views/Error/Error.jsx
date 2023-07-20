@@ -2,21 +2,20 @@ import { Typography, Box, Button, Grid } from '@mui/material'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import React from 'react'
 import { Link } from 'react-router-dom'
-import img404 from "../../assets/img/app/imageError.jpg"
-import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
+import screenError from "../../assets/img/app/screenError.svg"
 
 export const Error = () => {
   return (
-    <Box sx={{bgcolor: "background.default"}}>
+    <Box sx={{bgcolor: "background.paper"}}>
       <Grid container>
         <Grid item xs>
           <Grid container>
-            <Grid item md={6} sm={12} order={{md:1, sm:2, xs:2}}>
-              <Box sx={{display: "flex", flexFlow: "column wrap", height: "100%", justifyContent: "center"}}>
+            <Grid item md={6} sm={12} xs={12} order={{md:1, sm:2, xs:2}}>
+              <Box sx={{display: "flex", flexFlow: "column wrap", height: "100%", justifyContent: "center", p:3}}>
                 <Box>
-                  <Typography variant="h2" color="inherit" textAlign='center'>¡Oops!</Typography>
-                  <Typography variant="h6" color="inherit" textAlign='center'>No hemos podido encontrar esta página</Typography>
-                  <br/>
+                  <Typography variant="h2" color="primary" textAlign='center'>¡Oops!</Typography>
+                  <Typography variant="h6" color="primary" textAlign='center'>No hemos podido encontrar esta página</Typography>
+                  {/* <br/> */}
                   <Box sx={{display: "flex", justifyContent: "center"}} mb={5}>
                     <Link to="/inicio" style={{textDecoration: "none"}}> 
                       <Button variant="outlined" sx={{'&:hover':{bgcolor: "primary.main", color: "background.default"}}} startIcon={<ArrowBackIosIcon/>}>
@@ -29,7 +28,12 @@ export const Error = () => {
             </Grid>
             <Grid item md={6} sm={12} order={{md:2, sm:1, xs:1}}>
               <Box sx={{display: "flex", justifyContent: "center"}}>
-                <img src={img404} width="75%" alt="Error" />
+                <Box
+                  component="img"
+                  src={screenError}
+                  alt="Error"
+                  sx={{ width: {xs: "45%", sm: "45%", md: "55%"} }}
+                />
               </Box>
             </Grid>
           </Grid>
