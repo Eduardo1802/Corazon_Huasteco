@@ -1,16 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Chip, Container, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 import { useAuth } from "../../../../context/AuthContext";
-import noProfileUser from "../../../../assets/img/perfil/noProfilePicture.jpg";
 import Groups3RoundedIcon from "@mui/icons-material/Groups3Rounded";
 import { EditProfile } from "../../../../components/customs/EditProfile";
 import { BannerProfile } from "../../../../components/customs/BannerProfile";
+import { doc, onSnapshot } from "firebase/firestore";
+import { db } from "../../../../config/firebase/firebaseDB";
 
 export const ColaboradorInicio = () => {
-  const { user } = useAuth();
+  const { user, profileImageUrl, setProfileImageUrl } = useAuth();
   const isSmallScreen = useMediaQuery("(max-width:900px)");
 
   console.log("vista colaborador: id del usuario =>", user.uid);
+
+
+  useEffect(() => {
+    console.log('useEffect AdminInicio --> 1');
+    if (user.uid) {
+      const userDocRef = doc(db, 'usuarios', user.uid);
+      const unsubscribe = onSnapshot(userDocRef, (userDocSnap) => {
+        if (userDocSnap.exists()) {
+          const userData = userDocSnap.data();
+          if (userData.profileImageUrl) {
+            setProfileImageUrl(userData.profileImageUrl);
+          } else {
+            setProfileImageUrl('https://corazon-huasteco.com/assets/imgUser-1d809c39.jpg');
+          }
+        } else {
+          setProfileImageUrl('https://corazon-huasteco.com/assets/imgUser-1d809c39.jpg');
+        }
+      });
+      console.log('useEffect AdminInicio --> 2');
+      return () => unsubscribe(); // Limpiamos el listener cuando el componente se desmonta
+    }
+    console.log('useEffect AdminInicio --> 3');
+  }, [user.uid]);
 
   return (
     <Box>
@@ -26,22 +50,12 @@ export const ColaboradorInicio = () => {
         <Grid container sx={{ position: "relative", bottom: "70px" }}>
           {/* IMAGEN PERFIL */}
           <Grid item md={3} sm={4} xs={12}>
-            <Box
-              sx={{
-                m: 1,
-                display: "flex",
-                justifyContent: {
-                  md: "flex-end",
-                  sm: "flex-end",
-                  xs: "center",
-                },
-              }}
-            >
-              <Box
-                component="img"
-                src={noProfileUser}
+            <Box sx={{m: 1, display: "flex", justifyContent: {md: "flex-end", sm: "flex-end", xs: "center",},}}>
+              <Box component="img"
+                src={profileImageUrl}
                 alt="Perfil"
                 sx={{
+                  objectFit: "cover",
                   width: 168,
                   height: 168,
                   borderRadius: "50%",
@@ -54,36 +68,18 @@ export const ColaboradorInicio = () => {
 
           {/* DATOS PERFIL */}
           <Grid item md={6} sm={8} xs={12}>
-            <Box
-              sx={{
-                display: "flex",
-                height: "100%",
-                flexDirection: "column",
-                justifyContent: "flex-end",
-              }}
-            >
-              <Stack
-                direction="row"
-                justifyContent={{ md: "left", sm: "left", xs: "center" }}
-              >
+            <Box sx={{display: "flex",height: "100%", flexDirection: "column", justifyContent: "flex-end",}}>
+              <Stack direction="row" justifyContent={{ md: "left", sm: "left", xs: "center" }}>
                 <Chip 
                   icon={<Groups3RoundedIcon />} 
                   label="Colaborador" 
                   color="warning"
                 />
               </Stack>
-              <Typography
-                textAlign={{ md: "left", sm: "left", xs: "center" }}
-                variant="h5"
-                color="text.secondary"
-              >
+              <Typography textAlign={{ md: "left", sm: "left", xs: "center" }} variant="h5" color="text.secondary">
                 Hola, Bienvenido
               </Typography>
-              <Typography
-                textAlign={{ md: "left", sm: "left", xs: "center" }}
-                variant="body1"
-                color="text.primary"
-              >
+              <Typography textAlign={{ md: "left", sm: "left", xs: "center" }} variant="body1" color="text.primary">
                 {user ? user.email : user.displayName}
               </Typography>
             </Box>
@@ -92,15 +88,8 @@ export const ColaboradorInicio = () => {
 
           {/* BOTON EDITAR PERFIL */}
           <Grid item md={3} sm={12} xs={12}>
-            <Box
-              sx={{
-                height: "100%",
-                display: "flex",
-                alignItems: "flex-end",
-                p: 3,
-              }}
-            >
-              <EditProfile userImage={noProfileUser} />
+            <Box sx={{ height: "100%", display: "flex", alignItems: "flex-end", p: 3,}}>
+              <EditProfile userImage={profileImageUrl} user={user.uid} />
             </Box>
           </Grid>
           {/* FIN BOTON EDITAR PERFIL */}

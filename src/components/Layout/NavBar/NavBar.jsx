@@ -30,7 +30,7 @@ export const NavBar = (props) => {
 
   const {isDarkMode} = props;
   const {handleThemeChange} = props;
-  const { logout, user } = useAuth();
+  const { logout, user, profileImageUrl } = useAuth();
   const [data, setData] = useState(null);
   const [ruta, setRuta] = useState(null);
   const navigate = useNavigate();
@@ -290,7 +290,7 @@ export const NavBar = (props) => {
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                       <Avatar
                         alt="User"
-                        src={user.photoURL ? user.photoURL : imgUser}
+                        src={profileImageUrl}
                       />
                     </IconButton>
                   </Tooltip>
