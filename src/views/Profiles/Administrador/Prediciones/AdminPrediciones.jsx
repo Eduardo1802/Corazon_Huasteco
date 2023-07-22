@@ -1,78 +1,78 @@
-import React, { useState } from 'react';
-import { Box, Grid, Divider, Chip, Paper, Typography, Button } from '@mui/material'
-import { AnalyticsRounded } from '@mui/icons-material';
-import ControllableStates from "./ControlallableStates";
-import axios from 'axios';
-
-const options = [1,2,3,4,5,6,7,8,9,10,11,12];
+import React, { useState } from "react";
+import axios from "axios";
 
 export const AdminPrediciones = () => {
-  const [value, setValue] = useState(options[0]);
-  const [inputValue, setInputValue] = useState(1);
-  const [data, setData] = useState('');
+  const [nextMonth, setNextMonth] = useState("");
+  const [predictionData, setPredictionData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isEmptyResponse, setIsEmptyResponse] = useState(false);
 
-  const handleClick = () => {
-    // Cambia 'your-data' por el dato que deseas enviar a la API
-    const newData = value;
-    axios.post('https://jsonplaceholder.typicode.com/posts', { data: newData })
-      .then(response => {
-        setData(response.data);
-      })
-      .catch(error => {
-        console.error('Error al enviar los datos:', error);
-      });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setIsLoading(true);
+      setIsEmptyResponse(false);
+
+      const formattedNextMonth = parseInt(nextMonth);
+      const data = { next_month: formattedNextMonth };
+
+      const response = await axios.post(
+        "http://localhost:5000/api/predict",
+        data
+      );
+      console.log("Respuesta del servidor:", response.data);
+
+      if (Array.isArray(response.data)) {
+        setPredictionData(response.data);
+      } else {
+        setPredictionData([]);
+      }
+
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error al hacer la solicitud POST:", error);
+      setIsLoading(false);
+    }
   };
 
   return (
-    <Box>
-      {/* PREDICIÓN - ITEMS */}
-      <Grid container spacing={0}>
-        {/* SEPARADOR */}
-        <Grid item xs={12} p={3}>
-          <Divider>
-            <Chip
-              label="Prediciones"
-              size="large"
-              variant="filled"
-              icon={<AnalyticsRounded />}
-            />
-          </Divider>
-        </Grid>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={nextMonth}
+          onChange={(e) => setNextMonth(e.target.value)}
+        />
+        <button type="submit" disabled={isLoading}>
+          Predict
+        </button>
+      </form>
+      {isLoading && <p>Cargando...</p>}
+      {isEmptyResponse && <p>La respuesta está vacía.</p>}
 
-        <Grid item xs={12} p={3}>
-          <Paper elevation={3} sx={{ p: 2, m: 1 }}>
-            <Typography textAlign="left" variant="h5" color="text.secondary" sx={{ display: 'flex', justifyContent: 'center' }}>
-              Predición de Ventas por Producto
-            </Typography>
-            <Typography textAlign="left" variant="h6" color="text.secondary">
-              Ingresa la cantidad de meses a predecir: {`${value}`}
-            </Typography>
-            <div style={{ marginBottom: '16px' }} />
-            <ControllableStates
-              value={value}
-              setValue={setValue}
-              inputValue={inputValue}
-              setInputValue={setInputValue}
-              options={options}
-            />
-            <Button
-              variant="contained"
-              onClick={() => handleClick()}
-            >
-              PREDECIR
-            </Button>
-
-          </Paper>
-           
-
-          <Paper elevation={3} sx={{ p: 2, m: 1 }}>
-            <Typography textAlign="left" variant="h5" color="text.secondary" sx={{ display: 'flex', justifyContent: 'center' }}>
-              Resultado
-            </Typography>
-          </Paper>
-        </Grid>
-
-      </Grid>
-    </Box>
-  )
-}
+      {predictionData && Object.keys(predictionData).length > 0 ? (
+        <table>
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              {Object.keys(predictionData).length > 0 &&
+                Object.keys(predictionData[Object.keys(predictionData)[0]]).map(
+                  (product) => <th key={product}>{product}</th>
+                )}
+            </tr>
+          </thead>
+          <tbody>
+            {Object.keys(predictionData).map((date) => (
+              <tr key={date}>
+                <td>{date}</td>
+                {Object.values(predictionData[date]).map((value, index) => (
+                  <td key={index}>{value}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : null}
+    </div>
+  );
+};
