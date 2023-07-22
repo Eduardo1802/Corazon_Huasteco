@@ -82,8 +82,7 @@ export const AdminVentas = () => {
        {/* Contenido */}
        <Grid
           container
-          rowSpacing={1}
-          columnSpacing={1}
+          spacing={0}
           sx={{bgcolor: "background.paper", p:1}}
         >
           {/* Buscador */}

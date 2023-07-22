@@ -340,8 +340,7 @@ export const AdminProductos = () => {
       {/* Contenido */}
       <Grid
         container
-        rowSpacing={1}
-        columnSpacing={1}
+        spacing={0}
         sx={{ bgcolor: "background.paper", p: 1 }}
       >
         {/* B U S C A D O R 1 */}

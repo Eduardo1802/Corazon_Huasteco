@@ -13,6 +13,8 @@ export const useAuth = () => {
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [profileImageUrl, setProfileImageUrl] = useState('');
+
 
   const signup = (email, password) => {// para hacer el registro a firebase 
     return createUserWithEmailAndPassword(auth, email, password);
@@ -46,6 +48,8 @@ export function AuthProvider({ children }) {
         signup,
         login,
         user,
+        profileImageUrl,
+        setProfileImageUrl,
         logout,
         loading,
         loginWithGoogle,

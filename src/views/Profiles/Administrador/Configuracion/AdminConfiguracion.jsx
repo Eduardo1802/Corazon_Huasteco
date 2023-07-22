@@ -58,7 +58,7 @@ export const AdminConfiguracion = () => {
   return (
     <Box>
       {/* RESPALDO DB - ITEMS */}
-      <Grid container spacing={1}>
+      <Grid container spacing={0}>
         {/* SEPARADOR -- DB */}
         <Grid item xs={12} p={3}>
           <Divider>
