@@ -4,6 +4,7 @@ import { Box }                  from '@mui/material'
 import { NavBar }               from '../components/Layout/NavBar/NavBar'
 import { Footer }               from '../components/Layout/Footer/Footer'
 // routes components
+import { ChatBot }        from '../views/ChatBot/ChatBot'
 import { SobreNosotros }        from '../views/AboutUs/SobreNosotros'
 import { Acceso }               from '../views/Access/Acceso'
 import { AvisoDePrivacidad }    from '../views/NoticePrivacy/AvisoDePrivacidad'
@@ -77,6 +78,7 @@ export const Router = ({isDarkMode, handleThemeChange}) => {
                       <Route path='/'                       element={<Navigate to='/inicio'/>}/>
                       <Route path='/inicio'                 element={<Inicio/>} />
                       <Route path='/mapa'                   element={<Mapa/> } />
+                      <Route path='/chatbot'         element={<ChatBot/>} />
                       <Route path='/sobre-nosotros'         element={<SobreNosotros/>} />
                       <Route path='/donaciones'             element={<Donaciones/>} />
                       <Route path='/creadores-de-contenido' element={<CreadoresDeContenido/>} />
