@@ -1,12 +1,10 @@
-import React from 'react'
-import { WrapperSingleRoute } from '../../../components/customs/WrapperSingleRoute'
-import { BasicTabsSupervisor } from './BasicTabsSupervisor'
+import VerticalTabs from './VerticalTabs'
 
 export const Supervisor = () => {
 
   return (
-    <WrapperSingleRoute>
-      <BasicTabsSupervisor/>
-    </WrapperSingleRoute>
+    <>
+      <VerticalTabs/>
+    </>
   )
 }

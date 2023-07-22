@@ -1,13 +1,10 @@
-import React from 'react'
-import { WrapperSingleRoute } from '../../../components/customs/WrapperSingleRoute'
-import { BasicTabsColaborador } from './BasicTabsColaborador';
+import VerticalTabs from './VerticalTabs';
 
 export const Colaborador = () => {
   
-
   return (
-    <WrapperSingleRoute>
-      <BasicTabsColaborador/>
-    </WrapperSingleRoute>
+    <>
+      <VerticalTabs/>
+    </>
   )
 }
