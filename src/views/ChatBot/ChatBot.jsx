@@ -34,9 +34,9 @@ export const ChatBot = () => {
       setIsEmptyResponse(false);
       const data = { answer: pregunta };
       const response = await axios.post(
-        "http://eduazuara.pythonanywhere.com/api/predict",
+        "https://eduazuara.pythonanywhere.com/api/predict",
         data
-      );
+      );      
       console.log("Respuesta del servidor:", response.data);
       setPredictionData(response.data);
       setIsLoading(false);
