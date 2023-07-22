@@ -4,6 +4,7 @@ import { Box, Tab, Tabs, useMediaQuery } from '@mui/material';
 import { HomeRounded, AnalyticsRounded, CategoryRounded, GroupRounded, AttachMoneyRounded, LocalShippingRounded, AddCommentRounded, VolunteerActivismRounded, DesignServicesRounded, SettingsRounded  } from '@mui/icons-material';
 import { AdminInicio } from './Inicio/AdminInicio';
 import { AdminEstadisticas } from './Estadisticas/AdminEstadisticas';
+import { AdminPrediciones } from './Prediciones/AdminPrediciones'
 import { AdminProductos } from './Productos/AdminProductos';
 import { AdminUsuarios } from './Usuarios/AdminUsuarios';
 import { AdminVentas } from './Ventas/AdminVentas';
@@ -89,14 +90,15 @@ export default function VerticalTabs() {
       >
         <Tab label="Inicio"        icon={<HomeRounded/>}                iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(0)} />
         <Tab label="Estadisticas"  icon={<AnalyticsRounded/>}           iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(1)} />
-        <Tab label="Productos"     icon={<CategoryRounded/>}            iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(2)} />
-        <Tab label="Usuarios"      icon={<GroupRounded/>}               iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(3)} />
-        <Tab label="Ventas"        icon={<AttachMoneyRounded/>}         iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(4)} />
-        <Tab label="Proveedores"   icon={<LocalShippingRounded/>}       iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(5)} />
-        <Tab label="Comentarios"   icon={<AddCommentRounded/>}          iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(6)} />
-        <Tab label="Donaciones"    icon={<VolunteerActivismRounded/>}   iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(7)} />
-        <Tab label="Personalizar"  icon={<DesignServicesRounded/>}      iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(8)} />
-        <Tab label="Configuración" icon={<SettingsRounded/>}            iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(9)} />
+        <Tab label="Prediciones"   icon={<AnalyticsRounded/>}           iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(2)} />
+        <Tab label="Productos"     icon={<CategoryRounded/>}            iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(3)} />
+        <Tab label="Usuarios"      icon={<GroupRounded/>}               iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(4)} />
+        <Tab label="Ventas"        icon={<AttachMoneyRounded/>}         iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(5)} />
+        <Tab label="Proveedores"   icon={<LocalShippingRounded/>}       iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(6)} />
+        <Tab label="Comentarios"   icon={<AddCommentRounded/>}          iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(7)} />
+        <Tab label="Donaciones"    icon={<VolunteerActivismRounded/>}   iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(8)} />
+        <Tab label="Personalizar"  icon={<DesignServicesRounded/>}      iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(9)} />
+        <Tab label="Configuración" icon={<SettingsRounded/>}            iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(10)} />
       </Tabs>
       <TabPanel value={value} index={0}>
         <AdminInicio/>
@@ -105,27 +107,30 @@ export default function VerticalTabs() {
         <AdminEstadisticas datos={datos}/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <AdminProductos/>
+        <AdminPrediciones/>
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <AdminUsuarios/>
+        <AdminProductos/>
       </TabPanel>
       <TabPanel value={value} index={4}>
-        <AdminVentas/>
+        <AdminUsuarios/>
       </TabPanel>
       <TabPanel value={value} index={5}>
-        <AdminProveedor/>
+        <AdminVentas/>
       </TabPanel>
       <TabPanel value={value} index={6}>
-        <AdminComentarios/>
+        <AdminProveedor/>
       </TabPanel>
       <TabPanel value={value} index={7}>
-        <AdminDonaciones/>
+        <AdminComentarios/>
       </TabPanel>
       <TabPanel value={value} index={8}>
-        <AdminPersonalizar/>
+        <AdminDonaciones/>
       </TabPanel>
       <TabPanel value={value} index={9}>
+        <AdminPersonalizar/>
+      </TabPanel>
+      <TabPanel value={value} index={10}>
         <AdminConfiguracion/>
       </TabPanel>
     </Box>
