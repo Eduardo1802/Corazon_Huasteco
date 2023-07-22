@@ -33,10 +33,7 @@ export const AdminPrediciones = () => {
       const formattedNextMonth = parseInt(nextMonth);
       const data = { next_month: formattedNextMonth };
 
-      const response = await axios.post(
-        "http://localhost:5000/api/predict",
-        data
-      );
+      const response = await axios.post('https://einaromar.pythonanywhere.com/api/predict', data);
 
       // const response = await axios.post('https://www.pythonanywhere.com/user/EinarOmar/files/home/EinarOmar/app/app.py', data);
       console.log("Respuesta del servidor:", response.data);
