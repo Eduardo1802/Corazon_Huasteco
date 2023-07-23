@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import { Box, Tab, Tabs, useMediaQuery } from '@mui/material';
-import { HomeRounded, AnalyticsRounded, CategoryRounded, GroupRounded, AttachMoneyRounded, LocalShippingRounded, AddCommentRounded, VolunteerActivismRounded, DesignServicesRounded, SettingsRounded  } from '@mui/icons-material';
+import { HomeRounded, AnalyticsRounded, CategoryRounded, GroupRounded, AttachMoneyRounded, LocalShippingRounded, AddCommentRounded, VolunteerActivismRounded, DesignServicesRounded, SettingsRounded, HourglassBottomRounded  } from '@mui/icons-material';
 import { AdminInicio } from './Inicio/AdminInicio';
 import { AdminEstadisticas } from './Estadisticas/AdminEstadisticas';
 import { AdminPrediciones } from './Prediciones/AdminPrediciones'
@@ -15,6 +15,7 @@ import { AdminPersonalizar } from './Personalizar/AdminPersonalizar';
 import { AdminConfiguracion } from './Configuracion/AdminConfiguracion';
 import { collection, getDocs, query } from 'firebase/firestore';
 import { db } from '../../../config/firebase/firebaseDB';
+import { AdminProductosEnEspera } from './ProductosEnEspera/AdminProductosEnEspera';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -88,17 +89,18 @@ export default function VerticalTabs() {
         onChange={handleChange}
         sx={{ borderRight: 1, borderColor: 'divider', /* border: "6px solid orange", */ minWidth: "150px", bgcolor: isSmallScreen ? "background.default" : "background.paper" }}
       >
-        <Tab label="Inicio"        icon={<HomeRounded/>}                iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(0)} />
-        <Tab label="Estadisticas"  icon={<AnalyticsRounded/>}           iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(1)} />
-        <Tab label="Prediciones"   icon={<AnalyticsRounded/>}           iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(2)} />
-        <Tab label="Productos"     icon={<CategoryRounded/>}            iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(3)} />
-        <Tab label="Usuarios"      icon={<GroupRounded/>}               iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(4)} />
-        <Tab label="Ventas"        icon={<AttachMoneyRounded/>}         iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(5)} />
-        <Tab label="Proveedores"   icon={<LocalShippingRounded/>}       iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(6)} />
-        <Tab label="Comentarios"   icon={<AddCommentRounded/>}          iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(7)} />
-        <Tab label="Donaciones"    icon={<VolunteerActivismRounded/>}   iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(8)} />
-        <Tab label="Personalizar"  icon={<DesignServicesRounded/>}      iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(9)} />
-        <Tab label="Configuración" icon={<SettingsRounded/>}            iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(10)} />
+        <Tab label="Inicio"                  icon={<HomeRounded/>}                iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(0)} />
+        <Tab label="Estadisticas"            icon={<AnalyticsRounded/>}           iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(1)} />
+        <Tab label="Prediciones"             icon={<AnalyticsRounded/>}           iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(2)} />
+        <Tab label="Productos"               icon={<CategoryRounded/>}            iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(3)} />
+        <Tab label="Productos en espera"     icon={<HourglassBottomRounded/>}     iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(4)} />
+        <Tab label="Usuarios"                icon={<GroupRounded/>}               iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(5)} />
+        <Tab label="Ventas"                  icon={<AttachMoneyRounded/>}         iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(6)} />
+        <Tab label="Proveedores"             icon={<LocalShippingRounded/>}       iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(7)} />
+        <Tab label="Comentarios"             icon={<AddCommentRounded/>}          iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(8)} />
+        <Tab label="Donaciones"              icon={<VolunteerActivismRounded/>}   iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(9)} />
+        <Tab label="Personalizar"            icon={<DesignServicesRounded/>}      iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(10)} />
+        <Tab label="Configuración"           icon={<SettingsRounded/>}            iconPosition={isSmallScreen ? "start": "top"} {...a11yProps(11)} />
       </Tabs>
       <TabPanel value={value} index={0}>
         <AdminInicio/>
@@ -113,24 +115,27 @@ export default function VerticalTabs() {
         <AdminProductos/>
       </TabPanel>
       <TabPanel value={value} index={4}>
-        <AdminUsuarios/>
+        <AdminProductosEnEspera/>
       </TabPanel>
       <TabPanel value={value} index={5}>
-        <AdminVentas/>
+        <AdminUsuarios/>
       </TabPanel>
       <TabPanel value={value} index={6}>
-        <AdminProveedor/>
+        <AdminVentas/>
       </TabPanel>
       <TabPanel value={value} index={7}>
-        <AdminComentarios/>
+        <AdminProveedor/>
       </TabPanel>
       <TabPanel value={value} index={8}>
-        <AdminDonaciones/>
+        <AdminComentarios/>
       </TabPanel>
       <TabPanel value={value} index={9}>
-        <AdminPersonalizar/>
+        <AdminDonaciones/>
       </TabPanel>
       <TabPanel value={value} index={10}>
+        <AdminPersonalizar/>
+      </TabPanel>
+      <TabPanel value={value} index={11}>
         <AdminConfiguracion/>
       </TabPanel>
     </Box>
