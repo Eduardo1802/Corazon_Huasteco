@@ -33,6 +33,7 @@ export const Mapa = () => {
           <Grid container spacing={1}>
             <Grid item xs>
               <Box
+                data-testid="map-container"
                 style={{
                   display: "flex",
                   flexFlow: "row wrap",
@@ -44,11 +45,15 @@ export const Mapa = () => {
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                   />
-                  <Marker position={position}>
-                    <Popup>
-                      Huejutla de Reyes Hidalgo. <br /> 43000
-                    </Popup>
-                  </Marker>
+                  <Box data-testid="marker-1">
+                    <Marker position={position}>
+                      <Box data-testid="popup-1"> 
+                        <Popup>
+                          Huejutla de Reyes Hidalgo. <br /> 43000
+                        </Popup>
+                      </Box>
+                    </Marker>
+                  </Box>
 
                   <Marker position={[21.147628, -98.408421]}>
                     <Popup>
