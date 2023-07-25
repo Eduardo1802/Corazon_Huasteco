@@ -25,19 +25,143 @@ const Carrito = () => {
   const [colonia, setColonia] = useState('');
   const [codigoPostal, setCodigoPostal] = useState('');
   const [numeroInterno, setNumeroInterno] = useState('');
+  const [numeroExterno, setNumeroExterno] = useState('');
   const [referencias, setReferencias] = useState('');
-  const [etapa, setEtapa] = useState(0); // 0: Carrito, 1: Tarjeta, 2: Dirección
+  const [etapa, setEtapa] = useState(0);  // 0: Carrito, 1: Tarjeta, 2: Dirección
   const [tarjeta, setTarjeta] = useState('');
   const [direccion, setDireccion] = useState('');
   const [mes, setMes] = useState('');
   const [anio, setAnio] = useState('');
   const [cvv, setCvv] = useState('');
   const [nombre, setNombre] = useState('');
+  const [infoUsuario, setinfoUsuario] = useState([])
   const [showPassword, setShowPassword] = useState(false);
+  const validateCalle = (value) => {
+    // The first "calle" should have at least 1 digit or 3 letters and a maximum of 30 characters.
+    return /^(?=\d{1,30}$)|^(?=\D{3,30}$)/.test(value);
+  };
+
+  const validateColonia = (value) => {
+    // "Colonia" should only contain letters and spaces and be between 3 and 30 characters long.
+    return /^[A-Za-z\s]{3,30}$/.test(value);
+  };
   
+
+
+  const validateNumeroExterno = (value) => {
+    // "Código Postal" should be exactly 4 digits.
+    return /^(?=\d{1,5}$)|^(?=\D{2}$)/.test(value);
+  };
+
+  const validateNumeroInterno = (value) => {
+    
+    return /^(?=\d{1,5}$)|^(?=\D{2}$)/.test(value);
+  };
+
+  const validateReferencias = (value) => {
+    // "Referencias" should be between 3 and 100 characters long.
+    return /^.{3,100}$/.test(value);
+  };
   const handleToggleShowPassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
+  const [formDataValid, setFormDataValid] = useState(false);
+
+  // Step 2: Update validation logic for each TextField
+  const validateForm = () => {
+    const isNombreValid = nombre.length > 0 && nombre.length >= 5 && nombre.length <= 30;
+    const isTarjetaValid = !isNaN(tarjeta) && tarjeta.length === 16;
+    const isMesValid = mes !== '' && parseInt(mes) > 0 && parseInt(mes) <= 12;
+    const isAnioValid = anio !== '' && parseInt(anio) >= 2000 && parseInt(anio) <= 2050;
+    const isCvvValid = cvv !== '' && cvv.length === 3;
+
+    // Set the formDataValid state based on all fields' validity
+    setFormDataValid(isNombreValid && isTarjetaValid && isMesValid && isAnioValid && isCvvValid);
+
+    return isNombreValid && isTarjetaValid && isMesValid && isAnioValid && isCvvValid;
+  };
+
+  // Step 3: Modify registrarTarjeta function to check form data validity before advancing
+  const registrarTarjeta = async () => {
+    const isFormValid = validateForm();
+  
+    if (isFormValid) {
+      setEtapa(etapa + 1);
+      const referencia = doc(db, `usuarios/${user.uid}`);
+  
+      // Obtener los datos del carrito del usuario
+      const docSnap = await getDoc(referencia);
+      const data = docSnap.exists() ? docSnap.data() : null;
+  
+      // Verificar si el número de tarjeta ha cambiado
+      if (data && data.numeroTarjeta !== tarjeta) {
+        await updateDoc(referencia, {
+          numeroTarjeta: tarjeta
+        });
+        console.log('Número de tarjeta actualizado con éxito.');
+      } else {
+        console.log('El número de tarjeta no ha cambiado. No se realizaron cambios.');
+      }
+    } else {
+      // Add any logic to handle invalid form data if needed
+      console.log('Form data is not valid. Please check the fields.');
+    }
+  };
+  const validateFormDireccion = () => {
+    const isCalleValid = validateCalle(calle);
+    const isColoniaValid = validateColonia(colonia);
+    const isNumeroInternoValid = validateNumeroInterno(numeroInterno);
+    const isNumeroExternoValid = validateNumeroExterno(numeroExterno);
+    const isReferenciasValid = validateReferencias(referencias);
+  
+    // Set the formDataValid state based on all fields' validity
+    return (
+      isCalleValid &&
+      isColoniaValid &&
+      isNumeroInternoValid &&
+      isNumeroExternoValid &&
+      isReferenciasValid
+    );
+  };
+  
+  const registrarDireccion = async () => {
+    const isFormValid = validateFormDireccion();
+  
+    if (isFormValid) {
+      setEtapa(etapa + 1);
+      const referencia = doc(db, `usuarios/${user.uid}`);
+  
+      // Obtener los datos del carrito del usuario
+      const docSnap = await getDoc(referencia);
+      const data = docSnap.exists() ? docSnap.data() : null;
+  
+      // Verificar si hay cambios en los datos de envío o en el número de tarjeta
+      const direccionActualizada =
+        data.calle !== calle ||
+        data.colonia !== colonia ||
+        data.numeroInterno !== numeroInterno ||
+        data.numeroExterno !== numeroExterno ||
+        data.referencias !== referencias;
+  
+  
+      if (direccionActualizada) {
+        await updateDoc(referencia, {
+          calle: calle,
+          colonia: colonia,
+          numeroInterno: numeroInterno,
+          numeroExterno: numeroExterno,
+          referencias: referencias,
+        });
+        console.log('Información de envío y/o número de tarjeta actualizados con éxito.');
+      } else {
+        console.log('No se realizaron cambios en la información de envío ni en el número de tarjeta.');
+      }
+    } else {
+      // Add any logic to handle invalid form data if needed
+      console.log('Form data is not valid. Please check the fields.');
+    }
+  };
+  
 
   const handleFinalizarCompra = () => {
     // Realizar la compra aquí (tus lógicas de compra, actualización de datos, etc.)
@@ -71,7 +195,6 @@ const Carrito = () => {
       handleFinalizarCompra();
     }
   };
-
   const handleCancelar = () => {
     // Reiniciar las etapas y los campos al presionar el botón "Cancelar"
     setEtapa(0);
@@ -104,6 +227,7 @@ const Carrito = () => {
   const registrarVentas = async () => {
     if (user) {
       const ventaRef = collection(db, "ventas");
+      const ventaRef2 = collection(db, "ventasPendiendes");
 
       // Loop through each product in the carritoData and create a sale record
       for (const [id, item] of carritoData) {
@@ -122,6 +246,23 @@ const Carrito = () => {
             categoria: productoData.categoria,
             color: productoData.color,
             metodoPago: "tarjeta de crédito"
+          });
+          await addDoc(ventaRef2, {
+            usuario: user.uid,
+            nombreProducto: productoData.nombre,
+            cantidadProducto: cantidad,
+            costo: productoData.costo,
+            costo_total: cantidad * productoData.costo,
+            fecha: new Date().toISOString(),
+            categoria: productoData.categoria,
+            color: productoData.color,
+            tarjeta:tarjeta,
+            metodoPago: "tarjeta de crédito",
+            calle: calle,
+            colonia: colonia,
+            numeroInterno: numeroInterno,
+            numeroExterno: numeroExterno,
+            referencias: referencias,
           });
         }
       }
@@ -160,11 +301,22 @@ const Carrito = () => {
         setSumaNumeros(data ? data.total : 0);
         setCarritoData(data ? Object.entries(data) : []);
       });
+      const referenciaUsuario = doc(db, `usuarios/${user.uid}`);
+      onSnapshot(referenciaUsuario, (docSnap) => {
+        const data = docSnap.exists() ? docSnap.data() : null;
+        setTarjeta(data ? data.numeroTarjeta : '');
+        setCalle(data ? data.calle : '')
+        setColonia(data ? data.colonia : '')
+        setNumeroExterno(data ? data.numeroExterno : '')
+        setNumeroInterno(data ? data.numeroInterno : '')
+        setReferencias(data ? data.referencias : '')
+      });
 
       const referenciaProductos = collection(db, "producto");
       const querySnapshot = await getDocs(referenciaProductos);
       const productos = {};
       setNombre(user.email)
+      
 
       querySnapshot.forEach((doc) => {
         const producto = doc.data();
@@ -172,6 +324,9 @@ const Carrito = () => {
       });
 
       setProductosData(productos);
+
+
+
     }
   };
 
@@ -180,8 +335,20 @@ const Carrito = () => {
   }, [user]);
 
   const handleConfirmarProductos = () => {
+    if (Object.keys(productosData).length > 0) { // Check if productosData is not empty
+      // Your existing code for calculating the total cost of products goes here
+    } else {
+      // Handle the case when productosData is empty or undefined
+      console.log('No product data available.');
+    }
     setEtapa(3); // Establecemos la etapa en 3 para mostrar el historial y confirmar la compra
   };
+
+  
+  
+  
+  
+  
 
   return (
     <>
@@ -219,287 +386,307 @@ const Carrito = () => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">Carrito de compras</DialogTitle>
-        <DialogContent>
-          {etapa === 0 ? (
-            sumaNumeros === 0 ? (
-              <DialogContentText>No cuentas con ningún producto registrado.</DialogContentText>
-            ) : (
-              <table>
-                <thead>
-                  <tr>
-                    <th>Imagen</th>
-                    <th>Nombre</th>
-                    <th>Cantidad</th>
-                    <th>Precio Unitario</th>
-                    <th>Precio Total</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {carritoData.map(([id, item]) => (
-                    // Check if the id is not equal to "total" before rendering the row
-                    id !== "total" && productosData[id] && (
-                      <TableRow key={id}>
-                        <TableCell>
-                          <img
-                            src={productosData[id].url}
-                            alt={productosData[id].nombre}
-                            style={{ width: "50px", height: "50px" }}
-                          />
-                        </TableCell>
-                        <TableCell>{productosData[id].nombre}</TableCell>
-                        <TableCell>{item}</TableCell>
-                        <TableCell>{productosData[id].costo}</TableCell>
-                        <TableCell>{(item * productosData[id].costo).toFixed(2)}</TableCell>
-                        <TableCell>
-                          <select value={item} onChange={(e) => editarCantidad(id, e.target.value)}>
-                            {[1, 2, 3, 4, 5].map((cantidad) => (
-                              <option key={cantidad} value={cantidad}>
-                                {cantidad}
-                              </option>
-                            ))}
-                          </select>
-                        </TableCell>
-                        <TableCell>
-                          <IconButton onClick={() => handleEliminar(id)}>
-                            {/* Utiliza el componente Delete en lugar de DeleteIcon */}
-                            <Delete />
+        {productosData ? (
+          <DialogContent>
+
+            {etapa === 0 ? (
+              sumaNumeros === 0 ? (
+                <DialogContentText>No cuentas con ningún producto registrado.</DialogContentText>
+              ) : (
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Imagen</th>
+                      <th>Nombre</th>
+                      <th>Cantidad</th>
+                      <th>Precio Unitario</th>
+                      <th>Precio Total</th>
+                      <th>Editar</th>
+                      <th>Eliminar</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {carritoData.map(([id, item]) => (
+                      // Check if the id is not equal to "total" before rendering the row
+                      id !== "total" && productosData[id] && (
+                        <TableRow key={id}>
+                          <TableCell>
+                            <img
+                              src={productosData[id].url}
+                              alt={productosData[id].nombre}
+                              style={{ width: "50px", height: "50px" }}
+                            />
+                          </TableCell>
+                          <TableCell>{productosData[id].nombre}</TableCell>
+                          <TableCell>{item}</TableCell>
+                          <TableCell>{productosData[id].costo || 0}</TableCell>
+                          <TableCell>{(item * productosData[id].costo).toFixed(2)}</TableCell>
+                          <TableCell>
+                            <select value={item} onChange={(e) => editarCantidad(id, e.target.value)}>
+                              {[1, 2, 3, 4, 5].map((cantidad) => (
+                                <option key={cantidad} value={cantidad}>
+                                  {cantidad}
+                                </option>
+                              ))}
+                            </select>
+                          </TableCell>
+                          <TableCell>
+                            <IconButton onClick={() => handleEliminar(id)}>
+                              {/* Utiliza el componente Delete en lugar de DeleteIcon */}
+                              <Delete />
+                            </IconButton>
+                          </TableCell>
+                        </TableRow>
+                      )
+                    ))}
+                    <TableRow>
+                      <TableCell colSpan={4}></TableCell>
+                      <TableCell>Total</TableCell>
+                      <TableCell>{carritoData.reduce((total, [id, item]) => (id !== "total" ? total + item * (productosData[id]?.costo || 0) : total), 0).toFixed(2)}</TableCell>
+
+                      <TableCell></TableCell>
+                    </TableRow>
+                  </tbody>
+                </table>
+              )
+            ) : etapa === 1 ? (
+              // Formulario para registrar la tarjeta
+              <Container maxWidth="sm">
+                <Grid container rowSpacing={1} columnSpacing={1} sx={{ bgcolor: 'background.paper', p: 1 }}>
+                  <Typography variant="h6" color="primary" sx={{ textAlign: 'center', my: 2 }}>
+                    Datos de la tarjeta
+                  </Typography>
+
+                  <TextField
+                    label="Nombre"
+                    value={nombre || ''}
+                    fullWidth
+                    sx={{ my: 1 }}
+                    onChange={(e) => setNombre(e.target.value)}
+                    required
+                    error={nombre.length === 0 || nombre.length < 5 || nombre.length > 30}
+                    helperText={
+                      nombre.length === 0
+                        ? 'El nombre no puede estar vacío'
+                        : nombre.length < 5
+                          ? 'El nombre debe tener al menos 5 caracteres'
+                          : nombre.length > 30
+                            ? 'El nombre no puede tener más de 30 caracteres'
+                            : ''
+                    }
+                    InputProps={{
+                      startAdornment: <AccountCircleIcon sx={{ marginRight: '5px' }} />,
+                    }}
+                  />
+
+                  <TextField
+                    label="No. Tarjeta"
+                    sx={{ my: 1 }}
+                    value={tarjeta || ''}
+                    fullWidth
+                    onChange={(e) => setTarjeta(e.target.value)}
+                    required
+                    error={isNaN(tarjeta) || tarjeta.length !== 16}
+                    helperText={
+                      isNaN(tarjeta)
+                        ? 'El número de tarjeta debe ser un valor numérico'
+                        : tarjeta.length !== 16
+                          ? 'El número de tarjeta debe tener 16 dígitos'
+                          : ''
+                    }
+                    InputProps={{
+                      startAdornment: <CreditCardIcon sx={{ marginRight: '5px' }} />,
+                    }}
+                  />
+
+                  <Grid container item rowSpacing={1} columnSpacing={1}>
+                    <Grid item xs={6}>
+                      <TextField
+                        label="Mes"
+                        type="number"
+                        value={mes}
+                        fullWidth
+                        onChange={(e) => setMes(e.target.value)}
+                        required
+                        error={mes === '' || mes <= 0 || mes > 12}
+                        helperText={
+                          mes === ''
+                            ? 'El mes no puede estar vacío'
+                            : mes <= 0
+                              ? 'El mes no debe ser menor a 1'
+                              : mes > 12
+                                ? 'El mes no debe ser mayor a 12'
+                                : ''
+                        }
+                        InputProps={{
+                          min: 1,
+                          max: 12,
+                          startAdornment: <CalendarMonthIcon sx={{ marginRight: '5px' }} />,
+                        }}
+                      />
+                    </Grid>
+                    <Grid item xs={6}>
+                      <TextField
+                        label="Año"
+                        type="number"
+                        value={anio}
+                        fullWidth
+                        onChange={(e) => setAnio(e.target.value)}
+                        required
+                        error={anio === '' || anio < 2000 || anio > 2050}
+                        helperText={
+                          anio === ''
+                            ? 'El año no puede estar vacío'
+                            : anio < 2000
+                              ? 'El año no debe ser menor a 2000'
+                              : anio > 2050
+                                ? 'El año no debe ser mayor a 2050'
+                                : ''
+                        }
+                        InputProps={{
+                          startAdornment: <TodayIcon sx={{ marginRight: '5px' }} />,
+                        }}
+                      />
+                    </Grid>
+                  </Grid>
+
+                  <TextField
+                    label="CVV"
+                    type={showPassword ? 'text' : 'password'}
+                    value={cvv}
+                    fullWidth
+                    sx={{ my: 1 }}
+                    onChange={(e) => setCvv(e.target.value)}
+                    required
+                    error={cvv === '' || cvv.length !== 3}
+                    helperText={
+                      cvv === ''
+                        ? 'El CVV no puede estar vacío'
+                        : cvv.length !== 3
+                          ? 'El CVV debe tener 3 dígitos'
+                          : ''
+                    }
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleToggleShowPassword}
+                          >
+                            {showPassword ? <Visibility /> : <VisibilityOff />}
                           </IconButton>
-                        </TableCell>
-                      </TableRow>
-                    )
-                  ))}
-                  <TableRow>
-                    <TableCell colSpan={4}></TableCell>
-                    <TableCell>Total</TableCell>
-                    <TableCell>{carritoData.reduce((total, [id, item]) => (id !== "total" ? total + item * productosData[id].costo : total), 0).toFixed(2)}</TableCell>
-                    <TableCell></TableCell>
-                  </TableRow>
-                </tbody>
-              </table>
-            )
-          ) : etapa === 1 ? (
-            // Formulario para registrar la tarjeta
-            <Container maxWidth="sm">
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </Grid>
+              </Container>
+            ) : etapa === 2 ? (
+              <Container maxWidth="sm">
               <Grid container rowSpacing={1} columnSpacing={1} sx={{ bgcolor: 'background.paper', p: 1 }}>
                 <Typography variant="h6" color="primary" sx={{ textAlign: 'center', my: 2 }}>
-                  Datos de la tarjeta
+                  Información de envío
                 </Typography>
-
-                <TextField
-                  label="Nombre"
-                  value={nombre || ''}
-                  fullWidth
-                  sx={{ my: 1 }}
-                  onChange={(e) => setNombre(e.target.value)}
-                  required
-                  error={nombre.length === 0 || nombre.length < 5 || nombre.length > 30}
-                  helperText={
-                    nombre.length === 0
-                      ? 'El nombre no puede estar vacío'
-                      : nombre.length < 5
-                        ? 'El nombre debe tener al menos 5 caracteres'
-                        : nombre.length > 30
-                          ? 'El nombre no puede tener más de 30 caracteres'
-                          : ''
-                  }
-                  InputProps={{
-                    startAdornment: <AccountCircleIcon sx={{ marginRight: '5px' }} />,
-                  }}
-                />
-
-                <TextField
-                  label="No. Tarjeta"
-                  sx={{ my: 1 }}
-                  value={tarjeta || ''}
-                  fullWidth
-                  onChange={(e) => setTarjeta(e.target.value)}
-                  required
-                  error={isNaN(tarjeta) || tarjeta.length !== 16}
-                  helperText={
-                    isNaN(tarjeta)
-                      ? 'El número de tarjeta debe ser un valor numérico'
-                      : tarjeta.length !== 16
-                        ? 'El número de tarjeta debe tener 16 dígitos'
-                        : ''
-                  }
-                  InputProps={{
-                    startAdornment: <CreditCardIcon sx={{ marginRight: '5px' }} />,
-                  }}
-                />
-
-                <Grid container item rowSpacing={1} columnSpacing={1}>
-                  <Grid item xs={6}>
-                    <TextField
-                      label="Mes"
-                      type="number"
-                      value={mes}
-                      fullWidth
-                      onChange={(e) => setMes(e.target.value)}
-                      required
-                      error={mes === '' || mes <= 0 || mes > 12}
-                      helperText={
-                        mes === ''
-                          ? 'El mes no puede estar vacío'
-                          : mes <= 0
-                            ? 'El mes no debe ser menor a 1'
-                            : mes > 12
-                              ? 'El mes no debe ser mayor a 12'
-                              : ''
-                      }
-                      InputProps={{
-                        min: 1,
-                        max: 12,
-                        startAdornment: <CalendarMonthIcon sx={{ marginRight: '5px' }} />,
-                      }}
-                    />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <TextField
-                      label="Año"
-                      type="number"
-                      value={anio}
-                      fullWidth
-                      onChange={(e) => setAnio(e.target.value)}
-                      required
-                      error={anio === '' || anio < 2000 || anio > 2050}
-                      helperText={
-                        anio === ''
-                          ? 'El año no puede estar vacío'
-                          : anio < 2000
-                            ? 'El año no debe ser menor a 2000'
-                            : anio > 2050
-                              ? 'El año no debe ser mayor a 2050'
-                              : ''
-                      }
-                      InputProps={{
-                        startAdornment: <TodayIcon sx={{ marginRight: '5px' }} />,
-                      }}
-                    />
-                  </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    label="Calle"
+                    fullWidth
+                    value={calle}
+                    onChange={(e) => setCalle(e.target.value)}
+                    required
+                    error={!validateCalle(calle)}
+                    helperText={!validateCalle(calle) && 'La Calle debe tener al menos 1 dígito o 3 letras, y un máximo de 30 caracteres.'}
+                  />
                 </Grid>
-
-                <TextField
-                  label="CVV"
-                  type={showPassword ? 'text' : 'password'}
-                  value={cvv}
-                  fullWidth
-                  sx={{ my: 1 }}
-                  onChange={(e) => setCvv(e.target.value)}
-                  required
-                  error={cvv === '' || cvv.length !== 3}
-                  helperText={
-                    cvv === ''
-                      ? 'El CVV no puede estar vacío'
-                      : cvv.length !== 3
-                        ? 'El CVV debe tener 3 dígitos'
-                        : ''
-                  }
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleToggleShowPassword}
-                        >
-                          {showPassword ? <Visibility /> : <VisibilityOff />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
+                <Grid item xs={12}>
+                  <TextField
+                    label="Colonia"
+                    fullWidth
+                    value={colonia}
+                    onChange={(e) => setColonia(e.target.value)}
+                    required
+                    error={!validateColonia(colonia)}
+                    helperText={!validateColonia(colonia) && 'La Colonia debe contener solo letras y tener entre 3 y 30 caracteres.'}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField
+                    label="Número Interno"
+                    fullWidth
+                    value={numeroInterno}
+                    onChange={(e) => setNumeroInterno(e.target.value)}
+                    required
+                    error={!validateNumeroInterno(numeroInterno)}
+                    helperText={!validateNumeroInterno(numeroInterno) && 'El Número Interno debe tenter minimo 1 numero a 5, de no haber numero colocar SN.'}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField
+                    label="Número Externo"
+                    fullWidth
+                    value={numeroExterno}
+                    onChange={(e) => setNumeroExterno(e.target.value)}
+                    required
+                    error={!validateNumeroExterno(numeroExterno)}
+                    helperText={!validateNumeroExterno(numeroExterno) && 'El Número externo debe tenter minimo 1 numero a 5, de no haber numero colocar SN  .'}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    label="Referencias"
+                    fullWidth
+                    value={referencias}
+                    onChange={(e) => setReferencias(e.target.value)}
+                    required
+                    error={!validateReferencias(referencias)}
+                    helperText={!validateReferencias(referencias) && 'Las Referencias deben tener entre 3 y 100 caracteres.'}
+                  />
+                </Grid>
               </Grid>
             </Container>
-          ) : etapa === 2 ? (
-            <Container maxWidth="sm">
-            <Grid container rowSpacing={1} columnSpacing={1} sx={{ bgcolor: 'background.paper', p: 1 }}>
-              <Typography variant="h6" color="primary" sx={{ textAlign: 'center', my: 2 }}>
-                Información de envío
-              </Typography>
-              <Grid item xs={12}>
-                <TextField
-                  label="Calle"
-                  fullWidth
-                  value={calle}
-                  onChange={(e) => setCalle(e.target.value)}
-                  required
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  label="Colonia"
-                  fullWidth
-                  value={colonia}
-                  onChange={(e) => setColonia(e.target.value)}
-                  required
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <TextField
-                  label="Código Postal"
-                  fullWidth
-                  value={codigoPostal}
-                  onChange={(e) => setCodigoPostal(e.target.value)}
-                  required
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <TextField
-                  label="Número Interno"
-                  fullWidth
-                  value={numeroInterno}
-                  onChange={(e) => setNumeroInterno(e.target.value)}
-                  required
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  label="Referencias"
-                  fullWidth
-                  value={referencias}
-                  onChange={(e) => setReferencias(e.target.value)}
-                />
-              </Grid>
-            </Grid>
-          </Container>
-          ) : etapa === 3 ? (
-            // Mostrar el historial y confirmar la compra
-            <div>
-              <h2>Historial de productos:</h2>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Producto</th>
-                    <th>Cantidad</th>
-                    <th>Precio Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {carritoData.map(([id, item]) => (
-                    // Check if the id is not equal to "total" before rendering the row
-                    id !== "total" && productosData[id] && (
-                      <tr key={id}>
-                        <td>{productosData[id].nombre}</td>
-                        <td>{item}</td>
-                        <td>{(item * productosData[id].costo).toFixed(2)}</td>
-                      </tr>
-                    )
-                  ))}
-                  <tr>
-                    <td colSpan={2}>Total</td>
-                    <td>{carritoData.reduce((total, [id, item]) => (id !== "total" ? total + item * productosData[id].costo : total), 0).toFixed(2)}</td>
-                  </tr>
-                </tbody>
-              </table>
+            ) : etapa === 3 ? (
+              // Mostrar el historial y confirmar la compra
               <div>
-                <h2>Información de pago y envío:</h2>
-                <p>Tarjeta: {tarjeta}</p>
-                <p>Dirección de envío: {direccion}</p>
+                <h2>Historial de productos:</h2>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Producto</th>
+                      <th>Cantidad</th>
+                      <th>Precio Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {carritoData.map(([id, item]) => (
+                      // Check if the id is not equal to "total" before rendering the row
+                      id !== "total" && productosData[id] && (
+                        <tr key={id}>
+                          <td>{productosData[id].nombre}</td>
+                          <td>{item}</td>
+                          <td>{(item * productosData[id].costo).toFixed(2)}</td>
+                        </tr>
+                      )
+                    ))}
+                    <tr>
+                      <td colSpan={2}>Total</td>
+                      <td>{carritoData.reduce((total, [id, item]) => (id !== "total" ? total + item * productosData[id].costo : total), 0).toFixed(2)}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div>
+                  <h2>Información de pago y envío:</h2>
+                  <p>Tarjeta: {tarjeta}</p>
+                  <p>Dirección de envío: calle {calle} colonia {colonia} No. {numeroInterno}</p>
+                  <p>Refernecias: {referencias}</p>
+                </div>
               </div>
-            </div>
-          ) : null}
-        </DialogContent>
+            ) : null}
+          </DialogContent>
+        ) : (
+          <DialogContent>
+            <DialogContentText>Loading...</DialogContentText>
+          </DialogContent>
+        )}
         <DialogActions>
           {/* Mostrar botones de acuerdo a la etapa actual */}
           {etapa === 0 && (
@@ -522,7 +709,7 @@ const Carrito = () => {
               <Button variant="outlined" onClick={() => setEtapa(etapa - 1)}>
                 Anterior
               </Button>
-              <Button variant="contained" onClick={() => setEtapa(etapa + 1)}>
+              <Button variant="contained" onClick={() => registrarTarjeta()}>
                 Siguiente
               </Button>
             </>
@@ -535,7 +722,7 @@ const Carrito = () => {
               <Button variant="outlined" onClick={() => setEtapa(etapa - 1)}>
                 Anterior
               </Button>
-              <Button variant="contained" onClick={() => setEtapa(etapa + 1)}>
+              <Button variant="contained" onClick={() => registrarDireccion()}>
                 Siguiente
               </Button>
             </>
