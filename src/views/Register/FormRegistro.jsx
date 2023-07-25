@@ -348,7 +348,7 @@ export const FormRegistro = () => {
           </Grid>
 
           {/* SUBCONTENEDOR */}
-          {/* <Collapse in={estado}> */}
+          <Collapse in={estado}>
             <Box
               sx={{
                 "& > :not(style)": { my: { md: 1, sm: 0.75, xs: 1 } },
@@ -498,7 +498,7 @@ export const FormRegistro = () => {
                 </Grid>
               </Grid>
             </Box>
-          {/* </Collapse> */}
+          </Collapse>
           {/*  FIN DEL SUBCONTENEDOR */}
 
           {/* enlaces */}
