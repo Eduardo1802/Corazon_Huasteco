@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { Mapa } from '../src/views/Home/Mapa/Mapa';
+import { Mapa } from '../../src/views/Home/Mapa/Mapa';
 
 describe('Pruebas para el componente Mapa', () => {
   test('El componente de mapa se renderiza correctamente', () => {

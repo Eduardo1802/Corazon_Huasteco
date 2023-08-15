@@ -1,8 +1,8 @@
 // tests/white_test/BasicAlerts.test.js
 import { render, screen } from '@testing-library/react';
-import BasicAlerts from '../src/components/customs/BasicAlerts';
+import BasicAlerts from '../../src/components/customs/BasicAlerts';
 
-describe('Pruebas de caja blanca - BasicAlerts', () => {
+describe('Mostrar alertas', () => {
   test('El mensaje se renderiza correctamente', () => {
     // Arrange
     const message = 'Mensaje de prueba';

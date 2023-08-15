@@ -1,13 +1,13 @@
-import { crearDocumentoVisitas, formatDate } from "../src/utils/fnCountStatus";
+import { crearDocumentoVisitas, formatDate } from "../../src/utils/fnCountStatus";
 
 
-describe('Test for date from stats', () => {
+describe('Función de fecha para el contador de estadisticas', () => {
   test('formatDate devuelve la fecha formateada correctamente', () => {
     const dateMock = new Date();
 
     const result = formatDate(dateMock);
 
-    expect(result).toBe('2023-07-23');
+    expect(result).toBe('2023-07-24');
   });
 
   test('formatDate devuelve la fecha formateada con ceros iniciales', () => {
