@@ -14,7 +14,7 @@ export const navLinks =[
       iconSelected: <SmartToy/>
     },
     {
-      title: "Sobre Nosotros",
+      title: "Nosotros",
       path: "/sobre-nosotros", 
       icon: <AccountBalanceOutlined/>,
       iconSelected: <AccountBalance />
@@ -26,7 +26,7 @@ export const navLinks =[
       iconSelected: <VolunteerActivism />
     },
     {
-      title: "Creadores de Contenido",
+      title: "Colaboradores",
       path: "/creadores-de-contenido", 
       icon: <BookOutlined/>,
       iconSelected: <Book />
