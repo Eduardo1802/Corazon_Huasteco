@@ -22,13 +22,13 @@ const drawerWidth = 240;
 // const settings = ['Perfil', 'Cuenta', 'Panel', 'Cerrar Sesión'];
 
 export const NavBar = (props) => {
+  const {isDarkMode} = props;
   const theme = useTheme();
   Elder(theme.palette.primary.main);
   const location = useLocation();
   const isHome = location.pathname === "/inicio";
-  const navBackgroundStyle = isHome ? { backgroundColor: "rgba(0, 0, 0, .075)" } : { backgroundColor: `${theme.palette.primary.main}FF` };
+  const navBackgroundStyle = isHome ? { backgroundColor: `${theme.palette.primary.dark.concat(isDarkMode === 'dark' ? "4D" : "00")}` } : { backgroundColor: `${theme.palette.primary.main}FF` };
 
-  const {isDarkMode} = props;
   const {handleThemeChange} = props;
   const { logout, user, profileImageUrl } = useAuth();
   const [data, setData] = useState(null);

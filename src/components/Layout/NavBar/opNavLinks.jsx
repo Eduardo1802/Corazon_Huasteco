@@ -1,6 +1,4 @@
-import { AccountBalance, AccountBalanceOutlined, Book, BookOutlined, Business, BusinessOutlined, Label, LabelOutlined, LibraryBooks, LibraryBooksOutlined, Paid, PaidOutlined, Store, StoreOutlined, VolunteerActivism, VolunteerActivismOutlined } from "@mui/icons-material";
-import SmartToyIcon from '@mui/icons-material/SmartToy';
-
+import { AccountBalance, AccountBalanceOutlined, Book, BookOutlined, Label, LabelOutlined, SmartToy, SmartToyOutlined, Store, StoreOutlined, VolunteerActivism, VolunteerActivismOutlined } from "@mui/icons-material";
 
 export const navLinks =[
     {
@@ -12,8 +10,8 @@ export const navLinks =[
     {
       title: "ChatBot",
       path: "/chatbot", 
-      icon: <SmartToyIcon />,
-      iconSelected: <SmartToyIcon />
+      icon: <SmartToyOutlined />,
+      iconSelected: <SmartToy/>
     },
     {
       title: "Sobre Nosotros",
