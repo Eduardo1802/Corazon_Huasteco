@@ -5,7 +5,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "./config/firebase/firebaseDB";
-AOS.init();
+AOS.init({once: true});
 
 function App() {
   const [themeMode, setThemeMode] = useState('light');
