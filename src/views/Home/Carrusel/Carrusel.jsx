@@ -1,13 +1,14 @@
-import { Box, Tooltip } from '@mui/material'
+import { Box, Container, Tooltip } from '@mui/material'
 import { Slideshow, Slide, TextoSlide} from "./Slideshow"
 import React from 'react'
 import img1 from "../../../assets/img/inicio/Foto-centro-02.jpg"
-import img2 from "../../../assets/img/inicio/catedral-02.jpg"
-import img3 from "../../../assets/img/inicio/imgMural-02.jpg"
+import img2 from "../../../assets/img/inicio/catedral-01.jpg"
+import img3 from "../../../assets/img/inicio/imgMural-01.jpg"
 import { Link } from 'react-router-dom'
 
 export const Carrusel = () => {
   return (
+    // <Container maxWidth="xxl">
     <Box component={"main"} sx={{        
         width: "100%",
         overflow: "hidden",
@@ -42,5 +43,6 @@ export const Carrusel = () => {
 
         </Slideshow>
     </Box>
+    // </Container>
   )
 }

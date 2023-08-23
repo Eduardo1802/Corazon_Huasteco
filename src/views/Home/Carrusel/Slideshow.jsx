@@ -8,7 +8,7 @@ const Slideshow = ({
 		children,
 		controles = false,
 		autoplay = false,
-		velocidad="500",
+		velocidad="700",
 		intervalo="5000"
 	}) => {
 	const slideshow = useRef(null);
@@ -122,7 +122,7 @@ const ContenedorPrincipal = styled('div')({
     overflow: "hidden",
     transition: `0.3s ease all`,
     zIndex: 10,
-    height: "100vh",
+    height: "90vh",
     position: "relative",
 
 	"@media screen and (max-width: 899px)": {
@@ -141,7 +141,7 @@ const ContenedorPrincipal = styled('div')({
       verticalAlign: "top",
 	  objectFit: "cover",
 	  objectPosition: "center",
-	  filter: "brightness(70%) contrast(130%)", // Agrega el filtro a la imagen
+	  filter: "brightness(70%) contrast(110%)", // Agrega el filtro a la imagen
     },
   });
 
@@ -174,14 +174,17 @@ const ContenedorPrincipal = styled('div')({
     pointerEvents: "none",
   });
 
-  const Boton = styled(Button)(({ derecho }) => ({
+  const Boton = styled(Button)(({ derecho, theme }) => ({
     pointerEvents: "all",
-    background: "none",
+    background: theme.palette.background.paper,
     border: "none",
     cursor: "pointer",
     outline: "none",
     width: "50px",
-    height: "100%",
+	height: "70px",
+    top: "50%",
+	transform: derecho ? "translate(30%, -50%)" : "translate(-30%, -50%)",
+	borderRadius: derecho ? "100% 0 0 100%": "0 100% 100% 0",
     textAlign: "center",
     position: "absolute",
     transition: "0.3s ease all",
@@ -191,7 +194,9 @@ const ContenedorPrincipal = styled('div')({
 	// 		fill: "#fff",
 	// 	}
 	// },
-
+	"@media screen and (max-width: 599px)": {
+		background: "none"
+	},
 
     path: {
       filter: derecho
