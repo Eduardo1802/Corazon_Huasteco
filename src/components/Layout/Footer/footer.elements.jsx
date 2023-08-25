@@ -12,7 +12,7 @@ export const FooterContent = styled.footer`
 `
 //componente router personalizado {link}
 export const LinkStyled = styled(Link)(({ theme }) => ({
-  display: "block",
+  
   color: "white",
   textDecoration: "none",
 

@@ -45,6 +45,7 @@ import { DetalleTematicas } from '../views/Thematics/DetalleTematicas'
 import { getTematicas } from '../utils/fnTematica'
 import { DividerCurve } from '../components/customs/DividerCurve'
 import { CarritoProvider } from '../context/CarritoContext'
+import { WavyDivider } from '../components/customs/WavyDivider'
 
 export const Router = ({isDarkMode, handleThemeChange}) => {
 
@@ -115,7 +116,7 @@ export const Router = ({isDarkMode, handleThemeChange}) => {
                     </Routes>
                   </ScrollToTop>
 
-              <DividerCurve/>
+              <WavyDivider/>
               <Footer/>
             </CarritoProvider>
           </AuthProvider>
