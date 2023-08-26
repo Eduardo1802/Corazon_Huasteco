@@ -6,7 +6,7 @@ export const ImgAcceso = () => {
     <CardMedia
         component="img"
         image={imgMural}
-        alt="Mural"
+        alt="img-mural"
         sx={{height: "70vh",mt:-1}}
     />
   )

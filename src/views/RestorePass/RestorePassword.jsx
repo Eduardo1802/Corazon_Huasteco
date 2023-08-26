@@ -203,7 +203,7 @@ export const RestorePassword = () => {
                         <Container maxWidth="xs" >
                             <Paper elevation={0} sx={{ p: { md: 5, sm: 4, xs: 3 }, mb: 3 }}>
                                 <Box sx={{ display: "flex", justifyContent: "center", mb: 3 }}>
-                                    <img src={imgLogo} alt="logo" width="100vw" />
+                                    <img src={imgLogo} alt="logo-huejutla" width="100vw" />
                                 </Box>
 
                                 <Typography variant="h4" color="primary" textAlign='center' my={3}>Restaurar contraseña</Typography>

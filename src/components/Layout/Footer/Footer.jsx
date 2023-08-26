@@ -4,7 +4,7 @@ import { LinkStyled }                       from './footer.elements'
 import imgLogo1                             from "../../../assets/img/app/imgLogoHuejutlaLight.png"
 import UseAnimations                        from 'react-useanimations';
 import facebook                             from "react-useanimations/lib/facebook";
-import twitter                              from "react-useanimations/lib/twitter";
+import youtube                              from "react-useanimations/lib/youtube";
 import instagram                            from "react-useanimations/lib/instagram";
 import { Link }                             from 'react-router-dom';
 
@@ -38,16 +38,16 @@ export const Footer = () => {
                                     strokeColor={theme.palette.background.default} 
                                 />
                             </Link>
-                            <Link to='https://twitter.com/' target='_BLANK' >
+                            <Link to='https://www.instagram.com/' target='_BLANK'>
                                 <UseAnimations
-                                    animation={twitter}
+                                    animation={instagram}
                                     size={56} 
                                     strokeColor={theme.palette.background.default} 
                                 />
                             </Link>
-                            <Link to='https://www.instagram.com/' target='_BLANK'>
+                            <Link to='https://youtube.com/' target='_BLANK' >
                                 <UseAnimations
-                                    animation={instagram}
+                                    animation={youtube}
                                     size={56} 
                                     strokeColor={theme.palette.background.default} 
                                 />
@@ -127,7 +127,7 @@ export const Footer = () => {
                         component="img"
                         height={90}
                         image={imgLogo1}
-                        alt="icono"
+                        alt="icono-huejutla"
                     />
                 </Grid>
             </Grid>

@@ -31,7 +31,7 @@ export const Error = () => {
                 <Box
                   component="img"
                   src={screenError}
-                  alt="Error"
+                  alt="img-error"
                   sx={{ width: {xs: "45%", sm: "45%", md: "55%"} }}
                 />
               </Box>

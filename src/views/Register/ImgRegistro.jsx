@@ -7,7 +7,7 @@ export const ImgRegistro = () => {
     <CardMedia
         component="img"
         image={imgSierra}
-        alt="Sierra"
+        alt="img-sierra"
         sx={{height: "100vh"}}
     />
   )

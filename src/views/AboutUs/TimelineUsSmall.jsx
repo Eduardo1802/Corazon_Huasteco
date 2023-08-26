@@ -36,7 +36,7 @@ export default function TimelineUsSmall() {
                     data-aos="zoom-in"
                     component="img"
                     src={imgAus}
-                    alt="sobre-nosotros"
+                    alt="img-casa-de-la-cultura"
                     sx={{ width: "100%", height: "100%", objectFit: "cover", mt: 2 }}
                 />
             </Box>
@@ -60,7 +60,7 @@ export default function TimelineUsSmall() {
                     data-aos="zoom-in"
                     component="img"
                     src={imgMural}
-                    alt="sobre-nosotros-mural"
+                    alt="img-mural"
                     sx={{ width: "100%", height: "100%", objectFit: "cover", mt: 2 }}
                 />
             </Box>

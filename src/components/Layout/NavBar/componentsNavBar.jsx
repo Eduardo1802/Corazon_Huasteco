@@ -1,8 +1,7 @@
 import {useScrollTrigger, Slide, Box, useTheme} from '@mui/material';
 import React from 'react';
-import logo1 from '../../../assets/img/app/imgLogoHuejutla.png'
-import logo2 from '../../../assets/img/app/imgLogoHuejutlaLight.png'
-import logo3 from '../../../assets/img/app/imgLogoHuejutlaDark.png'
+import logoLight from '../../../assets/img/app/imgLogoHuejutlaLight.png'
+import logoDark from '../../../assets/img/app/imgLogoHuejutlaDark.png'
 
 // esto permite ocoultar el nav al hacer scroll
 export function HideOnScroll(props) {
@@ -69,7 +68,7 @@ export function AnimatedIcon(props){
   .moneda-animate::after{
       content: '';
       display: inline-block;
-      background-image: url(${isDarkMode === 'dark' ? logo3 : logo2});
+      background-image: url(${isDarkMode === 'dark' ? logoDark : logoLight});
       width: 60px;
       height: 60px;
       position: absolute;

@@ -1,699 +1,154 @@
 import React, {useEffect} from 'react'
 import Typography from '@mui/material/Typography'
-import { Paper, Button, Box, useMediaQuery, Grid, useTheme, List, ListItem, ListItemIcon, ListItemText, Container, Divider, Chip } from '@mui/material';
-import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
+import { Paper, Button, Box, useMediaQuery, Grid, useTheme, Container, Divider } from '@mui/material';
 import { contadorVisitas } from '../../utils/fnCountStatus';
 import { Carrusel } from './Carrusel/Carrusel';
-import { Link } from 'react-router-dom';
-import ArrowRightAltOutlinedIcon from '@mui/icons-material/ArrowRightAltOutlined';
-import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
-import { MapOutlined, LooksOneOutlined, LooksTwoOutlined, Looks3Outlined, Looks4Outlined, HistoryEdu, FmdGoodRounded, FlagRounded, MusicNoteRounded, LocalOfferRounded, LanguageRounded, RestaurantRounded } from '@mui/icons-material';
-import lenguas1 from '../../assets/img/inicio/lenguas1.jpg'
-import lenguas2 from '../../assets/img/inicio/lenguas2.jpg'
-import lenguas3 from '../../assets/img/inicio/lenguas3.jpg'
-import danzas1 from '../../assets/img/inicio/danzas1.jpg'
-import danzas2 from '../../assets/img/inicio/danzas2.jpg'
-import danzas3 from '../../assets/img/inicio/danzas3.jpg'
-import backImg from '../../assets/img/inicio/paisaje1.jpg'
-import { AnimatedIcon } from '../../components/Layout/NavBar/componentsNavBar';
-
+import { ArrowForward, Directions, LocalFlorist, Pets } from '@mui/icons-material';
+import imagenLateral from '../../assets/img/inicio/imagenLateral.jpg'
+import flora from '../../assets/img/inicio/flora-02.jpg'
+import fauna from '../../assets/img/inicio/fauna-02.jpg'
+import styled from '@emotion/styled';
+import { OnlyMapa } from './Mapa/Mapa';
+import { WavyDivider } from '../../components/customs/WavyDivider';
 
 export const Inicio = () => {
 
-  const isSmallScreen = useMediaQuery('(max-width:900px)');
+  const isSmallScreen = useMediaQuery('(max-width:600px)');
   const theme = useTheme();
 
-  useEffect(() => {
-    contadorVisitas("inicio");
-  }, [])
+  useEffect(() => { contadorVisitas("inicio") }, [])
 
   return (
-    <Box>
-      {/* SECTION ONE -- CAROUSEL */}
-      <Carrusel />
+    <Box sx={{background: theme.palette.background.paper}}>
+      <Paper component="article" elevation={0}>
+        {/* SECTION ONE -- CARRUSEL */}
+        <Carrusel />
+      </Paper>
 
+      <WavyDivider invertColors/>
 
-      {/* SECTION TWO -- CULTURA DE LA HUASTECA...*/}
-      <Paper component='section' 
-        sx={{
-          borderRadius: 0,
-          // margin: "4px 8px", 
-          minHeight: '60vh', 
-          display: "flex", 
-          justifyContent: "center", 
-          alignItems: "center", 
-          backgroundImage: `url(${backImg})`,
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center center",
-          // background: `linear-gradient(150deg, ${theme.palette.background.paper} 25%, ${theme.palette.primary.dark}b7 77%, ${theme.palette.primary.light} 95%)`
-        }}
-      >
-        <Container maxWidth='lg' sx={{backgroundColor: theme.palette.background.paper, p:3, borderRadius: 0}} >
-          <Box >
-            <Typography variant={isSmallScreen ? 'h4' : 'h3'} component="h1" gutterBottom>
-              Cultura de La Huasteca Hidalguense
-            </Typography>
-          </Box>
-          <Box>
-            <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
-              La cultura de La Huasteca Hidalguense es una rica mezcla de historia, tradiciones, gastronomía y artesanías que se han desarrollado a lo largo del tiempo en la región.
-            </Typography>
-          </Box>
-          <Box data-aos="fade-up">
-            <Button variant="contained" color="primary" size='large' component={Link} to="/tematicas"
-              sx={{
-                position: "relative",
-                transition: "all 0.3s ease",
-                '&:hover': {
-                  '&': {
-                    transform: "translateX(7px)" // Ajusta el valor según el desplazamiento deseado
-                  }
-                }
-              }}
-            >
-              <Typography variant={isSmallScreen ? 'button': 'h6'}> 
-                Descubre La Huasteca Hidalguense
-              </Typography>
-              <ArrowRightAltOutlinedIcon fontSize='large'/>
-            </Button>
-          </Box>
+      <Paper component="article" elevation={0}>
+        <Container maxWidth="lg">
+          {/* SECTION TWO -- FUNDACIÓN */}
+            <Grid container columnSpacing={2} py={5} my={{xs: 0, md:5}}>
+              <Grid item container xs={12} lg={4} direction="column" justifyContent="center" alignItems="center">
+                <Typography gutterBottom variant="h4" component="p" color="primary.light" fontWeight={700}>
+                  Huejutla: Descubriendo Nuestra Historia
+                </Typography>
+              </Grid>
+              <Grid item xs={12} lg={8}>
+                <Typography variant="subtitle1" component="p" color="text.secondary">
+                  Hace milenios, los tenec o huaxtecos fundaron "Tantocoy," un lugar de sauces. Más tarde, los toltecas lo rebautizaron como "Huexotlan," que significa lo mismo. En 1522, la expedición de Francisco de Garay trajo cambios a la región, sometida por Hernán Cortés, quien en diciembre conquistó Huexotlan, llamándolo desde entonces Huejutla. Este es solo un vistazo a la historia. Haz clic para descubrir más sobre la fascinante herencia cultural de esta tierra ancestral.
+                </Typography>
+              </Grid>
+            </Grid>
         </Container>
       </Paper>
 
-      
-      {/* SECTION THREE -- HISTORIA DE LA HUASTECA...*/}
-      <Paper component='section' 
-        sx={{
-          borderRadius: 0,
-          // margin: "4px 8px", 
-          minHeight: '98vh', 
-          display: "flex", 
-          justifyContent: "center", 
-          alignItems: "center", 
-          // background: `linear-gradient(210deg, ${theme.palette.background.paper} 25%, ${theme.palette.primary.dark}b7 77%, ${theme.palette.primary.light} 95%)`
-        }} 
-      >
-        <Container maxWidth='lg'>    
-          <Grid container spacing={2} py={8}>
-            <Grid item xs={12}>
-              <Typography variant={isSmallScreen ? 'h4' : 'h3'} component="h2" gutterBottom>
-                Historia de La Huasteca Hidalguense
-              </Typography>
-              <Divider>
-                <Chip color="primary" variant='outlined' label={<HistoryEdu/>} />
-              </Divider>
-            </Grid>
-            <Grid item md={6} xs={12}>
-              <Paper  sx={{p: 3, height: "100%", background: `${theme.palette.primary.light}80`}} elevation={1}>
-                <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
-                  Antecedentes prehispánicos
+      <Paper component="article" elevation={0}>
+        <Container maxWidth="lg">
+          {/* SECTION THREE -- COLABORADORES */}
+            <Grid container columnSpacing={2} py={5} my={5} >
+              <Grid item xs={12} lg={12} >
+                <Typography gutterBottom variant="h4" component="p" color="primary.light" fontWeight="400" textAlign="center">
+                  Nuestros Colaboradores: Voces Auténticas de la Huasteca Hidalguense
                 </Typography>
-                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3} data-aos="fade-up" data-aos-delay="75">
-                  La Huasteca Hidalguense fue habitada originalmente por pueblos indígenas que desarrollaron culturas únicas y ricas en tradiciones.
+              </Grid>
+              <Grid item xs={12} lg={12} >
+                <Typography gutterBottom variant='subtitle1' component="p" color="primary.light" textAlign="center">
+                  Conoce a los Apasionados Guardianes de la Cultura y la Región
                 </Typography>
-              </Paper>
-            </Grid>
-            <Grid item md={6} xs={12}>
-              <Paper  sx={{p: 3, height: "100%", background: `${theme.palette.primary.light}80`}} elevation={1}>
-                <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
-                  Época colonial
+              </Grid>
+              <Grid item container alignItems="center" xs={12} sm={6} md={4}>
+                <Img alt="img-intro-colaboradores" src={imagenLateral} />
+              </Grid>
+              <Grid item container xs={12} sm={6} md={8} direction="column" justifyContent="center">
+                <Typography gutterBottom variant="subtitle1" component="p" color="text.secondary">
+                  Nuestra plataforma es un faro de conocimiento y autenticidad gracias a nuestros dedicados colaboradores. Ellos son los narradores de historias, los guardianes de tradiciones y los informantes de la Huasteca Hidalguense. Con una profunda pasión por su cultura y región, nuestros colaboradores aportan información verídica y perspectivas únicas a través de sus artículos. Desde relatos históricos hasta exploraciones de festivales locales, sus contribuciones enriquecen nuestra comunidad y te sumergen en la riqueza de la Huasteca.
                 </Typography>
-                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3} data-aos="fade-up" data-aos-delay="100">
-                  La llegada de los españoles a la región tuvo un gran impacto en la cultura y tradiciones huastecas, siendo una época de cambios y mestizaje.
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item md={6} xs={12}>
-              <Paper  sx={{p: 3, height: "100%", background: `${theme.palette.primary.light}80`}} elevation={1}>
-                <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
-                  Independencia y revolución                </Typography>
-                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3} data-aos="fade-up" data-aos-delay="125">
-                  La región fue escenario de importantes episodios de la historia mexicana, como la guerra de independencia y la revolución mexicana.                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item md={6} xs={12}>
-              <Paper  sx={{p: 3, height: "100%", background: `${theme.palette.primary.light}80`}} elevation={1}>
-                <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
-                  Hoy en día                </Typography>
-                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3} data-aos="fade-up" data-aos-delay="150">
-                  La Huasteca Hidalguense es reconocida por su patrimonio cultural y turístico, y es un lugar que invita a visitar y conocer su historia.
-                </Typography>
-              </Paper>
-            </Grid>
-          </Grid>
-        </Container>
-      </Paper>
-
-      
-      {/* SECTION FOUR -- UBICACIÓN GEOGRAFÍCA...*/}
-      <Paper component='section' 
-        sx={{
-          borderRadius: 0,
-          // margin: "4px 8px", 
-          minHeight: '58vh', 
-          display: "flex", 
-          justifyContent: "center", 
-          alignItems: "center", 
-          // background: `linear-gradient(150deg, ${theme.palette.background.paper} 25%, ${theme.palette.primary.dark}b7 77%, ${theme.palette.primary.light} 95%)`
-        }}      
-      >
-        <Container maxWidth='lg'>    
-          <Grid container spacing={2} py={8} >
-            <Grid item xs={12}>
-              <Typography variant={isSmallScreen ? 'h4' : 'h3'} component="h2" gutterBottom>
-                Ubicación Geográfica y Características de la Región             
-              </Typography>
-              <Divider>
-                <Chip color="primary" variant='outlined' label={<FmdGoodRounded/>} />
-              </Divider>
-            </Grid>
-            <Grid item md={6} xs={12}>
-              <Paper /* data-aos="fade-up" data-aos-delay="100" */ sx={{p:1, height: "100%"}} elevation={0}>
-                <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
-                  Ubicación Geográfica
-                </Typography>
-                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
-                  La Huasteca Hidalguense se encuentra en el noreste del estado de Hidalgo, y colinda con los estados de San Luis Potosí, Veracruz, Puebla y Querétaro.
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item md={6} xs={12}>
-              <Paper /* data-aos="fade-up" data-aos-delay="150" */ sx={{p:1, height: "100%"}} elevation={0}>
-                <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
-                  Características de la Región
-                </Typography>
-                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
-                  La región cuenta con una gran diversidad geográfica, que incluye montañas, ríos, cascadas y una rica flora y fauna.
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={12}>
-              <Box>
-                <Button variant="contained" color="primary" size='large' component={Link} to="/mapa"
-                  sx={{
-                    position: "relative",
-                    transition: "all 0.3s ease",
-                    '&:hover': {
-                      '&': {
-                        transform: "translateX(7px)" // Ajusta el valor según el desplazamiento deseado
-                      }
-                    }
-                  }}
-                >
-                  <Typography variant={isSmallScreen ? 'button': 'h6'}> 
-                    Ver mapa
-                  </Typography>
-                  <ArrowRightAltOutlinedIcon fontSize='large'/>
-                  <MapOutlined/>
+                <Button variant='outlined' endIcon={<ArrowForward/>} sx={{borderRadius: 5, '&:hover':{backgroundColor: theme.palette.primary.main, color: theme.palette.background.paper}}}>
+                  Explora sus Voces
                 </Button>
-              </Box>
-            </Grid>
-          </Grid>
-        </Container>
-      </Paper>
-
-
-      {/* SECTION FIVE -- LENGUAS HABLADAS...*/}
-      <Paper component='section' 
-        sx={{
-          borderRadius: 0,
-          // margin: "4px 8px", 
-          minHeight: '98vh', 
-          display: "flex", 
-          justifyContent: "center", 
-          alignItems: "center", 
-          // background: `linear-gradient(150deg, ${theme.palette.background.paper} 25%, ${theme.palette.primary.dark}b7 77%, ${theme.palette.primary.light} 95%)`
-        }}      
-      >
-        <Container maxWidth='lg'>    
-          <Grid container spacing={2} py={8}>
-            <Grid item xs={12}>
-              <Typography variant={isSmallScreen ? 'h4' : 'h3'} component="h2" gutterBottom>
-                Lenguas habladas en la Región
-              </Typography>
-              <Divider>
-                <Chip color="primary" variant='outlined' label={<LanguageRounded/>} />
-              </Divider>
-            </Grid>
-            <Grid data-aos="fade-down" data-aos-delay="100" item xs display='flex' justifyContent='flex-start' alignItems='center' flexDirection="column">
-              <img src={lenguas1} width={300} height={200} alt='nahuatl' />
-              <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom textAlign='center'>Náhuatl</Typography>
-              <Typography variant="body1" textAlign='center' 
-                sx={{fontSize: "1.25rem"}}
-              >
-                El náhuatl es una lengua originaria de la región que sigue siendo hablada por algunos habitantes locales.
-              </Typography>
-            </Grid>
-            <Grid data-aos="fade-down" data-aos-delay="150" item xs display='flex' justifyContent='flex-start' alignItems='center' flexDirection="column">
-              <img src={lenguas2} width={300} height={200} alt='tenek' />
-              <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom textAlign='center'>Tének</Typography>
-              <Typography variant="body1" textAlign='center' 
-                sx={{fontSize: "1.25rem"}}
-              >
-                El tének, también conocido como huasteco, es otra lengua originaria de la región que todavía se habla hoy en día.
-              </Typography>
-            </Grid>
-            <Grid data-aos="fade-down" data-aos-delay="200" item xs display='flex' justifyContent='flex-start' alignItems='center' flexDirection="column">
-              <img src={lenguas3} width={300} height={200} alt='español' />
-              <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom textAlign='center'>Español</Typography>
-              <Typography variant="body1" textAlign='center' 
-                sx={{fontSize: "1.25rem"}}
-              >
-                El español es el idioma oficial y se habla en toda la región, siendo un lenguaje que u
-              </Typography>
-            </Grid>
-          </Grid>
-        </Container>
-      </Paper>
-
-
-      {/* SECTION SIX -- ARTESANIAS REPRESEN...*/}
-      <Paper component='section' 
-        sx={{
-          borderRadius: 0,
-          // margin: "4px 8px", 
-          minHeight: '58vh', 
-          display: "flex", 
-          justifyContent: "center", 
-          alignItems: "center", 
-          // background: `linear-gradient(210deg, ${theme.palette.background.paper} 25%, ${theme.palette.primary.dark}b7 77%, ${theme.palette.primary.light} 95%)`
-        }} 
-      >
-        <Container maxWidth='lg'>    
-          <Grid container spacing={2} py={8}>
-            <Grid item xs={12}>
-              <Typography variant={isSmallScreen ? 'h4' : 'h3'} component="h2" gutterBottom>
-                Artesanías Representativas de la Cultura Huasteca
-              </Typography>
-              <Divider>
-                <Chip color="primary" variant='outlined' label={<LocalOfferRounded/>} />
-              </Divider>
-            </Grid>
-            <Grid item md={6} xs={12} display='flex'>
-              <Box>
-                <LooksOneOutlined fontSize='large'/>
-              </Box>
-              <Box data-aos="zoom-in" data-aos-delay="100" sx={{px: 3, height: "100%"}}>
-                <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
-                  Bordados
-                </Typography>
-                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
-                  Los bordados huastecos son famosos por su colorido y complejidad, y se pueden encontrar en vestimentas, toallas, manteles y otros artículos textiles.
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item md={6} xs={12} display='flex'>
-              <Box>
-                <LooksTwoOutlined fontSize='large'/>
-              </Box>
-              <Box data-aos="zoom-in" data-aos-delay="150" sx={{px: 3, height: "100%"}}>
-                <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
-                  Cestería
-                </Typography>
-                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
-                  La cestería es otra de las artesanías típicas de la región, y se caracteriza por el uso de fibras naturales como la palma, el carrizo o el mimbre.
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item md={6} xs={12} display='flex'>
-              <Box>
-                <Looks3Outlined fontSize='large'/>
-              </Box>
-              <Box data-aos="zoom-in" data-aos-delay="200" sx={{px: 3, height: "100%"}}>
-                <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
-                  Talabartería
-                </Typography>
-                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
-                  La talabartería es la artesanía que se dedica a trabajar el cuero y producir objetos como sillas, estribos, riendas y otros objetos.
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item md={6} xs={12} display='flex'>
-              <Box>
-                <Looks4Outlined fontSize='large'/>
-              </Box>
-              <Box data-aos="zoom-in" data-aos-delay="250" sx={{px: 3, height: "100%"}}>
-                <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
-                  Esculturas de madera 
-                </Typography>
-                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
-                  La región destaca por la producción de figuras y esculturas de madera tallada, algunas de las cuales son de gran valor artístico.
-                </Typography>
-              </Box>
-            </Grid>
-          </Grid>
-        </Container>
-      </Paper>
-
-
-      {/* SECTION SEVEN -- GASTRONOMÍA TIPICA...*/}
-      <Box sx={{background: `${theme.palette.background.paper}`}}>
-        <Paper component='section' 
-          sx={{
-            // margin: "4px 8px", 
-            minHeight: '98vh', 
-            display: "flex", 
-            justifyContent: "center", 
-            alignItems: "center", 
-            background: `${theme.palette.primary.light}80`
-            // background: `linear-gradient(210deg, ${theme.palette.background.paper} 25%, ${theme.palette.primary.dark}b7 77%, ${theme.palette.primary.light} 95%)`
-          }} 
-        >
-          <Container maxWidth='lg'>    
-            <Grid container  p={3} sx={{background: theme.palette.background.paper, borderRadius:1}}>
-              <Grid item xs={12}>
-                <Typography variant={isSmallScreen ? 'h4' : 'h3'} component="h2" gutterBottom>
-                  Gastronomía Típica de La Huasteca Hidalguense
-                </Typography>
-                <Divider>
-                <Chip color="primary" variant='outlined' label={<RestaurantRounded/>} />
-              </Divider>
-              </Grid>
-              <Grid item md={4} sm={6} xs={12}>
-                <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
-                  Platillos salados
-                </Typography>
-                <List dense>
-                  <ListItem sx={{m:0, p:0}}>
-                    <ListItemIcon>
-                      <CircleOutlinedIcon fontSize='small'/>
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant='body1' sx={{fontSize: "1.25rem"}}>
-                          Enchiladas Huastecas
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem sx={{m:0, p:0}}>
-                    <ListItemIcon>
-                      <CircleOutlinedIcon fontSize='small'/>
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant='body1' sx={{fontSize: "1.25rem"}}>
-                          Tacos de barbacoa de borrego
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem sx={{m:0, p:0}}>
-                    <ListItemIcon>
-                      <CircleOutlinedIcon fontSize='small'/>
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant='body1' sx={{fontSize: "1.25rem"}}>
-                          Pescado a la talla
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem sx={{m:0, p:0}}>
-                    <ListItemIcon>
-                      <CircleOutlinedIcon fontSize='small'/>
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant='body1' sx={{fontSize: "1.25rem"}}>
-                          Mole de olla
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                </List>
-              </Grid>
-
-              <Grid item md={4} sm={6} xs={12}>
-                <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
-                  Postres
-                </Typography>
-                <List dense >
-                  <ListItem sx={{m:0, p:0}}>
-                    <ListItemIcon>
-                      <CircleOutlinedIcon fontSize='small'/>
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant='body1' sx={{fontSize: "1.25rem"}}>
-                          Buñuelos
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem sx={{m:0, p:0}}>
-                    <ListItemIcon>
-                      <CircleOutlinedIcon fontSize='small'/>
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant='body1' sx={{fontSize: "1.25rem"}}>
-                          Capirotada
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem sx={{m:0, p:0}}>
-                    <ListItemIcon>
-                      <CircleOutlinedIcon fontSize='small'/>
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant='body1' sx={{fontSize: "1.25rem"}}>
-                          Camote en dulce
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem sx={{m:0, p:0}}>
-                    <ListItemIcon>
-                      <CircleOutlinedIcon fontSize='small'/>
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant='body1' sx={{fontSize: "1.25rem"}}>
-                          Dulce de leche
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                </List>
-              </Grid>
-
-              <Grid item md={4} sm={12} xs={12}>
-                <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
-                  Bebidas
-                </Typography>
-                <List dense >
-                  <ListItem sx={{m:0, p:0}}>
-                    <ListItemIcon>
-                      <CircleOutlinedIcon fontSize='small'/>
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant='body1' sx={{fontSize: "1.25rem"}}>
-                          Pulqué
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem sx={{m:0, p:0}}>
-                    <ListItemIcon>
-                      <CircleOutlinedIcon fontSize='small'/>
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant='body1' sx={{fontSize: "1.25rem"}}>
-                          Agua de horchata
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem sx={{m:0, p:0}}>
-                    <ListItemIcon>
-                      <CircleOutlinedIcon fontSize='small'/>
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant='body1' sx={{fontSize: "1.25rem"}}>
-                          Café de olla
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem sx={{m:0, p:0}}>
-                    <ListItemIcon>
-                      <CircleOutlinedIcon fontSize='small'/>
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant='body1' sx={{fontSize: "1.25rem"}}>
-                          Chocolate (bebida caliente de cacao)
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                </List>
               </Grid>
             </Grid>
-          </Container>
-        </Paper>
-      </Box>
+        </Container>
+      </Paper>
 
+      <Paper component="article" elevation={0}>
+        <Container maxWidth="lg">
+          <Divider/>
+          {/* SECTION FOUR -- FLORA */}
+            <Grid container columnSpacing={2} rowSpacing={2} py={5} my={5}>
+              <Grid item container xs={12} sm={6} md={5} direction="column" justifyContent="center" order={{xs: 2, sm:1}}>
+                <Typography variant="overline" component="p" color="text.secondary" textAlign="center">
+                  Flora
+                </Typography>
+                <Typography variant="h4" component="p" color="primary.light" fontWeight={700} textAlign="center">
+                  Riqueza Botánica de la Huasteca Hidalguense
+                </Typography>
+                <Typography gutterBottom variant="subtitle1" component="p" color="text.secondary" textAlign="center">
+                  Explora la abundante biodiversidad de Huejutla: árboles frutales, madera fina, plantas medicinales y una profusión de flora.
+                </Typography>
+                <Button variant='outlined' endIcon={<LocalFlorist/>} sx={{borderRadius: 5, '&:hover':{backgroundColor: theme.palette.primary.main, color: theme.palette.background.paper}}}>
+                  Ver más
+                </Button>
+              </Grid>
+              <Grid item container alignItems="center" xs={12} sm={6} md={7} order={{xs: 1, sm:2}}>
+                <Img alt="img-flora" src={flora} />
+              </Grid>
+            </Grid>
+        </Container>
+      </Paper>
 
-      {/* SECTION EIGTH -- DANZAS Y MÚSICA...*/}
-      <Paper component='section' 
-        sx={{
-          borderRadius: 0,
-          // margin: "4px 8px", 
-          minHeight: '58vh', 
-          display: "flex", 
-          justifyContent: "center", 
-          alignItems: "center", 
-          // background: `linear-gradient(150deg, ${theme.palette.background.paper} 25%, ${theme.palette.primary.dark}b7 77%, ${theme.palette.primary.light} 95%)`
-        }}      
-      >
-        <Container maxWidth='lg'>    
-          <Grid container spacing={2} py={8}>
-            <Grid item xs={12}>
-              <Typography variant={isSmallScreen ? 'h4' : 'h3'} component="h2" gutterBottom>
-                Danzas y Música Tradicionales
-              </Typography>
-              <Divider>
-                <Chip color="primary" variant='outlined' label={<MusicNoteRounded/>} />
-              </Divider>
+      <Paper component="article" elevation={0}>
+        <Container maxWidth="lg">
+          {/* SECTION FIVE -- FAUNA */}
+            <Grid container columnSpacing={2} rowSpacing={2} py={5} my={5}>
+              <Grid item container alignItems="center" xs={12} sm={6} md={7} order={{xs: 1, sm:1}}>
+                <Img alt="img-fauna" src={fauna} />
+              </Grid>
+              <Grid item container xs={12} sm={6} md={5} direction="column" justifyContent="center" order={{xs: 2, sm:2}}>
+                <Typography variant="overline" component="p" color="text.secondary" textAlign="center">
+                  Fauna
+                </Typography>
+                <Typography variant="h4" component="p" color="primary.light" fontWeight={700} textAlign="center">
+                  Diversidad Faunística de Huejutla
+                </Typography>
+                <Typography gutterBottom variant="subtitle1" component="p" color="text.secondary" textAlign="center">
+                  Descubre la fascinante variedad de vida silvestre en Huejutla, desde mamíferos y aves hasta reptiles y más.
+                </Typography>
+                <Button variant='outlined' endIcon={<Pets/>} sx={{borderRadius: 5, '&:hover':{backgroundColor: theme.palette.primary.main, color: theme.palette.background.paper}}}>
+                  Ver más
+                </Button>
+              </Grid>
             </Grid>
-            <Grid data-aos="fade-down" data-aos-delay="100" item xs display='flex' justifyContent='flex-start' alignItems='center' flexDirection="column">
-              <img src={danzas1} width={260} height={260} alt='nahuatl' />
-              <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom textAlign='center'>Danza del Huapango</Typography>
-              <Typography variant="body1" textAlign='center' 
-                sx={{fontSize: "1.25rem"}}
-              >
-                El huapango es una danza folclórica que se baila al son de la música típica huasteca, y que representa el mestizaje cultural de la región.
-              </Typography>
+        </Container>
+      </Paper>
+
+      <Paper component="article" elevation={0}>
+        <Container maxWidth="xl">
+          <Divider/>
+          {/* SECTION SIX -- COLINDANCIAS */}
+            <Grid container columnSpacing={2} rowSpacing={2} py={5} mt={5}>
+              <Grid item container xs={12} sm={12} md={4} direction="column" justifyContent="center" order={{xs: 1, sm:1}}>
+                <Typography variant="h4" component="p" color="primary.light" fontWeight={700} textAlign="center">
+                  Colindancias
+                </Typography>
+                <Typography gutterBottom variant="subtitle1" component="p" color="text.secondary" textAlign="center">
+                  Huejutla colinda al norte con el municipio de Orizatlán, el estado de Veracruz; al este con Veracruz, Huautla y Atlapexco; al sur con Atlapexco, Huazalingo y Tlanchinol; y al oeste con Tlanchinol, Jaltocan y Orizatlán.
+                </Typography>
+                <Button variant='outlined' endIcon={<Directions/>} sx={{borderRadius: 5, '&:hover':{backgroundColor: theme.palette.primary.main, color: theme.palette.background.paper}}}>
+                  Ver mapa
+                </Button>
+              </Grid>
+              <Grid item xs={12} sm={12} md={8} order={{xs: 2, sm:2}}>
+                <OnlyMapa altura={isSmallScreen ? "215px" : "50vh"}/>
+              </Grid>
             </Grid>
-            <Grid data-aos="fade-down" data-aos-delay="150" item xs display='flex' justifyContent='flex-start' alignItems='center' flexDirection="column">
-              <img src={danzas2} width={260} height={260} alt='tenek' />
-              <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom textAlign='center'>Jarabe Huasteco</Typography>
-              <Typography variant="body1" textAlign='center' 
-                sx={{fontSize: "1.25rem"}}
-              >
-                El jarabe huasteco es una danza que combina elementos indígenas y españoles, y que destaca por su energía y alegría.
-              </Typography>
-            </Grid>
-            <Grid data-aos="fade-down" data-aos-delay="200" item xs display='flex' justifyContent='flex-start' alignItems='center' flexDirection="column">
-              <img src={danzas3} width={260} height={260} alt='español' />
-              <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom textAlign='center'>Música Huasteca</Typography>
-              <Typography variant="body1" textAlign='center' 
-                sx={{fontSize: "1.25rem"}}
-              >
-                La música huasteca se caracteriza por el uso de instrumentos como el violín, la guitarra quinta huapanguera y la jarana huasteca.              </Typography>
-            </Grid>
-          </Grid>
         </Container>
       </Paper>
 
 
-      {/* SECTION NINE -- FIESTAS Y CELEBRACIONES...*/}
-      <Paper component='section' 
-        sx={{
-          borderRadius: 0,
-          // margin: "4px 8px", 
-          minHeight: '88vh', 
-          display: "flex", 
-          justifyContent: "center", 
-          alignItems: "center", 
-          // background: `linear-gradient(210deg, ${theme.palette.background.paper} 25%, ${theme.palette.primary.dark}b7 77%, ${theme.palette.primary.light} 95%)`
-        }} 
-      >
-        <Container maxWidth='lg'>    
-          <Grid container spacing={2} py={8}>
-            <Grid item xs={12}>
-              <Typography variant={isSmallScreen ? 'h4' : 'h3'} component="h2" gutterBottom>
-                Fiestas y Celebraciones Importantes en la Región
-              </Typography>
-              <Divider>
-                <Chip color="primary" variant='outlined' label={<FlagRounded/>} />
-              </Divider>
-            </Grid>
-            <Grid item md={4} sm={6} xs={12}>
-              <Paper /* data-aos="fade-up" data-aos-delay="100" */ sx={{p: 3, height: "100%"}} elevation={1}>
-                <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
-                  Día de Muertos
-                </Typography>
-                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
-                  El Día de Muertos es una festividad que se celebra con gran devoción en toda la región, y en la que se honra a los difuntos con ofrendas y altares con flores, velas, alimentos y otros objetos simbólicos.
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item md={4} sm={6} xs={12}>
-              <Paper /* data-aos="fade-up" data-aos-delay="150" */ sx={{p: 3, height: "100%"}} elevation={1}>
-                <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
-                  Feria de San Francisco de Asís
-                </Typography>
-                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
-                  La feria de San Francisco de Asís es una de las celebraciones más importantes de la región, que se lleva a cabo en el mes de octubre y destaca por su colorido y animación.
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item md={4} sm={12} xs={12}>
-              <Paper /* data-aos="fade-up" data-aos-delay="200" */ sx={{p: 3, height: "100%"}} elevation={1}>
-                <Typography variant={isSmallScreen ? 'h5' : 'h4'} component="h3" gutterBottom>
-                  Carnaval Huasteco
-                </Typography>
-                <Typography variant='body1' sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
-                  El carnaval huasteco es una celebración que se lleva a cabo anualmente en diferentes comunidades de la región, y que incluye bailes, música y desfile de carros alegóricos.
-                </Typography>
-              </Paper>
-            </Grid>
-          </Grid>
-        </Container>
-      </Paper>
-
-
-      {/* SECTION TEN -- QUIERO IR...*/}
-      <Paper component='section' 
-        elevation={0}
-        sx={{
-          borderRadius: 0,
-          // margin: "4px 8px", 
-          minHeight: '38vh', 
-          display: "flex", 
-          justifyContent: "center", 
-          alignItems: "center", 
-          // background: `linear-gradient(150deg, ${theme.palette.background.paper} 25%, ${theme.palette.primary.dark}b7 77%, ${theme.palette.primary.light} 95%)`
-          pb: 8
-        }}
-      >
-        <Container maxWidth='lg'>
-          <Box>
-            <AnimatedIcon/>
-            <Typography variant={isSmallScreen ? 'body1' : 'h5'} sx={{fontSize: "1.25rem"}} component="p" gutterBottom mb={3}>
-              ¿Listo para explorar La Huasteca Hidalguense? ¡No te pierdas la oportunidad de conocer una de las regiones más auténticas y hermosas de México! Haz clic en el botón y descubre todo lo que La Huasteca Hidalguense tiene para ofrecer.
-            </Typography>
-          </Box>
-          <Box data-aos="fade-up">
-            <Button variant="contained" color="primary" size='large' component={Link} to="/tematicas"
-              sx={{
-                position: "relative",
-                transition: "all 0.3s ease",
-                '&:hover': {
-                  '&': {
-                    transform: "translateX(7px)" // Ajusta el valor según el desplazamiento deseado
-                  }
-                }
-              }}
-            >
-              <Typography variant={isSmallScreen ? 'button': 'h6'}> 
-                ¡Quiero ir!
-              </Typography>
-              <ArrowRightAltOutlinedIcon fontSize='large'/>
-            </Button>
-          </Box>
-        </Container>
-      </Paper>
 
 
 
@@ -952,3 +407,9 @@ export const Inicio = () => {
     </Box>
   );
 }
+
+
+const Img = styled('img')({
+  maxWidth: "100%",
+  height: "auto"
+});
