@@ -2,7 +2,7 @@ import { useTheme } from '@emotion/react'
 import { Box } from '@mui/material'
 import React from 'react'
 
-export const WavyDivider = () => {
+export const WavyDivider = ({invertColors}) => {
 
     const theme = useTheme()
 
@@ -77,7 +77,7 @@ export const WavyDivider = () => {
     `
 
   return (
-    <Box sx={{backgroundColor: theme.palette.background.paper}}>
+    <Box sx={{backgroundColor: invertColors ? theme.palette.primary.main : theme.palette.background.paper}}>
         <style>{styles}</style>
         <svg className="editorial"
             xmlns="http://www.w3.org/2000/svg"
@@ -96,16 +96,16 @@ export const WavyDivider = () => {
                 />
             </defs>
             <g className="parallax1">
-                <use xlinkHref="#gentle-wave" x="50" y="3" fill={theme.palette.text.secondary}/>
+                <use xlinkHref="#gentle-wave" x="50" y="3" fill={invertColors ? theme.palette.primary.main : theme.palette.text.secondary}/>
             </g>
             <g className="parallax2">
-                <use xlinkHref="#gentle-wave" x="50" y="0" fill={theme.palette.text.disabled}/>
+                <use xlinkHref="#gentle-wave" x="50" y="0" fill={invertColors ? theme.palette.primary.light : theme.palette.text.disabled}/>
             </g>
             <g className="parallax3">
-                <use xlinkHref="#gentle-wave" x="50" y="9" fill={theme.palette.primary.light}/>
+                <use xlinkHref="#gentle-wave" x="50" y="9" fill={invertColors ? theme.palette.text.disabled : theme.palette.primary.light}/>
             </g>
             <g className="parallax4">
-                <use xlinkHref="#gentle-wave" x="50" y="6" fill={theme.palette.primary.main}/>  
+                <use xlinkHref="#gentle-wave" x="50" y="6" fill={invertColors ? theme.palette.background.paper : theme.palette.primary.main}/>  
             </g>
         </svg>
     </Box>
