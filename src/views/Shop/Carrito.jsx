@@ -371,7 +371,7 @@ const Carrito = () => {
         }}
       >
         <Paper elevation={0} sx={{ p: 1, border: `3px solid ${theme.palette.primary.main}`, borderRightColor: "transparent" }}>
-          <Badge color="secondary" badgeContent={sumaNumeros}>
+          <Badge color="error" badgeContent={sumaNumeros}>
             <ShoppingCartRounded />
           </Badge>
         </Paper>
