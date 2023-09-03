@@ -4,7 +4,8 @@ import { Box } from '@mui/material';
 export const ToggleThemeSticky = ({isDarkMode, handleThemeChange}) => {
   return (
     <Box sx={{styles}}>
-        <Box component={"input"} type="checkbox" id="toggle" className="toggle--checkbox" checked={isDarkMode === 'dark'} onChange={handleThemeChange} />
+                                                                                                  {/* if you use the local data color theme the value will be "true" for choose one of the two, if you use the data from firebase need to change to "dark" to get the theme with that string in the DB */}
+        <Box component={"input"} type="checkbox" id="toggle" className="toggle--checkbox" checked={isDarkMode === true} onChange={handleThemeChange} />
         <Box component={"label"} htmlFor="toggle" className="toggle--label">
           <Box className="toggle--label-background"></Box>
         </Box>
