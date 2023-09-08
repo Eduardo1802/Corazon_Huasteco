@@ -1,25 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Box,
-  TextField,
-  Grid,
-  MenuItem,
-  Collapse,
-  Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-  Snackbar,
-  Paper,
-  Toolbar,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-} from "@mui/material";
+import { Box, TextField, Grid, MenuItem, Collapse, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, Snackbar, Paper, Toolbar } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import { styled, alpha } from "@mui/material/styles";
 import MuiAlert from "@mui/material/Alert";
@@ -36,8 +16,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
 import { Form } from "semantic-ui-react";
 // import { async } from "q";
-import { set } from "lodash";
-import { setUserLogHandler } from "@firebase/logger";
 import { useAuth } from "../../../../context/AuthContext";
 
 export const AdminProductos = () => {

@@ -1,5 +1,4 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { Box }                  from '@mui/material'
 // nav && foot components
 import { NavBar }               from '../components/Layout/NavBar/NavBar'
 import { Footer }               from '../components/Layout/Footer/Footer'
@@ -43,7 +42,6 @@ import { getProducts } from '../utils/fnTienda'
 import { useEffect, useState } from 'react'
 import { DetalleTematicas } from '../views/Thematics/DetalleTematicas'
 import { getTematicas } from '../utils/fnTematica'
-import { DividerCurve } from '../components/customs/DividerCurve'
 import { CarritoProvider } from '../context/CarritoContext'
 import { WavyDivider } from '../components/customs/WavyDivider'
 

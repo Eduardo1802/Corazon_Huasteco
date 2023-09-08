@@ -2,9 +2,8 @@ import React from 'react'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box';
 import { AccordionDes } from './AccordionDes';
-import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
 import { Bread } from '../../components/customs/Bread';
-import { HomeRounded, LiveHelpRounded, QuestionAnswerRounded } from '@mui/icons-material';
+import { HomeRounded, LiveHelpRounded } from '@mui/icons-material';
 import { Grid, Paper } from '@mui/material';
 
 export const PreguntasFrecuentes = () => {

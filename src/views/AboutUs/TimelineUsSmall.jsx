@@ -6,7 +6,7 @@ import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import imgAus                 from "../../assets/img/sobre-nosotros/imgSobreNosotros.jpg"
-import imgMural               from "../../assets/img/inicio/imgMural.jpg"
+import imgMural               from "../../assets/img/inicio/imgMural-01.jpg"
 import { Box, Typography } from '@mui/material';
 
 export default function TimelineUsSmall() {

@@ -2,10 +2,7 @@ import React, { useState } from 'react'
 import {Button,TextField,Dialog,DialogTitle,IconButton,DialogContent,MenuItem,Alert} from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import MuiAlert from "@mui/material/Alert";
 import { app } from "../../../../config/firebase/firebase";
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
-import { db } from "../../../../config/firebase/firebaseDB";
 import { categorias } from "./OptionListTematicas";
 import { Label } from 'semantic-ui-react';
 

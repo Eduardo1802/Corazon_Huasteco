@@ -1,4 +1,4 @@
-import {useScrollTrigger, Slide, Box, useTheme} from '@mui/material';
+import {useScrollTrigger, Slide, Box} from '@mui/material';
 import React from 'react';
 import logoLight from '../../../assets/img/app/imgLogoHuejutlaLight.png'
 import logoDark from '../../../assets/img/app/imgLogoHuejutlaDark.png'

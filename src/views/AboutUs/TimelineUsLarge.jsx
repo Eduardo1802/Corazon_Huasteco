@@ -7,7 +7,8 @@ import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import { TimelineOppositeContent } from '@mui/lab';
 import imgAus                 from "../../assets/img/sobre-nosotros/imgSobreNosotros.jpg"
-import imgMural               from "../../assets/img/inicio/imgMural.jpg"
+import imgMural               from "../../assets/img/inicio/imgMural-01.jpg"
+
 import { Card, CardMedia, Box, Typography } from '@mui/material';
 
 export default function TimelineUsLarge() {

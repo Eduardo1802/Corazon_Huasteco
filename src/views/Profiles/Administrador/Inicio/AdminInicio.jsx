@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {Box, Chip, Container, Grid, Stack, Typography, useMediaQuery} from "@mui/material";
 import { useAuth } from "../../../../context/AuthContext";
 import AdminPanelSettingsRoundedIcon from "@mui/icons-material/AdminPanelSettingsRounded";
 import { EditProfile } from "../../../../components/customs/EditProfile";
 import { BannerProfile } from "../../../../components/customs/BannerProfile";
-import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../../../config/firebase/firebaseDB";
 
 export const AdminInicio = () => {

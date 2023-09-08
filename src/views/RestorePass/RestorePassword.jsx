@@ -1,16 +1,11 @@
 import React, { useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
-import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute'
 import { Bread } from '../../components/customs/Bread';
-import {
-    Button, Container, Grid, Paper,
-    IconButton,
-    InputAdornment, Box, Typography, TextField, Collapse, Divider
-} from '@mui/material';
+import { Button, Container, Grid, Paper, IconButton, InputAdornment, Box, Typography, TextField, Collapse, Divider } from '@mui/material';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { Form } from "semantic-ui-react"
-import imgLogo from "../../assets/img/app/imgLogoHuejutla.png"
+import imgLogo from "../../assets/img/app/imgLogoHuejutlaLight.png"
 
 
 import VisibilityOff from "@mui/icons-material/VisibilityOff";

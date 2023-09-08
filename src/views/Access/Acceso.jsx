@@ -1,6 +1,5 @@
 import React                  from 'react'
 import {Box, Grid, Paper}          from '@mui/material';
-import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
 import { Bread }              from '../../components/customs/Bread';
 import { FormAcceso }         from './FormAcceso';
 import { ImgAcceso }          from './ImgAcceso';

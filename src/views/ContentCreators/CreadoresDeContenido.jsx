@@ -1,7 +1,6 @@
 import React from 'react'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box';
-import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
 import { Bread } from '../../components/customs/Bread';
 import { HomeRounded, LibraryBooksRounded } from '@mui/icons-material';
 import { Grid, Paper } from '@mui/material';

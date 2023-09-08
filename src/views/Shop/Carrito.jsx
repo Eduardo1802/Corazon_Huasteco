@@ -1,19 +1,17 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Box, Typography, Container, Grid, Paper, TextField, Button, IconButton, InputAdornment, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Badge } from '@mui/material';
+import { Box, Typography, Container, Grid, Paper, TextField, Button, IconButton, InputAdornment, TableCell, TableRow, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Badge } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import TodayIcon from '@mui/icons-material/Today';
 import { ShoppingCartRounded, Delete } from '@mui/icons-material';
-import { doc, getDoc, updateDoc, setDoc, collection, query, where, onSnapshot, getDocs, FieldValue, addDoc, deleteDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc, setDoc, collection, onSnapshot, getDocs, addDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../../config/firebase/firebaseDB";
-import { app } from "../../config/firebase/firebase";
 import { CarritoContext } from '../../context/CarritoContext';
 import { useAuth } from "../../context/AuthContext";
-import * as Icons from '@mui/icons-material';
+
 const Carrito = () => {
   const { contador, open, abrirDialog, cerrarDialog } = useContext(CarritoContext);
   const theme = useTheme();

@@ -1,14 +1,7 @@
 import React,{useState} from 'react'
 import PropTypes from 'prop-types';
-import Typography from '@mui/material/Typography'
-import Box from '@mui/material/Box';
-import { Grid, Paper, TextField, Tab, Tabs, AppBar } from '@mui/material';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
+import { Grid, Paper, Tab, Tabs, AppBar, Typography, Box, Stepper, Step, StepLabel } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
 import { Bread } from '../../components/customs/Bread';
 import {useAuth} from "../../context/AuthContext"
 import { Tarjeta } from './Tarjeta';
@@ -23,14 +16,8 @@ const pasos = ['Se debe iniciar sesión para poder donar.','Formulario Tarjeta',
 
 export const Donaciones = () => {
   const {user} = useAuth();
-  const [monto, setMonto] = useState("");
-  const [tarjeta, setTarjeta] = useState("");
-  const [mes, setMes] = useState("");
-  const [anio, setAnio] = useState("");
-  const [cvv, setCvv] = useState("");
   const [proceso, setProceso] = useState(0);
   const [value, setValue] = React.useState(0);
-  const [nombre, setNombre] = useState("");
   const theme = useTheme();
 
   const pasos1 = async () => {

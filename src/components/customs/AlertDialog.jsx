@@ -7,7 +7,6 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Link, Typography } from '@mui/material';
 import {Link as LinkRouter} from 'react-router-dom'
-import { AvisoDePrivacidad } from '../../views/NoticePrivacy/AvisoDePrivacidad';
 import { TextPrivacy } from '../../views/NoticePrivacy/TextPrivacy';
 
 export default function AlertDialog() {

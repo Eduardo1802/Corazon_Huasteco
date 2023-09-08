@@ -4,22 +4,7 @@ import axios from "axios";
 import SendIcon from '@mui/icons-material/Send';
 import { Bread }              from '../../components/customs/Bread';
 import { HomeRounded, SmartToy} from '@mui/icons-material';
-import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
-import {
-  Box,
-  Grid,
-  Divider,
-  Chip,
-  Paper,
-  Typography,
-  Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
+import { Box, Grid, Paper, Typography } from "@mui/material";
 
 export const ChatBot = () => {
   const [pregunta, setPregunta] = useState("");

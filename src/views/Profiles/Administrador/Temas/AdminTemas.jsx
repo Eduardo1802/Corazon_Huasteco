@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { app } from "../../../../config/firebase/firebase";
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
-import { db } from "../../../../config/firebase/firebaseDB";
-import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button } from "@mui/material";
+import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import SimpleBackdrop from "../../../../components/customs/SimpleBackDrop";
 import EditarTema from './EditarTema'
 

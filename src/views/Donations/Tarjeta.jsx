@@ -1,20 +1,9 @@
 import React, { useState } from "react";
-import Typography from "@mui/material/Typography";
-import { Container, Grid, Paper, TextField,IconButton, InputAdornment } from "@mui/material";
+import { Container, Grid, TextField,IconButton, InputAdornment, Typography, Stepper, Step, StepLabel, Button } from "@mui/material";
 import { usePassword, handleMouseDownPassword } from '../../context/UsePassword';
 import { useTheme } from "@mui/material/styles";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
 import { useAuth } from "../../context/AuthContext";
-import Button from "@mui/material/Button";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import PersonIcon from "@mui/icons-material/Person";
-import CreditCardIcon from "@mui/icons-material/CreditCard";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import TodayIcon from "@mui/icons-material/Today";
-import { Visibility, VisibilityOff } from '@mui/icons-material'
+import { Visibility, VisibilityOff, AccountCircle, AttachMoney, Person, CreditCard, CalendarMonth, Today } from '@mui/icons-material'
 
 const pasos = [
   "Se debe iniciar sesión para poder donar.",
@@ -62,7 +51,7 @@ export const Tarjeta = () => {
         type={"hidden"}
         sx={{ marginBottom: "15px", marginTop: "15px" }}
         InputProps={{
-          startAdornment: <AccountCircleIcon sx={{ marginRight: "5px" }} />,
+          startAdornment: <AccountCircle sx={{ marginRight: "5px" }} />,
         }}
       />
 
@@ -82,7 +71,7 @@ export const Tarjeta = () => {
             : ""
         }
         InputProps={{
-          startAdornment: <AttachMoneyIcon sx={{ marginRight: "5px" }} />,
+          startAdornment: <AttachMoney sx={{ marginRight: "5px" }} />,
         }}
       />
 
@@ -118,7 +107,7 @@ export const Tarjeta = () => {
             : ""
         }
         InputProps={{
-          startAdornment: <PersonIcon sx={{ marginRight: "5px" }} />,
+          startAdornment: <Person sx={{ marginRight: "5px" }} />,
         }}
       />
 
@@ -138,7 +127,7 @@ export const Tarjeta = () => {
             : ""
         }
         InputProps={{
-          startAdornment: <CreditCardIcon sx={{ marginRight: "5px" }} />,
+          startAdornment: <CreditCard sx={{ marginRight: "5px" }} />,
         }}
       />
 
@@ -163,7 +152,7 @@ export const Tarjeta = () => {
         InputProps={{
           min: 1,
           max: 12,
-          startAdornment: <CalendarMonthIcon sx={{ marginRight: "5px" }} />,
+          startAdornment: <CalendarMonth sx={{ marginRight: "5px" }} />,
         }}
       />
 
@@ -186,7 +175,7 @@ export const Tarjeta = () => {
             : ""
         }
         InputProps={{
-          startAdornment: <TodayIcon sx={{ marginRight: "5px" }} />,
+          startAdornment: <Today sx={{ marginRight: "5px" }} />,
         }}
       />
 

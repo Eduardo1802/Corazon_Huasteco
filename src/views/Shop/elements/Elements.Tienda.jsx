@@ -1,7 +1,5 @@
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
-import { forwardRef } from 'react';
-import { Slide } from '@mui/material';
 
 // DISEÑOS DEL BUSCADOR
 export const Search = styled('div')(({ theme }) => ({

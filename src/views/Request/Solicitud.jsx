@@ -1,7 +1,4 @@
 import React from 'react'
-
-
-
 // ELEMENTOS DE MATERIAL UI
 
 import Checkbox from '@mui/material/Checkbox';
@@ -17,7 +14,6 @@ import FileUploadIcon from '@mui/icons-material/FileUpload';
 
 // REACT ROUTER
 import { Link } from 'react-router-dom';
-import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
 import { Bread } from '../../components/customs/Bread';
 
 //TODO LO DE ANALYTICS DE FIREBASE

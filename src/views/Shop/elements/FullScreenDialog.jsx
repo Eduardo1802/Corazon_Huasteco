@@ -3,11 +3,9 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
-import Slide from "@mui/material/Slide";
 import { Link } from "react-router-dom";
-import { Box, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import { Box, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import { ChevronRightRounded} from '@mui/icons-material';
 
 export default function FullScreenDialog({

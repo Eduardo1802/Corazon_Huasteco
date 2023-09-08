@@ -1,21 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 // material components
-import {
-  Button,
-  Collapse,
-  Container,
-  Grid,
-  Paper,
-  Box,
-  Typography,
-  TextField,
-  MenuItem,
-  IconButton,
-  InputAdornment,
-  Checkbox,
-  FormControlLabel,
-} from "@mui/material";
+import { Button, Collapse, Container, Grid, Paper, Box, Typography, TextField, MenuItem, IconButton, InputAdornment, Checkbox, FormControlLabel } from "@mui/material";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 import LoginIcon from "@mui/icons-material/Login";
@@ -41,6 +27,7 @@ import SimpleBackdrop from "../../components/customs/SimpleBackDrop";
 import { sexos, tipos, secreta } from "./optionListRegistro";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import AlertDialog from "../../components/customs/AlertDialog";
 
 export const FormRegistro = () => {
   const [email, setEmail] = useState("");
@@ -466,7 +453,7 @@ export const FormRegistro = () => {
                     inputProps={{ "aria-label": "Aceptar términos y condiciones" }}
                   />
                 } 
-                label="Acepto los términos y condiciones" 
+                label={<AlertDialog/>}
               />
 
               {formik.touched.checkBoxValue && formik.errors.checkBoxValue ? (

@@ -1,7 +1,7 @@
 import React                     from 'react'
 import { Detector }              from 'react-detect-offline'
 import { Box, Grid, Typography } from '@mui/material';
-import noConection               from '../../assets/img/app/imgNoConnection.jpg'
+
 
 const CheckConnection = props => {
   return (
@@ -29,7 +29,7 @@ const CheckConnection = props => {
                                 </Grid>
                                 <Grid item md={6} sm={12} order={{md:2, sm:1, xs:1}}>
                                     <Box sx={{display: "flex", justifyContent: "center"}}>
-                                        <img src={noConection} width="75%" alt="Error" />
+                                        <img src="" width="75%" alt="Error" />
                                     </Box>
                                 </Grid>
                             </Grid>

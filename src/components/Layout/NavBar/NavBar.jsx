@@ -5,13 +5,11 @@ import LoginRoundedIcon                from "@mui/icons-material/LoginRounded";
 import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuIcon                        from "@mui/icons-material/Menu";
 import { doc, getDoc }                 from "firebase/firestore";
-import { AnimatedIcon, HideOnScroll, ElevationScroll } from "./componentsNavBar";
+import { AnimatedIcon, ElevationScroll } from "./componentsNavBar";
 import { navLinks }                    from "./opNavLinks";
 import SimpleBackdrop                  from "../../customs/SimpleBackDrop";
 import { db }                          from "../../../config/firebase/firebaseDB";
 import { useAuth }                     from "../../../context/AuthContext";
-import imgUser from "../../../assets/img/perfil/imgUser.jpg";
-import { ToggleTheme } from "../../customs/ToggleTheme";
 // import './Navbar.css'
 // import './logica'
 import { Elder } from "./logica";
@@ -141,7 +139,6 @@ export const NavBar = (props) => {
       <Divider />
       <List>
         <ListItem >
-            {/* <ToggleTheme isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/> */}
             <ToggleThemeSticky isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/>
         </ListItem>
       </List>
@@ -179,7 +176,6 @@ export const NavBar = (props) => {
               </Typography>            
             </Tooltip>
             </Box>
-            {/* <ToggleTheme isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/> */}
             <ToggleThemeSticky isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/>
           </Toolbar>
 

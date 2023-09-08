@@ -3,7 +3,6 @@ import React from 'react'
 import {Box, Grid, Paper} from '@mui/material';
 // aditional components
 import { Bread }              from '../../components/customs/Bread';
-import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
 import { ImgRegistro }        from './ImgRegistro';
 import { FormRegistro }       from './FormRegistro';
 import { HomeRounded, HowToRegRounded } from '@mui/icons-material';
