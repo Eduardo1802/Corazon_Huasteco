@@ -1,5 +1,6 @@
-import React                                from 'react'
-import { Box, CardMedia, Container, Grid, MenuItem, TextField, Typography, useTheme }  from '@mui/material';
+import React, { forwardRef }                                from 'react'
+import { Box, CardMedia, Container, Grid, MenuItem, Snackbar, TextField, Typography, useTheme }  from '@mui/material';
+import MuiAlert from '@mui/material/Alert';
 import { LinkStyled }                       from './footer.elements'
 import imgLogo1                             from "../../../assets/img/app/imgLogoHuejutlaLight.png"
 import UseAnimations                        from 'react-useanimations';
@@ -8,29 +9,70 @@ import youtube                              from "react-useanimations/lib/youtub
 import instagram                            from "react-useanimations/lib/instagram";
 import { Link }                             from 'react-router-dom';
 
+function Copyright() {
+    return (
+      <>
+        <Box sx={{display: "flex", justifyContent: "center"}}>
+  
+          <Link color="primary.light" to="/home">
+          {'© '}
+            Corazón Huasteco {" "}
+          {new Date().getFullYear()}
+          </Link>{' '}
+        </Box>
+      </>
+    );
+  }
+  
+  const LANGUAGES = [
+    {
+      code: 'es-ES',
+      name: 'Español',
+    },
+    {
+      code: 'en-US',
+      name: 'English',
+    },
+    
+  ];
+  
+  const Alert = forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
 export const Footer = () => {
 
-    const theme = useTheme();
+  const theme = useTheme();
 
-    const LANGUAGES = [
-        {
-          code: 'en-US',
-          name: 'English',
-        },
-        {
-          code: 'es-ES',
-          name: 'Español',
-        },
-      ];
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   return (
     <Box bgcolor="primary.main" pt={4}>
+        {/* ALERTA */}
+        <Snackbar open={open} autoHideDuration={5000} onClose={handleClose} anchorOrigin={{ vertical: "top", horizontal: "center"}}>
+            <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }}>
+                Oops, esta opción no está disponible todavía
+            </Alert>
+        </Snackbar>
+
         <Container>
             <Grid container spacing={2} pb={3}>
                 {/* REDES */}
                 <Grid item xs={12} sm={4} md={3} order={{xs: 6, sm: 1, md: 1}} container alignItems="center">
                     <Grid container direction="column" justifyContent="center" spacing={2}>
-                        <Grid item container direction="row" justifyContent={{xs: "center", sm: "flex-start", md: "flex-start"}} wrap='no-wrap'>
+                        <Grid item container direction="row" justifyContent={{xs: "center", sm: "flex-start", md: "flex-start"}} wrap='nowrap'>
                             <Link to='https://es-la.facebook.com/' target='_BLANK' >
                                 <UseAnimations
                                     animation={facebook}
@@ -95,26 +137,34 @@ export const Footer = () => {
                         Idioma
                     </Typography>
                     <TextField
-                        select
-                        size='medium'
-                        variant='standard'
-                        SelectProps={{
-                            native: false,
-                        }}
-                        sx={{
-                            width: 150,
-                            '& .MuiInputBase-root': {
-                                color: 'background.paper', // Cambia el color del texto del TextField
-                                bgcolor: 'primary.light', // Cambia el color de fondo del TextField
-                            },
-                        }}
-                    >
-                        {LANGUAGES.map((language) => (
-                            <MenuItem value={language.code} key={language.code}>
-                                {language.name}
-                            </MenuItem>
-                        ))}
-                    </TextField>
+              onChange={handleClick}
+              select
+              size="medium"
+              variant="standard"
+              SelectProps={{
+                native: true,
+              }}
+              sx={{ 
+                mt: 1, width: 150,
+                '& .MuiInputBase-root': {
+                  color: 'primary.main', // Cambia el color del texto del TextField
+                  bgcolor: 'background.paper', // Cambia el color de fondo del TextField
+                },
+                '& .MuiSelect-root': {
+                  bgcolor: 'secondary.light', // Cambia el color de fondo del menú desplegable
+                },
+                '& .MuiMenuItem-root': {
+                  backgroundColor: 'red', // Cambia el color de fondo de las opciones
+                  color: 'yellow', // Cambia el color del texto de las opciones
+                },
+               }}
+            >
+              {LANGUAGES.map((language) => (
+                <option value={language.code} key={language.code}>
+                  {language.name}
+                </option>
+              ))}
+            </TextField>
                 </Grid>
                 {/* LOGO */}
                 <Grid item xs={12} sm={12} md={3} order={{xs: 5, sm: 6, md: 6}} container direction="row" justifyContent={{xs:"center", sm: "flex-end", md:"flex-start"}}>
