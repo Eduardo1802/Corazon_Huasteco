@@ -67,10 +67,14 @@
 // THIS CODE USE THE LOCAL COLOR DATA FROM THE PROJECT, WITHOUT USE FIREBASE
 import React, { useEffect, useState } from "react";
 import { Router } from "./routes/Router";
-import {Box, ThemeProvider} from '@mui/material';
-import {lightTheme, darkTheme} from './styles/ThemeMui';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import { Box, ThemeProvider } from "@mui/material";
+import { lightTheme, darkTheme } from "./styles/ThemeMui";
+import AOS from "aos";
+import ReactGA from "react-ga"; // Importa ReactGA
+
+import "aos/dist/aos.css";
+const TRACKING_ID = "G-KB213CSN3E";
+ReactGA.initialize(TRACKING_ID);
 
 function App() {
   const [isDarkMode, setIsDarkmode] = useState(false);
@@ -85,9 +89,15 @@ function App() {
     AOS.init();
     AOS.refresh();
 
+    // Realiza un seguimiento de una vista de página cuando el componente se monta
+    ReactGA.pageview(window.location.pathname + window.location.search);
+
     // Actualiza el valor de la etiqueta "theme-color" utilizando el valor del color correspondiente al modo claro/oscuro
     const metaThemeColor = document.querySelector("meta[name=theme-color]");
-    metaThemeColor.setAttribute("content", isDarkMode ? darkTheme.palette.primary.main : lightTheme.palette.primary.main);
+    metaThemeColor.setAttribute(
+      "content",
+      isDarkMode ? darkTheme.palette.primary.main : lightTheme.palette.primary.main
+    );
   }, [isDarkMode, theme]);
 
   return (
@@ -100,5 +110,6 @@ function App() {
 }
 
 export default App;
+
 
 // END OF THE LOCAL DATA

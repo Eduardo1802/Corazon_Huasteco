@@ -126,7 +126,7 @@ export const useFormikConfig = ({ setError, open, setOpen }) => {
       ocupation: Yup.string().required("La ocupacion es obligatoria"),
 
       zipCode: Yup.string()
-        .required("El codigo postal es obligatorio")
+        .required("El z postal es obligatorio")
         .length(5, "El código postal debe tener 5 dígitos")
         .matches(/^\d+$/, "El código postal debe ser un número"),
 
