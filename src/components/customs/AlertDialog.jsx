@@ -1,11 +1,5 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import { Link, Typography } from '@mui/material';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Link, Typography } from '@mui/material';
 import {Link as LinkRouter} from 'react-router-dom'
 import { TextPrivacy } from '../../views/NoticePrivacy/TextPrivacy';
 
@@ -21,8 +15,7 @@ export default function AlertDialog() {
   };
 
   return (
-    <div>
-      
+    <Box>
       <Typography>
         Acepto los {" "} <Link onClick={handleClickOpen}>términos y condiciones</Link>
       </Typography>
@@ -31,10 +24,10 @@ export default function AlertDialog() {
         disableScrollLock
         open={open}
         onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
+        aria-labelledby="aviso de privacidad"
+        aria-describedby="aviso de privacidad"
       >
-        <DialogTitle id="alert-dialog-title" align='center'>
+        <DialogTitle id="aviso de privacidad" align='center'>
           {"Aviso de privacidad"}
         </DialogTitle>
         <DialogContent>
@@ -43,12 +36,12 @@ export default function AlertDialog() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} component={LinkRouter} to="/aviso-de-privacidad">Ver</Button>
-          <Button onClick={handleClose} autoFocus>
+          <Button onClick={handleClose} component={LinkRouter} to="/aviso-de-privacidad" aria-label='Aviso de privacidad'>Ver</Button>
+          <Button onClick={handleClose} autoFocus aria-label='Cerrar'>
             Cerrar
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </Box>
   );
 }

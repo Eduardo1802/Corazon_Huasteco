@@ -83,19 +83,19 @@ export const EditProfile = (props) => {
   };
 
   return (
-    <div>
-        <Button variant="contained" startIcon={<EditIcon/>} onClick={handleClickOpen}>Editar Perfil</Button>
+    <Box>
+        <Button variant="contained" startIcon={<EditIcon/>} onClick={handleClickOpen} aria-label='editar perfil'>Editar Perfil</Button>
         <Dialog
             disableScrollLock
             open={openDialog}
             onClose={handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
+            aria-labelledby="Editar perfil"
+            aria-describedby="Editar foto de perfil"
         >
             <DialogTitle id="alert-dialog-title">
                 Editar Perfil
                 <IconButton
-                    aria-label="close"
+                    aria-label="cerrar"
                     onClick={handleClose}
                     sx={{
                     position: 'absolute',
@@ -109,7 +109,7 @@ export const EditProfile = (props) => {
             <DialogContent dividers sx={{ width: {md: 600, sm: 500, xs: 250}}}>
                 <DialogContentText id="alert-dialog-description">
                     Foto de perfil 
-                    <Button variant='text' component="label" sx={{position: "absolute", right: 8}}>
+                    <Button variant='text' component="label" sx={{position: "absolute", right: 8}} aria-label='abrir explorador de archivos'>
                         Editar
                         <input type="file" accept="image/*" hidden onChange={handleImageChange} />
                     </Button>
@@ -129,7 +129,7 @@ export const EditProfile = (props) => {
             
             {/* Input para seleccionar la nueva imagen */}
             <DialogActions>
-                <Button onClick={handleImageUpload} fullWidth variant="contained">
+                <Button onClick={handleImageUpload} fullWidth variant="contained" aria-label='guardar imagen'>
                     Guardar
                 </Button>
             </DialogActions>
@@ -138,6 +138,6 @@ export const EditProfile = (props) => {
 
         {/* Snackbar para mostrar mensajes */}
         <CustomSnackbar open={snackbarOpen} onClose={handleSnackbarClose} message={snackbarMessage} severity={snackbarSeverity} />
-    </div>
+    </Box>
   )
 }

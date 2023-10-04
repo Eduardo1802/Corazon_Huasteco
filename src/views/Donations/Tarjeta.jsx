@@ -199,9 +199,9 @@ export const Tarjeta = () => {
           endAdornment: (
           <InputAdornment position="end">
               <IconButton
-              aria-label="toggle password visibility"
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
               >
               {showPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>
@@ -210,6 +210,7 @@ export const Tarjeta = () => {
       }}
       />
       <Button
+        aria-label="realizar donación"
         fullWidth
         variant="contained"
         onClick={handleSubmit}

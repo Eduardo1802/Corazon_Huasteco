@@ -139,6 +139,7 @@ export const FormRegistro = () => {
 
         {error && <BasicAlerts message={error} />}
         <Snackbar
+          aria-label={error}
           open={snackbarOpen}
           autoHideDuration={4000}
           onClose={() => setSnackbarOpen(false)}
@@ -226,7 +227,7 @@ export const FormRegistro = () => {
                 autoComplete="off"
               >
                 {sexos.map((sexo) => (
-                  <MenuItem key={sexo.value} value={sexo.value}>
+                  <MenuItem key={sexo.value} value={sexo.value} aria-label={sexo.value}>
                     {sexo.label}
                   </MenuItem>
                 ))}
@@ -252,7 +253,7 @@ export const FormRegistro = () => {
                 autoComplete="off"
               >
                 {tipos.map((tipo) => (
-                  <MenuItem key={tipo.value} value={tipo.value}>
+                  <MenuItem key={tipo.value} value={tipo.value} aria-label={tipo.label}>
                     {tipo.label}
                   </MenuItem>
                 ))}
@@ -322,6 +323,7 @@ export const FormRegistro = () => {
             <Grid item xs={12} md={3}>
               <Box sx={{height: "100%", display: "flex", alignItems: "center"}}>  
                 <Button
+                  aria-label={estado ? "Editar" : "Validar"}
                   type="submit"
                   fullWidth
                   variant="contained"
@@ -357,7 +359,7 @@ export const FormRegistro = () => {
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
-                        aria-label="toggle password visibility"
+                        aria-label="mostrar u ocultar contraseña"
                         onClick={handleClickShowPassword}
                         onMouseDown={handleMouseDownPassword}
                       >
@@ -384,7 +386,7 @@ export const FormRegistro = () => {
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
-                        aria-label="toggle password visibility"
+                        aria-label="mostrar u ocultar contraseña"
                         onClick={handleClickShowPassword}
                         onMouseDown={handleMouseDownPassword}
                       >
@@ -410,7 +412,7 @@ export const FormRegistro = () => {
                 autoComplete="off"
               >
                 {secreta.map((secreta) => (
-                  <MenuItem key={secreta.value} value={secreta.value}>
+                  <MenuItem key={secreta.value} value={secreta.value} aria-label={secreta.value}>
                     {secreta.label}
                   </MenuItem>
                 ))}
@@ -432,7 +434,7 @@ export const FormRegistro = () => {
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
-                        aria-label="toggle password visibility"
+                        aria-label="mostrar u ocultar contraseña"
                         onClick={handleClickShowPassword}
                         onMouseDown={handleMouseDownPassword}
                       >
@@ -464,6 +466,7 @@ export const FormRegistro = () => {
               <Grid container spacing={1}>
                 <Grid item xs={12} md={6}>
                   <Button
+                    aria-label="registrar"
                     type="submit"
                     fullWidth
                     variant="contained"
@@ -474,6 +477,7 @@ export const FormRegistro = () => {
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <Button
+                    aria-label="limpiar formulario"
                     type="button"
                     fullWidth
                     variant="outlined"

@@ -380,8 +380,8 @@ const Carrito = () => {
         disableScrollLock
         open={open}
         onClose={handleCancelar}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
+        aria-labelledby="Carrito de compras"
+        aria-describedby="Carrito de compras"
       >
         <DialogTitle id="alert-dialog-title">Carrito de compras</DialogTitle>
         {productosData ? (
@@ -420,7 +420,7 @@ const Carrito = () => {
                           <TableCell>{productosData[id].costo || 0}</TableCell>
                           <TableCell>{(item * productosData[id].costo).toFixed(2)}</TableCell>
                           <TableCell>
-                            <select value={item} onChange={(e) => editarCantidad(id, e.target.value)}>
+                            <select aria-label='ingresar cantidad' value={item} onChange={(e) => editarCantidad(id, e.target.value)}>
                               {[1, 2, 3, 4, 5].map((cantidad) => (
                                 <option key={cantidad} value={cantidad}>
                                   {cantidad}
@@ -429,7 +429,7 @@ const Carrito = () => {
                             </select>
                           </TableCell>
                           <TableCell>
-                            <IconButton onClick={() => handleEliminar(id)}>
+                            <IconButton aria-label='eliminar' onClick={() => handleEliminar(id)}>
                               {/* Utiliza el componente Delete en lugar de DeleteIcon */}
                               <Delete />
                             </IconButton>
@@ -568,7 +568,7 @@ const Carrito = () => {
                       endAdornment: (
                         <InputAdornment position="end">
                           <IconButton
-                            aria-label="toggle password visibility"
+                            aria-label="mostrar u ocultar"
                             onClick={handleToggleShowPassword}
                           >
                             {showPassword ? <Visibility /> : <VisibilityOff />}
@@ -689,11 +689,11 @@ const Carrito = () => {
           {/* Mostrar botones de acuerdo a la etapa actual */}
           {etapa === 0 && (
             <>
-              <Button variant="outlined" onClick={handleCancelar}>
+              <Button aria-label='cancelar' variant="outlined" onClick={handleCancelar}>
                 Cancelar
               </Button>
               {sumaNumeros > 0 && (
-                <Button variant="contained" onClick={() => setEtapa(etapa + 1)}>
+                <Button aria-label='siguiente' variant="contained" onClick={() => setEtapa(etapa + 1)}>
                   Siguiente
                 </Button>
               )}
@@ -701,39 +701,39 @@ const Carrito = () => {
           )}
           {etapa === 1 && (
             <>
-              <Button variant="outlined" onClick={handleCancelar}>
+              <Button aria-label='cancelar' variant="outlined" onClick={handleCancelar}>
                 Cancelar
               </Button>
-              <Button variant="outlined" onClick={() => setEtapa(etapa - 1)}>
+              <Button aria-label='anterior' variant="outlined" onClick={() => setEtapa(etapa - 1)}>
                 Anterior
               </Button>
-              <Button variant="contained" onClick={() => registrarTarjeta()}>
+              <Button aria-label='siguiente' variant="contained" onClick={() => registrarTarjeta()}>
                 Siguiente
               </Button>
             </>
           )}
           {etapa === 2 && (
             <>
-              <Button variant="outlined" onClick={handleCancelar}>
+              <Button aria-label='cancelar' variant="outlined" onClick={handleCancelar}>
                 Cancelar
               </Button>
-              <Button variant="outlined" onClick={() => setEtapa(etapa - 1)}>
+              <Button aria-label='anterior' variant="outlined" onClick={() => setEtapa(etapa - 1)}>
                 Anterior
               </Button>
-              <Button variant="contained" onClick={() => registrarDireccion()}>
+              <Button aria-label='siguiente' variant="contained" onClick={() => registrarDireccion()}>
                 Siguiente
               </Button>
             </>
           )}
           {etapa === 3 && (
             <>
-              <Button variant="outlined" onClick={handleCancelar}>
+              <Button aria-label='cancelar' variant="outlined" onClick={handleCancelar}>
                 Cancelar
               </Button>
-              <Button variant="outlined" onClick={() => setEtapa(etapa - 1)}>
+              <Button aria-label='anterior' variant="outlined" onClick={() => setEtapa(etapa - 1)}>
                 Anterior
               </Button>
-              <Button variant="contained" onClick={handleFinalizarCompra}>
+              <Button aria-label='finalizar compra' variant="contained" onClick={handleFinalizarCompra}>
                 Finalizar Compra
               </Button>
             </>

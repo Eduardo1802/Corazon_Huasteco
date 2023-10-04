@@ -181,6 +181,7 @@ export const RestorePassword = () => {
 
             {/* Contenido */}
             <Snackbar
+                aria-label={error}
                 open={snackbarOpen}
                 autoHideDuration={4000}
                 onClose={() => setSnackbarOpen(false)}
@@ -224,7 +225,9 @@ export const RestorePassword = () => {
                                             onChange={handleChange}
                                             autoComplete="off"
                                         />
-                                        <Button sx={{ mt: 1 }} fullWidth variant="contained" onClick={handleResetPassword}>
+                                        <Button 
+                                        aria-label='Enviar correo de restauración'
+                                        sx={{ mt: 1 }} fullWidth variant="contained" onClick={handleResetPassword}>
                                             Enviar
                                         </Button>
                                     </Collapse>
@@ -241,7 +244,7 @@ export const RestorePassword = () => {
                                                 onChange={(e) => setTextFieldValue(e.target.value)}
                                                 autoComplete="off"
                                             />
-                                            <Button sx={{ mt: 1 }} type='submit' fullWidth variant="contained" onClick={handleButtonClick}>
+                                            <Button aria-label='validar correo' sx={{ mt: 1 }} type='submit' fullWidth variant="contained" onClick={handleButtonClick}>
                                                 Validar
                                             </Button>
                                         </Collapse>
@@ -286,7 +289,7 @@ export const RestorePassword = () => {
                                                     endAdornment: (
                                                         <InputAdornment position="end">
                                                             <IconButton
-                                                                aria-label="toggle password visibility"
+                                                                aria-label="mostrar u ocultar"
                                                                 onClick={handleClickShowPassword}
                                                                 onMouseDown={handleMouseDownPassword}
                                                             >
@@ -297,7 +300,7 @@ export const RestorePassword = () => {
                                                 }}
                                             />
 
-                                            <Button type='button' variant="contained" fullWidth onClick={validarPregunta}>
+                                            <Button aria-label='validar pregunta' type='button' variant="contained" fullWidth onClick={validarPregunta}>
                                                 Validar
                                             </Button>
 
@@ -340,7 +343,7 @@ export const RestorePassword = () => {
                                                         endAdornment: (
                                                             <InputAdornment position="end">
                                                                 <IconButton
-                                                                    aria-label="toggle password visibility"
+                                                                    aria-label="mostrar u ocultar contraseña"
                                                                     onClick={handleClickShowPassword}
                                                                     onMouseDown={handleMouseDownPassword}
                                                                 >
@@ -366,7 +369,7 @@ export const RestorePassword = () => {
                                                         endAdornment: (
                                                             <InputAdornment position="end">
                                                                 <IconButton
-                                                                    aria-label="toggle password visibility"
+                                                                    aria-label="mostrar u ocultar"
                                                                     onClick={handleClickShowPassword}
                                                                     onMouseDown={handleMouseDownPassword}
                                                                 >
@@ -379,7 +382,7 @@ export const RestorePassword = () => {
                                             </Box>
 
                                             <Grid  >
-                                                <Button type='button' fullWidth variant="contained" onClick={handleUpdate}>
+                                                <Button aria-label='validar nueva contraseña' type='button' fullWidth variant="contained" onClick={handleUpdate}>
                                                     Validar
                                                 </Button>
                                             </Grid>
@@ -393,7 +396,7 @@ export const RestorePassword = () => {
                                         <Divider>o</Divider>
                                     </Collapse>
 
-                                    <Button variant="contained" fullWidth onClick={cambiarEstado}>
+                                    <Button aria-label={estado ? 'pregunta secreta':'correo'} variant="contained" fullWidth onClick={cambiarEstado}>
                                         {estado ? "Pregunta secreta" : "Correo"}
                                     </Button>
 

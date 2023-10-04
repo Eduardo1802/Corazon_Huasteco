@@ -209,7 +209,7 @@ export const NavBar = (props) => {
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
-                aria-label="account of current user"
+                aria-label="menu"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleDrawerToggle}
@@ -251,6 +251,7 @@ export const NavBar = (props) => {
             >
               {navLinks.map((item) => (
                 <Button
+                  aria-label={`ir a ${item.title}`}
                   startIcon={item.path === location.pathname ? item.iconSelected : item.icon }
                   key={item.title}
                   onClick={handleCloseNavMenu}
@@ -283,7 +284,7 @@ export const NavBar = (props) => {
               {user ? (
                 <>
                   <Tooltip title="Opciones del perfil" arrow>
-                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} aria-label="opciones del perfil">
                       <Avatar
                         alt="User"
                         src={profileImageUrl}
@@ -336,6 +337,7 @@ export const NavBar = (props) => {
                 <>
                   <Box>
                     <Button
+                      aria-label="inicio de sesión"
                       component={Link}
                       to="/acceso"
                       endIcon={<LoginRoundedIcon />}
@@ -354,6 +356,7 @@ export const NavBar = (props) => {
                     </Button>
                     <Tooltip title="Inicio de sesión" arrow>
                       <IconButton
+                        aria-label="inicio de sesión"
                         component={Link}
                         to="/acceso"
                         sx={{

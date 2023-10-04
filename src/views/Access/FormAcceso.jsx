@@ -50,6 +50,7 @@ export const FormAcceso = () => {
             {/* mensajes */}
             <SimpleBackdrop open={open}/>{/*alerta y loading*/}
             <Snackbar
+                aria-label={error}
                 open={snackbarOpen}
                 autoHideDuration={4000}
                 onClose={() => setSnackbarOpen(false)}
@@ -62,7 +63,7 @@ export const FormAcceso = () => {
             
             <Grid container spacing={1}>
                 <Grid item xs >
-                    <Button  type='button' fullWidth variant="outlined" onClick={handleGoogleSignin} startIcon={<img height="25rem" alt='googleIcon' src={GoogleIcon}/>}
+                    <Button  type='button' fullWidth variant="outlined" aria-label='iniciar sesión con google' onClick={handleGoogleSignin} startIcon={<img height="25rem" alt='googleIcon' src={GoogleIcon}/>}
                         sx={{backgroundColor: "#efeaed",textTransform: "none",borderRadius: "20rem",'&:hover': { backgroundColor: "#eae8e9"}}} 
                     >
                         Iniciar sesión con Google
@@ -104,9 +105,9 @@ export const FormAcceso = () => {
                         endAdornment: (
                         <InputAdornment position="end">
                             <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={handleClickShowPassword}
-                            onMouseDown={handleMouseDownPassword}
+                                aria-label="mostrar u ocultar contraseña"
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
                             >
                             {showPassword ? <Visibility /> : <VisibilityOff />}
                             </IconButton>
@@ -118,12 +119,12 @@ export const FormAcceso = () => {
                 {/* BOTONES */}
                 <Grid container spacing={1}>
                     <Grid item xs={12} md={6} >
-                        <Button type='submit' fullWidth variant="contained" endIcon={<LoginIcon/>}>
+                        <Button type='submit' fullWidth variant="contained" aria-label='entrar' endIcon={<LoginIcon/>}>
                         Entrar
                         </Button>
                     </Grid>
                     <Grid item xs={12} md={6} >
-                        <Button type='button' fullWidth variant="outlined" onClick={formik.handleReset} endIcon={<DeleteIcon/>}>
+                        <Button type='button' fullWidth variant="outlined" aria-label='limpiar formulario' onClick={formik.handleReset} endIcon={<DeleteIcon/>}>
                         Limpiar 
                         </Button>
                     </Grid>

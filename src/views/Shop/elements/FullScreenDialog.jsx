@@ -36,6 +36,7 @@ export default function FullScreenDialog({
             </DialogTitle>
             
             <IconButton
+              aria-labelledby="close"
               edge="start"
               color="inherit"
               onClick={handleClose}
@@ -57,6 +58,7 @@ export default function FullScreenDialog({
         </DialogContent>
         <DialogActions /* sx={{bgcolor: "background.default"}} */>
           <Button variant="contained" /* onClick={handleClose} */
+            aria-label="ver"
             component={Link}
             to={project.id}
             sx={{

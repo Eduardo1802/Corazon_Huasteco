@@ -93,12 +93,12 @@ const Slideshow = ({
 			</ContenedorSlideshow>
 			{controles && <Controles>
 				<Tooltip title="Imagen anterior" arrow placement='right'>
-					<Boton onClick={anterior}>
+					<Boton onClick={anterior} aria-label='ver imagen anterior'>
 						<KeyboardArrowLeftIcon fontSize='large'/>
 					</Boton>
 				</Tooltip>
 				<Tooltip title="Imagen siguiente" arrow placement='left'>
-					<Boton derecho={"true"} onClick={siguiente}>
+					<Boton derecho={"true"} onClick={siguiente} aria-label='ver imagen siguiente'>
 						<KeyboardArrowRightIcon fontSize='large'/>
 					</Boton>
 				</Tooltip>
