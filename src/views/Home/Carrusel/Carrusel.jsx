@@ -19,6 +19,7 @@ export const Carrusel = () => {
                 </Link>                
                 <TextoSlide>
                     <p>Catedral de Huejutla</p>
+                    <p><i>Imagen por Ceci Mandujano</i></p>
                 </TextoSlide>
             </Slide>
 
@@ -28,6 +29,7 @@ export const Carrusel = () => {
                 </Link>
                 <TextoSlide>
                     <p>Huejutla Centro</p>
+                    <p><i>Imagen por Karina Flores</i></p>
                 </TextoSlide>
             </Slide>
 
@@ -37,6 +39,7 @@ export const Carrusel = () => {
                 </Link>
                 <TextoSlide>
                     <p>Mural Emblematico</p>
+                    <p><i>Imagen por Salomón Hernández</i></p>
                 </TextoSlide>
             </Slide>
 

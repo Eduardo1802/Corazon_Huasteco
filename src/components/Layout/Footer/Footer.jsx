@@ -26,12 +26,14 @@ function Copyright() {
   
   const LANGUAGES = [
     {
+      id: 1,
       code: 'es-ES',
       name: 'Español',
     },
     {
+      id: 2,
       code: 'en-US',
-      name: 'English',
+      name: 'Inglés',
     },
     
   ];

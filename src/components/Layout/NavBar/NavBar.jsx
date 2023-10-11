@@ -5,14 +5,14 @@ import LoginRoundedIcon                from "@mui/icons-material/LoginRounded";
 import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuIcon                        from "@mui/icons-material/Menu";
 import { doc, getDoc }                 from "firebase/firestore";
-import { AnimatedIcon, ElevationScroll } from "./componentsNavBar";
+import { AnimatedIcon, ElevationScroll, } from "./componentsNavBar";
 import { navLinks }                    from "./opNavLinks";
 import SimpleBackdrop                  from "../../customs/SimpleBackDrop";
 import { db }                          from "../../../config/firebase/firebaseDB";
 import { useAuth }                     from "../../../context/AuthContext";
 // import './Navbar.css'
 // import './logica'
-import { Elder } from "./logica";
+// import { Elder } from "./logica";
 import { useTheme } from "@emotion/react";
 import { ToggleThemeSticky } from "../../customs/ToggleThemeSticky";
 
@@ -22,10 +22,10 @@ const drawerWidth = 240;
 export const NavBar = (props) => {
   const {isDarkMode} = props;
   const theme = useTheme();
-  Elder(theme.palette.primary.main);
+  // Elder(theme.palette.primary.main);
   const location = useLocation();
   const isHome = location.pathname === "/inicio";
-  const navBackgroundStyle = isHome ? { backgroundColor: `${theme.palette.primary.dark.concat(isDarkMode === 'dark' ? "4D" : "00")}` } : { backgroundColor: `${theme.palette.primary.main}FF` };
+  // const navBackgroundStyle = isHome ? { backgroundColor: `${theme.palette.primary.dark.concat(isDarkMode === 'dark' ? "4D" : "00")}` } : { backgroundColor: `${theme.palette.primary.main}FF` };
 
   const {handleThemeChange} = props;
   const { logout, user, profileImageUrl } = useAuth();
@@ -119,10 +119,14 @@ export const NavBar = (props) => {
               <ListItemButton
                 sx={{ 
                   textAlign: "left",  "&:hover": { color: "primary.main" },
-                  
+                  mx:1,
                   '&.active': { // Estilos para enlaces activos
-                    color: 'primary.main',
+                    background: `${theme.palette.primary.light}56`,
+                    border: `1px solid ${theme.palette.primary.light}`,
+                    borderRadius: 30,
+                    mx: 1
                   },
+                  
                 }}
                 component={NavLink}
                 to={item.path}
@@ -151,7 +155,7 @@ export const NavBar = (props) => {
   return (
     <>
       <ElevationScroll {...props}>
-        <AppBar sx={navBackgroundStyle} enableColorOnDark id="header-principal" >
+        <AppBar /*sx={navBackgroundStyle} enableColorOnDark id="header-principal"*/ >
           <SimpleBackdrop open={open}/>
           {/* Primer tool */}
           {/* desktop*/}
@@ -258,19 +262,21 @@ export const NavBar = (props) => {
                   sx={{
                     // my: 2,
                     mr: 1,
+                    // p:1,
                     fontSize: 16,
                     color: "inherit",                    
                     display: "flex",
                     textTransform: "capitalize",
-                    "&:hover": { color: "background.default" },
+                    "&:hover": { color: isDarkMode ? 'primary.light' : 'background.default' },
                     '&.active': { // Estilos para enlaces activos
-                      color: 'background.default',
+                      color: isDarkMode ? 'primary.light' : 'background.default',
                     },
                     '&:hover svg':{
                       transform: "scale(1.2) rotate(10deg)",  
                       transition: "all 0.2s"
                     },
                   }}
+                  variant="text"
                   component={NavLink}
                   to={item.path}
                 >

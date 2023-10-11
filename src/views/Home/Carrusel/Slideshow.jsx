@@ -154,6 +154,11 @@ const ContenedorPrincipal = styled('div')({
 	fontSize: "1.5rem",
     position: "absolute",
     bottom: 0,
+	pointerEvents: "none",
+
+	display: "flex",
+	justifyContent: "space-between",
+
     "@media screen and (max-width: 899px)": {
     //   position: "relative",
     //   background: "#000",
@@ -161,8 +166,29 @@ const ContenedorPrincipal = styled('div')({
 	  lineHeight: "2rem",
 	  '& > p': {
 		  margin: 0,
+	  },
+	  justifyContent: "center",
+
+	  '& > p:nth-of-type(2)': {
+		  display: "none",
 	  }
     },
+
+	"@media screen and (max-width: 599px)": {
+		bottom: "calc(50% - 30px)",
+		fontSize: "1.5rem",
+
+		// wrapper total de la imagen abajo, contenedor adaptado en linea arriba
+
+		// lineHeight: "63vh",
+		// fontSize: "1.5rem",
+	},
+
+	"@media screen and (max-width: 280px)": {
+		fontSize: "1rem",
+	},
+	
+
   }));
 
   const Controles = styled("div")({

@@ -53,7 +53,7 @@ export default function MediaControlCard({proyecto, handleClickOpen}) {
   
 
   return (
-    <Card sx={{ transition: "0.2s", "&:hover": {transform: "scale(1.03)"}, display: 'flex', flexDirection: {xs: "column", sm: "row", md: "row"}, minHeight: {xs: 100, sm: 150, md:200, lg:250, xl:"100%"}, borderRadius: 2, border: `1px dashed ${theme.palette.primary.light}` }}>
+    <Card elevation={5} sx={{ transition: "0.2s", "&:hover": {transform: "scale(1.03)"}, display: 'flex', flexDirection: {xs: "column", sm: "row", md: "row"}, minHeight: {xs: 100, sm: 150, md:200, lg:250, xl:"100%"}, borderRadius: 2 }}>
       <CardMedia
         onClick={() => handleClickOpen(proyecto)}
         component="img"

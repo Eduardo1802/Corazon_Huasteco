@@ -13,11 +13,11 @@ export const ToggleThemeSticky = ({isDarkMode, handleThemeChange}) => {
 
     .toggle--checkbox:checked + .toggle--label {
       cursor: pointer;
-      background: #000000;
-      border-color: #000000;
+      background: ${theme.palette.primary.dark};
       /** Change the cloud to stars **/
       /** Change the sun into the moon **/
       /** Show the dimples on the moon **/
+      border: 1.9px solid ${theme.palette.primary.light};
     }
     .toggle--checkbox:checked + .toggle--label .toggle--label-background {
       cursor: pointer;
