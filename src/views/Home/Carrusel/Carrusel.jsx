@@ -29,7 +29,7 @@ export const Carrusel = () => {
                 </Link>
                 <TextoSlide>
                     <p>Huejutla Centro</p>
-                    <p><i>Imagen por Karina Flores</i></p>
+                    <p><i>Imagen por Nadhiezda Cruz</i></p>
                 </TextoSlide>
             </Slide>
 
