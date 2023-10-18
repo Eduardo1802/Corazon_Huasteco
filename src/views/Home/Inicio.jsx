@@ -39,7 +39,7 @@ export const Inicio = () => {
               </Grid>
               <Grid item xs={12} lg={8}>
                 <Typography variant="subtitle1" component="p" color="text.secondary">
-                  Hace milenios, los tenec o huaxtecos fundaron "Tantocoy," un lugar de sauces. Más tarde, los toltecas lo rebautizaron como "Huexotlan," que significa lo mismo. En 1522, la expedición de Francisco de Garay trajo cambios a la región, sometida por Hernán Cortés, quien en diciembre conquistó Huexotlan, llamándolo desde entonces Huejutla. Este es solo un vistazo a la historia. Haz clic para descubrir más sobre la fascinante herencia cultural de esta tierra ancestral.
+                  Hace milenios, los tenec o huaxtecos fundaron "Tantocoy", un lugar de sauces. Más tarde, los toltecas lo rebautizaron como "Huexotlan," que significa lo mismo. En 1522, la expedición de Francisco de Garay trajo cambios a la región, sometida por Hernán Cortés, quien en diciembre conquistó Huexotlan, llamándolo desde entonces Huejutla. Este es solo un vistazo a la historia. Haz clic para descubrir más sobre la fascinante herencia cultural de esta tierra ancestral.
                 </Typography>
               </Grid>
             </Grid>
