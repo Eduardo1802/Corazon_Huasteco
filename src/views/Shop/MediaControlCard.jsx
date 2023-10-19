@@ -72,11 +72,11 @@ export default function MediaControlCard({proyecto, handleClickOpen}) {
         </CardContent>
         <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
           <CardActions>
-              <Button aria-label='ver' variant='contained' size='small' endIcon={<ChevronRightRounded/>} component={Link} to={proyecto.id}>
+              <Button aria-label='ir a la vista amplia del producto' variant='contained' size='small' endIcon={<ChevronRightRounded/>} component={Link} to={proyecto.id}>
                   Ver
               </Button>
               
-              <Button aria-label='añadir' variant='outlined' size='small' endIcon={<LocalGroceryStoreRounded />} sx={{ ml: 2 }} onClick={() => registrarProducto(proyecto.id)}>
+              <Button aria-label='añadir producto al carrito de compras' variant='outlined' size='small' endIcon={<LocalGroceryStoreRounded />} sx={{ ml: 2 }} onClick={() => registrarProducto(proyecto.id)}>
                 Añadir
               </Button>
            

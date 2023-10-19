@@ -37,6 +37,7 @@ export default function TimelineUsSmall() {
                     component="img"
                     src={imgAus}
                     alt="img-casa-de-la-cultura"
+                    preload="true"
                     sx={{ width: "100%", height: "100%", objectFit: "cover", mt: 2 }}
                 />
             </Box>
@@ -61,6 +62,7 @@ export default function TimelineUsSmall() {
                     component="img"
                     src={imgMural}
                     alt="img-mural"
+                    preload="true"
                     sx={{ width: "100%", height: "100%", objectFit: "cover", mt: 2 }}
                 />
             </Box>

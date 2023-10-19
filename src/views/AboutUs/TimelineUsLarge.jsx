@@ -28,6 +28,7 @@ export default function TimelineUsLarge() {
               height={"100%"}
               image={imgAus}
               alt="img-casa-de-la-cultura"
+              preload="true"
             />
           </Card>   
         </TimelineOppositeContent>
@@ -60,6 +61,7 @@ export default function TimelineUsLarge() {
               height={"100%"}
               image={imgMural}
               alt="img-mural"
+              preload="true"
             />
           </Card>   
         </TimelineOppositeContent>

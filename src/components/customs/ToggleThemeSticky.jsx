@@ -164,8 +164,8 @@ export const ToggleThemeSticky = ({isDarkMode, handleThemeChange}) => {
   return (
     <Box sx={{styles}}>
                                                                                                   {/* if you use the local data color theme the value will be "true" for choose one of the two, if you use the data from firebase need to change to "dark" to get the theme with that string in the DB */}
-        <Box component={"input"} type="checkbox" id="toggle" className="toggle--checkbox" checked={isDarkMode === true} onChange={handleThemeChange} />
-        <Box component={"label"} htmlFor="toggle" className="toggle--label">
+        <Box component={"input"} type="checkbox" id="toggle" className="toggle--checkbox" checked={isDarkMode === true} onChange={handleThemeChange} aria-label='toggle-label'/>
+        <Box component={"label"} htmlFor="toggle" className="toggle--label" aria-label='Cambiar el tema del sitio web'>
           <Box className="toggle--label-background"></Box>
         </Box>
         <Box className="background"></Box>

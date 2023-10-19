@@ -84,18 +84,18 @@ export const EditProfile = (props) => {
 
   return (
     <Box>
-        <Button variant="contained" startIcon={<EditIcon/>} onClick={handleClickOpen} aria-label='editar perfil'>Editar Perfil</Button>
+        <Button variant="contained" startIcon={<EditIcon/>} onClick={handleClickOpen} aria-label='abrir ventana para editar el perfil'>Editar Perfil</Button>
         <Dialog
             disableScrollLock
             open={openDialog}
             onClose={handleClose}
-            aria-labelledby="Editar perfil"
-            aria-describedby="Editar foto de perfil"
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
         >
             <DialogTitle id="alert-dialog-title">
                 Editar Perfil
                 <IconButton
-                    aria-label="cerrar"
+                    aria-label="cerrar ventana de editar perfil"
                     onClick={handleClose}
                     sx={{
                     position: 'absolute',
@@ -109,7 +109,7 @@ export const EditProfile = (props) => {
             <DialogContent dividers sx={{ width: {md: 600, sm: 500, xs: 250}}}>
                 <DialogContentText id="alert-dialog-description">
                     Foto de perfil 
-                    <Button variant='text' component="label" sx={{position: "absolute", right: 8}} aria-label='abrir explorador de archivos'>
+                    <Button variant='text' component="label" sx={{position: "absolute", right: 8}} aria-label='abrir explorador de archivos y seleccionar imagen'>
                         Editar
                         <input type="file" accept="image/*" hidden onChange={handleImageChange} />
                     </Button>
@@ -129,7 +129,7 @@ export const EditProfile = (props) => {
             
             {/* Input para seleccionar la nueva imagen */}
             <DialogActions>
-                <Button onClick={handleImageUpload} fullWidth variant="contained" aria-label='guardar imagen'>
+                <Button onClick={handleImageUpload} fullWidth variant="contained" aria-label='actualizar imagen de perfil'>
                     Guardar
                 </Button>
             </DialogActions>

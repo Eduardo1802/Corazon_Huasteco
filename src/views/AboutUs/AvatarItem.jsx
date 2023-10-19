@@ -11,7 +11,7 @@ export const AvatarItem = ({imagen, alt, firstColor, secondColor, enlace="#"}) =
     <Link to={enlace} target='_BLANK'>
       <BootstrapTooltip title={<Typography variant='subtitle1'>{alt}</Typography>} arrow placement="bottom" firstColor={firstColor} secondColor={secondColor}>
         <Avatar firstColor={firstColor} secondColor={secondColor} isSmallScreen={isSmallScreen}>
-          <img src={imagen} alt={alt}/>
+          <img src={imagen} alt={alt} preload="true" />
         </Avatar>
       </BootstrapTooltip>
     </Link>

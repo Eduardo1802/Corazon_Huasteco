@@ -10,7 +10,7 @@ const LanguageSwitcher = ({ onChange }) => {
   };
 
   return (
-    <select value={language} onChange={handleChange} aria-label="cambiar lenguaje">
+    <select value={language} onChange={handleChange} aria-label="selector de idioma">
       <option value="es">Español</option>
       <option value="en">English</option>
     </select>

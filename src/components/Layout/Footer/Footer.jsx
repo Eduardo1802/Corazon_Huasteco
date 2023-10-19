@@ -63,7 +63,7 @@ export const Footer = () => {
   return (
     <Box bgcolor="primary.main" pt={4}>
         {/* ALERTA */}
-        <Snackbar open={open} autoHideDuration={5000} onClose={handleClose} anchorOrigin={{ vertical: "top", horizontal: "center"}} aria-label='Oops, esta opción no está disponible todavía'>
+        <Snackbar open={open} autoHideDuration={5000} onClose={handleClose} anchorOrigin={{ vertical: "top", horizontal: "center"}} aria-label='alerta de error, esta opción no está disponible todavía'>
             <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }}>
                 Oops, esta opción no está disponible todavía
             </Alert>

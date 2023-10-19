@@ -90,6 +90,7 @@ export const FormAcceso = () => {
                     helperText={formik.errors.email}
                     value={formik.values.email}
                     autoComplete="off"
+                    aria-label='por favor ingrese su correo electronico'
                 />
 
                 {/* CONTRASEÑA */}
@@ -102,6 +103,7 @@ export const FormAcceso = () => {
                     error={formik.errors.password ? true : false}
                     helperText={formik.errors.password}
                     value={formik.values.password}
+                    aria-label='por favor ingrese su contraseña'
                     InputProps={{
                         endAdornment: (
                         <InputAdornment position="end">
@@ -120,12 +122,12 @@ export const FormAcceso = () => {
                 {/* BOTONES */}
                 <Grid container spacing={1}>
                     <Grid item xs={12} md={6} >
-                        <Button type='submit' fullWidth variant="contained" aria-label='entrar' endIcon={<LoginIcon/>}>
+                        <Button type='submit' fullWidth variant="contained" aria-label='enviar formulario de acceso' endIcon={<LoginIcon/>}>
                         Entrar
                         </Button>
                     </Grid>
                     <Grid item xs={12} md={6} >
-                        <Button type='button' fullWidth variant="outlined" aria-label='limpiar formulario' onClick={formik.handleReset} endIcon={<DeleteIcon/>}>
+                        <Button type='button' fullWidth variant="outlined" aria-label='limpiar formulario de acceso' onClick={formik.handleReset} endIcon={<DeleteIcon/>}>
                         Limpiar 
                         </Button>
                     </Grid>
@@ -134,10 +136,10 @@ export const FormAcceso = () => {
                 {/* enlaces */}
                 <Grid container spacing={1}>
                     <Grid item xs >
-                        <Typography textAlign="center" variant='body2'>¿Sin cuenta? <Link to="/registro">registrate</Link></Typography>
+                        <Typography textAlign="center" variant='body2'>¿Sin cuenta? <Link to="/registro" aria-label='ir a la sección de registro en corazón huasteco'>registrate</Link></Typography>
                     </Grid>
                     <Grid item xs >
-                        <Typography textAlign="center" variant="body2"><Link to="/acceso/restaurar-pass">Restablecer</Link></Typography>
+                        <Typography textAlign="center" variant="body2"><Link to="/acceso/restaurar-pass" aria-label='ir a la sección de restaurar contraseña'>Restablecer</Link></Typography>
                     </Grid>
                 </Grid>
             </Box>

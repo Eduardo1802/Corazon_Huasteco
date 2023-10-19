@@ -199,7 +199,7 @@ export const Tarjeta = () => {
           endAdornment: (
           <InputAdornment position="end">
               <IconButton
-                aria-label="toggle password visibility"
+                aria-label="activar o desactivar visibilidad del código cvv"
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
               >

@@ -66,9 +66,10 @@ export const ChatBot = () => {
                     }}
                     required
                     placeholder="Envía tu pregunta sobre Huejutla"
+                    aria-label="por favor, escribe tu pregunta de huejutla aquí"
                   />
                   <button
-                    aria-label="enviar pregunta"
+                    aria-label="enviar pregunta al chatbot"
                     type="submit"
                     disabled={isLoading}
                     style={{

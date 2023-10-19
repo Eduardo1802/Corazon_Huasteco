@@ -101,7 +101,7 @@ export const Donaciones = () => {
                         indicatorColor="secondary"
                         textColor="inherit"
                         variant="fullWidth"
-                        aria-label="full width tabs example"
+                        aria-label="vista completa de los metodos de donación"
                       >
                         <Tab label="Tarjeta"       {...a11yProps(0)} />
                         <Tab label="Paypal"        {...a11yProps(1)} />

@@ -107,7 +107,7 @@ export const Tienda = () => {
               </SearchIconWrapper>
               <StyledInputBase
                 placeholder="Buscar…"
-                inputProps={{ 'aria-label': 'search' }}
+                inputProps={{ 'aria-label': 'buscar un producto de la tienda' }}
                 value={busqueda}
                 onChange={handleChange}
                 />
@@ -129,7 +129,7 @@ export const Tienda = () => {
             autoComplete="off"
             >
             {categoria.map((categoria) => (
-              <MenuItem  key={categoria.value} value={categoria.value} aria-label={categoria.value}>
+              <MenuItem  key={categoria.value} value={categoria.value} aria-label={`elegiste la categoria: ${categoria.value}`}>
                 {categoria.label}
               </MenuItem>
             ))}
@@ -149,7 +149,7 @@ export const Tienda = () => {
             autoComplete="off"
             >
             {colores.map((color) => (
-              <MenuItem key={color.value} value={color.value} aria-label={color.label}>
+              <MenuItem key={color.value} value={color.value} aria-label={`elegiste el lcolor ${color.label}`}>
                 {color.label}
               </MenuItem>
             ))}
@@ -158,7 +158,7 @@ export const Tienda = () => {
 
         <Grid item  md={4} sm={12} xs={12}>
           <Box display="flex" height="100%">
-            <Button aria-label='buscar' fullWidth  variant="contained" onClick={handleSearch}>
+            <Button aria-label='buscar productos' fullWidth  variant="contained" onClick={handleSearch}>
               Buscar
             </Button>
           </Box>

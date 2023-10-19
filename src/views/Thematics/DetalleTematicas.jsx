@@ -157,19 +157,19 @@ export const DetalleTematicas = ({tematicas}) => {
               </Card>
             </Paper>
             <Paper sx={{m:1, p:2}} elevation={6}>
-              <IconButton aria-label='ver facebbok' color='primary'>
+              <IconButton aria-label='ir a facebbok' color='primary'>
                 <Facebook fontSize='large'/>
               </IconButton>
-              <IconButton aria-label='ver twitter' color='primary'>
+              <IconButton aria-label='ir a twitter' color='primary'>
                 <Twitter fontSize='large'/>
               </IconButton>
-              <IconButton aria-label='ver instagram' color='primary'>
+              <IconButton aria-label='ir a instagram' color='primary'>
                 <Instagram fontSize='large'/>
               </IconButton>
-              <IconButton aria-label='ver youtube' color='primary'>
+              <IconButton aria-label='ir a youtube' color='primary'>
                 <YouTube fontSize='large'/>
               </IconButton>
-              <IconButton aria-label='ver web' color='primary'>
+              <IconButton aria-label='ir al blog web' color='primary'>
                 <Web fontSize='large'/>
               </IconButton>
               

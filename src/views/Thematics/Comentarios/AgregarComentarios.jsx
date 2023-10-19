@@ -122,7 +122,7 @@ const AgregarComentarios = ({tematica}) => {
 
   return (
     <Box>
-      <Button aria-label='agregar comentario' variant="contained" startIcon={<AddCommentIcon/>} onClick={handleClickOpen}>Agregar Comentario</Button>        
+      <Button aria-label='abrir ventana para agregar comentario' variant="contained" startIcon={<AddCommentIcon/>} onClick={handleClickOpen}>Agregar Comentario</Button>        
       <Dialog
         open={openDialog}
         onClose={handleClose}
@@ -133,7 +133,7 @@ const AgregarComentarios = ({tematica}) => {
         <DialogTitle id="alert-dialog-title">
           Agregar Comentario
           <IconButton
-              aria-label="cerrar"
+              aria-label="cerrar ventana para agregar comentario"
               onClick={handleClose}
               sx={{
               position: 'absolute',
@@ -202,7 +202,7 @@ const AgregarComentarios = ({tematica}) => {
 
         <DialogActions>
           <Button
-            aria-label='agregar comentario'
+            aria-label='agregar comentario al post'
             type="submit"
             variant="contained"
             onClick={handleSubmit}

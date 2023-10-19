@@ -18,7 +18,7 @@ export const Error = () => {
                   {/* <br/> */}
                   <Box sx={{display: "flex", justifyContent: "center"}} mb={5}>
                     <Link to="/inicio" style={{textDecoration: "none"}}> 
-                      <Button aria-label='volver al inicio' variant="outlined" sx={{'&:hover':{bgcolor: "primary.main", color: "background.default"}}} startIcon={<ArrowBackIosIcon/>}>
+                      <Button aria-label='vover a la página principal' variant="outlined" sx={{'&:hover':{bgcolor: "primary.main", color: "background.default"}}} startIcon={<ArrowBackIosIcon/>}>
                         Volver al inicio
                       </Button>
                     </Link>

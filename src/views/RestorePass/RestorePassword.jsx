@@ -226,7 +226,7 @@ export const RestorePassword = () => {
                                             autoComplete="off"
                                         />
                                         <Button 
-                                        aria-label='Enviar correo de restauración'
+                                        aria-label='Enviar correo para restauración de contraseña'
                                         sx={{ mt: 1 }} fullWidth variant="contained" onClick={handleResetPassword}>
                                             Enviar
                                         </Button>
@@ -244,7 +244,7 @@ export const RestorePassword = () => {
                                                 onChange={(e) => setTextFieldValue(e.target.value)}
                                                 autoComplete="off"
                                             />
-                                            <Button aria-label='validar correo' sx={{ mt: 1 }} type='submit' fullWidth variant="contained" onClick={handleButtonClick}>
+                                            <Button aria-label='validar correo electronico' sx={{ mt: 1 }} type='submit' fullWidth variant="contained" onClick={handleButtonClick}>
                                                 Validar
                                             </Button>
                                         </Collapse>
@@ -289,7 +289,7 @@ export const RestorePassword = () => {
                                                     endAdornment: (
                                                         <InputAdornment position="end">
                                                             <IconButton
-                                                                aria-label="mostrar u ocultar"
+                                                                aria-label="mostrar u ocultar contraseña"
                                                                 onClick={handleClickShowPassword}
                                                                 onMouseDown={handleMouseDownPassword}
                                                             >
@@ -369,7 +369,7 @@ export const RestorePassword = () => {
                                                         endAdornment: (
                                                             <InputAdornment position="end">
                                                                 <IconButton
-                                                                    aria-label="mostrar u ocultar"
+                                                                    aria-label="mostrar u ocultar contraseña"
                                                                     onClick={handleClickShowPassword}
                                                                     onMouseDown={handleMouseDownPassword}
                                                                 >

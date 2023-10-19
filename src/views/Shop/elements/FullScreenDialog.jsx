@@ -25,7 +25,6 @@ export default function FullScreenDialog({
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
       >
           <Toolbar>
             {/* <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div" color="secondary.light" fontWeight={500}>
@@ -36,11 +35,10 @@ export default function FullScreenDialog({
             </DialogTitle>
             
             <IconButton
-              aria-labelledby="close"
               edge="start"
               color="inherit"
               onClick={handleClose}
-              aria-label="close"
+              aria-label="cerrar imagen amplia del producto"
               sx={{color: "primary.light"}}
             >
               <CloseIcon />
@@ -58,7 +56,7 @@ export default function FullScreenDialog({
         </DialogContent>
         <DialogActions /* sx={{bgcolor: "background.default"}} */>
           <Button variant="contained" /* onClick={handleClose} */
-            aria-label="ver"
+            aria-label="ver contenido y descripción del producto"
             component={Link}
             to={project.id}
             sx={{

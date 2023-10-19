@@ -142,7 +142,7 @@ export const DetalleProduct = ({ productos }) => {
             <Divider variant='inset' light />
             <Box textAlign="left" p={3}>
               <Stack spacing={2} direction="row">
-                <Button aria-label='comprar' variant="contained" startIcon={<AttachMoneyIcon />}>Comprar</Button>
+                <Button aria-label='comprar producto ahora' variant="contained" startIcon={<AttachMoneyIcon />}>Comprar</Button>
                 <Button aria-label='añadir al carrito' variant="outlined" startIcon={<ShoppingCartIcon />} onClick={() => registrarProducto()}>Añadir</Button>
               </Stack>
             </Box>

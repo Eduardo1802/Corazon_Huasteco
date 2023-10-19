@@ -67,7 +67,7 @@ export const Inicio = () => {
                 <Typography gutterBottom variant="subtitle1" component="p" color="text.secondary">
                   Nuestra plataforma es un faro de conocimiento y autenticidad gracias a nuestros dedicados colaboradores. Ellos son los narradores de historias, los guardianes de tradiciones y los informantes de la Huasteca Hidalguense. Con una profunda pasión por su cultura y región, nuestros colaboradores aportan información verídica y perspectivas únicas a través de sus artículos. Desde relatos históricos hasta exploraciones de festivales locales, sus contribuciones enriquecen nuestra comunidad y te sumergen en la riqueza de la Huasteca.
                 </Typography>
-                <Button aria-label='explora los creadores de contenido' variant='outlined' component={Link} to="/creadores-de-contenido" endIcon={<ArrowForward/>} sx={{borderRadius: 5, '&:hover':{backgroundColor: theme.palette.primary.main, color: theme.palette.background.paper}}}>
+                <Button aria-label='ir a la sección de creadores de contenido' variant='outlined' component={Link} to="/creadores-de-contenido" endIcon={<ArrowForward/>} sx={{borderRadius: 5, '&:hover':{backgroundColor: theme.palette.primary.main, color: theme.palette.background.paper}}}>
                   Explora sus Voces
                 </Button>
               </Grid>
@@ -90,7 +90,7 @@ export const Inicio = () => {
                 <Typography gutterBottom variant="subtitle1" component="p" color="text.secondary" textAlign="center">
                   Explora la abundante biodiversidad de Huejutla: árboles frutales, madera fina, plantas medicinales y una profusión de flora.
                 </Typography>
-                <Button aria-label='ver más sobre la flora' variant='outlined' component={Link} to="/tematicas" endIcon={<LocalFlorist/>} sx={{borderRadius: 5, '&:hover':{backgroundColor: theme.palette.primary.main, color: theme.palette.background.paper}}}>
+                <Button aria-label='leer un articulo sobre flora' variant='outlined' component={Link} to="/tematicas" endIcon={<LocalFlorist/>} sx={{borderRadius: 5, '&:hover':{backgroundColor: theme.palette.primary.main, color: theme.palette.background.paper}}}>
                   Ver más
                 </Button>
               </Grid>
@@ -118,7 +118,7 @@ export const Inicio = () => {
                 <Typography gutterBottom variant="subtitle1" component="p" color="text.secondary" textAlign="center">
                   Descubre la fascinante variedad de vida silvestre en Huejutla, desde mamíferos y aves hasta reptiles y más.
                 </Typography>
-                <Button aria-label='ver más sobre la fauna' variant='outlined' component={Link} to="/tematicas" endIcon={<Pets/>} sx={{borderRadius: 5, '&:hover':{backgroundColor: theme.palette.primary.main, color: theme.palette.background.paper}}}>
+                <Button aria-label='leer un articulo sobre la fauna' variant='outlined' component={Link} to="/tematicas" endIcon={<Pets/>} sx={{borderRadius: 5, '&:hover':{backgroundColor: theme.palette.primary.main, color: theme.palette.background.paper}}}>
                   Ver más
                 </Button>
               </Grid>
@@ -138,7 +138,7 @@ export const Inicio = () => {
                 <Typography gutterBottom variant="subtitle1" component="p" color="text.secondary" textAlign="center">
                   Huejutla colinda al norte con el municipio de Orizatlán, el estado de Veracruz; al este con Veracruz, Huautla y Atlapexco; al sur con Atlapexco, Huazalingo y Tlanchinol; y al oeste con Tlanchinol, Jaltocan y Orizatlán.
                 </Typography>
-                <Button aria-label='ver más del mapa' variant='outlined' component={Link} to="/mapa" endIcon={<Directions/>} sx={{borderRadius: 5, '&:hover':{backgroundColor: theme.palette.primary.main, color: theme.palette.background.paper}}}>
+                <Button aria-label='ir a la sección del mapa' variant='outlined' component={Link} to="/mapa" endIcon={<Directions/>} sx={{borderRadius: 5, '&:hover':{backgroundColor: theme.palette.primary.main, color: theme.palette.background.paper}}}>
                   Ver mapa
                 </Button>
               </Grid>

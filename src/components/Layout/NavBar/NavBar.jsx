@@ -175,6 +175,7 @@ export const NavBar = (props) => {
                   textDecoration: "none",
                   color: "inherit",
                 }}
+                aria-label="volver a la pagina de inicio"
               >
                 CORAZÓN HUASTECO
               </Typography>            
@@ -213,7 +214,7 @@ export const NavBar = (props) => {
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
-                aria-label="menu"
+                aria-label="menu de opciones de navegación"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleDrawerToggle}
@@ -255,7 +256,7 @@ export const NavBar = (props) => {
             >
               {navLinks.map((item) => (
                 <Button
-                  aria-label={`ir a ${item.title}`}
+                  aria-label={`botón para ir a la sección de ${item.title}`}
                   startIcon={item.path === location.pathname ? item.iconSelected : item.icon }
                   key={item.title}
                   onClick={handleCloseNavMenu}
@@ -290,7 +291,7 @@ export const NavBar = (props) => {
               {user ? (
                 <>
                   <Tooltip title="Opciones del perfil" arrow>
-                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} aria-label="opciones del perfil">
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} aria-label="abrir las opciones del perfil">
                       <Avatar
                         alt="User"
                         src={profileImageUrl}
@@ -324,6 +325,7 @@ export const NavBar = (props) => {
                         color: "inherit",
                         "&:hover": { color: "primary.main" },
                       }}
+                      aria-label="ir a la sección del perfil"
                     >
                       <Typography textAlign="center">Perfil</Typography>
                     </MenuItem>
@@ -334,6 +336,7 @@ export const NavBar = (props) => {
                       sx={{
                         "&:hover": { color: "primary.main" },
                       }}
+                      aria-label="cerrar la sesión actual"
                     >
                       <Typography textAlign="center">Cerrar Sesión</Typography>
                     </MenuItem>
@@ -343,7 +346,7 @@ export const NavBar = (props) => {
                 <>
                   <Box>
                     <Button
-                      aria-label="inicio de sesión"
+                      aria-label="ir al inicio de sesión"
                       component={Link}
                       to="/acceso"
                       endIcon={<LoginRoundedIcon />}
@@ -362,7 +365,7 @@ export const NavBar = (props) => {
                     </Button>
                     <Tooltip title="Inicio de sesión" arrow>
                       <IconButton
-                        aria-label="inicio de sesión"
+                        aria-label="ir al apartado de inicio de sesión"
                         component={Link}
                         to="/acceso"
                         sx={{

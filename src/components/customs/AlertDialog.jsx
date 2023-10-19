@@ -24,20 +24,20 @@ export default function AlertDialog() {
         disableScrollLock
         open={open}
         onClose={handleClose}
-        aria-labelledby="aviso de privacidad"
-        aria-describedby="aviso de privacidad"
+        aria-describedby="aviso-de-privacidad"
+        aria-labelledby="descripción-aviso-de-privacidad"
       >
-        <DialogTitle id="aviso de privacidad" align='center'>
+        <DialogTitle id="aviso-de-privacidad" align='center'>
           {"Aviso de privacidad"}
         </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText id="descripción-aviso-de-privacidad">
             <TextPrivacy/>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} component={LinkRouter} to="/aviso-de-privacidad" aria-label='Aviso de privacidad'>Ver</Button>
-          <Button onClick={handleClose} autoFocus aria-label='Cerrar'>
+          <Button onClick={handleClose} component={LinkRouter} to="/aviso-de-privacidad" aria-label='Ver aviso de privacidad en la sección correspondiente'>Ver</Button>
+          <Button onClick={handleClose} autoFocus aria-label='cerrar mensaje de avis ode privacidad'>
             Cerrar
           </Button>
         </DialogActions>

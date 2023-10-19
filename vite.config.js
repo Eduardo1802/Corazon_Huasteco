@@ -59,15 +59,31 @@ export default defineConfig({
             type: 'image/png',
             purpose: 'maskable'
           }
+        ],
+        screenshots: [
+          {
+            src: "screenshot-desktop.png",
+            sizes: "1280x800",
+            type: "image/png",
+            platform: "web",
+            form_factor: "wide" 
+          },
+          {
+            src: "screenshot-mobile.png",
+            sizes: "800x1280",
+            type: "image/png",
+            platform: "web",
+            form_factor: "not set"
+          }
         ]
       }
     })
   ],
   //TELCEL-HUAWEI-B311-2F0A
-  // server: {
-  //   host: '192.168.8.6', 
-  //   port: 5173,
-  // },
+  server: {
+    host: '192.168.8.6', 
+    port: 5173,
+  },
 
   //EL SIGUIENTE CONTENIDO ES SOLO PAR LOS TESTS,
   //COMENTAR ANTES DE COMPILAR O SUBIR A PRODUCCIÓN
