@@ -79,6 +79,7 @@ export default defineConfig({
       }
     })
   ],
+  base:"/Corazon_Huasteco/",
   //TELCEL-HUAWEI-B311-2F0A
   server: {
     host: '192.168.8.6', 
