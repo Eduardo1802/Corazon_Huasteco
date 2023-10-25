@@ -13,7 +13,8 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,ico,png,svg}']
       },
       devOptions: {
-        enabled: true
+        enabled: true,
+        navigateFallbackAllowlist: [/^index.html$/]
       },
       includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
       manifest: {
@@ -80,10 +81,10 @@ export default defineConfig({
     })
   ],
   //TELCEL-HUAWEI-B311-2F0A
-  server: {
-    host: '192.168.8.6', 
-    port: 5173,
-  },
+  // server: {
+  //   host: '192.168.137.63', 
+  //   port: 5173,
+  // },
 
   //EL SIGUIENTE CONTENIDO ES SOLO PAR LOS TESTS,
   //COMENTAR ANTES DE COMPILAR O SUBIR A PRODUCCIÓN
