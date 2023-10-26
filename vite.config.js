@@ -80,7 +80,10 @@ export default defineConfig({
       }
     })
   ],
-  base:"/Corazon_Huasteco/",
+  preview:{
+    host:true,
+    port:8080
+  }
   //TELCEL-HUAWEI-B311-2F0A
   // server: {
   //   host: '192.168.137.63', 
