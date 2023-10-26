@@ -32,5 +32,4 @@ jobs:
           dockerfile: ./Dockerfile # Cambia la ruta del archivo Dockerfile si es necesario
           platform: linux/amd64 # Establece la plataforma específica
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/corazon-huasteco2:latest # Cambia el nombre de la imagen según tu proyecto
-  
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/corazon-huasteco:latest # Cambia el nombre de la imagen según tu proyecto
