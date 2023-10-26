@@ -22,7 +22,7 @@ jobs:
       run: npm install
 
     - name: Run TestCafe tests
-      run: testcafe chromium:headless ./access.js
+      run: testcafe chromium:headless ./test/access.js
 
 
 
