@@ -11,5 +11,5 @@ test('Validar el acceso', async (t) =>{
     .typeText('[name="email"]',"eduazuara0@gmail.com")
     .typeText('[name="password"]', "Eduardo18@")
     .click(button)
-    .expect(Selector('body').exists).ok();
+    .expect(t.eval(() => window.location.href)).eql('https://corazon-huasteco.com/user/consultor');
 });
