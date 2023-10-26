@@ -32,4 +32,4 @@ jobs:
           file: ./Dockerfile  # Asegúrate de que el nombre del Dockerfile sea correcto
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/react-app:latest  # Cambia el nombre de la imagen según tu proyecto
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/corazon-huasteco:latest  # Cambia el nombre de la imagen según tu proyecto
