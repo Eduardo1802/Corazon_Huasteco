@@ -1,22 +1,14 @@
 name: Docker Image CI
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
+on: [push]
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout 
+      - name: Checkout
         uses: actions/checkout@v2
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@master
+        uses: docker/setup-qemu-action@v1
         with:
           platforms: all
       - name: Login to Docker Hub
@@ -30,13 +22,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./Dockerfile
+          file: ./Dockerfile # Asegúrate de que el nombre del Dockerfile sea correcto
           platforms: linux/amd64,linux/arm64
-          push: true 
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/corazonhuasteco:latest
-
-
-
-
-
-          
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/corazon-huasteco:latest # Cambia el nombre de la imagen según tu proyecto

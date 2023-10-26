@@ -1,23 +1,23 @@
-# Use an official Node.js runtime as the base image
+# Utiliza una imagen base adecuada para Node.js y React
 FROM node:14
 
-# Set the working directory in the container
+# Establece el directorio de trabajo
 WORKDIR /app
 
-# Copy the package.json and package-lock.json files to the container
+# Copia el package.json y package-lock.json al contenedor
 COPY package*.json ./
 
-# Install the dependencies
+# Instala las dependencias
 RUN npm install
 
-# Copy the rest of the application files to the container
+# Copia los archivos de la aplicación al contenedor
 COPY . .
 
-# Build the React application
+# Compila la aplicación React (esto puede variar según tu proyecto)
 RUN npm run build
 
-# Expose the port on which your React app runs (usually 3000)
+# Expón el puerto en el que se ejecutará la aplicación React
 EXPOSE 3000
 
-# Start the React app
+# Comando para iniciar la aplicación
 CMD ["npm", "start"]
