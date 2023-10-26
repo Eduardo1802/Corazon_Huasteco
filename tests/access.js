@@ -8,7 +8,7 @@ test('Validar el acceso', async (t) =>{
     const title = await Selector('.MuiTypography-root.MuiTypography-h5.MuiTypography-gutterBottom.css-adrpgk').withText('Hola, Bienvenido');
 
     await t
-    .typeText('[name="email"]',"eduazuara0@gmail.com")
+    .typeText('[name="email"]',"eduazuara0@gmailcom")
     .typeText('[name="password"]', "Eduardo18@")
     .click(button)
     .expect(t.eval(() => window.location.href)).eql('https://corazon-huasteco.com/user/consultor');
