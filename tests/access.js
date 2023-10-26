@@ -8,8 +8,8 @@ test('Validar el acceso', async (t) =>{
     const title = await Selector('.MuiTypography-root.MuiTypography-h6.MuiTypography-gutterBottom.css-adrpgk').withText('Hola, Bienvenido');
 
     await t
-    .typeText("#:re:","eduazuara0@gmail.com")
-    .typeText("#:rf:", "Eduardo18@")
+    .typeText('[name="email"]',"eduazuara0@gmail.com")
+    .typeText('[name="password"]', "Eduardo18@")
     .click(button)
     .expect(Selector(title).innerText).eql("Hola, Bienvenido");
 });
