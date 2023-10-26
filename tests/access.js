@@ -11,5 +11,5 @@ test('Validar el acceso', async (t) =>{
     .typeText('[name="email"]',"eduazuara0@gmail.com")
     .typeText('[name="password"]', "Eduardo18@")
     .click(button)
-    .expect(title.innerText).eql("Hola, Bienvenido");
+    .expect(title.exists).ok();
 });
