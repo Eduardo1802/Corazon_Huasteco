@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-// import { AiOutlineSend } from "react-icons/ai";
 import SendIcon from '@mui/icons-material/Send';
 import { Bread }              from '../../components/customs/Bread';
 import { HomeRounded, SmartToy} from '@mui/icons-material';
