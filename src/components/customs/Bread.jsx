@@ -1,22 +1,24 @@
 import React from 'react'
-import { Box, Breadcrumbs, Link as MuiLink, Paper } from '@mui/material'
+import { Box, Breadcrumbs, Link as MuiLink, Paper, useTheme } from '@mui/material'
 import { Link } from 'react-router-dom'
 import MuiSvgIcon from '@mui/material/SvgIcon';
 
 export const Bread = (props) => {
     const { migas } = props
+    const theme = useTheme();
 
   return (
-    <Box sx={{p: 2, bgcolor: "background.default"}} component={Paper}> {/*se puede comentar el fondo, y componente para ajustar algunas cosas */}
+    <Box sx={{p: 2, bgcolor: "background.paper"}} component={Paper}> {/*se puede comentar el fondo, y componente para ajustar algunas cosas */}
         <Breadcrumbs aria-label="migas de pan del sitio web" separator="/">
         {migas.map((item, index) => (
             <MigaDePan
                 migas={migas}
                 index={index}
-                key={item.ruta}
+                key={index}
                 icon={item.icono}
                 miga={item.miga}
                 ruta={item.ruta}
+                theme={theme}
             />
         ))}
         </Breadcrumbs>
@@ -25,11 +27,12 @@ export const Bread = (props) => {
 }
 
 
-const MigaDePan = ({ index, migas, icon, miga, ruta }) => {
+const MigaDePan = ({ index, migas, icon, miga, ruta, theme }) => {
+    const migaCapitalizada = capitalizeWords(miga)
     return (
       <MuiLink
         underline={index === migas.length - 1 ? 'none' : 'hover'}
-        sx={{ display: 'flex', alignItems: 'center' }}
+        sx={{ display: 'flex', alignItems: 'center', paddingX: 1, marginX:-0.5, marginY: 0.2, background: `${theme.palette.primary.light}56`, borderRadius: 30, }}
         color='inherit'
         component={Link}
         to={ruta}
@@ -39,7 +42,7 @@ const MigaDePan = ({ index, migas, icon, miga, ruta }) => {
             {icon}
           </IconoMigaDePan>
         )}
-        {miga}
+        {migaCapitalizada}
       </MuiLink>
     );
   };
@@ -53,3 +56,15 @@ const MigaDePan = ({ index, migas, icon, miga, ruta }) => {
       </MuiSvgIcon>
     );
   };
+
+
+  function capitalizeWords(text) {
+    const words = text.split(' ');
+    const capitalizedWords = words.map((word) => {
+      word = word.toLowerCase();
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    });
+    const capitalizedText = capitalizedWords.join(' ');
+    return capitalizedText;
+  }
+  
