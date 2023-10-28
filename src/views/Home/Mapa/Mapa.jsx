@@ -29,7 +29,7 @@ export const Mapa = () => {
       <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "MAPA", ruta: "/mapa", icono: <MapRounded/>}]}/>
       {/* M A P A */}
       <Paper elevation={0}>
-        <Container maxWidth="sx" data-aos="flip-right">
+        <Container maxWidth="sx">
           <Grid container spacing={1}>
             <Grid item xs>
               <Box

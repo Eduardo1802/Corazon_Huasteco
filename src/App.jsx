@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Router } from "./routes/Router";
 import { ThemeProvider } from "@mui/material";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 import { lightTheme, darkTheme } from "./styles/ThemeMui";
 
@@ -15,9 +13,6 @@ function App() {
   };
 
   useEffect(() => {
-    AOS.init();
-    AOS.refresh();
-
     setThemeColor(isDarkMode ? darkTheme.palette.primary.main : lightTheme.palette.primary.main);
   }, [isDarkMode]);
 
