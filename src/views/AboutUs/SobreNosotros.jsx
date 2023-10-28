@@ -78,7 +78,7 @@ export const SobreNosotros = () => {
                 imagen={einar} 
                 firstColor={"#F5BF31"} 
                 secondColor={"#A8BB5F"}
-                enlace='https://facebook.com/ella.no.te.ama.pto.xD.soylavrg'
+                enlace='https://facebook.com/EinarOmarVillegasRuiz'
               />
             </Grid>
             <Grid item>
