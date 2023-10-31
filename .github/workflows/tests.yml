@@ -24,8 +24,8 @@ jobs:
     - name: Run TestCafe tests Access
       run: testcafe chromium:headless ./tests/access.js
 
-    - name: Run TestCafe tests Register
-      run: testcafe chromium:headless ./tests/register.js
+    - name: Run TestCafe tests validacion email
+      run: testcafe chromium:headless ./tests/validateEmail.js
 
 
 

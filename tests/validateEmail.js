@@ -4,7 +4,6 @@ fixture`Testiando el registro`.page("https://corazon-huasteco.com/registro");
 
 test('Validar el registro', async (t) => {
     const btnValidar = await Selector('.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-fullWidth[aria-label="Validar correo electronico"]');
-    const btnEnviar = await Selector('.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-fullWidth[aria-label="enviar formulario para registro en corazon huasteco"]');
 
     await t
         .typeText('[name="name"]', "Eduardo")
@@ -16,11 +15,6 @@ test('Validar el registro', async (t) => {
         .typeText('[name="state"]', "Hidalgo")
         .typeText('[name="email"]', "eduardo1802gmail.com")
         .click(btnValidar)
-        .wait(3000) 
-        .typeText('[name="password"]', "Eduardo18@")
-        .typeText('[name="repeatPassword"]', "Eduardo18@")
-        .typeText('[name="secretQuestion"]', "¿Nombre de primera mascota?")
-        .click('[name="checkBoxValue"]')
-        .click(btnEnviar)
-        .expect(t.eval(() => window.location.href)).eql('https://corazon-huasteco.com/user/consultor');
+        const alert = await Selector('.MuiAlert-root.MuiAlert-filledInfo');
+        await t.expect(alert.exists).ok();
 });
