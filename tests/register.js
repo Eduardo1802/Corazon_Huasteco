@@ -3,8 +3,8 @@ const { Selector } = require("testcafe");
 fixture`Testiando el registro`.page("https://corazon-huasteco.com/registro");
 
 test('Validar el registro', async (t) => {
-    const btnValidar = await Selector('.MuiButton-contained.MuiButton-containedPrimary.MuiButton-fullWidth').withText('Validar');
-    const btnEnviar = await Selector('.MuiButton-contained.MuiButton-containedPrimary.MuiButton-fullWidth').withText('Registrar');
+    const btnValidar = await Selector('.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-fullWidth[aria-label="Validar correo electronico"]');
+    const btnEnviar = await Selector('.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-fullWidth[aria-label="enviar formulario para registro en corazon huasteco"]');
 
     await t
         .typeText('[name="name"]', "Eduardo")
@@ -13,7 +13,8 @@ test('Validar el registro', async (t) => {
         .typeText('[name="gender"]', "Masculino")
         .typeText('[name="ocupation"]', "Estudiante")
         .typeText('[name="zipCode"]', "43000")
-        .typeText('[name="email"]', "eduardoazuara1802.com")
+        .typeText('[name="zipCode"]', "43000")
+        .typeText('[name="state"]', "Hidalgo")
         .click(btnValidar)
         .typeText('[name="password"]', "Eduardo18@")
         .typeText('[name="repeatPassword"]', "Eduardo18@")
