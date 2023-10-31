@@ -52,6 +52,7 @@ export const SobreNosotros = () => {
                 firstColor={"#617030"} 
                 secondColor={"#5A6C9F"}
                 enlace='https://facebook.com/eduardo.azuara.5074'
+                data-testid="lalo-link"
               />
             </Grid>
             <Grid item>

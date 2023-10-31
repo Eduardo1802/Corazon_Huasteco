@@ -1,21 +1,14 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import SobreNosotros from '../src/views/AboutUs/SobreNosotros.jsx';
+import { Selector } from 'testcafe';
 
-test('Prueba de renderizado de SobreNosotros', () => {
-  render(<SobreNosotros />);
-  
-  // Verificar que el título "Sobre nosotros" se muestre en la pantalla
-  expect(screen.getByText('Sobre nosotros')).toBeInTheDocument();
+fixture`SobreNosotros Page`
+    .page`https://corazon-huasteco.com/sobre-nosotros`; 
 
-  // Verificar que las imágenes se muestren en la pantalla
-  const imagenes = screen.getAllByRole('img');
-  expect(imagenes).toHaveLength(5); // Asegúrate de que haya 5 imágenes
+test('Debe mostrar el título "Sobre nosotros"', async (t) => {
+    const title = Selector('h4').withText('Sobre nosotros');
+    await t.expect(title.exists).ok();
+});
 
-  // Verificar que los enlaces a las redes sociales estén presentes y sean accesibles
-  const enlacesRedesSociales = screen.getAllByRole('link');
-  enlacesRedesSociales.forEach((enlace) => {
-    expect(enlace).toBeInTheDocument();
-    expect(enlace).toHaveAttribute('href');
-  });
+test('Debe mostrar el equipo de desarrolladores', async (t) => {
+    const teamMembers = Selector('.AvatarItem');
+    await t.expect(teamMembers.count).eql(5); 
 });

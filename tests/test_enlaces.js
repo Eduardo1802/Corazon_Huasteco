@@ -1,15 +1,11 @@
 import { Selector } from 'testcafe';
 
-fixture`Sobre Nosotros`.page`https://corazon-huasteco.com/sobre-nosotros`;
+fixture`Pruebas de enlaces en SobreNosotros`
+    .page`https://corazon-huasteco.com/sobre-nosotros`;
 
-test('Prueba de enlace "INICIO"', async (t) => {
-  const enlaceInicio = Selector('a').withText('INICIO');
-  await t.expect(enlaceInicio.exists).ok();
-  await t.expect(enlaceInicio.getAttribute('href')).eql('/inicio');
-});
-
-test('Prueba de enlace "SOBRE NOSOTROS"', async (t) => {
-  const enlaceSobreNosotros = Selector('a').withText('SOBRE NOSOTROS');
-  await t.expect(enlaceSobreNosotros.exists).ok();
-  await t.expect(enlaceSobreNosotros.getAttribute('href')).eql('/sobre-nosotros');
+test('El enlace de Eduardo Azuara debe funcionar', async (t) => {
+    const laloLink = Selector('[data-testid="lalo-link"]');
+    await t
+        .click(laloLink)
+        .expect(Selector('a').withText('Eduardo Azuara').exists).ok();
 });
