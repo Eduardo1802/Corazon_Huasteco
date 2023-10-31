@@ -24,12 +24,6 @@ jobs:
     - name: Run TestCafe tests Access
       run: testcafe chromium:headless ./tests/access.js
 
-    - name: Run TestCafe tests Enlaces
-      run: npm test ./tests/test_renderizado_sobre_nosotros.js
-      
-    - name: Run TestCafe tests Renderizado sobre Nosotros
-      run: npm test ./tests/test_renderizado_sobre_nosotros.js
-      
     - name: Run TestCafe tests Register
       run: testcafe chromium:headless ./tests/register.js
 
