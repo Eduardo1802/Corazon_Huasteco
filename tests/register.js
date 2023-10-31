@@ -14,6 +14,7 @@ test('Validar el registro', async (t) => {
         .typeText('[name="ocupation"]', "Estudiante")
         .typeText('[name="zipCode"]', "43000")
         .typeText('[name="state"]', "Hidalgo")
+        .typeText('[name="email"]', "eduardo1802gmail.com")
         .click(btnValidar)
         .click(btnValidar)
         .click(btnValidar)
