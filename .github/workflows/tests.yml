@@ -21,8 +21,10 @@ jobs:
     - name: Install project dependencies
       run: npm install
 
-    - name: Run TestCafe tests
+    - name: Run TestCafe tests Access
       run: testcafe chromium:headless ./tests/access.js
-
+    
+    - name: Run TestCafe tests Register
+      run: testcafe chromium:headless ./tests/register.js
 
 
