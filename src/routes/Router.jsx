@@ -44,8 +44,11 @@ import { DetalleTematicas } from '../views/Thematics/DetalleTematicas'
 import { getTematicas } from '../utils/fnTematica'
 import { CarritoProvider } from '../context/CarritoContext'
 import { WavyDivider } from '../components/customs/WavyDivider'
+import { Box, Fab } from '@mui/material'
+import { KeyboardDoubleArrowUp } from '@mui/icons-material'
+import { BtnScrollTop } from '../components/customs/btnScrollTop'
 
-export const Router = ({isDarkMode, handleThemeChange}) => {
+export const Router = ({isDarkMode, handleThemeChange}, props) => {
 
   const [productos, setProductos] = useState(null);
   const [tematicas, setTematicas] = useState(null);
@@ -68,56 +71,72 @@ export const Router = ({isDarkMode, handleThemeChange}) => {
   return (
       <BrowserRouter>
         {/* <CheckConnection> */}
-          <AuthProvider>
-            <CarritoProvider>
-              <NavBar isDarkMode={isDarkMode} handleThemeChange={handleThemeChange} />
-                  <ScrollToTop>
-                    <Routes>
-                      {/*rutasDeAplicacion*/}
-                      <Route path='/'                       element={<Navigate to='/inicio'/>}/>
-                      <Route path='/inicio'                 element={<Inicio/>} />
-                      <Route path='/mapa'                   element={<Mapa/> } />
-                      <Route path='/chatbot'         element={<ChatBot/>} />
-                      <Route path='/sobre-nosotros'         element={<SobreNosotros/>} />
-                      <Route path='/donaciones'             element={<Donaciones/>} />
-                      <Route path='/creadores-de-contenido' element={<CreadoresDeContenido/>} />
-                      <Route path='/tienda'                 element={<Tienda/>} />
-                      <Route path='/tienda/:id'             element={<DetalleProduct productos={productos}/> } />
-                      <Route path='/aviso-de-privacidad'    element={<AvisoDePrivacidad/>} />
-                      <Route path='/preguntas-frecuentes'   element={<PreguntasFrecuentes/>} />
-                      
-                      {/* SubRutas -- tematicas */}
-                      <Route path="/tematicas/" /*AquiSePuedeRenderizarUnNavTematicas*/ >
-                            <Route index element={<PanelTematicas/>}/*yAquiSePuedeRenderizarUnListTematicas*/  />
-                            <Route path="vestimenta"          element={<Vestimenta />} />
-                            <Route path="danza"               element={<Danza/>} />
-                            <Route path="gastronomia"         element={<Gastronomia/>} />
-                            <Route path="musica"              element={<Musica/>} />
-                            <Route path="tradiciones"         element={<Tradiciones/>} />
-                            <Route path="*"                   element={<Error/>} />
-                        </Route>
-                      <Route path='tematicas/:id'     element={<DetalleTematicas tematicas={tematicas}/> } />
+        <AuthProvider>
+          <CarritoProvider>
+            <Box id="back-to-top-anchor" />
+            <NavBar isDarkMode={isDarkMode} handleThemeChange={handleThemeChange} />
+              <ScrollToTop>
+                <Routes>
+                  {/*rutasDeAplicacion*/}
+                  <Route path='/'                       element={<Navigate to='/inicio'/>}/>
+                  <Route path='/inicio'                 element={<Inicio/>} />
+                  <Route path='/mapa'                   element={<Mapa/> } />
+                  <Route path='/chatbot'         element={<ChatBot/>} />
+                  <Route path='/sobre-nosotros'         element={<SobreNosotros/>} />
+                  <Route path='/donaciones'             element={<Donaciones/>} />
+                  <Route path='/creadores-de-contenido' element={<CreadoresDeContenido/>} />
+                  <Route path='/tienda'                 element={<Tienda/>} />
+                  <Route path='/tienda/:id'             element={<DetalleProduct productos={productos}/> } />
+                  <Route path='/aviso-de-privacidad'    element={<AvisoDePrivacidad/>} />
+                  <Route path='/preguntas-frecuentes'   element={<PreguntasFrecuentes/>} />
+                  
+                  {/* SubRutas -- tematicas */}
+                  <Route path="/tematicas/" /*AquiSePuedeRenderizarUnNavTematicas*/ >
+                    <Route index element={<PanelTematicas/>}/*yAquiSePuedeRenderizarUnListTematicas*/  />
+                    <Route path="vestimenta"          element={<Vestimenta />} />
+                    <Route path="danza"               element={<Danza/>} />
+                    <Route path="gastronomia"         element={<Gastronomia/>} />
+                    <Route path="musica"              element={<Musica/>} />
+                    <Route path="tradiciones"         element={<Tradiciones/>} />
+                    <Route path="*"                   element={<Error/>} />
+                  </Route>
+                  <Route path='tematicas/:id'     element={<DetalleTematicas tematicas={tematicas}/> } />
 
-                      {/* Perfiles -- usuarios */}
-                      <Route path='/user/consultor'     element={<ProtectedRoute>       <Consultor/>      </ProtectedRoute>} />
-                      <Route path='/user/colaborador'   element={<ProtecteRoutCol>     <Colaborador/>    </ProtecteRoutCol>  } />
-                      <Route path='/user/supervisor'    element={<ProtectedRoutSuper>   <Supervisor/>   </ProtectedRoutSuper>    } />
-                      <Route path='/user/administrador' element={<ProtecteRoutAdmi>   <Administrador/>    </ProtecteRoutAdmi>   } />
-                      {/* acceso -- registro */}
-                      <Route path='/acceso'               element={<Acceso/>} />
-                      <Route path='/acceso/restaurar-pass'element={<RestorePassword/>} />
-                      <Route path='/acceso/cesar'         element={<CifradoCesar/>} />
-                      <Route path='/registro'             element={<Registro/>} />
-                      <Route path='/registro/colaborador' element={<Solicitud/>} />
-                      {/* vista -- error */}
-                      <Route path="*" element={<Error/>} />
-                    </Routes>
-                  </ScrollToTop>
+                  {/* Perfiles -- usuarios */}
+                  <Route path='/user/consultor'     element={<ProtectedRoute>       <Consultor/>      </ProtectedRoute>} />
+                  <Route path='/user/colaborador'   element={<ProtecteRoutCol>     <Colaborador/>    </ProtecteRoutCol>  } />
+                  <Route path='/user/supervisor'    element={<ProtectedRoutSuper>   <Supervisor/>   </ProtectedRoutSuper>    } />
+                  <Route path='/user/administrador' element={<ProtecteRoutAdmi>   <Administrador/>    </ProtecteRoutAdmi>   } />
+                  {/* acceso -- registro */}
+                  <Route path='/acceso'               element={<Acceso/>} />
+                  <Route path='/acceso/restaurar-pass'element={<RestorePassword/>} />
+                  <Route path='/acceso/cesar'         element={<CifradoCesar/>} />
+                  <Route path='/registro'             element={<Registro/>} />
+                  <Route path='/registro/colaborador' element={<Solicitud/>} />
+                  {/* vista -- error */}
+                  <Route path="*" element={<Error/>} />
+                </Routes>
 
-              <WavyDivider/>
-              <Footer/>
-            </CarritoProvider>
-          </AuthProvider>
+                <BtnScrollTop {...props}>
+                  <Fab size="small" aria-label="scroll back to top" 
+                    sx={{
+                      bgcolor: "primary.main", color: "background.paper", 
+                      '&:hover': {
+                        bgcolor: 'background.paper',
+                        color: "primary.main",
+                        border: "1px solid",
+                      },
+                    }}
+                  >
+                      <KeyboardDoubleArrowUp />
+                  </Fab>
+                </BtnScrollTop>
+              </ScrollToTop>
+
+            <WavyDivider/>
+            <Footer/>
+          </CarritoProvider>
+        </AuthProvider>
         {/* </CheckConnection> */}
       </BrowserRouter>
   )
