@@ -4,7 +4,8 @@ fixture`Testiando el registro`.page("https://corazon-huasteco.com/registro");
 
 test('Validar el registro', async (t) => {
     const btnValidar = await Selector('.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-fullWidth[aria-label="Validar correo electronico"]');
-
+    const alert = await Selector('.MuiAlert-message.css-1xsto0d');
+    
     await t
         .typeText('[name="name"]', "Eduardo")
         .typeText('[name="lastName"]', "Azuara")
@@ -15,6 +16,5 @@ test('Validar el registro', async (t) => {
         .typeText('[name="state"]', "Hidalgo")
         .typeText('[name="email"]', "eduardo1802gmail.com")
         .click(btnValidar)
-        const alert = await Selector('.MuiAlert-root.MuiAlert-filledInfo');
-        await t.expect(alert.exists).ok();
+        .expect(alert.innerText).contains("Tu correo es real, procede con el registro");
 });
