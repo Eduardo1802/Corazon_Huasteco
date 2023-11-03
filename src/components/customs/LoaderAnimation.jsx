@@ -7,69 +7,83 @@ export const LoaderAnimation = () => {
   const theme = useTheme();
   
   const styles = `
-  .container {
-    display: grid;
-    place-content: center;
-    height: 80vh;
-  }
+    .container{
+        width: 100%;
+        height: 80vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
 
-  .cargando {
-      width: 120px;
-      height: 30px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin: 0 auto;
-  }
-
-  .texto-cargando {
-      padding-top: 20px
-  }
-
-  .cargando span {
-      font-size: 20px;
-      text-transform: uppercase;
-  }
-
-  .pelotas {
-      width: 25px;
-      height: 25px;
-      background-color: ${theme.palette.primary.main};
-      animation: salto .5s alternate infinite;
-      border-radius: 50%
-  }
-
-  .pelotas:nth-of-type(2) {
-      animation-delay: .18s;
-  }
-
-  .pelotas:nth-of-type(3) {
-      animation-delay: .37s;
-  }
-
-  @keyframes salto {
-      from {
-          transform: scaleX(1.25);
+    
+    .loader {
+        width: 65px;
+        aspect-ratio: 1;
+        position: relative;
+      }
+      .loader:before,
+      .loader:after {
+        content: "";
+        position: absolute;
+        border-radius: 50px;
+        box-shadow: 0 0 0 3px inset ${theme.palette.primary.main};
+        animation: l4 2.5s infinite;
+      }
+      .loader:after {
+        animation-delay: -1.25s;
+      }
+      @keyframes l4 {
+        0% {
+          inset: 0 35px 35px 0;
+        }
+        12.5% {
+          inset: 0 35px 0 0;
+        }
+        25% {
+          inset: 35px 35px 0 0;
+        }
+        37.5% {
+          inset: 35px 0 0 0;
+        }
+        50% {
+          inset: 35px 0 0 35px;
+        }
+        62.5% {
+          inset: 0 0 0 35px;
+        }
+        75% {
+          inset: 0 0 35px 35px;
+        }
+        87.5% {
+          inset: 0 0 35px 0;
+        }
+        100% {
+          inset: 0 35px 35px 0;
+        }
       }
 
-      to {
-          transform:
-              translateY(-50px) scaleX(1);
-      }
-  }
+
+    .loader-text {
+        font-weight: 500;
+        font-family: sans-serif;
+        font-size: 30px;
+        animation: l1 1s linear infinite alternate;
+        color: ${theme.palette.primary.main};
+        font-size: 45px;
+    }
+    .loader-text:before {
+        content:"Cargando..."
+    }
+    @keyframes l1 {to{opacity: 0}}
   `;
 
   return (
     <Box sx={{background: theme.palette.background.paper}}>
         <Box sx={{styles}}>
         <Box className="container" >
-            <Box className="cargando">
-                <Box className="pelotas"></Box>
-                <Box className="pelotas"></Box>
-                <Box className="pelotas"></Box>
-                <Typography component="span" className="texto-cargando" color="primary">Cargando... </Typography>
-            </Box>
+            <Box className="loader"></Box>
+            <Box className='loader-text'></Box>
         </Box>
         </Box>
     </Box>
