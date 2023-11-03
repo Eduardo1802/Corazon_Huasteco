@@ -175,13 +175,13 @@ const ContenedorPrincipal = styled('div')({
     },
 
 	"@media screen and (max-width: 599px)": {
-		bottom: "calc(50% - 30px)",
-		fontSize: "1.5rem",
+		// bottom: "calc(50% - 30px)",
+		// fontSize: "1.5rem",
 
 		// wrapper total de la imagen abajo, contenedor adaptado en linea arriba
 
-		// lineHeight: "63vh",
-		// fontSize: "1.5rem",
+		lineHeight: "63vh",
+		fontSize: "1.5rem",
 	},
 
 	"@media screen and (max-width: 280px)": {
