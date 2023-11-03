@@ -5,7 +5,7 @@ import { Button, Container, Grid, Paper, IconButton, InputAdornment, Box, Typogr
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { Form } from "semantic-ui-react"
-import imgLogo from "../../assets/img/app/imgLogoHuejutlaLight.png"
+import imgLogo from "../../assets/img/app/imgLogoHuejutlaLight.webp"
 
 
 import VisibilityOff from "@mui/icons-material/VisibilityOff";

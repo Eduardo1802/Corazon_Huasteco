@@ -5,7 +5,7 @@ import {Button,Box,TextField,Alert,Dialog,DialogTitle,IconButton,DialogContent,D
 import { app } from "../../../config/firebase/firebase";
 import AddCommentIcon from '@mui/icons-material/AddComment';
 import CloseIcon from '@mui/icons-material/Close';
-import userImage from "../../../assets/img/perfil/noProfilePicture.jpg";
+import userImage from "../../../assets/img/perfil/noProfilePicture.webp";
 
 
 const AgregarComentarios = ({tematica}) => {

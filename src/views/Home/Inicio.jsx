@@ -4,9 +4,9 @@ import { Paper, Button, Box, useMediaQuery, Grid, useTheme, Container, Divider }
 import { contadorVisitas } from '../../utils/fnCountStatus';
 import { Carrusel } from './Carrusel/Carrusel';
 import { ArrowForward, Directions, LocalFlorist, Pets } from '@mui/icons-material';
-import imagenLateral from '../../assets/img/inicio/imagenLateral.jpg'
-import flora from '../../assets/img/inicio/flora-02.jpg'
-import fauna from '../../assets/img/inicio/fauna-02.jpg'
+import imagenLateral from '../../assets/img/inicio/imagenLateral.webp'
+import flora from '../../assets/img/inicio/flora-02.webp'
+import fauna from '../../assets/img/inicio/fauna-02.webp'
 import styled from '@emotion/styled';
 import { OnlyMapa } from './Mapa/Mapa';
 import { WavyDivider } from '../../components/customs/WavyDivider';

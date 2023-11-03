@@ -1,7 +1,7 @@
 import {useScrollTrigger, Slide, Box} from '@mui/material';
 import React from 'react';
-import logoLight from '../../../assets/img/app/imgLogoHuejutlaLight.png'
-import logoDark from '../../../assets/img/app/imgLogoHuejutlaDark.png'
+import logoLight from '../../../assets/img/app/imgLogoHuejutlaLight.webp'
+import logoDark from '../../../assets/img/app/imgLogoHuejutlaDark.webp'
 
 // esto permite ocoultar el nav al hacer scroll
 export function HideOnScroll(props) {

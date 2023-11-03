@@ -2,7 +2,7 @@ import React, { forwardRef }                                from 'react'
 import { Box, CardMedia, Container, Grid, MenuItem, Snackbar, TextField, Typography, useTheme }  from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import { LinkStyled }                       from './footer.elements'
-import imgLogo1                             from "../../../assets/img/app/imgLogoHuejutlaLight.png"
+import imgLogo1                             from "../../../assets/img/app/imgLogoHuejutlaLight.webp"
 import UseAnimations                        from 'react-useanimations';
 import facebook                             from "react-useanimations/lib/facebook";
 import youtube                              from "react-useanimations/lib/youtube";

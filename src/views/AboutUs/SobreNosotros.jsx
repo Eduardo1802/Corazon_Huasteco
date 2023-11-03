@@ -6,11 +6,11 @@ import TimelineUsLarge from './TimelineUsLarge';
 import TimelineUsSmall from './TimelineUsSmall';
 import { HomeRounded, BusinessRounded } from '@mui/icons-material';
 import { AvatarItem } from './AvatarItem';
-import lalo from '../../assets/img/sobre-nosotros/lalo.jpg'
-import josa from '../../assets/img/sobre-nosotros/josa.jpg'
-import elder from '../../assets/img/sobre-nosotros/elder.jpg'
-import einar from '../../assets/img/sobre-nosotros/einar.jpg'
-import chino from '../../assets/img/sobre-nosotros/chino.jpg'
+import lalo from '../../assets/img/sobre-nosotros/lalo.webp'
+import josa from '../../assets/img/sobre-nosotros/josa.webp'
+import elder from '../../assets/img/sobre-nosotros/elder.webp'
+import einar from '../../assets/img/sobre-nosotros/einar.webp'
+import chino from '../../assets/img/sobre-nosotros/chino.webp'
 
 // import CustomizedTimeline from './CustomizedTimeline';
 
