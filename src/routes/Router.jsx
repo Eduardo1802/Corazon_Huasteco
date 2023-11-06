@@ -26,7 +26,6 @@ const Musica                = lazy(() => import('../views/Thematics/Musica/Music
 const PanelTematicas        = lazy(() => import('../views/Thematics/PanelTematicas').then((module) => ({ default: module.PanelTematicas })))
 const Tradiciones           = lazy(() => import('../views/Thematics/Tradiciones/Tradiciones').then((module) => ({ default: module.Tradiciones })))
 const Vestimenta            = lazy(() => import('../views/Thematics/vestimenta/Vestimenta').then((module) => ({ default: module.Vestimenta })))
-const CifradoCesar          = lazy(() => import('../components/Cifrado/CifradoCesar').then((module) => ({ default: module.CifradoCesar })))
 // profiles components        
 const Administrador                  = lazy(() => import('../views/Profiles/Administrador/Administrador').then((module) => ({ default: module.Administrador })))
 const Colaborador                    = lazy(() => import('../views/Profiles/Colaborador/Colaborador').then((module) => ({ default: module.Colaborador })))
@@ -38,7 +37,6 @@ import { ProtectedRoute }               from '../components/customs/ProtectedRou
 import { ProtecteRoutAdmi }             from '../components/customs/ProtecteRoutAdmi'
 import { ProtecteRoutCol }              from '../components/customs/ProtecteRoutCol'
 import { ProtectedRoutSuper }           from '../components/customs/ProtectedRoutSuper'
-// import CheckConnection                  from '../components/OffLine/CheckConnection';
 import ScrollToTop                      from '../components/customs/ScrollToTop'
 import { getProducts } from '../utils/fnTienda'
 import { getTematicas } from '../utils/fnTematica'
@@ -71,7 +69,6 @@ export const Router = ({isDarkMode, handleThemeChange}, props) => {
 
   return (
     <BrowserRouter>
-      {/* <CheckConnection> */}
       <AuthProvider>
         <CarritoProvider>
           <Box id="back-to-top-anchor" />
@@ -112,7 +109,6 @@ export const Router = ({isDarkMode, handleThemeChange}, props) => {
                   {/* acceso -- registro */}
                   <Route path='/acceso'               element={<Acceso/>} />
                   <Route path='/acceso/restaurar-pass'element={<RestorePassword/>} />
-                  <Route path='/acceso/cesar'         element={<CifradoCesar/>} />
                   <Route path='/registro'             element={<Registro/>} />
                   <Route path='/registro/colaborador' element={<Solicitud/>} />
                   {/* vista -- error */}
@@ -140,7 +136,6 @@ export const Router = ({isDarkMode, handleThemeChange}, props) => {
           <Footer/>
         </CarritoProvider>
       </AuthProvider>
-      {/* </CheckConnection> */}
     </BrowserRouter>
   )
 }
