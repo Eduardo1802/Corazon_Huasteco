@@ -11,6 +11,8 @@ import josa from '../../assets/img/sobre-nosotros/josa.webp'
 import elder from '../../assets/img/sobre-nosotros/elder.webp'
 import einar from '../../assets/img/sobre-nosotros/einar.webp'
 import chino from '../../assets/img/sobre-nosotros/chino.webp'
+import imgAus                 from "../../assets/img/sobre-nosotros/imgSobreNosotros.webp"
+import imgMural               from "../../assets/img/inicio/imgMural-01.webp"
 
 // import CustomizedTimeline from './CustomizedTimeline';
 
@@ -32,10 +34,10 @@ export const SobreNosotros = () => {
           </Grid>
         </Grid>
         <Box sx={{display: {xs:"none", sm:"none", md:"flex", lg:"flex", xl: "flex"}}}>
-          <TimelineUsLarge/>
+          <TimelineUsLarge imgAus={imgAus} imgMural={imgMural}/>
         </Box>
         <Box sx={{display: {xs:"flex", sm:"flex", md:"none", lg:"none", xl: "none"}}}>
-          <TimelineUsSmall/>
+          <TimelineUsSmall imgAus={imgAus} imgMural={imgMural}/>
         </Box>
 
         <Divider sx={{mb: 4}}/>
@@ -49,8 +51,8 @@ export const SobreNosotros = () => {
               <AvatarItem 
                 alt={"Eduardo Azuara"}
                 imagen={lalo} 
-                firstColor={"#617030"} 
-                secondColor={"#5A6C9F"}
+                firstcolor={"#617030"} 
+                secondcolor={"#5A6C9F"}
                 enlace='https://facebook.com/eduardo.azuara.5074'
                 data-testid="lalo-link"
               />
@@ -59,8 +61,8 @@ export const SobreNosotros = () => {
               <AvatarItem 
                 alt={"Yael Josafath"}
                 imagen={josa} 
-                firstColor={"#282A2D"} 
-                secondColor={"#BABABD"}
+                firstcolor={"#282A2D"} 
+                secondcolor={"#BABABD"}
                 enlace='https://facebook.com/yaeljosafath.floresalvarado.1'
               />
             </Grid>
@@ -68,8 +70,8 @@ export const SobreNosotros = () => {
               <AvatarItem 
                 alt={"Elder Meyer"}
                 imagen={elder} 
-                firstColor={"#00434c"} 
-                secondColor={"#44b4d0"}
+                firstcolor={"#00434c"} 
+                secondcolor={"#44b4d0"}
                 enlace='https://elder-meyer.web.app/'
               />
             </Grid>
@@ -77,8 +79,8 @@ export const SobreNosotros = () => {
               <AvatarItem 
                 alt={"Einar Omar"}
                 imagen={einar} 
-                firstColor={"#F5BF31"} 
-                secondColor={"#A8BB5F"}
+                firstcolor={"#F5BF31"} 
+                secondcolor={"#A8BB5F"}
                 enlace='https://facebook.com/EinarOmarVillegasRuiz'
               />
             </Grid>
@@ -86,8 +88,8 @@ export const SobreNosotros = () => {
               <AvatarItem 
                 alt={"Juan de Dios"}
                 imagen={chino} 
-                firstColor={"#C76958"} 
-                secondColor={"#62CDFF"}
+                firstcolor={"#C76958"} 
+                secondcolor={"#62CDFF"}
                 enlace='https://facebook.com/juan.delangel.9406'
               />
             </Grid>

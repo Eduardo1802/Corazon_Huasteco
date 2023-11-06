@@ -6,12 +6,10 @@ import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import { TimelineOppositeContent } from '@mui/lab';
-import imgAus                 from "../../assets/img/sobre-nosotros/imgSobreNosotros.webp"
-import imgMural               from "../../assets/img/inicio/imgMural-01.webp"
 
 import { Card, CardMedia, Box, Typography, Fade, Grow } from '@mui/material';
 
-export default function TimelineUsLarge() {
+export default function TimelineUsLarge({imgAus, imgMural}) {
   const [componentLoaded, setComponentLoaded] = React.useState(false);
 
   React.useEffect(() => {

@@ -5,11 +5,9 @@ import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
-import imgAus                 from "../../assets/img/sobre-nosotros/imgSobreNosotros.webp"
-import imgMural               from "../../assets/img/inicio/imgMural-01.webp"
 import { Box, Fade, Grow, Typography } from '@mui/material';
 
-export default function TimelineUsSmall() {
+export default function TimelineUsSmall({imgAus, imgMural}) {
   const [componentLoaded, setComponentLoaded] = React.useState(false);
 
   React.useEffect(() => {

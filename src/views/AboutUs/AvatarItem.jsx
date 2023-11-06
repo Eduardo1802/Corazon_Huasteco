@@ -3,14 +3,14 @@ import styled from '@emotion/styled'
 import { Box, Tooltip, Typography, tooltipClasses, useMediaQuery } from '@mui/material'
 import { Link } from 'react-router-dom'
 
-export const AvatarItem = ({imagen, alt, firstColor, secondColor, enlace="#"}) => { 
+export const AvatarItem = ({imagen, alt, firstcolor, secondcolor, enlace="#"}) => { 
 
-  const isSmallScreen = useMediaQuery('(max-width:900px)');
+  const issmallscreen = useMediaQuery('(max-width:900px)');
 
   return (
     <Link to={enlace} target='_BLANK'>
-      <BootstrapTooltip title={<Typography variant='subtitle1'>{alt}</Typography>} arrow placement="bottom" firstColor={firstColor} secondColor={secondColor}>
-        <Avatar firstColor={firstColor} secondColor={secondColor} isSmallScreen={isSmallScreen}>
+      <BootstrapTooltip title={<Typography variant='subtitle1'>{alt}</Typography>} arrow placement="bottom" firstcolor={firstcolor} secondcolor={secondcolor}>
+        <Avatar firstcolor={firstcolor} secondcolor={secondcolor} issmallscreen={issmallscreen}>
           <img src={imagen} alt={alt} preload="true" />
         </Avatar>
       </BootstrapTooltip>
@@ -20,20 +20,20 @@ export const AvatarItem = ({imagen, alt, firstColor, secondColor, enlace="#"}) =
 
 const BootstrapTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} arrow classes={{ popper: className }} />
-))(({ theme, firstColor, secondColor }) => ({
+))(({ theme, firstcolor, secondcolor }) => ({
   [`& .${tooltipClasses.arrow}`]: {
-    color: firstColor ? firstColor : theme.palette.primary.dark,
+    color: firstcolor ? firstcolor : theme.palette.primary.dark,
   },
   [`& .${tooltipClasses.tooltip}`]: {
-    background: `linear-gradient(to bottom, ${ firstColor ? firstColor : theme.palette.primary.dark}, ${ secondColor ? secondColor : theme.palette.primary.light})`,
+    background: `linear-gradient(to bottom, ${ firstcolor ? firstcolor : theme.palette.primary.dark}, ${ secondcolor ? secondcolor : theme.palette.primary.light})`,
   },
   
 }));
 
-export const Avatar = styled(Box)(({ theme, firstColor, secondColor, isSmallScreen }) => ({
-  background: `linear-gradient(to right, ${ firstColor ? firstColor : theme.palette.primary.dark}, ${ secondColor ? secondColor : theme.palette.primary.light})`,
-  width:  isSmallScreen ? "100px" : "150px",
-  height: isSmallScreen ? "100px" : "150px",
+export const Avatar = styled(Box)(({ theme, firstcolor, secondcolor, issmallscreen }) => ({
+  background: `linear-gradient(to right, ${ firstcolor ? firstcolor : theme.palette.primary.dark}, ${ secondcolor ? secondcolor : theme.palette.primary.light})`,
+  width:  issmallscreen ? "100px" : "150px",
+  height: issmallscreen ? "100px" : "150px",
   borderRadius: "50%",
   overflow: "hidden",
   transition: "300ms ease",
