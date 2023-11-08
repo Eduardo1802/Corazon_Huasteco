@@ -33,7 +33,6 @@ export default function TimelineUsLarge({imgAus, imgMural}) {
                 height={"100%"}
                 image={imgAus}
                 alt="img-casa-de-la-cultura"
-                preload="true"
               />
             </Card>   
           </Fade>
@@ -72,7 +71,6 @@ export default function TimelineUsLarge({imgAus, imgMural}) {
               height={"100%"}
               image={imgMural}
               alt="img-mural"
-              preload="true"
             />
             </Card>   
           </Fade>

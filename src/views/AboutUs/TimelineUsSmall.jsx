@@ -44,12 +44,10 @@ export default function TimelineUsSmall({imgAus, imgMural}) {
                 </Grow> 
                 <Fade in={componentLoaded}>
                   <Box
-                      
-                      component="img"
-                      src={imgAus}
-                      alt="img-casa-de-la-cultura"
-                      preload="true"
-                      sx={{ width: "100%", height: "100%", objectFit: "cover", mt: 2 }}
+                    component="img"
+                    src={imgAus}
+                    alt="img-casa-de-la-cultura"
+                    sx={{ width: "100%", height: "100%", objectFit: "cover", mt: 2 }}
                   />
                 </Fade>
             </Box>
@@ -70,11 +68,10 @@ export default function TimelineUsSmall({imgAus, imgMural}) {
                     Ser una empresa importante en el ambito cultural del municipio de Huejutla de Reyes Hidalgo para proyectar a nivel nacional e internacional la cultura de esta región.
                 </Typography>
                 <Box
-                    component="img"
-                    src={imgMural}
-                    alt="img-mural"
-                    preload="true"
-                    sx={{ width: "100%", height: "100%", objectFit: "cover", mt: 2 }}
+                  component="img"
+                  src={imgMural}
+                  alt="img-mural"
+                  sx={{ width: "100%", height: "100%", objectFit: "cover", mt: 2 }}
                 />
             </Box>
         </TimelineContent>

@@ -10,9 +10,6 @@ import { navLinks }                    from "./opNavLinks";
 import SimpleBackdrop                  from "../../customs/SimpleBackDrop";
 import { db }                          from "../../../config/firebase/firebaseDB";
 import { useAuth }                     from "../../../context/AuthContext";
-// import './Navbar.css'
-// import './logica'
-// import { Elder } from "./logica";
 import { useTheme } from "@emotion/react";
 import { ToggleThemeSticky } from "../../customs/ToggleThemeSticky";
 
@@ -22,10 +19,8 @@ const drawerWidth = 240;
 export const NavBar = (props) => {
   const {isDarkMode} = props;
   const theme = useTheme();
-  // Elder(theme.palette.primary.main);
   const location = useLocation();
   const isHome = location.pathname === "/inicio";
-  // const navBackgroundStyle = isHome ? { backgroundColor: `${theme.palette.primary.dark.concat(isDarkMode === 'dark' ? "4D" : "00")}` } : { backgroundColor: `${theme.palette.primary.main}FF` };
 
   const {handleThemeChange} = props;
   const { logout, user, profileImageUrl } = useAuth();
@@ -89,10 +84,6 @@ export const NavBar = (props) => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
-  // eslint-disable-next-line
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -155,13 +146,13 @@ export const NavBar = (props) => {
   return (
     <>
       <ElevationScroll {...props}>
-        <AppBar /*sx={navBackgroundStyle} enableColorOnDark id="header-principal"*/ >
+        <AppBar>
           <SimpleBackdrop open={open}/>
           {/* Primer tool */}
           {/* desktop*/}
           <Toolbar sx={{ display: { xs: "none", md: "flex" }}}>
-            <AnimatedIcon component={Link} to='/inicio' isDarkMode={isDarkMode}/>
-            <Box sx={{/* border: "3px solid blue", */ flexGrow:1}}>
+            <AnimatedIcon component={Link} to='/'/>
+            <Box sx={{flexGrow:1}}>
 
             <Tooltip title="Volver al inicio" arrow placement="right">
               <Typography
@@ -170,8 +161,6 @@ export const NavBar = (props) => {
                 to="/inicio"
                 fontWeight={700}
                 sx={{
-                  // flexGrow: 1,
-                  // border: "3px solid red",
                   textDecoration: "none",
                   color: "inherit",
                 }}
@@ -261,9 +250,7 @@ export const NavBar = (props) => {
                   key={item.title}
                   onClick={handleCloseNavMenu}
                   sx={{
-                    // my: 2,
                     mr: 1,
-                    // p:1,
                     fontSize: 16,
                     color: "inherit",                    
                     display: "flex",
