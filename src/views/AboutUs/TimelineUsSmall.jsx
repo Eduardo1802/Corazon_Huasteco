@@ -46,6 +46,8 @@ export default function TimelineUsSmall({imgAus, imgMural}) {
                   <Box
                     component="img"
                     src={imgAus}
+                    preload="true"
+                    cached="true"
                     alt="img-casa-de-la-cultura"
                     sx={{ width: "100%", height: "100%", objectFit: "cover", mt: 2 }}
                   />
@@ -70,6 +72,8 @@ export default function TimelineUsSmall({imgAus, imgMural}) {
                 <Box
                   component="img"
                   src={imgMural}
+                  preload="true"
+                  cached="true"
                   alt="img-mural"
                   sx={{ width: "100%", height: "100%", objectFit: "cover", mt: 2 }}
                 />

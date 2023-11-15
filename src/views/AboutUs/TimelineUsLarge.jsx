@@ -32,6 +32,8 @@ export default function TimelineUsLarge({imgAus, imgMural}) {
                 component="img"
                 height={"100%"}
                 image={imgAus}
+                preload="true"
+                cached="true"
                 alt="img-casa-de-la-cultura"
               />
             </Card>   
@@ -70,6 +72,8 @@ export default function TimelineUsLarge({imgAus, imgMural}) {
               component="img"
               height={"100%"}
               image={imgMural}
+              preload="true"
+              cached="true"
               alt="img-mural"
             />
             </Card>   
