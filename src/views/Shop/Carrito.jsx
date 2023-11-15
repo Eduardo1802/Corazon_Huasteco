@@ -420,13 +420,14 @@ const Carrito = () => {
                           <TableCell>{productosData[id].costo || 0}</TableCell>
                           <TableCell>{(item * productosData[id].costo).toFixed(2)}</TableCell>
                           <TableCell>
-                            <select aria-label='seleccione la cantidad' value={item} onChange={(e) => editarCantidad(id, e.target.value)}>
-                              {[1, 2, 3, 4, 5].map((cantidad) => (
-                                <option key={cantidad} value={cantidad}>
-                                  {cantidad}
-                                </option>
-                              ))}
-                            </select>
+                          <div id="labelCantidad" style={{ display: 'none' }}>Selecciona la cantidad:</div>
+                          <select aria-labelledby="labelCantidad" aria-label="seleccione la cantidad" value={item} onChange={(e) => editarCantidad(id, e.target.value)}>
+                            {[1, 2, 3, 4, 5].map((cantidad) => (
+                              <option key={cantidad} value={cantidad}>
+                                {cantidad}
+                              </option>
+                            ))}
+                          </select>
                           </TableCell>
                           <TableCell>
                             <IconButton aria-label='eliminar producto del carrito de compras' onClick={() => handleEliminar(id)}>
