@@ -151,7 +151,7 @@ export const NavBar = (props) => {
           {/* Primer tool */}
           {/* desktop*/}
           <Toolbar sx={{ display: { xs: "none", md: "flex" }}}>
-            <AnimatedIcon component={Link} to='/'/>
+            <AnimatedIcon component={Link} to='/' aria-label='Ir al inicio de Corazón Huasteco' />
             <Box sx={{flexGrow:1}}>
 
             <Tooltip title="Volver al inicio" arrow placement="right">
@@ -164,7 +164,7 @@ export const NavBar = (props) => {
                   textDecoration: "none",
                   color: "inherit",
                 }}
-                aria-label="volver a la pagina de inicio"
+                aria-label="Ir al inicio de Corazón Huasteco"
               >
                 CORAZÓN HUASTECO
               </Typography>            
@@ -203,7 +203,7 @@ export const NavBar = (props) => {
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
-                aria-label="menu de opciones de navegación"
+                aria-label="Abrir las opciones de navegación"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleDrawerToggle}
@@ -229,8 +229,8 @@ export const NavBar = (props) => {
                   fontWeight: 700,
                   color: "inherit",
                   textDecoration: "none",
-                  
                 }}
+                aria-label="Ir al inicio de Corazón Huasteco"
               >  
                 <AnimatedIcon/>
               </Typography>
@@ -333,7 +333,7 @@ export const NavBar = (props) => {
                 <>
                   <Box>
                     <Button
-                      aria-label="ir al inicio de sesión"
+                      aria-label="Entrar al formulario de inicio de sesión"
                       component={Link}
                       to="/acceso"
                       endIcon={<LoginRoundedIcon />}
