@@ -15,7 +15,7 @@ export const Carrusel = () => {
         <Slideshow controles={true} autoplay={true} /*velocidad='500' intervalo='3000'*/>
             <Slide>                
                 <Link to='/tematicas'>
-                    <img src={img1} alt='img-carrusel-catedral-de-huejutla' />
+                    <img src={img1} rel='preload' as="image" alt='img-carrusel-catedral-de-huejutla' />
                 </Link>                
                 <TextoSlide>
                     <p>Catedral de Huejutla</p>
@@ -25,7 +25,7 @@ export const Carrusel = () => {
 
             <Slide>
                 <Link to='/sobre-nosotros'>
-                    <img src={img2} alt='img-carrusel-huejutla-centro' />
+                    <img src={img2} rel='preload' as="image" alt='img-carrusel-huejutla-centro' />
                 </Link>
                 <TextoSlide>
                     <p>Huejutla Centro</p>
@@ -35,7 +35,7 @@ export const Carrusel = () => {
 
             <Slide>
                 <Link to='/tienda'>
-                    <img src={img3} alt='img-carrusel-mural-emblematico' />                    
+                    <img src={img3} rel='preload' as="image" alt='img-carrusel-mural-emblematico' />                    
                 </Link>
                 <TextoSlide>
                     <p>Mural Emblematico</p>
