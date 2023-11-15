@@ -8,13 +8,10 @@ import imagenLateral from '../../assets/img/inicio/imagenLateral.webp'
 import flora from '../../assets/img/inicio/flora-02.webp'
 import fauna from '../../assets/img/inicio/fauna-02.webp'
 import styled from '@emotion/styled';
-import { OnlyMapa } from './Mapa/Mapa';
 import { WavyDivider } from '../../components/customs/WavyDivider';
 import {Link} from 'react-router-dom'
 
 export const Inicio = () => {
-
-  const isSmallScreen = useMediaQuery('(max-width:600px)');
   const theme = useTheme();
 
   useEffect(() => { contadorVisitas("inicio") }, [])
@@ -61,13 +58,13 @@ export const Inicio = () => {
                 </Typography>
               </Grid>
               <Grid item container alignItems="center" xs={12} sm={6} md={4}>
-                <Img alt="img-intro-colaboradores" src={imagenLateral} />
+                <Img alt="img-intro-colaboradores" src={imagenLateral} width='100%' height='100%' />
               </Grid>
               <Grid item container xs={12} sm={6} md={8} direction="column" justifyContent="center">
                 <Typography gutterBottom variant="subtitle1" component="p" color="text.secondary">
                   Nuestra plataforma es un faro de conocimiento y autenticidad gracias a nuestros dedicados colaboradores. Ellos son los narradores de historias, los guardianes de tradiciones y los informantes de la Huasteca Hidalguense. Con una profunda pasión por su cultura y región, nuestros colaboradores aportan información verídica y perspectivas únicas a través de sus artículos. Desde relatos históricos hasta exploraciones de festivales locales, sus contribuciones enriquecen nuestra comunidad y te sumergen en la riqueza de la Huasteca.
                 </Typography>
-                <Button aria-label='ir a la sección de creadores de contenido' variant='outlined' component={Link} to="/creadores-de-contenido" endIcon={<ArrowForward/>} sx={{borderRadius: 5, '&:hover':{backgroundColor: theme.palette.primary.main, color: theme.palette.background.paper}}}>
+                <Button aria-label='Explora las voces de los creadores de contenido' variant='outlined' component={Link} to="/creadores-de-contenido" endIcon={<ArrowForward/>} sx={{borderRadius: 5, '&:hover':{backgroundColor: theme.palette.primary.main, color: theme.palette.background.paper}}}>
                   Explora sus Voces
                 </Button>
               </Grid>
@@ -90,12 +87,12 @@ export const Inicio = () => {
                 <Typography gutterBottom variant="subtitle1" component="p" color="text.secondary" textAlign="center">
                   Explora la abundante biodiversidad de Huejutla: árboles frutales, madera fina, plantas medicinales y una profusión de flora.
                 </Typography>
-                <Button aria-label='leer un articulo sobre flora' variant='outlined' component={Link} to="/tematicas" endIcon={<LocalFlorist/>} sx={{borderRadius: 5, '&:hover':{backgroundColor: theme.palette.primary.main, color: theme.palette.background.paper}}}>
+                <Button aria-label='Ver más acerca de la fauna' variant='outlined' component={Link} to="/tematicas" endIcon={<LocalFlorist/>} sx={{borderRadius: 5, '&:hover':{backgroundColor: theme.palette.primary.main, color: theme.palette.background.paper}}}>
                   Ver más
                 </Button>
               </Grid>
               <Grid item container alignItems="center" xs={12} sm={6} md={7} order={{xs: 1, sm:2}}>
-                <Img alt="img-flora" src={flora} />
+                <Img alt="img-flora" src={flora} width='100%' height='100%' />
               </Grid>
             </Grid>
         </Container>
@@ -106,7 +103,7 @@ export const Inicio = () => {
           {/* SECTION FIVE -- FAUNA */}
             <Grid container columnSpacing={2} rowSpacing={2} py={5} my={5}>
               <Grid item container alignItems="center" xs={12} sm={6} md={7} order={{xs: 1, sm:1}}>
-                <Img alt="img-fauna" src={fauna} />
+                <Img alt="img-fauna" src={fauna} width='100%' height='100%' />
               </Grid>
               <Grid item container xs={12} sm={6} md={5} direction="column" justifyContent="center" order={{xs: 2, sm:2}}>
                 <Typography variant="overline" component="p" color="text.secondary" textAlign="center">
@@ -138,12 +135,11 @@ export const Inicio = () => {
                 <Typography gutterBottom variant="subtitle1" component="p" color="text.secondary" textAlign="center">
                   Huejutla colinda al norte con el municipio de Orizatlán, el estado de Veracruz; al este con Veracruz, Huautla y Atlapexco; al sur con Atlapexco, Huazalingo y Tlanchinol; y al oeste con Tlanchinol, Jaltocan y Orizatlán.
                 </Typography>
-                <Button aria-label='ir a la sección del mapa' variant='outlined' component={Link} to="/mapa" endIcon={<Directions/>} sx={{borderRadius: 5, '&:hover':{backgroundColor: theme.palette.primary.main, color: theme.palette.background.paper}}}>
+                <Button aria-label='Ver un mapa completo de la región' variant='outlined' component={Link} to="/mapa" endIcon={<Directions/>} sx={{borderRadius: 5, '&:hover':{backgroundColor: theme.palette.primary.main, color: theme.palette.background.paper}}}>
                   Ver mapa
                 </Button>
               </Grid>
               <Grid item xs={12} sm={12} md={8} order={{xs: 2, sm:2}}>
-                <OnlyMapa altura={isSmallScreen ? "215px" : "50vh"}/>
               </Grid>
             </Grid>
         </Container>

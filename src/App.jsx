@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Router } from "./routes/Router";
 import { ThemeProvider } from "@mui/material";
-
 import { lightTheme, darkTheme } from "./styles/ThemeMui";
 
 function App() {
