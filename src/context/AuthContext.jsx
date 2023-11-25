@@ -1,6 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import {createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,onAuthStateChanged,GoogleAuthProvider,signInWithPopup,sendPasswordResetEmail,} from "firebase/auth";
-import { auth } from "../config/firebase/firebaseDB";//componenete para enviar datos a firebase
+import { auth, messaging } from "../config/firebase/firebaseDB";//componenete para enviar datos a firebase
+import { activarMensajes } from "../utils/fnPushNotifications";
+import { toast } from "react-toastify";
 
 const authContext = createContext();
 
@@ -38,6 +40,14 @@ export function AuthProvider({ children }) {
       console.log("Auth context: usuario por defecto =>", { currentUser });
       setUser(currentUser);
       setLoading(false);
+      if (currentUser) { 
+        activarMensajes();
+        onMessage(messaging, message => {
+          console.log("tu mensaje: ", message);
+          toast(message.notification.title);
+        })
+      }
+      
     });
     return () => unsubuscribe();
   }, []);
