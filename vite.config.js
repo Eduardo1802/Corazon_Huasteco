@@ -74,7 +74,7 @@ export default defineConfig({
             sizes: "800x1280",
             type: "image/png",
             platform: "web",
-            form_factor: "not set"
+            form_factor: "narrow"
           }
         ]
       }
@@ -83,24 +83,24 @@ export default defineConfig({
   preview:{
     host:true,
     port:8080
-  }
+  },
   //TELCEL-HUAWEI-B311-2F0A
   // server: {
-  //   host: '192.168.137.63', 
+  //   host: '192.168.8.6', 
   //   port: 5173,
   // },
 
   //EL SIGUIENTE CONTENIDO ES SOLO PAR LOS TESTS,
   //COMENTAR ANTES DE COMPILAR O SUBIR A PRODUCCIÓN
-      /* test: {
-        environment: 'jsdom',
-        globals: true
-      },
-      server: {
-        fs: {
-          // Incluir archivos de prueba con extensión .test.js para que se procesen con JSX
-          allow: ['../*']
-        }
-      } */
+  // test: {
+  //   environment: 'jsdom',
+  //   globals: true
+  // },
+  // server: {
+  //   fs: {
+  //     // Incluir archivos de prueba con extensión .test.js para que se procesen con JSX
+  //     allow: ['../*']
+  //   }
+  // } 
   //HASTA AQUÍ TERMINA LO QUE SE DEBE DE COMENTAR
 })
