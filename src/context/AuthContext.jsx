@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useCallback } from "react";
 import {createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,onAuthStateChanged,GoogleAuthProvider,signInWithPopup,sendPasswordResetEmail,} from "firebase/auth";
 import { auth, db, messaging } from "../config/firebase/firebaseDB";//componenete para enviar datos a firebase
 import { activarMensajes } from "../utils/fnPushNotifications";
@@ -20,7 +20,7 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [profileImageUrl, setProfileImageUrl] = useState('');
 
-  const fetchProfileImage = (uid) => {
+  const fetchProfileImage = useCallback((uid) => {
     const userDocRef = doc(db, 'usuarios', uid);
     const unsubscribe = onSnapshot(userDocRef, (userDocSnap) => {
       if (userDocSnap.exists()) {
@@ -32,20 +32,20 @@ export function AuthProvider({ children }) {
       }
     });
     return unsubscribe; // Devuelve la función de cancelación
-  };
+  }, []);
 
-  const signup = (email, password) => {// para hacer el registro a firebase 
+  const signup = useCallback((email, password) => {// para hacer el registro a firebase 
     return createUserWithEmailAndPassword(auth, email, password);
-  };
+  }, []);
 
-  const login = (email, password) => {
+  const login = useCallback((email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
-  };
+  }, []);
 
-  const loginWithGoogle = () => {
+  const loginWithGoogle = useCallback(() => {
     const googleProvider = new GoogleAuthProvider();
     return signInWithPopup(auth, googleProvider);
-  };
+  }, []);
 
   const logout = () => signOut(auth);
 
