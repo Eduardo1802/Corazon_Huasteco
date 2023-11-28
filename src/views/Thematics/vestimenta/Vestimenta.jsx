@@ -48,9 +48,9 @@ export const Vestimenta = () => {
                     key={proyecto.id}
                     id={proyecto.id}
                     titulo={proyecto.data().titulo}
-                    descripcion={proyecto.data().descripcion}
+                    descripcion={proyecto.data().subtitulo}
                     ancla={`../${proyecto.id}`}
-                    img={proyecto.data().imgPortada} />
+                    img={proyecto.data().portada} />
                 </Grid>
               )
             }))
