@@ -8,7 +8,7 @@ export const Bread = (props) => {
     const theme = useTheme();
 
   return (
-    <Box sx={{p: 2, bgcolor: "background.paper"}} component={Paper}> {/*se puede comentar el fondo, y componente para ajustar algunas cosas */}
+    <Box sx={{p: 2, bgcolor: "background.paper"}} > {/*se puede comentar el fondo, y componente para ajustar algunas cosas */}
         <Breadcrumbs aria-label="migas de pan del sitio web" separator="/">
         {migas.map((item, index) => (
             <MigaDePan
