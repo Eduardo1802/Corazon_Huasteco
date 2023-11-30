@@ -5,12 +5,11 @@ import {Button,Box,TextField,Alert,Dialog,DialogTitle,IconButton,DialogContent,D
 import { app } from "../../../config/firebase/firebase";
 import AddCommentIcon from '@mui/icons-material/AddComment';
 import CloseIcon from '@mui/icons-material/Close';
-import userImage from "../../../assets/img/perfil/noProfilePicture.webp";
 
 
 const AgregarComentarios = ({tematica}) => {
   // VARIABLES
-  const {user} = useAuth();
+  const {user, profileImageUrl} = useAuth();
   const [comentario, setComentario] = useState("");
   const [puntuacion, setPuntuacion] = useState("");
   const [mensajeAlerta, setMensajeAlerta] = useState(""); 
@@ -106,9 +105,10 @@ const AgregarComentarios = ({tematica}) => {
           puntuacion: puntuacion,
           tematica: tema,
           titulo: titulo,
+          imagen: profileImageUrl,
         });
         setTipoAlerta("success");
-        setMensajeAlerta("Comentario agregado exitosamente.");
+        setMensajeAlerta("Comentario agregado, podrás verlo en unos minutos.");
         setMostrarAlerta(true); // Establecer la variable de estado mostrarAlerta en true después de enviar el formulario
         setTimeout(() => {
           setMostrarAlerta(false); // Después de 5 segundos, establecer la variable de estado mostrarAlerta en false para ocultar la alerta emergente
@@ -162,7 +162,7 @@ const AgregarComentarios = ({tematica}) => {
             <Box sx={{ m: 1, display: "flex", justifyContent: "center"}}>
                 <Box
                     component="img"
-                    src={userImage} 
+                    src={profileImageUrl} 
                     alt="Perfil" 
                     sx={{width: 168, height: 168, borderRadius: "50%", border: "2px solid #fff"}}
                 />

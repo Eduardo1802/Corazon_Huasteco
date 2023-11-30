@@ -84,6 +84,7 @@ function showContentText({showContent, titulo, descripcion, puntuacion}){
                         // precision={1} 
                         value={puntuacion}
                         sx={{marginRight: "15px"}}
+                        readOnly
                     />
 
                     {/* {puntuacion in textosPuntuacion && <p>{textosPuntuacion[puntuacion]}</p>} */}

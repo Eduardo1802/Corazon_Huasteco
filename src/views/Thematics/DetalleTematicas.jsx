@@ -1,5 +1,5 @@
 import React,{ useEffect, useState } from 'react';
-import { Typography, Grid, Paper, CardMedia, IconButton, Box, Container, Divider, Toolbar, Chip} from '@mui/material'
+import { Typography, Grid, Paper, CardMedia, IconButton, Box, Container, Divider, Toolbar, Chip, Card, CardContent, Rating} from '@mui/material'
 import { ItemsListCard2 } from '../../components/customs/ItemsListCard2'
 import { ItemListCard3 } from '../../components/customs/ItemListCard3'
 import { ArticleRounded, Facebook, HomeRounded, Instagram, LabelRounded, Twitter, Web, YouTube, Checkroom, EmojiPeople, RestaurantRounded, MusicNoteRounded, FlagRounded } from '@mui/icons-material';
@@ -37,6 +37,10 @@ export const DetalleTematicas = ({tematicas}) => {
     const tituloMayusculas = datos.titulo ? datos.titulo.toUpperCase() : '';
     const tematicaMinusculas = datos.tematica ? datos.tematica.toLowerCase() : '';
 
+    console.log("Datos", datos)
+    console.log("proyectos", proyectos)
+    console.log("actualizarinfo", actualizarInfo)
+
   return (
     <Box sx={{bgcolor: "background.paper"}}>
       {/* Breadcrumbs */}
@@ -56,6 +60,7 @@ export const DetalleTematicas = ({tematicas}) => {
                 <CardMedia
                   component="img"
                   alt={datos.titulo}
+                  title={datos.titulo}
                   sx={{ objectFit: 'cover', maxWidth: { xs: "100%", sm: "90%", md: "80%", lg: "70%" }, height: '100%' }}
                   src={datos.portada}
                 />
@@ -73,11 +78,12 @@ export const DetalleTematicas = ({tematicas}) => {
               { datos && datos.contenido 
                 ? datos.contenido.map((seccion, index) => (
                   <Grid item xs={12} key={index}>
-                    {seccion.parrafo && <Typography variant='subtitle1' color="text.secondary" gutterBottom>{seccion.parrafo}</Typography>}
+                    {seccion.parrafo && <Typography variant='subtitle1' color="text.secondary" gutterBottom py={3}>{seccion.parrafo}</Typography>}
                     { seccion.imagen && 
-                      <Box sx={{ width: "auto", display: "flex", justifyContent: "center", my: 5 }}>
+                      <Box sx={{ width: "auto", display: "flex", justifyContent: "center" }}>
                         <CardMedia
                           component="img"
+                          title={datos.titulo}
                           alt={`Imagen ${index + 1}`}
                           sx={{ objectFit: 'cover', maxWidth: { xs: "100%", sm: "90%", md: "80%", lg: "70%" }, height: '100%' }}
                           src={seccion.imagen}
@@ -103,33 +109,56 @@ export const DetalleTematicas = ({tematicas}) => {
 
             {/* COMENTARIOS */}
             <Grid item xs={12}>
-              <Paper sx={{m:1, p:3}} elevation={1}> 
-                <Typography variant='body1' component="p" mb={2}>
-                  Comentarios
-                </Typography>
-                {user ? (
-                    <AgregarComentarios tematica={datos}/>
-                    
-                ) : (
-                  console.log("Inicia Sesión")
-                  )}
-                {
-                  (proyectos.map(proyecto => {
-                    return (
-                        <Grid item xs={12} sm={6} md={4} key={proyecto.id} sx={{minWidth:"100%"}}>
-                          <ItemListCard3
-                            key={proyecto.id}
-                            id={proyecto.id}
-                            titulo={proyecto.data().usuario}
-                            descripcion={proyecto.data().comentario}
-                            puntuacion={proyecto.data().puntuacion}
-                            img={userImage}/>
-                        </Grid>
-                    )
-                  })) 
-                }    
-              </Paper>
+              <Typography variant='h4' component="p" mb={2}>
+                Comentarios
+              </Typography>
             </Grid>
+            <Grid item xs={12}>
+              {user ? 
+                (<AgregarComentarios tematica={datos}/>) 
+                : 
+                (console.log("Inicia Sesión"))
+              }
+            </Grid>
+            <Grid item xs={12}>
+              {
+                (proyectos.map(proyecto => {
+                  return (
+                    <Grid item xs={12} key={proyecto.id} sx={{ my:2}}>
+                      <Card elevation={0} sx={{ display: 'flex', flexDirection: {xs: "row", sm: "row", md: "row"}, minHeight: {xs: 50, sm: 65, md:75, lg:85, xl:95}, borderRadius: 2 }}>
+                        <CardMedia
+                          component="img"
+                          sx={{ maxWidth: {xs: 50, sm: 65, md:75, lg:85, xl:95}, maxHeight: {xs: 50, sm: 65, md:75, lg:85, xl:95}, objectFit: "cover", borderBottom: "3px solid", borderColor: "divider" }}
+                          image={proyecto.data().imagen}
+                          alt={proyecto.data().usuario}
+                        />
+                        <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1, borderLeft: "3px solid", borderColor: "divider" }}>
+                          <CardContent sx={{ flex: '1 0 auto' }}>
+                            <Typography variant="subtitle2">
+                              {proyecto.data().comentario}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                              {proyecto.data().usuario}
+                            </Typography>
+                          </CardContent>
+                          <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1, borderTop: "2px solid", borderColor: "divider" }}>
+                              <Rating 
+                                name="half-rating" 
+                                value={proyecto.data().puntuacion}
+                                readOnly
+                              />
+                          </Box>
+                        </Box>
+                      </Card>
+                      
+                    </Grid>
+                  )
+                })) 
+              }  
+            </Grid>
+            
+
+
           </Grid>
 
 

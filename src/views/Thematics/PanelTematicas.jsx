@@ -1,32 +1,32 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, /*useState*/ } from 'react'
 import { Box, Button, Container, Grid, Paper, Typography, styled } from '@mui/material'
-import { app } from '../../config/firebase/firebase'
+// import { app } from '../../config/firebase/firebase'
 import { Link, Outlet } from 'react-router-dom'
-import { ItemListCard } from '../../components/customs/ItemListCard'
+// import { ItemListCard } from '../../components/customs/ItemListCard'
 import { Bread } from '../../components/customs/Bread'
-import GroupSkeleton from "../Shop/groupSkeleton"
+// import GroupSkeleton from "../Shop/groupSkeleton"
 import { contadorVisitas } from '../../utils/fnCountStatus'
 import { Checkroom, EmojiPeople, FlagRounded, HomeRounded, LabelRounded, MusicNoteRounded, RestaurantRounded } from '@mui/icons-material';
 
 export const PanelTematicas = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [proyectos, setProyectos] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [proyectos, setProyectos] = useState([]);
 
-  const obtenerInfo = async () => {
-    const docList = await app.firestore().collection("temas").get();
-    setProyectos(docList.docs.map((doc) => doc));
-  }
+  // const obtenerInfo = async () => {
+  //   const docList = await app.firestore().collection("temas").get();
+  //   setProyectos(docList.docs.map((doc) => doc));
+  // }
 
   useEffect(() => {
     contadorVisitas("tematicas");
-    obtenerInfo();
-    // Simulamos una carga de datos de 2 segundos
-    const timeoutId = setTimeout(() => {
-      // Una vez que se han cargado los datos, actualizamos el estado
-      setIsLoading(false);
-    }, 1000);
-      // Limpiamos el timeout si el componente se desmonta antes de que termine la carga
-      return () => clearTimeout(timeoutId);
+    // obtenerInfo();
+    // // Simulamos una carga de datos de 2 segundos
+    // const timeoutId = setTimeout(() => {
+    //   // Una vez que se han cargado los datos, actualizamos el estado
+    //   setIsLoading(false);
+    // }, 1000);
+    //   // Limpiamos el timeout si el componente se desmonta antes de que termine la carga
+    //   return () => clearTimeout(timeoutId);
   }, [])
 
   return (

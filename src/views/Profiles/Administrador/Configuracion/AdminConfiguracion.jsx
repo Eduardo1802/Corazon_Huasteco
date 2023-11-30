@@ -11,14 +11,21 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 const options = [
+  "bajaComentarios",
   "bajaProductos",
+  "bajaTematicas",
+  "comentarios",
+  "guardados",
   "producto",
+  "proveedores",
+  "settingsApp",
   "temas",
   "tematicas",
   "usuarios",
   "usuarios_correo",
-  "visitas",
-  "settingsApp"
+  "ventas",
+  "ventasPendiendes",
+  "visitas"
 ];
 
 export const AdminConfiguracion = () => {

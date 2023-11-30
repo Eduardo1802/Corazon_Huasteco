@@ -25,6 +25,7 @@ export const Gastronomia = () => {
       // Una vez que se han cargado los datos, actualizamos el estado
       setIsLoading(false);
     }, 1000);
+    console.log("Proyectos", proyectos)
       // Limpiamos el timeout si el componente se desmonta antes de que termine la carga
       return () => clearTimeout(timeoutId);
   }, [])
