@@ -7,6 +7,7 @@ import { ArrowForward, Directions, LocalFlorist, Pets } from '@mui/icons-materia
 import imagenLateral from '../../assets/img/inicio/imagenLateral.webp'
 import flora from '../../assets/img/inicio/flora-02.webp'
 import fauna from '../../assets/img/inicio/fauna-02.webp'
+import mapa from '../../assets/img/inicio/mapa-huejutla.webp'
 import styled from '@emotion/styled';
 import { WavyDivider } from '../../components/customs/WavyDivider';
 import {Link} from 'react-router-dom'
@@ -64,9 +65,9 @@ export const Inicio = () => {
                 <Typography gutterBottom variant="subtitle1" component="p" color="text.secondary">
                   Nuestra plataforma es un faro de conocimiento y autenticidad gracias a nuestros dedicados colaboradores. Ellos son los narradores de historias, los guardianes de tradiciones y los informantes de la Huasteca Hidalguense. Con una profunda pasión por su cultura y región, nuestros colaboradores aportan información verídica y perspectivas únicas a través de sus artículos. Desde relatos históricos hasta exploraciones de festivales locales, sus contribuciones enriquecen nuestra comunidad y te sumergen en la riqueza de la Huasteca.
                 </Typography>
-                <Button aria-label='Explora las voces de los creadores de contenido' variant='outlined' component={Link} to="/creadores-de-contenido" endIcon={<ArrowForward/>} sx={{borderRadius: 5, '&:hover':{backgroundColor: theme.palette.primary.main, color: theme.palette.background.paper}}}>
-                  Explora sus Voces
-                </Button>
+                <TransformEffectButton aria-label='Explora las voces de los creadores de contenido' component={Link} to="/creadores-de-contenido" endIcon={<ArrowForward/>} variant="contained">
+                  Explora sus voces
+                </TransformEffectButton>
               </Grid>
             </Grid>
         </Container>
@@ -87,9 +88,9 @@ export const Inicio = () => {
                 <Typography gutterBottom variant="subtitle1" component="p" color="text.secondary" textAlign="center">
                   Explora la abundante biodiversidad de Huejutla: árboles frutales, madera fina, plantas medicinales y una profusión de flora.
                 </Typography>
-                <Button aria-label='Ver más acerca de la fauna' variant='outlined' component={Link} to="/tematicas" endIcon={<LocalFlorist/>} sx={{borderRadius: 5, '&:hover':{backgroundColor: theme.palette.primary.main, color: theme.palette.background.paper}}}>
+                <TransformEffectButton aria-label='Ver más acerca de la fauna' variant='contained' component={Link} to="/tematicas" endIcon={<LocalFlorist/>}>
                   Ver más
-                </Button>
+                </TransformEffectButton>
               </Grid>
               <Grid item container alignItems="center" xs={12} sm={6} md={7} order={{xs: 1, sm:2}}>
                 <Img alt="img-flora" src={flora} width='100%' height='100%' />
@@ -115,31 +116,32 @@ export const Inicio = () => {
                 <Typography gutterBottom variant="subtitle1" component="p" color="text.secondary" textAlign="center">
                   Descubre la fascinante variedad de vida silvestre en Huejutla, desde mamíferos y aves hasta reptiles y más.
                 </Typography>
-                <Button aria-label='leer un articulo sobre la fauna' variant='outlined' component={Link} to="/tematicas" endIcon={<Pets/>} sx={{borderRadius: 5, '&:hover':{backgroundColor: theme.palette.primary.main, color: theme.palette.background.paper}}}>
+                <TransformEffectButton aria-label='leer un articulo sobre la fauna' variant='contained' component={Link} to="/tematicas" endIcon={<Pets/>}>
                   Ver más
-                </Button>
+                </TransformEffectButton>
               </Grid>
             </Grid>
         </Container>
       </Paper>
 
       <Paper component="article" elevation={0}>
-        <Container maxWidth="xl">
+        <Container maxWidth="lg">
           <Divider/>
           {/* SECTION SIX -- COLINDANCIAS */}
             <Grid container columnSpacing={2} rowSpacing={2} py={5} mt={5}>
-              <Grid item container xs={12} sm={12} md={4} direction="column" justifyContent="center" order={{xs: 1, sm:1}}>
+              <Grid item container xs={12} sm={6} md={7} direction="column" justifyContent="center" order={{xs: 1, sm:1}}>
                 <Typography variant="h4" component="p" color="primary.light" fontWeight={700} textAlign="center">
                   Colindancias
                 </Typography>
                 <Typography gutterBottom variant="subtitle1" component="p" color="text.secondary" textAlign="center">
                   Huejutla colinda al norte con el municipio de Orizatlán, el estado de Veracruz; al este con Veracruz, Huautla y Atlapexco; al sur con Atlapexco, Huazalingo y Tlanchinol; y al oeste con Tlanchinol, Jaltocan y Orizatlán.
                 </Typography>
-                <Button aria-label='Ver un mapa completo de la región' variant='outlined' component={Link} to="/mapa" endIcon={<Directions/>} sx={{borderRadius: 5, '&:hover':{backgroundColor: theme.palette.primary.main, color: theme.palette.background.paper}}}>
+                <TransformEffectButton aria-label='Ver un mapa completo de la región' variant='contained' component={Link} to="/mapa" endIcon={<Directions/>}>
                   Ver mapa
-                </Button>
+                </TransformEffectButton>
               </Grid>
-              <Grid item xs={12} sm={12} md={8} order={{xs: 2, sm:2}}>
+              <Grid item xs={12} sm={6} md={5} order={{xs: 2, sm:2}}>
+                <Img alt="img-mapa" src={mapa} width='100%' height='100%' />
               </Grid>
             </Grid>
         </Container>
@@ -153,3 +155,15 @@ const Img = styled('img')({
   maxWidth: "100%",
   height: "auto"
 });
+
+const TransformEffectButton = styled(Button)(({ theme, colorhover }) => ({
+  borderRadius: 50, 
+  '&:hover svg': {
+    animation: "expand 1.1s /* infinite */"
+  },
+  '@keyframes expand': {
+    '0%': { transform: "scale(1)", transformOrigin: "left bottom" },
+    '50%': { transform: "scale(1.5)", transformOrigin: "left bottom" },
+    '100%': { transform: "scale(1)", transformOrigin: "left bottom" }
+  }
+}));
