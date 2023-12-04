@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import SendIcon from '@mui/icons-material/Send';
 import { Bread }              from '../../components/customs/Bread';
-import { HomeRounded, SmartToy} from '@mui/icons-material';
-import { Box, Grid, Paper, Typography } from "@mui/material";
+import { Delete, Face, HomeRounded, SmartToy} from '@mui/icons-material';
+import { Box, CircularProgress, Container, Grid, IconButton, InputAdornment, Paper, TextField, Typography } from "@mui/material";
 
 export const ChatBot = () => {
   const [pregunta, setPregunta] = useState("");
@@ -30,88 +30,76 @@ export const ChatBot = () => {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13 && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(e);
+    }
+  };
+
   return (
     <Box sx={{bgcolor: "background.default"}}>
       <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "CHATBOT", ruta: "/chatbot", icono: <SmartToy/>}]}/>
 
       <Paper elevation={0}>
-        <Grid container spacing={1}>
-          <Grid item xs={12}>
-          <Typography variant="h4" color="primary" textAlign='center' >Interactua con el ChatBot</Typography>
-          </Grid>
-          <Grid item xs={12} p={3}>
-            <Paper elevation={0} sx={{ p: 2, m: 1 }}>
-              <form
-                onSubmit={handleSubmit}
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <div style={{ position: "relative", width: "600px" }}>
-                  <input
-                    type="text"
-                    value={pregunta}
-                    onChange={(e) => setPregunta(e.target.value)}
-                    style={{
-                      width: "100%",
-                      height: "60px",
-                      fontSize: "20px",
-                      textAlign: "center",
-                      borderRadius: "10px",
-                      outline: "none",
-                      paddingRight: "40px",
-                    }}
-                    required
-                    placeholder="Envía tu pregunta sobre Huejutla"
-                    aria-label="por favor, escribe tu pregunta de huejutla aquí"
-                  />
-                  <button
-                    aria-label="enviar pregunta al chatbot"
-                    type="submit"
-                    disabled={isLoading}
-                    style={{
-                      position: "absolute",
-                      top: 0,
-                      right: 0,
-                      width: "60px",
-                      height: "60px",
-                      backgroundColor: "#19C37D",
-                      borderRadius: "10px",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <SendIcon style={{ color: "white" }}/>
-                  </button>
-                </div>
+        <Container maxWidth="lg">
+          <Grid container spacing={1}>
+            <Grid item xs={12}>
+              <Typography variant="h4" color="primary" textAlign='center' >Interactua con el ChatBot</Typography>
+            </Grid>
+            <Grid item xs={12} sm={12} md={6} p={1}>
+              <form autoComplete="off" onSubmit={handleSubmit}>
+                <TextField
+                  type="text"
+                  value={pregunta}
+                  onChange={(e) => setPregunta(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  required
+                  label="Envia tu pregunta sobre Huejutla"
+                  id="outlined-multiline-flexible"
+                  color="success"
+                  multiline
+                  fullWidth
+                  maxRows={10}
+                  InputProps={{
+                    endAdornment: <InputAdornment position="end">
+                      <IconButton 
+                        type="submit" aria-label="enviar pregunta al chatbot" 
+                        size="large" sx={{color: "#19C37D"}}
+                        disabled={isLoading}
+                      >
+                        <SendIcon fontSize="inherit" />
+                      </IconButton>
+                    </InputAdornment>,
+                  }}
+                />
               </form>
-            </Paper>
-
-            <Paper elevation={3} sx={{ p: 2, m: 1 }}>
-              <Typography
-                textAlign="left"
-                variant="h5"
-                color="text.secondary"
-                sx={{ display: "flex" }}
-              >
-                Respuesta: {isLoading && "Cargando..."}
-              </Typography>
-              <Typography
-                gutterBottom
-                textAlign="left"
-                variant="h5"
-                color="text.secondary"
-                sx={{ display: "flex" }}
-              >
-                {isEmptyResponse && <p>La respuesta está vacía.</p>}
-                {predictionData.answer && <p>{predictionData.answer}</p>}
-              </Typography>
-            </Paper>
+            </Grid>
+            <Grid item xs={12} sm={12} md={6} p={1}>
+              <Paper elevation={1} sx={{ p: 1.4 }}>
+                <Typography
+                  textAlign="left"
+                  variant="h6"
+                  color="text.primary"
+                  gutterBottom
+                >
+                  Respuesta: 
+                </Typography>
+                <Typography>
+                  {isLoading && <CircularProgress/> }
+                </Typography>
+                <Typography
+                  textAlign="left"
+                  variant="subtitle1"
+                  color="text.secondary"
+                >
+                  {isEmptyResponse && <>La respuesta está vacía.</>}
+                  {predictionData.answer && <>{predictionData.answer}</>}
+                </Typography>
+              </Paper>
+            </Grid>
           </Grid>
-        </Grid>
+        </Container>
       </Paper>
     </Box>
   );
