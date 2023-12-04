@@ -1,6 +1,6 @@
 import React, { useState, useEffect }  from "react";
 import { Link, NavLink, useLocation, useNavigate }  from "react-router-dom";
-import { AppBar, Avatar, Box, Button, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Menu, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material";
+import { AppBar, Avatar, Box, Button, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Menu, MenuItem, Toolbar, Tooltip, Typography, Zoom } from "@mui/material";
 import LoginRoundedIcon                from "@mui/icons-material/LoginRounded";
 import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuIcon                        from "@mui/icons-material/Menu";
@@ -151,26 +151,26 @@ export const NavBar = (props) => {
           {/* Primer tool */}
           {/* desktop*/}
           <Toolbar sx={{ display: { xs: "none", md: "flex" }}}>
-            <AnimatedIcon component={Link} to='/' aria-label='Ir al inicio de Corazón Huasteco' />
-            <Box sx={{flexGrow:1}}>
-
-            <Tooltip title="Volver al inicio" arrow placement="right">
-              <Typography
-                variant="h5"
-                component={Link}
-                to="/inicio"
-                fontWeight={700}
-                sx={{
-                  textDecoration: "none",
-                  color: "inherit",
-                }}
-                aria-label="Ir al inicio de Corazón Huasteco"
-              >
-                CORAZÓN HUASTECO
-              </Typography>            
-            </Tooltip>
+            <Box>
+              <Tooltip title="Volver al inicio" placement="right" TransitionComponent={Zoom}>
+                <Link
+                  to="/inicio"
+                  style={{
+                    textDecoration: "none",
+                    color: "inherit",
+                  }}
+                  aria-label="Ir al inicio de Corazón Huasteco"
+                >
+                  <Box sx={{display: "flex", alignItems: "center"}}>
+                    <AnimatedIcon aria-label='Ir al inicio de Corazón Huasteco' />
+                    <Typography variant="h5" fontWeight={400}>CORAZÓN HUASTECO</Typography>
+                  </Box>
+                </Link>            
+              </Tooltip>
             </Box>
-            <ToggleThemeSticky isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/>
+            <Box sx={{flexGrow:1, display: "flex", justifyContent: "flex-end"}}>
+              <ToggleThemeSticky isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/>
+            </Box>
           </Toolbar>
 
           {/* Salida del drawer --- mobile */}
@@ -216,7 +216,7 @@ export const NavBar = (props) => {
             </Box>
 
             {/* logo --- mobile */}
-            <Tooltip title="Volver al inicio" arrow placement="bottom">
+            <Tooltip title="Volver al inicio" arrow placement="bottom" TransitionComponent={Zoom}>
               <Typography
                 variant="h5"
                 noWrap

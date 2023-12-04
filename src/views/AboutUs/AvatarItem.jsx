@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { Box, Tooltip, Typography, tooltipClasses, useMediaQuery } from '@mui/material'
+import { Box, Tooltip, Typography, Zoom, tooltipClasses, useMediaQuery } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 export const AvatarItem = ({imagen, alt, firstcolor, secondcolor, enlace="#"}) => { 
@@ -19,7 +19,7 @@ export const AvatarItem = ({imagen, alt, firstcolor, secondcolor, enlace="#"}) =
 }
 
 const BootstrapTooltip = styled(({ className, ...props }) => (
-  <Tooltip {...props} arrow classes={{ popper: className }} />
+  <Tooltip {...props} arrow classes={{ popper: className }} TransitionComponent={Zoom} />
 ))(({ theme, firstcolor, secondcolor }) => ({
   [`& .${tooltipClasses.arrow}`]: {
     color: firstcolor ? firstcolor : theme.palette.primary.dark,

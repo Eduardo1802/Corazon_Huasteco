@@ -1,6 +1,6 @@
 import React, {useRef, useEffect, useCallback} from 'react';
 import { styled } from '@mui/material/styles';
-import { Button, Tooltip } from '@mui/material';
+import { Button, Tooltip, Zoom } from '@mui/material';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
@@ -92,12 +92,12 @@ const Slideshow = ({
 				{children}
 			</ContenedorSlideshow>
 			{controles && <Controles>
-				<Tooltip title="Imagen anterior" arrow placement='right'>
+				<Tooltip title="Imagen anterior" arrow placement='right' TransitionComponent={Zoom}>
 					<Boton onClick={anterior} aria-label='ver imagen anterior'>
 						<KeyboardArrowLeftIcon fontSize='large'/>
 					</Boton>
 				</Tooltip>
-				<Tooltip title="Imagen siguiente" arrow placement='left'>
+				<Tooltip title="Imagen siguiente" arrow placement='left' TransitionComponent={Zoom}>
 					<Boton derecho={"true"} onClick={siguiente} aria-label='ver imagen siguiente'>
 						<KeyboardArrowRightIcon fontSize='large'/>
 					</Boton>
