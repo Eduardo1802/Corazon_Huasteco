@@ -8,15 +8,16 @@ export default defineConfig({
     react(),
     VitePWA({ 
       registerType: 'autoUpdate',
-      workbox: {
-        cleanupOutdatedCaches: true,
-        globPatterns: ['**/*.{js,css,html,ico,png,svg}']
-      },
       devOptions: {
         enabled: true,
-        navigateFallbackAllowlist: [/^index.html$/]
+        // navigateFallbackAllowlist: [/^index.html$/]
       },
-      includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
+      injectRegister: 'autoupdate',
+      workbox: {
+        cleanupOutdatedCaches: true,
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,jpg,jpeg,json}']
+      },
+      includeAssets: ['favicon.ico', 'logo.jpg', 'images/*.webp', 'robots.txt', 'apple-touch-icon.png'],
       manifest: {
         name: 'Corazón Huasteco',
         short_name: 'Corazón Huasteco',
