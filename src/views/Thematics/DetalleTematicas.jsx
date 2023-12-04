@@ -201,9 +201,9 @@ export const DetalleTematicas = ({tematicas}) => {
                 <Grid container spacing={1}>
                   <Grid item> {/* VESTIMENTA */}
                     <ItemsListCard2
-                        titulo={datos.titulo}
-                        img={""}
-                        ancla={`../tematicas/${params.id}`}
+                      titulo={datos.titulo}
+                      img={datos.portada}
+                      ancla={`../tematicas/${params.id}`}
                     />
                   </Grid>
                 </Grid>
