@@ -6,14 +6,20 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [themeColor, setThemeColor] = useState(lightTheme.palette.primary.main);
+  const savedDarkMode = localStorage.getItem("darkMode");
+  const initialDarkMode = savedDarkMode ? JSON.parse(savedDarkMode) : false;
+
+  const [isDarkMode, setIsDarkMode] = useState(initialDarkMode);
+  const [themeColor, setThemeColor] = useState(
+    isDarkMode ? darkTheme.palette.primary.main : lightTheme.palette.primary.main
+  );
 
   const handleThemeChange = () => {
     setIsDarkMode((prevMode) => !prevMode);
   };
 
   useEffect(() => {
+    localStorage.setItem("darkMode", JSON.stringify(isDarkMode));
     setThemeColor(isDarkMode ? darkTheme.palette.primary.main : lightTheme.palette.primary.main);
   }, [isDarkMode]);
 
