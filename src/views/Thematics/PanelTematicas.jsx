@@ -50,7 +50,7 @@ export const PanelTematicas = () => {
             </Grid>
             <Grid item xs={12}>
               <Typography variant="h4" component="p" textAlign="left" gutterBottom fontWeight={300}>
-                Explora las siguientes tematicas
+                Explora las diferentes tematicas
               </Typography>
             </Grid>
             <Grid item container spacing={2}> 
@@ -170,40 +170,40 @@ const BoldText = styled(Typography)(({ theme }) => ({
       transform: "scaleX(0)",
       transition: "transform .3s ease-in-out",
     },
-    "&:hover::before": {
-      transformOrigin: "left",
-      transform: "scaleX(1)",
-      color: "red"
-    },
+    // "&:hover::before": {
+    //   transformOrigin: "left",
+    //   transform: "scaleX(1)",
+    //   color: "red"
+    // },
   },
 
-  "& strong:nth-of-type(1)": {
-    // color: theme.palette.primary.main,
-    "&:hover": {
-      color: theme.palette.success.dark,
-    },
-    "&::before": {
-      backgroundColor: theme.palette.success.light,
-    },
-  },
-  "& strong:nth-of-type(2)": {
-    // color: theme.palette.primary.main,
-    "&:hover": {
-      color: theme.palette.info.dark,
-    },
-    "&::before": {
-      backgroundColor: theme.palette.info.light,
-    },
-  },
-  "& strong:nth-of-type(3)": {
-    // color: theme.palette.primary.main,
-    "&:hover": {
-      color: theme.palette.error.dark,
-    },
-    "&::before": {
-      backgroundColor: theme.palette.error.light,
-    },
-  },
+  // "& strong:nth-of-type(1)": {
+  //   // color: theme.palette.primary.main,
+  //   "&:hover": {
+  //     color: theme.palette.success.dark,
+  //   },
+  //   "&::before": {
+  //     backgroundColor: theme.palette.success.light,
+  //   },
+  // },
+  // "& strong:nth-of-type(2)": {
+  //   // color: theme.palette.primary.main,
+  //   "&:hover": {
+  //     color: theme.palette.info.dark,
+  //   },
+  //   "&::before": {
+  //     backgroundColor: theme.palette.info.light,
+  //   },
+  // },
+  // "& strong:nth-of-type(3)": {
+  //   // color: theme.palette.primary.main,
+  //   "&:hover": {
+  //     color: theme.palette.error.dark,
+  //   },
+  //   "&::before": {
+  //     backgroundColor: theme.palette.error.light,
+  //   },
+  // },
   
 }));
 
