@@ -13,6 +13,8 @@ const updateSW = registerSW({
   onOfflineReady() {},
 })
 
+console.log("hello from a code space or remote vs code, idk ¯\_(ツ)_/¯ ")
+
 const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(
