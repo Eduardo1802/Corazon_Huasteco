@@ -8,14 +8,13 @@ export default defineConfig({
     react(),
     VitePWA({ 
       registerType: 'autoUpdate',
-      devOptions: {
-        enabled: true,
-        // navigateFallbackAllowlist: [/^index.html$/]
-      },
-      injectRegister: 'autoupdate',
       workbox: {
         cleanupOutdatedCaches: true,
         globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,jpg,jpeg,json}']
+      },
+      devOptions: {
+        enabled: true,
+        navigateFallbackAllowlist: [/^index.html$/]
       },
       includeAssets: ['favicon.ico', 'logo.jpg', 'images/*.webp', 'robots.txt', 'apple-touch-icon.png'],
       manifest: {
