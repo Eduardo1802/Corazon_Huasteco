@@ -1,6 +1,6 @@
 import React, {useRef, useEffect, useCallback} from 'react';
 import { styled } from '@mui/material/styles';
-import { Button, Tooltip } from '@mui/material';
+import { Button, Tooltip, Zoom } from '@mui/material';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
@@ -8,7 +8,7 @@ const Slideshow = ({
 		children,
 		controles = false,
 		autoplay = false,
-		velocidad="500",
+		velocidad="700",
 		intervalo="5000"
 	}) => {
 	const slideshow = useRef(null);
@@ -92,13 +92,13 @@ const Slideshow = ({
 				{children}
 			</ContenedorSlideshow>
 			{controles && <Controles>
-				<Tooltip title="Imagen anterior" arrow placement='right'>
-					<Boton onClick={anterior}>
+				<Tooltip title="Imagen anterior" arrow placement='right' TransitionComponent={Zoom}>
+					<Boton onClick={anterior} aria-label='ver imagen anterior'>
 						<KeyboardArrowLeftIcon fontSize='large'/>
 					</Boton>
 				</Tooltip>
-				<Tooltip title="Imagen siguiente" arrow placement='left'>
-					<Boton derecho={"true"} onClick={siguiente}>
+				<Tooltip title="Imagen siguiente" arrow placement='left' TransitionComponent={Zoom}>
+					<Boton derecho={"true"} onClick={siguiente} aria-label='ver imagen siguiente'>
 						<KeyboardArrowRightIcon fontSize='large'/>
 					</Boton>
 				</Tooltip>
@@ -122,7 +122,7 @@ const ContenedorPrincipal = styled('div')({
     overflow: "hidden",
     transition: `0.3s ease all`,
     zIndex: 10,
-    height: "100vh",
+    height: "90vh",
     position: "relative",
 
 	"@media screen and (max-width: 899px)": {
@@ -141,7 +141,7 @@ const ContenedorPrincipal = styled('div')({
       verticalAlign: "top",
 	  objectFit: "cover",
 	  objectPosition: "center",
-	  filter: "brightness(70%) contrast(130%)", // Agrega el filtro a la imagen
+	  filter: "brightness(70%) contrast(110%)", // Agrega el filtro a la imagen
     },
   });
 
@@ -154,6 +154,11 @@ const ContenedorPrincipal = styled('div')({
 	fontSize: "1.5rem",
     position: "absolute",
     bottom: 0,
+	pointerEvents: "none",
+
+	display: "flex",
+	justifyContent: "space-between",
+
     "@media screen and (max-width: 899px)": {
     //   position: "relative",
     //   background: "#000",
@@ -161,8 +166,29 @@ const ContenedorPrincipal = styled('div')({
 	  lineHeight: "2rem",
 	  '& > p': {
 		  margin: 0,
+	  },
+	  justifyContent: "center",
+
+	  '& > p:nth-of-type(2)': {
+		  display: "none",
 	  }
     },
+
+	"@media screen and (max-width: 599px)": {
+		// bottom: "calc(50% - 30px)",
+		// fontSize: "1.5rem",
+
+		// wrapper total de la imagen abajo, contenedor adaptado en linea arriba
+
+		lineHeight: "63vh",
+		fontSize: "1.5rem",
+	},
+
+	"@media screen and (max-width: 280px)": {
+		fontSize: "1rem",
+	},
+	
+
   }));
 
   const Controles = styled("div")({
@@ -174,14 +200,17 @@ const ContenedorPrincipal = styled('div')({
     pointerEvents: "none",
   });
 
-  const Boton = styled(Button)(({ derecho }) => ({
+  const Boton = styled(Button)(({ derecho, theme }) => ({
     pointerEvents: "all",
-    background: "none",
+    background: theme.palette.background.paper,
     border: "none",
     cursor: "pointer",
     outline: "none",
     width: "50px",
-    height: "100%",
+	height: "70px",
+    top: "50%",
+	transform: derecho ? "translate(30%, -50%)" : "translate(-30%, -50%)",
+	borderRadius: derecho ? "100% 0 0 100%": "0 100% 100% 0",
     textAlign: "center",
     position: "absolute",
     transition: "0.3s ease all",
@@ -191,7 +220,9 @@ const ContenedorPrincipal = styled('div')({
 	// 		fill: "#fff",
 	// 	}
 	// },
-
+	"@media screen and (max-width: 599px)": {
+		background: "none"
+	},
 
     path: {
       filter: derecho

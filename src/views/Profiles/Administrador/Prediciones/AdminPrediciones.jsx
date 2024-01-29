@@ -6,7 +6,6 @@ import {
   Chip,
   Paper,
   Typography,
-  Button,
   Table,
   TableBody,
   TableCell,
@@ -15,7 +14,6 @@ import {
   TableRow,
 } from "@mui/material";
 import { AnalyticsRounded } from "@mui/icons-material";
-import ControllableStates from "./ControlallableStates";
 import axios from "axios";
 
 export const AdminPrediciones = () => {

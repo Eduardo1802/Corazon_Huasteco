@@ -1,20 +1,15 @@
 import React, { useState, useEffect }  from "react";
 import { Link, NavLink, useLocation, useNavigate }  from "react-router-dom";
-import { AppBar, Avatar, Box, Button, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Menu, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material";
+import { AppBar, Avatar, Box, Button, Divider, Drawer, SwipeableDrawer, IconButton, List, ListItem, ListItemButton, ListItemText, Menu, MenuItem, Toolbar, Tooltip, Typography, Zoom } from "@mui/material";
 import LoginRoundedIcon                from "@mui/icons-material/LoginRounded";
 import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuIcon                        from "@mui/icons-material/Menu";
 import { doc, getDoc }                 from "firebase/firestore";
-import { AnimatedIcon, HideOnScroll, ElevationScroll } from "./componentsNavBar";
+import { AnimatedIcon, ElevationScroll, } from "./componentsNavBar";
 import { navLinks }                    from "./opNavLinks";
 import SimpleBackdrop                  from "../../customs/SimpleBackDrop";
 import { db }                          from "../../../config/firebase/firebaseDB";
 import { useAuth }                     from "../../../context/AuthContext";
-import imgUser from "../../../assets/img/perfil/imgUser.jpg";
-import { ToggleTheme } from "../../customs/ToggleTheme";
-// import './Navbar.css'
-// import './logica'
-import { Elder } from "./logica";
 import { useTheme } from "@emotion/react";
 import { ToggleThemeSticky } from "../../customs/ToggleThemeSticky";
 
@@ -22,13 +17,11 @@ const drawerWidth = 240;
 // const settings = ['Perfil', 'Cuenta', 'Panel', 'Cerrar Sesión'];
 
 export const NavBar = (props) => {
+  const {isDarkMode} = props;
   const theme = useTheme();
-  Elder(theme.palette.primary.main);
   const location = useLocation();
   const isHome = location.pathname === "/inicio";
-  const navBackgroundStyle = isHome ? { backgroundColor: "rgba(0, 0, 0, .075)" } : { backgroundColor: `${theme.palette.primary.main}FF` };
 
-  const {isDarkMode} = props;
   const {handleThemeChange} = props;
   const { logout, user, profileImageUrl } = useAuth();
   const [data, setData] = useState(null);
@@ -91,10 +84,6 @@ export const NavBar = (props) => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
-  // eslint-disable-next-line
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -121,10 +110,14 @@ export const NavBar = (props) => {
               <ListItemButton
                 sx={{ 
                   textAlign: "left",  "&:hover": { color: "primary.main" },
-                  
+                  mx:1,
                   '&.active': { // Estilos para enlaces activos
-                    color: 'primary.main',
+                    background: `${theme.palette.primary.light}56`,
+                    border: `1px solid ${theme.palette.primary.light}`,
+                    borderRadius: 30,
+                    mx: 1
                   },
+                  
                 }}
                 component={NavLink}
                 to={item.path}
@@ -141,7 +134,6 @@ export const NavBar = (props) => {
       <Divider />
       <List>
         <ListItem >
-            {/* <ToggleTheme isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/> */}
             <ToggleThemeSticky isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/>
         </ListItem>
       </List>
@@ -154,46 +146,45 @@ export const NavBar = (props) => {
   return (
     <>
       <ElevationScroll {...props}>
-        <AppBar sx={navBackgroundStyle} enableColorOnDark id="header-principal" >
+        <AppBar sx={{outline: "2px solid", outlineColor: theme.palette.primary.light }}>
           <SimpleBackdrop open={open}/>
           {/* Primer tool */}
           {/* desktop*/}
           <Toolbar sx={{ display: { xs: "none", md: "flex" }}}>
-            <AnimatedIcon component={Link} to='/inicio' isDarkMode={isDarkMode}/>
-            <Box sx={{/* border: "3px solid blue", */ flexGrow:1}}>
-
-            <Tooltip title="Volver al inicio" arrow placement="right">
-              <Typography
-                variant="h5"
-                component={Link}
-                to="/inicio"
-                fontWeight={700}
-                sx={{
-                  // flexGrow: 1,
-                  // border: "3px solid red",
-                  textDecoration: "none",
-                  color: "inherit",
-                }}
-              >
-                CORAZÓN HUASTECO
-              </Typography>            
-            </Tooltip>
+            <Box>
+              <Tooltip title="Volver al inicio" placement="right" TransitionComponent={Zoom}>
+                <Link
+                  to="/inicio"
+                  style={{
+                    textDecoration: "none",
+                    color: "inherit",
+                  }}
+                  aria-label="Ir al inicio de Corazón Huasteco"
+                >
+                  <Box sx={{display: "flex", alignItems: "center"}}>
+                    <AnimatedIcon aria-label='Ir al inicio de Corazón Huasteco' />
+                    <Typography variant="h5" fontWeight={400}>CORAZÓN HUASTECO</Typography>
+                  </Box>
+                </Link>            
+              </Tooltip>
             </Box>
-            {/* <ToggleTheme isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/> */}
-            <ToggleThemeSticky isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/>
+            <Box sx={{flexGrow:1, display: "flex", justifyContent: "flex-end"}}>
+              <ToggleThemeSticky isDarkMode={isDarkMode} handleThemeChange={handleThemeChange}/>
+            </Box>
           </Toolbar>
 
           {/* Salida del drawer --- mobile */}
           <Box component="nav">
-            <Drawer
-              disableScrollLock
-              container={container}
-              variant="temporary"
+            <SwipeableDrawer
               open={mobileOpen}
               onClose={handleDrawerToggle}
-              ModalProps={{
-                keepMounted: true, // Better open performance on mobile.
-              }}
+              onOpen={handleDrawerToggle}
+              disableScrollLock
+              // container={container}
+              // variant="temporary"
+              // ModalProps={{
+              //   keepMounted: true, // Better open performance on mobile.
+              // }}
               sx={{
                 display: { xs: "block", sm: "block", md: "none" },
                 "& .MuiDrawer-paper": {
@@ -203,7 +194,7 @@ export const NavBar = (props) => {
               }}
             >
               {drawer}
-            </Drawer>
+            </SwipeableDrawer>
           </Box>
 
           {/* Segundo tool */}
@@ -213,7 +204,7 @@ export const NavBar = (props) => {
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
-                aria-label="account of current user"
+                aria-label="Abrir las opciones de navegación"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleDrawerToggle}
@@ -226,7 +217,7 @@ export const NavBar = (props) => {
             </Box>
 
             {/* logo --- mobile */}
-            <Tooltip title="Volver al inicio" arrow placement="bottom">
+            <Tooltip title="Volver al inicio" arrow placement="bottom" TransitionComponent={Zoom}>
               <Typography
                 variant="h5"
                 noWrap
@@ -239,8 +230,8 @@ export const NavBar = (props) => {
                   fontWeight: 700,
                   color: "inherit",
                   textDecoration: "none",
-                  
                 }}
+                aria-label="Ir al inicio de Corazón Huasteco"
               >  
                 <AnimatedIcon/>
               </Typography>
@@ -255,25 +246,26 @@ export const NavBar = (props) => {
             >
               {navLinks.map((item) => (
                 <Button
+                  aria-label={`botón para ir a la sección de ${item.title}`}
                   startIcon={item.path === location.pathname ? item.iconSelected : item.icon }
                   key={item.title}
                   onClick={handleCloseNavMenu}
                   sx={{
-                    // my: 2,
                     mr: 1,
                     fontSize: 16,
                     color: "inherit",                    
                     display: "flex",
                     textTransform: "capitalize",
-                    "&:hover": { color: "background.default" },
+                    "&:hover": { color: isDarkMode ? 'primary.light' : 'background.default' },
                     '&.active': { // Estilos para enlaces activos
-                      color: 'background.default',
+                      color: isDarkMode ? 'primary.light' : 'background.default',
                     },
                     '&:hover svg':{
                       transform: "scale(1.2) rotate(10deg)",  
                       transition: "all 0.2s"
                     },
                   }}
+                  variant="text"
                   component={NavLink}
                   to={item.path}
                 >
@@ -287,7 +279,7 @@ export const NavBar = (props) => {
               {user ? (
                 <>
                   <Tooltip title="Opciones del perfil" arrow>
-                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} aria-label="abrir las opciones del perfil">
                       <Avatar
                         alt="User"
                         src={profileImageUrl}
@@ -321,6 +313,7 @@ export const NavBar = (props) => {
                         color: "inherit",
                         "&:hover": { color: "primary.main" },
                       }}
+                      aria-label="ir a la sección del perfil"
                     >
                       <Typography textAlign="center">Perfil</Typography>
                     </MenuItem>
@@ -331,6 +324,7 @@ export const NavBar = (props) => {
                       sx={{
                         "&:hover": { color: "primary.main" },
                       }}
+                      aria-label="cerrar la sesión actual"
                     >
                       <Typography textAlign="center">Cerrar Sesión</Typography>
                     </MenuItem>
@@ -340,6 +334,7 @@ export const NavBar = (props) => {
                 <>
                   <Box>
                     <Button
+                      aria-label="Entrar al formulario de inicio de sesión"
                       component={Link}
                       to="/acceso"
                       endIcon={<LoginRoundedIcon />}
@@ -358,6 +353,7 @@ export const NavBar = (props) => {
                     </Button>
                     <Tooltip title="Inicio de sesión" arrow>
                       <IconButton
+                        aria-label="ir al apartado de inicio de sesión"
                         component={Link}
                         to="/acceso"
                         sx={{

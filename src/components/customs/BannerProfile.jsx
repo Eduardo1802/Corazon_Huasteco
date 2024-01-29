@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Grid } from '@mui/material';
 import React from 'react'
-import banner from '../../assets/img/perfil/finally.jpg'
+import banner from '../../assets/img/perfil/finally.webp'
 
 export const BannerProfile = () => {
   return (

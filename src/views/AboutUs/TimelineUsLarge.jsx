@@ -6,75 +6,97 @@ import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import { TimelineOppositeContent } from '@mui/lab';
-import imgAus                 from "../../assets/img/sobre-nosotros/imgSobreNosotros.jpg"
-import imgMural               from "../../assets/img/inicio/imgMural.jpg"
-import { Card, CardMedia, Box, Typography } from '@mui/material';
 
-export default function TimelineUsLarge() {
+import { Card, CardMedia, Box, Typography, Fade, Grow } from '@mui/material';
+
+export default function TimelineUsLarge({imgAus, imgMural}) {
+  const [componentLoaded, setComponentLoaded] = React.useState(false);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setComponentLoaded(true);
+    }, 100);
+  }, []);
   return (
     <Timeline position="alternate">
       <TimelineItem >
         <TimelineOppositeContent color="text.secondary">
-          <Card
-            data-aos="fade-right"
-            sx={{
-              width: "100%",
-              bgcolor: "background.paper"
-            }}
-          >
-            <CardMedia
-              component="img"
-              height={"100%"}
-              image={imgAus}
-              alt="sobre-nosotros"
-            />
-          </Card>   
+          <Fade in={componentLoaded}>
+            <Card
+              sx={{
+                width: "100%",
+                bgcolor: "background.paper"
+              }}
+            >
+              <CardMedia
+                component="img"
+                height={"100%"}
+                image={imgAus}
+                preload="true"
+                cached="true"
+                alt="img-casa-de-la-cultura"
+              />
+            </Card>   
+          </Fade>
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineDot color='primary' />
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>
-          <Box sx={{p:3, height: "100%", display: "flex", justifyContent: "center", flexFlow: "column wrap"}}  data-aos="fade-up">
-            <Typography variant="h4" color="text.primary">
-              Misión: 
-            </Typography>
-            <Typography variant="subtitle1" color="text.secondary">
-              Somos una empresa que promueve la cultura a traves de la difusión y fomento de la enseña que impulsen la libre expresión cultural, estimulando los trabajos de creación, investigación, cientificos, literarios y artisticos
-            </Typography>
-          </Box>
+          <Grow in={componentLoaded}
+            style={{ transformOrigin: '0 0 0' }}
+            {...(componentLoaded ? { timeout: 500 } : {})}
+          >
+            <Box sx={{p:3, height: "100%", display: "flex", justifyContent: "center", flexFlow: "column wrap"}} >
+              <Typography variant="h4" color="text.primary">
+                Misión: 
+              </Typography>
+              <Typography variant="subtitle1" color="text.secondary">
+                Somos una empresa que promueve la cultura a traves de la difusión y fomento de la enseña que impulsen la libre expresión cultural, estimulando los trabajos de creación, investigación, cientificos, literarios y artisticos
+              </Typography>
+            </Box>
+          </Grow>
         </TimelineContent>
       </TimelineItem>
       <TimelineItem>
         <TimelineOppositeContent color="text.secondary">
-          <Card
-            data-aos="fade-left"
+          <Fade in={componentLoaded}>
+            <Card
               sx={{
-              width: "100%",
-              bgcolor: "background.paper"
-            }}
-          >
+                width: "100%",
+                bgcolor: "background.paper"
+              }}
+            >
             <CardMedia
               component="img"
               height={"100%"}
               image={imgMural}
-              alt="sobre-nosotros"
+              preload="true"
+              cached="true"
+              alt="img-mural"
             />
-          </Card>   
+            </Card>   
+          </Fade>
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineDot color='primary' />
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>
-          <Box sx={{p:3, height: "100%", display: "flex", justifyContent: "center", flexFlow: "column wrap"}}  data-aos="fade-up">
+          <Grow in={componentLoaded}
+            style={{ transformOrigin: '0 0 0' }}
+            {...(componentLoaded ? { timeout: 500 } : {})}
+          >
+            <Box sx={{p:3, height: "100%", display: "flex", justifyContent: "center", flexFlow: "column wrap"}}>
             <Typography variant="h4" color="text.primary">
               Visión: 
             </Typography>
             <Typography variant="subtitle1" color="text.secondary">
               Ser una empresa importante en el ambito cultural del municipio de Huejutla de Reyes Hidalgo para proyectar a nivel nacional e internacional la cultura de esta región.
             </Typography>
-          </Box>
+            </Box>
+          </Grow>
         </TimelineContent>
       </TimelineItem>
       <TimelineItem>

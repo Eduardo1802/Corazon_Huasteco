@@ -4,37 +4,16 @@ import { useAuth } from '../../../../context/AuthContext';
 import SupervisorAccountRoundedIcon from '@mui/icons-material/SupervisorAccountRounded';
 import { EditProfile } from '../../../../components/customs/EditProfile';
 import { BannerProfile } from '../../../../components/customs/BannerProfile';
-import { doc, onSnapshot } from 'firebase/firestore';
-import { db } from '../../../../config/firebase/firebaseDB';
 
 export const SupervisorInicio = () => {
-  const {user, profileImageUrl, setProfileImageUrl} = useAuth();
+  const {user, profileImageUrl } = useAuth();
   const isSmallScreen = useMediaQuery('(max-width:900px)');
 
   console.log("vista supervisor: id del usuario =>", user.uid);
 
-
   useEffect(() => {
-    console.log('useEffect AdminInicio --> 1');
-    if (user.uid) {
-      const userDocRef = doc(db, 'usuarios', user.uid);
-      const unsubscribe = onSnapshot(userDocRef, (userDocSnap) => {
-        if (userDocSnap.exists()) {
-          const userData = userDocSnap.data();
-          if (userData.profileImageUrl) {
-            setProfileImageUrl(userData.profileImageUrl);
-          } else {
-            setProfileImageUrl('https://corazon-huasteco.com/assets/imgUser-1d809c39.jpg');
-          }
-        } else {
-          setProfileImageUrl('https://corazon-huasteco.com/assets/imgUser-1d809c39.jpg');
-        }
-      });
-      console.log('useEffect AdminInicio --> 2');
-      return () => unsubscribe(); // Limpiamos el listener cuando el componente se desmonta
-    }
-    console.log('useEffect AdminInicio --> 3');
-  }, [user.uid]);
+    console.log('useEffect SupervisorInicio --> 1');
+  }, []);
 
   return (
     <Box>

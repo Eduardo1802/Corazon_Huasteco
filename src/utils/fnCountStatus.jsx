@@ -1,7 +1,7 @@
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebase/firebaseDB";
 
-const actualizarVisita = async (fieldName, valorActual) => {
+export const actualizarVisita = async (fieldName, valorActual) => {
   const fecha = new Date();
   const fechaFormateada = formatDate(fecha)
   const ref = doc(db, `visitas/${fechaFormateada}`); //colección de visitas
@@ -11,7 +11,7 @@ const actualizarVisita = async (fieldName, valorActual) => {
   });
 };
 
-const crearDocumentoVisitas = async () => {
+export const crearDocumentoVisitas = async () => {
   const fecha = new Date();
   const fechaFormateada = formatDate(fecha)
   const ref = doc(db, `visitas/${fechaFormateada}`);
@@ -48,7 +48,7 @@ export const contadorVisitas = async (fieldName) => {
 
 
 // formato para la fecha
-function formatDate(date) {
+export function formatDate(date) {
   let year = date.getFullYear();
   let month = date.getMonth() + 1;
   let day = date.getDate();

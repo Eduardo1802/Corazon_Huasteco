@@ -102,7 +102,7 @@ const ColorPaletteForm = () => {
         <Grid item xs={12}>
             <FormGroup>
                 <FormControlLabel
-                control={<Switch checked={themeMode === 'dark'} onChange={handleThemeToggle} />}
+                control={<Switch aria-label="cambiar al modo oscuro" checked={themeMode === 'dark'} onChange={handleThemeToggle} />}
                 label="¿Modo oscuro?"
                 />
             </FormGroup>

@@ -1,13 +1,6 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import { Link, Typography } from '@mui/material';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Link, Typography } from '@mui/material';
 import {Link as LinkRouter} from 'react-router-dom'
-import { AvisoDePrivacidad } from '../../views/NoticePrivacy/AvisoDePrivacidad';
 import { TextPrivacy } from '../../views/NoticePrivacy/TextPrivacy';
 
 export default function AlertDialog() {
@@ -22,8 +15,7 @@ export default function AlertDialog() {
   };
 
   return (
-    <div>
-      
+    <Box>
       <Typography>
         Acepto los {" "} <Link onClick={handleClickOpen}>términos y condiciones</Link>
       </Typography>
@@ -32,24 +24,24 @@ export default function AlertDialog() {
         disableScrollLock
         open={open}
         onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
+        aria-describedby="aviso-de-privacidad"
+        aria-labelledby="descripción-aviso-de-privacidad"
       >
-        <DialogTitle id="alert-dialog-title" align='center'>
+        <DialogTitle id="aviso-de-privacidad" align='center'>
           {"Aviso de privacidad"}
         </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText id="descripción-aviso-de-privacidad">
             <TextPrivacy/>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} component={LinkRouter} to="/aviso-de-privacidad">Ver</Button>
-          <Button onClick={handleClose} autoFocus>
+          <Button onClick={handleClose} component={LinkRouter} to="/aviso-de-privacidad" aria-label='Ver aviso de privacidad en la sección correspondiente'>Ver</Button>
+          <Button onClick={handleClose} autoFocus aria-label='cerrar mensaje de avis ode privacidad'>
             Cerrar
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </Box>
   );
 }

@@ -5,12 +5,11 @@ import {Button,Box,TextField,Alert,Dialog,DialogTitle,IconButton,DialogContent,D
 import { app } from "../../../config/firebase/firebase";
 import AddCommentIcon from '@mui/icons-material/AddComment';
 import CloseIcon from '@mui/icons-material/Close';
-import userImage from "../../../assets/img/perfil/noProfilePicture.jpg";
 
 
 const AgregarComentarios = ({tematica}) => {
   // VARIABLES
-  const {user} = useAuth();
+  const {user, profileImageUrl} = useAuth();
   const [comentario, setComentario] = useState("");
   const [puntuacion, setPuntuacion] = useState("");
   const [mensajeAlerta, setMensajeAlerta] = useState(""); 
@@ -106,9 +105,10 @@ const AgregarComentarios = ({tematica}) => {
           puntuacion: puntuacion,
           tematica: tema,
           titulo: titulo,
+          imagen: profileImageUrl,
         });
         setTipoAlerta("success");
-        setMensajeAlerta("Comentario agregado exitosamente.");
+        setMensajeAlerta("Comentario agregado, podrás verlo en unos minutos.");
         setMostrarAlerta(true); // Establecer la variable de estado mostrarAlerta en true después de enviar el formulario
         setTimeout(() => {
           setMostrarAlerta(false); // Después de 5 segundos, establecer la variable de estado mostrarAlerta en false para ocultar la alerta emergente
@@ -121,8 +121,8 @@ const AgregarComentarios = ({tematica}) => {
   };
 
   return (
-    <div>
-      <Button variant="contained" startIcon={<AddCommentIcon/>} onClick={handleClickOpen}>Agregar Comentario</Button>        
+    <Box>
+      <Button aria-label='abrir ventana para agregar comentario' variant="contained" startIcon={<AddCommentIcon/>} onClick={handleClickOpen}>Agregar Comentario</Button>        
       <Dialog
         open={openDialog}
         onClose={handleClose}
@@ -133,7 +133,7 @@ const AgregarComentarios = ({tematica}) => {
         <DialogTitle id="alert-dialog-title">
           Agregar Comentario
           <IconButton
-              aria-label="close"
+              aria-label="cerrar ventana para agregar comentario"
               onClick={handleClose}
               sx={{
               position: 'absolute',
@@ -162,7 +162,7 @@ const AgregarComentarios = ({tematica}) => {
             <Box sx={{ m: 1, display: "flex", justifyContent: "center"}}>
                 <Box
                     component="img"
-                    src={userImage} 
+                    src={profileImageUrl} 
                     alt="Perfil" 
                     sx={{width: 168, height: 168, borderRadius: "50%", border: "2px solid #fff"}}
                 />
@@ -202,6 +202,7 @@ const AgregarComentarios = ({tematica}) => {
 
         <DialogActions>
           <Button
+            aria-label='agregar comentario al post'
             type="submit"
             variant="contained"
             onClick={handleSubmit}
@@ -222,7 +223,7 @@ const AgregarComentarios = ({tematica}) => {
         </DialogContent>
 
       </Dialog>
-    </div>
+    </Box>
   )
 }
 

@@ -1,16 +1,11 @@
 import React, { useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
-import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute'
 import { Bread } from '../../components/customs/Bread';
-import {
-    Button, Container, Grid, Paper,
-    IconButton,
-    InputAdornment, Box, Typography, TextField, Collapse, Divider
-} from '@mui/material';
+import { Button, Container, Grid, Paper, IconButton, InputAdornment, Box, Typography, TextField, Collapse, Divider } from '@mui/material';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { Form } from "semantic-ui-react"
-import imgLogo from "../../assets/img/app/imgLogoHuejutla.png"
+import imgLogo from "../../assets/img/app/imgLogoHuejutlaLight.webp"
 
 
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -20,6 +15,7 @@ import { useFormikConfig } from '../Register/useFormikConfig';
 import { db } from '../../config/firebase/firebaseDB'
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { HomeRounded, LoginRounded, RestoreRounded } from '@mui/icons-material';
+import { HelmetComponent } from '../../components/customs/HelmetComponent';
 
 export const RestorePassword = () => {
     //obtener el dato del correo
@@ -181,11 +177,13 @@ export const RestorePassword = () => {
 
     return (
         <Box sx={{bgcolor: "background.default"}}>
+            <HelmetComponent/>
             {/* Breadcrumbs */}
             <Bread migas={[{ miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/> }, { miga: "ACCESO", ruta: "/acceso", icono: <LoginRounded/> }, { miga: "RESTAURAR CONTRASEÑA", ruta: "/acceso/restaurar-pass", icono: <RestoreRounded/> }]} />
 
             {/* Contenido */}
             <Snackbar
+                aria-label={error}
                 open={snackbarOpen}
                 autoHideDuration={4000}
                 onClose={() => setSnackbarOpen(false)}
@@ -203,7 +201,7 @@ export const RestorePassword = () => {
                         <Container maxWidth="xs" >
                             <Paper elevation={0} sx={{ p: { md: 5, sm: 4, xs: 3 }, mb: 3 }}>
                                 <Box sx={{ display: "flex", justifyContent: "center", mb: 3 }}>
-                                    <img src={imgLogo} alt="logo" width="100vw" />
+                                    <img src={imgLogo} alt="logo-huejutla" width="100vw" />
                                 </Box>
 
                                 <Typography variant="h4" color="primary" textAlign='center' my={3}>Restaurar contraseña</Typography>
@@ -229,7 +227,9 @@ export const RestorePassword = () => {
                                             onChange={handleChange}
                                             autoComplete="off"
                                         />
-                                        <Button sx={{ mt: 1 }} fullWidth variant="contained" onClick={handleResetPassword}>
+                                        <Button 
+                                        aria-label='Enviar correo para restauración de contraseña'
+                                        sx={{ mt: 1 }} fullWidth variant="contained" onClick={handleResetPassword}>
                                             Enviar
                                         </Button>
                                     </Collapse>
@@ -246,7 +246,7 @@ export const RestorePassword = () => {
                                                 onChange={(e) => setTextFieldValue(e.target.value)}
                                                 autoComplete="off"
                                             />
-                                            <Button sx={{ mt: 1 }} type='submit' fullWidth variant="contained" onClick={handleButtonClick}>
+                                            <Button aria-label='validar correo electronico' sx={{ mt: 1 }} type='submit' fullWidth variant="contained" onClick={handleButtonClick}>
                                                 Validar
                                             </Button>
                                         </Collapse>
@@ -291,7 +291,7 @@ export const RestorePassword = () => {
                                                     endAdornment: (
                                                         <InputAdornment position="end">
                                                             <IconButton
-                                                                aria-label="toggle password visibility"
+                                                                aria-label="mostrar u ocultar contraseña"
                                                                 onClick={handleClickShowPassword}
                                                                 onMouseDown={handleMouseDownPassword}
                                                             >
@@ -302,7 +302,7 @@ export const RestorePassword = () => {
                                                 }}
                                             />
 
-                                            <Button type='button' variant="contained" fullWidth onClick={validarPregunta}>
+                                            <Button aria-label='validar pregunta' type='button' variant="contained" fullWidth onClick={validarPregunta}>
                                                 Validar
                                             </Button>
 
@@ -345,7 +345,7 @@ export const RestorePassword = () => {
                                                         endAdornment: (
                                                             <InputAdornment position="end">
                                                                 <IconButton
-                                                                    aria-label="toggle password visibility"
+                                                                    aria-label="mostrar u ocultar contraseña"
                                                                     onClick={handleClickShowPassword}
                                                                     onMouseDown={handleMouseDownPassword}
                                                                 >
@@ -371,7 +371,7 @@ export const RestorePassword = () => {
                                                         endAdornment: (
                                                             <InputAdornment position="end">
                                                                 <IconButton
-                                                                    aria-label="toggle password visibility"
+                                                                    aria-label="mostrar u ocultar contraseña"
                                                                     onClick={handleClickShowPassword}
                                                                     onMouseDown={handleMouseDownPassword}
                                                                 >
@@ -384,7 +384,7 @@ export const RestorePassword = () => {
                                             </Box>
 
                                             <Grid  >
-                                                <Button type='button' fullWidth variant="contained" onClick={handleUpdate}>
+                                                <Button aria-label='validar nueva contraseña' type='button' fullWidth variant="contained" onClick={handleUpdate}>
                                                     Validar
                                                 </Button>
                                             </Grid>
@@ -398,7 +398,7 @@ export const RestorePassword = () => {
                                         <Divider>o</Divider>
                                     </Collapse>
 
-                                    <Button variant="contained" fullWidth onClick={cambiarEstado}>
+                                    <Button aria-label={estado ? 'pregunta secreta':'correo'} variant="contained" fullWidth onClick={cambiarEstado}>
                                         {estado ? "Pregunta secreta" : "Correo"}
                                     </Button>
 

@@ -1,14 +1,7 @@
 import React,{useState} from 'react'
 import PropTypes from 'prop-types';
-import Typography from '@mui/material/Typography'
-import Box from '@mui/material/Box';
-import { Grid, Paper, TextField, Tab, Tabs, AppBar } from '@mui/material';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
+import { Grid, Paper, Tab, Tabs, AppBar, Typography, Box, Stepper, Step, StepLabel } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
 import { Bread } from '../../components/customs/Bread';
 import {useAuth} from "../../context/AuthContext"
 import { Tarjeta } from './Tarjeta';
@@ -17,20 +10,15 @@ import { Oxxo } from './Oxxo';
 import { Transferencia } from './Transferencia';
 import { ImgRegistro }        from './ImgRegistro';
 import { HomeRounded, VolunteerActivismRounded } from '@mui/icons-material';
+import { HelmetComponent } from '../../components/customs/HelmetComponent';
 
 
 const pasos = ['Se debe iniciar sesión para poder donar.','Formulario Tarjeta', 'Formulario Paypal', 'Formulario Oxxo', 'Formulario Transferencia'];
 
 export const Donaciones = () => {
   const {user} = useAuth();
-  const [monto, setMonto] = useState("");
-  const [tarjeta, setTarjeta] = useState("");
-  const [mes, setMes] = useState("");
-  const [anio, setAnio] = useState("");
-  const [cvv, setCvv] = useState("");
   const [proceso, setProceso] = useState(0);
   const [value, setValue] = React.useState(0);
-  const [nombre, setNombre] = useState("");
   const theme = useTheme();
 
   const pasos1 = async () => {
@@ -88,7 +76,7 @@ export const Donaciones = () => {
 
   return (
     <Box sx={{bgcolor: "background.default"}}>
-      
+      <HelmetComponent/>
       <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "DONACIONES", ruta: "/donaciones", icono: <VolunteerActivismRounded/>}]}/>
       
 
@@ -114,7 +102,7 @@ export const Donaciones = () => {
                         indicatorColor="secondary"
                         textColor="inherit"
                         variant="fullWidth"
-                        aria-label="full width tabs example"
+                        aria-label="vista completa de los metodos de donación"
                       >
                         <Tab label="Tarjeta"       {...a11yProps(0)} />
                         <Tab label="Paypal"        {...a11yProps(1)} />

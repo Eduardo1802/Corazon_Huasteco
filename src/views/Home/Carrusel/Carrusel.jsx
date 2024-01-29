@@ -1,9 +1,9 @@
-import { Box, Tooltip } from '@mui/material'
+import { Box } from '@mui/material'
 import { Slideshow, Slide, TextoSlide} from "./Slideshow"
 import React from 'react'
-import img1 from "../../../assets/img/inicio/Foto-centro-02.jpg"
-import img2 from "../../../assets/img/inicio/catedral-02.jpg"
-import img3 from "../../../assets/img/inicio/imgMural-02.jpg"
+import img1 from "../../../assets/img/inicio/catedral-01.webp"
+import img2 from "../../../assets/img/inicio/Foto-centro-02.webp"
+import img3 from "../../../assets/img/inicio/imgMural-01.webp"
 import { Link } from 'react-router-dom'
 
 export const Carrusel = () => {
@@ -13,30 +13,33 @@ export const Carrusel = () => {
         overflow: "hidden",
     }}>
         <Slideshow controles={true} autoplay={true} /*velocidad='500' intervalo='3000'*/>
-            <Slide>
-                <Link to='/tematicas'>
-                    <img src={img1} alt='imagen1' />
-                </Link>
-                <TextoSlide>
-                    <p>Huejutla Centro</p>
-                </TextoSlide>
-            </Slide>
-
             <Slide>                
-                <Link to='/sobre-nosotros'>
-                    <img src={img2} alt='imagen2' />
+                <Link to='/tematicas'>
+                    <img src={img1} rel='preload' as="image" alt='img-carrusel-catedral-de-huejutla' />
                 </Link>                
                 <TextoSlide>
                     <p>Catedral de Huejutla</p>
+                    <p><i>Imagen por Ceci Mandujano</i></p>
+                </TextoSlide>
+            </Slide>
+
+            <Slide>
+                <Link to='/sobre-nosotros'>
+                    <img src={img2} rel='preload' as="image" alt='img-carrusel-huejutla-centro' />
+                </Link>
+                <TextoSlide>
+                    <p>Huejutla Centro</p>
+                    <p><i>Imagen por Nadhiezda Cruz</i></p>
                 </TextoSlide>
             </Slide>
 
             <Slide>
                 <Link to='/tienda'>
-                    <img src={img3} alt='imagen3' />                    
+                    <img src={img3} rel='preload' as="image" alt='img-carrusel-mural-emblematico' />                    
                 </Link>
                 <TextoSlide>
                     <p>Mural Emblematico</p>
+                    <p><i>Imagen por Salomón Hernández</i></p>
                 </TextoSlide>
             </Slide>
 

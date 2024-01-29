@@ -3,7 +3,6 @@ import React from 'react'
 import {AreaChart} from './AreaChart'
 import { TematicasEstadisticas } from './TematicasEstadisticas'
 import { VerticalBarChart } from './VerticalBarChart'
-import { WrapperSingleRoute } from '../../../../components/customs/WrapperSingleRoute'
 
 
 export const AdminEstadisticas = ({datos}) => {

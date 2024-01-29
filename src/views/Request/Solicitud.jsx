@@ -1,7 +1,4 @@
 import React from 'react'
-
-
-
 // ELEMENTOS DE MATERIAL UI
 
 import Checkbox from '@mui/material/Checkbox';
@@ -17,8 +14,8 @@ import FileUploadIcon from '@mui/icons-material/FileUpload';
 
 // REACT ROUTER
 import { Link } from 'react-router-dom';
-import { WrapperSingleRoute } from '../../components/customs/WrapperSingleRoute';
 import { Bread } from '../../components/customs/Bread';
+import { HelmetComponent } from '../../components/customs/HelmetComponent';
 
 //TODO LO DE ANALYTICS DE FIREBASE
 // import { analytics } from '../../App/firebase';
@@ -59,6 +56,7 @@ export const Solicitud = () => {
 
   return (
     <Box sx={{bgcolor: "background.default"}}>
+      <HelmetComponent/>
       <Bread migas={[{miga: "INICIO", ruta: "/inicio"},{miga: "REGISTRO", ruta: "/registro"},{miga: "SOLICITUD", ruta: "/registro/colaborador"}]}/>
 
       <Box sx={{margin:"15px"}}>

@@ -3,11 +3,9 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
-import Slide from "@mui/material/Slide";
 import { Link } from "react-router-dom";
-import { Box, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import { Box, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import { ChevronRightRounded} from '@mui/icons-material';
 
 export default function FullScreenDialog({
@@ -27,7 +25,6 @@ export default function FullScreenDialog({
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
       >
           <Toolbar>
             {/* <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div" color="secondary.light" fontWeight={500}>
@@ -41,7 +38,7 @@ export default function FullScreenDialog({
               edge="start"
               color="inherit"
               onClick={handleClose}
-              aria-label="close"
+              aria-label="cerrar imagen amplia del producto"
               sx={{color: "primary.light"}}
             >
               <CloseIcon />
@@ -59,6 +56,7 @@ export default function FullScreenDialog({
         </DialogContent>
         <DialogActions /* sx={{bgcolor: "background.default"}} */>
           <Button variant="contained" /* onClick={handleClose} */
+            aria-label="ver contenido y descripción del producto"
             component={Link}
             to={project.id}
             sx={{

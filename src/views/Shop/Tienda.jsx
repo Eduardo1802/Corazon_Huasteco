@@ -13,6 +13,7 @@ import { Search, SearchIconWrapper, StyledInputBase } from './elements/Elements.
 import MediaControlCard from './MediaControlCard';
 import FullScreenDialog from './elements/FullScreenDialog';
 import Carrito from './Carrito';
+import { HelmetComponent } from '../../components/customs/HelmetComponent';
 
 export const Tienda = () => {
   // logica para abrir dialog
@@ -91,6 +92,7 @@ export const Tienda = () => {
 
   return (
     <Box sx={{bgcolor: "background.paper"}}> {/**CONTENEDOR GLOBAL */}
+      <HelmetComponent/>
       <Bread migas={[{ miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/> }, { miga: "TIENDA", ruta: "/tienda", icono: <StoreRounded/> }]} />
       <Carrito/>
 
@@ -107,7 +109,7 @@ export const Tienda = () => {
               </SearchIconWrapper>
               <StyledInputBase
                 placeholder="Buscar…"
-                inputProps={{ 'aria-label': 'search' }}
+                inputProps={{ 'aria-label': 'buscar un producto de la tienda' }}
                 value={busqueda}
                 onChange={handleChange}
                 />
@@ -129,7 +131,7 @@ export const Tienda = () => {
             autoComplete="off"
             >
             {categoria.map((categoria) => (
-              <MenuItem  key={categoria.value} value={categoria.value}>
+              <MenuItem  key={categoria.value} value={categoria.value} aria-label={`elegiste la categoria: ${categoria.value}`}>
                 {categoria.label}
               </MenuItem>
             ))}
@@ -149,7 +151,7 @@ export const Tienda = () => {
             autoComplete="off"
             >
             {colores.map((color) => (
-              <MenuItem key={color.value} value={color.value}>
+              <MenuItem key={color.value} value={color.value} aria-label={`elegiste el lcolor ${color.label}`}>
                 {color.label}
               </MenuItem>
             ))}
@@ -158,7 +160,7 @@ export const Tienda = () => {
 
         <Grid item  md={4} sm={12} xs={12}>
           <Box display="flex" height="100%">
-            <Button fullWidth  variant="contained" onClick={handleSearch}>
+            <Button aria-label='buscar productos' fullWidth  variant="contained" onClick={handleSearch}>
               Buscar
             </Button>
           </Box>

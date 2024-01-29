@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { app } from "../../../../config/firebase/firebase";
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
-import { db } from "../../../../config/firebase/firebaseDB";
-import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, Grid, Box, TextField, MenuItem } from "@mui/material";
-import { useParams } from 'react-router-dom';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import SimpleBackdrop from "../../../../components/customs/SimpleBackDrop";
-import { Form } from "semantic-ui-react"
 
 export const AdminProveedor = () => {
     const [proyectos, setProyectos] = useState([]);

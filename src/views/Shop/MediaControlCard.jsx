@@ -8,14 +8,52 @@ import { ChevronRightRounded, LocalGroceryStoreRounded} from '@mui/icons-materia
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { CarritoContext } from '../../context/CarritoContext';
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+// firebase component
+import { doc, getDoc, updateDoc, setDoc }from "firebase/firestore";
+import { db } from "../../config/firebase/firebaseDB";
 
 export default function MediaControlCard({proyecto, handleClickOpen}) {
-
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const { contador, aumentarContador, disminuirContador } = useContext(CarritoContext);
   const theme = useTheme();
+  const registrarProducto = async (idProduct) => {
+    if (!user) {
+      return navigate("/acceso");
+    }
+  
+    // Obtener la referencia del documento del carrito del usuario
+    const referencia = doc(db, `carritoUsuario/${user.uid}`);
+  
+    // Obtener los datos del carrito del usuario
+    const docSnap = await getDoc(referencia);
+    const data = docSnap.exists() ? docSnap.data() : null;
+  
+    // Si el carrito no existe, crearlo con el producto y cantidad 1
+    if (!data) {
+      await setDoc(referencia, { [idProduct]: 1, total: 1 });
+    } else {
+      // Si el producto ya existe en el carrito, aumentar la cantidad
+      if (data.hasOwnProperty(idProduct)) {
+        await updateDoc(referencia, {
+          [idProduct]: data[idProduct] + 1,
+          total: data.total ? data.total + 1 : 1, // Sumar 1 al total si ya existe, o crearlo con 1 si aún no existe
+        });
+      } else {
+        // Si el producto no existe en el carrito, agregarlo con cantidad 1
+        await updateDoc(referencia, {
+          [idProduct]: 1,
+          total: data.total ? data.total + 1 : 1, // Sumar 1 al total si ya existe, o crearlo con 1 si aún no existe
+        });
+      }
+    }
+  };
+  
 
   return (
-    <Card sx={{ transition: "0.2s", "&:hover": {transform: "scale(1.03)"}, display: 'flex', flexDirection: {xs: "column", sm: "row", md: "row"}, minHeight: {xs: 100, sm: 150, md:200, lg:250, xl:"100%"}, borderRadius: 2, border: `1px dashed ${theme.palette.primary.light}` }}>
+    <Card elevation={5} sx={{ transition: "0.2s", "&:hover": {transform: "scale(1.03)"}, display: 'flex', flexDirection: {xs: "column", sm: "row", md: "row"}, minHeight: {xs: 100, sm: 150, md:200, lg:250, xl:"100%"}, borderRadius: 2 }}>
       <CardMedia
         onClick={() => handleClickOpen(proyecto)}
         component="img"
@@ -34,12 +72,15 @@ export default function MediaControlCard({proyecto, handleClickOpen}) {
         </CardContent>
         <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
           <CardActions>
-              <Button variant='contained' size='small' endIcon={<ChevronRightRounded/>} component={Link} to={proyecto.id}>
+              <Button aria-label='ir a la vista amplia del producto' variant='contained' size='small' endIcon={<ChevronRightRounded/>} component={Link} to={proyecto.id}>
                   Ver
               </Button>
-              <Button variant='outlined' size='small' endIcon={<LocalGroceryStoreRounded/>} sx={{ml:2}} onClick={aumentarContador}>
-                  Añadir
+              
+              <Button aria-label='añadir producto al carrito de compras' variant='outlined' size='small' endIcon={<LocalGroceryStoreRounded />} sx={{ ml: 2 }} onClick={() => registrarProducto(proyecto.id)}>
+                Añadir
               </Button>
+           
+
           </CardActions>
         </Box>
       </Box>

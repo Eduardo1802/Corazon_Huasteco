@@ -1,77 +1,43 @@
 import React from 'react'
-
-import { Box, Typography, useTheme } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
+import { AnimatedIcon } from '../../components/Layout/NavBar/componentsNavBar'
 
 export const LoaderAnimation = () => {
-
   const theme = useTheme();
   
   const styles = `
-  .container {
-    display: grid;
-    place-content: center;
-    height: 80vh;
-  }
-
-  .cargando {
-      width: 120px;
-      height: 30px;
+    .container{
+      width: 100%;
+      height: 80vh;
       display: flex;
-      flex-wrap: wrap;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin: 0 auto;
-  }
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
 
-  .texto-cargando {
-      padding-top: 20px
-  }
-
-  .cargando span {
-      font-size: 20px;
-      text-transform: uppercase;
-  }
-
-  .pelotas {
-      width: 25px;
-      height: 25px;
-      background-color: ${theme.palette.primary.main};
-      animation: salto .5s alternate infinite;
-      border-radius: 50%
-  }
-
-  .pelotas:nth-of-type(2) {
-      animation-delay: .18s;
-  }
-
-  .pelotas:nth-of-type(3) {
-      animation-delay: .37s;
-  }
-
-  @keyframes salto {
-      from {
-          transform: scaleX(1.25);
-      }
-
-      to {
-          transform:
-              translateY(-50px) scaleX(1);
-      }
-  }
+    .loader-text {
+      font-weight: 500;
+      font-family: sans-serif;
+      font-size: 30px;
+      animation: l1 1s linear infinite alternate;
+      color: ${theme.palette.primary.light};
+      font-size: 45px;
+    }
+    .loader-text:before {
+      content:"Cargando...";
+      font-weight: 700;
+    }
+    @keyframes l1 {to{opacity: 0}}
   `;
 
   return (
     <Box sx={{background: theme.palette.background.paper}}>
-        <Box sx={{styles}}>
+      <Box sx={{styles}}>
         <Box className="container" >
-            <Box className="cargando">
-                <Box className="pelotas"></Box>
-                <Box className="pelotas"></Box>
-                <Box className="pelotas"></Box>
-                <Typography component="span" className="texto-cargando" color="primary">Cargando... </Typography>
-            </Box>
+          <AnimatedIcon animation/>
+          <Box className='loader-text'></Box>
         </Box>
-        </Box>
+      </Box>
     </Box>
   )
 }

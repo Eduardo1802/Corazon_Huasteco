@@ -1,60 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { Router } from "./routes/Router";
-import { Box, ThemeProvider, createTheme, CircularProgress } from '@mui/material';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "./config/firebase/firebaseDB";
-AOS.init();
+import { ThemeProvider } from "@mui/material";
+import { lightTheme, darkTheme } from "./styles/ThemeMui";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-  const [themeMode, setThemeMode] = useState('light');
-  const [palette, setPalette] = useState({});
-  const [loading, setLoading] = useState(true);
+  const savedDarkMode = localStorage.getItem("darkMode");
+  const initialDarkMode = savedDarkMode ? JSON.parse(savedDarkMode) : false;
 
-  const fetchData = async (themeMode) => {
-    try {
-      const docRef = doc(db, 'settingsApp', 'C5sl8yZRgXubsme5uBws');
-      const docSnapshot = await getDoc(docRef);
-      const data = docSnapshot.data();
-      setPalette(data[themeMode]);
-      setLoading(false); // Marcar la carga como completada
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
+  const [isDarkMode, setIsDarkMode] = useState(initialDarkMode);
+  const [themeColor, setThemeColor] = useState(
+    isDarkMode ? darkTheme.palette.primary.main : lightTheme.palette.primary.main
+  );
+
+  const handleThemeChange = () => {
+    setIsDarkMode((prevMode) => !prevMode);
   };
 
   useEffect(() => {
-    fetchData(themeMode);
-  }, [themeMode]);
-
-  const handleThemeToggle = () => {
-    setThemeMode((prevThemeMode) => (prevThemeMode === 'light' ? 'dark' : 'light'));
-    AOS.refresh();
-  };
-
-  const theme = createTheme({
-    palette: {
-      mode: themeMode,
-      ...palette,
-    },
-  });
-
-  if (loading) {
-    // Mostrar un mensaje de carga mientras los datos se están cargando
-    return (
-      <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
-        <CircularProgress />
-      </Box>
-    );
-  }
+    localStorage.setItem("darkMode", JSON.stringify(isDarkMode));
+    setThemeColor(isDarkMode ? darkTheme.palette.primary.main : lightTheme.palette.primary.main);
+  }, [isDarkMode]);
 
   return (
-    <Box>
-      <ThemeProvider theme={theme}>
-        <Router isDarkMode={themeMode} handleThemeChange={handleThemeToggle} />
-      </ThemeProvider>
-    </Box>
+    <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+      <ToastContainer />
+      <Router isDarkMode={isDarkMode} handleThemeChange={handleThemeChange} />
+      <meta name="theme-color" content={themeColor} />
+    </ThemeProvider>
   );
 }
 

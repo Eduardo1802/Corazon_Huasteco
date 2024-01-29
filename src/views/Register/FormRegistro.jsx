@@ -1,21 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 // material components
-import {
-  Button,
-  Collapse,
-  Container,
-  Grid,
-  Paper,
-  Box,
-  Typography,
-  TextField,
-  MenuItem,
-  IconButton,
-  InputAdornment,
-  Checkbox,
-  FormControlLabel,
-} from "@mui/material";
+import { Button, Collapse, Container, Grid, Paper, Box, Typography, TextField, MenuItem, IconButton, InputAdornment, Checkbox, FormControlLabel } from "@mui/material";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 import LoginIcon from "@mui/icons-material/Login";
@@ -41,6 +27,7 @@ import SimpleBackdrop from "../../components/customs/SimpleBackDrop";
 import { sexos, tipos, secreta } from "./optionListRegistro";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import AlertDialog from "../../components/customs/AlertDialog";
 
 export const FormRegistro = () => {
   const [email, setEmail] = useState("");
@@ -152,6 +139,7 @@ export const FormRegistro = () => {
 
         {error && <BasicAlerts message={error} />}
         <Snackbar
+          aria-label={error}
           open={snackbarOpen}
           autoHideDuration={4000}
           onClose={() => setSnackbarOpen(false)}
@@ -187,6 +175,7 @@ export const FormRegistro = () => {
                 helperText={formik.errors.name}
                 value={formik.values.name}
                 autoComplete="off"
+                aria-label="por favor ingresa tu nombre"
               />
             </Grid>
             <Grid item md={6} sm={6} xs={12}>
@@ -202,6 +191,7 @@ export const FormRegistro = () => {
                 helperText={formik.errors.lastName}
                 value={formik.values.lastName}
                 autoComplete="off"
+                aria-label='por favor ingresa tus apellidos'
               />
             </Grid>
           </Grid>
@@ -221,6 +211,7 @@ export const FormRegistro = () => {
                 helperText={formik.errors.age}
                 value={formik.values.age}
                 autoComplete="off"
+                aria-label="por favor ingresa tu edad"
               />
             </Grid>
             <Grid item md={6} sm={6} xs={6}>
@@ -237,9 +228,10 @@ export const FormRegistro = () => {
                 helperText={formik.errors.gender}
                 value={formik.values.gender}
                 autoComplete="off"
+                aria-label="por favor selecciona tu sexo"
               >
                 {sexos.map((sexo) => (
-                  <MenuItem key={sexo.value} value={sexo.value}>
+                  <MenuItem key={sexo.value} value={sexo.value} aria-label={sexo.value}>
                     {sexo.label}
                   </MenuItem>
                 ))}
@@ -263,9 +255,10 @@ export const FormRegistro = () => {
                 helperText={formik.errors.ocupation}
                 value={formik.values.ocupation}
                 autoComplete="off"
+                aria-label="por favor selecciona tu ocupación"
               >
                 {tipos.map((tipo) => (
-                  <MenuItem key={tipo.value} value={tipo.value}>
+                  <MenuItem key={tipo.value} value={tipo.value} aria-label={tipo.label}>
                     {tipo.label}
                   </MenuItem>
                 ))}
@@ -275,6 +268,7 @@ export const FormRegistro = () => {
             {/* CP */}
             <Grid item md={6} sm={6} xs={6}>
               <TextField
+                aria-label="por favor ingresa tu codigo postal"
                 fullWidth
                 label="Código postal"
                 type="text"
@@ -330,11 +324,13 @@ export const FormRegistro = () => {
                 value={formik.values.email || email}
                 autoComplete="off"
                 disabled={estado ? true : false}
+                aria-label="por favor ingresa tu correo electronico"
               />
             </Grid>
             <Grid item xs={12} md={3}>
               <Box sx={{height: "100%", display: "flex", alignItems: "center"}}>  
                 <Button
+                  aria-label={estado ? "Editar correo electronico" : "Validar correo electronico"}
                   type="submit"
                   fullWidth
                   variant="contained"
@@ -348,7 +344,7 @@ export const FormRegistro = () => {
           </Grid>
 
           {/* SUBCONTENEDOR */}
-          {/* <Collapse in={estado}> */}
+          <Collapse in={estado}>
             <Box
               sx={{
                 "& > :not(style)": { my: { md: 1, sm: 0.75, xs: 1 } },
@@ -366,11 +362,12 @@ export const FormRegistro = () => {
                 helperText={formik.errors.password}
                 value={formik.values.password}
                 autoComplete="off"
+                aria-label="por favor ingresa tu contraseña"
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
-                        aria-label="toggle password visibility"
+                        aria-label="mostrar u ocultar contraseña"
                         onClick={handleClickShowPassword}
                         onMouseDown={handleMouseDownPassword}
                       >
@@ -393,11 +390,12 @@ export const FormRegistro = () => {
                 helperText={formik.errors.repeatPassword}
                 value={formik.values.repeatPassword}
                 autoComplete="off"
+                aria-label="por favor repite tu contraseña"
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
-                        aria-label="toggle password visibility"
+                        aria-label="mostrar u ocultar contraseña"
                         onClick={handleClickShowPassword}
                         onMouseDown={handleMouseDownPassword}
                       >
@@ -421,9 +419,10 @@ export const FormRegistro = () => {
                 helperText={formik.errors.secretQuestion}
                 value={formik.values.secretQuestion}
                 autoComplete="off"
+                aria-label="por favor selecciona una pregunta secreta"
               >
                 {secreta.map((secreta) => (
-                  <MenuItem key={secreta.value} value={secreta.value}>
+                  <MenuItem key={secreta.value} value={secreta.value} aria-label={secreta.value}>
                     {secreta.label}
                   </MenuItem>
                 ))}
@@ -441,11 +440,12 @@ export const FormRegistro = () => {
                 helperText={formik.errors.secretQuestionAnswer}
                 value={formik.values.secretQuestionAnswer}
                 autoComplete="off"
+                aria-label="por favor ingresa tu respuesta de la pregunta secreta"
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
-                        aria-label="toggle password visibility"
+                        aria-label="mostrar u ocultar contraseña"
                         onClick={handleClickShowPassword}
                         onMouseDown={handleMouseDownPassword}
                       >
@@ -466,7 +466,7 @@ export const FormRegistro = () => {
                     inputProps={{ "aria-label": "Aceptar términos y condiciones" }}
                   />
                 } 
-                label="Acepto los términos y condiciones" 
+                label={<AlertDialog/>}
               />
 
               {formik.touched.checkBoxValue && formik.errors.checkBoxValue ? (
@@ -477,6 +477,7 @@ export const FormRegistro = () => {
               <Grid container spacing={1}>
                 <Grid item xs={12} md={6}>
                   <Button
+                    aria-label="enviar formulario para registro en corazon huasteco"
                     type="submit"
                     fullWidth
                     variant="contained"
@@ -487,6 +488,7 @@ export const FormRegistro = () => {
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <Button
+                    aria-label="limpiar formulario de registro en corazón huasteco"
                     type="button"
                     fullWidth
                     variant="outlined"
@@ -498,14 +500,14 @@ export const FormRegistro = () => {
                 </Grid>
               </Grid>
             </Box>
-          {/* </Collapse> */}
+          </Collapse>
           {/*  FIN DEL SUBCONTENEDOR */}
 
           {/* enlaces */}
           <Grid container spacing={1}>
               <Grid item xs>
                 <Typography textAlign="center" variant="body1">
-                  ¿Tienes cuenta? <Link to="/acceso">inicia sesión</Link>
+                  ¿Tienes cuenta? <Link to="/acceso" aria-label="ir a la sección de iniciar sesion">inicia sesión</Link>
                 </Typography>
               </Grid>
             </Grid>

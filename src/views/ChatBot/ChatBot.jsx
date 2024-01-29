@@ -1,25 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { AiOutlineSend } from "react-icons/ai";
 import SendIcon from '@mui/icons-material/Send';
 import { Bread }              from '../../components/customs/Bread';
-import { HomeRounded} from '@mui/icons-material';
-import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
-import {
-  Box,
-  Grid,
-  Divider,
-  Chip,
-  Paper,
-  Typography,
-  Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
+import { Delete, Face, HomeRounded, SmartToy} from '@mui/icons-material';
+import { Box, CircularProgress, Container, Grid, IconButton, InputAdornment, Paper, TextField, Typography } from "@mui/material";
+import { HelmetComponent } from "../../components/customs/HelmetComponent";
 
 export const ChatBot = () => {
   const [pregunta, setPregunta] = useState("");
@@ -34,9 +19,9 @@ export const ChatBot = () => {
       setIsEmptyResponse(false);
       const data = { answer: pregunta };
       const response = await axios.post(
-        "http://eduazuara.pythonanywhere.com/api/predict",
+        "http://eduardo1802.pythonanywhere.com/api/predict",
         data
-      );
+      );      
       console.log("Respuesta del servidor:", response.data);
       setPredictionData(response.data);
       setIsLoading(false);
@@ -46,81 +31,78 @@ export const ChatBot = () => {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13 && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(e);
+    }
+  };
+
   return (
-    <Box>
-      <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "CHATBOT", ruta: "/chatbot", icono: <QuestionAnswerIcon/>}]}/>
-      <Grid container spacing={0}>
-        <Grid item xs={12} p={3}>
-          <Paper elevation={3} sx={{ p: 2, m: 1 }}>
-            <form
-              onSubmit={handleSubmit}
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <div style={{ position: "relative", width: "600px" }}>
-                <input
+    <Box sx={{bgcolor: "background.default"}}>
+      <HelmetComponent/>
+      <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "CHATBOT", ruta: "/chatbot", icono: <SmartToy/>}]}/>
+
+      <Paper elevation={0}>
+        <Container maxWidth="lg">
+          <Grid container spacing={1}>
+            <Grid item xs={12}>
+              <Typography variant="h4" color="primary" textAlign='center' >Interactua con el ChatBot</Typography>
+            </Grid>
+            <Grid item xs={12} sm={12} md={6} p={1}>
+              <form autoComplete="off" onSubmit={handleSubmit}>
+                <TextField
                   type="text"
                   value={pregunta}
                   onChange={(e) => setPregunta(e.target.value)}
-                  style={{
-                    width: "100%",
-                    height: "60px",
-                    fontSize: "20px",
-                    textAlign: "center",
-                    borderRadius: "10px",
-                    outline: "none",
-                    paddingRight: "40px",
-                  }}
+                  onKeyDown={handleKeyDown}
                   required
-                  placeholder="Envía tu pregunta sobre Huejutla"
-                />
-                <button
-                  type="submit"
-                  disabled={isLoading}
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    right: 0,
-                    width: "60px",
-                    height: "60px",
-                    backgroundColor: "#19C37D",
-                    borderRadius: "10px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
+                  label="Envia tu pregunta sobre Huejutla"
+                  id="outlined-multiline-flexible"
+                  color="success"
+                  multiline
+                  fullWidth
+                  maxRows={10}
+                  InputProps={{
+                    endAdornment: <InputAdornment position="end">
+                      <IconButton 
+                        type="submit" aria-label="enviar pregunta al chatbot" 
+                        size="large" sx={{color: "#19C37D"}}
+                        disabled={isLoading}
+                      >
+                        <SendIcon fontSize="inherit" />
+                      </IconButton>
+                    </InputAdornment>,
                   }}
+                />
+              </form>
+            </Grid>
+            <Grid item xs={12} sm={12} md={6} p={1}>
+              <Paper elevation={1} sx={{ p: 1.4 }}>
+                <Typography
+                  textAlign="left"
+                  variant="h6"
+                  color="text.primary"
+                  gutterBottom
                 >
-                  <SendIcon style={{ color: "white" }}/>
-                </button>
-              </div>
-            </form>
-          </Paper>
-
-          <Paper elevation={3} sx={{ p: 2, m: 1 }}>
-            <Typography
-              textAlign="left"
-              variant="h5"
-              color="text.secondary"
-              sx={{ display: "flex" }}
-            >
-              Respuesta: {isLoading && "Cargando..."}
-            </Typography>
-            <Typography
-              gutterBottom
-              textAlign="left"
-              variant="h5"
-              color="text.secondary"
-              sx={{ display: "flex" }}
-            >
-              {isEmptyResponse && <p>La respuesta está vacía.</p>}
-              {predictionData.answer && <p>{predictionData.answer}</p>}
-            </Typography>
-          </Paper>
-        </Grid>
-      </Grid>
+                  Respuesta: 
+                </Typography>
+                <Typography>
+                  {isLoading && <CircularProgress/> }
+                </Typography>
+                <Typography
+                  textAlign="left"
+                  variant="subtitle1"
+                  color="text.secondary"
+                >
+                  {isEmptyResponse && <>La respuesta está vacía.</>}
+                  {predictionData.answer && <>{predictionData.answer}</>}
+                </Typography>
+              </Paper>
+            </Grid>
+          </Grid>
+        </Container>
+      </Paper>
     </Box>
   );
 };

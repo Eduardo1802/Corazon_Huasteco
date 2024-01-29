@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { WrapperSingleRoute } from "../../../../components/customs/WrapperSingleRoute";
 import {Box, Button, Chip, Divider, Grid, Paper, Stack, TextField, Typography,} from "@mui/material";
 import StorageRoundedIcon from "@mui/icons-material/StorageRounded";
 import { app } from "../../../../config/firebase/firebase";
@@ -12,14 +11,21 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 const options = [
+  "bajaComentarios",
   "bajaProductos",
+  "bajaTematicas",
+  "comentarios",
+  "guardados",
   "producto",
+  "proveedores",
+  "settingsApp",
   "temas",
   "tematicas",
   "usuarios",
   "usuarios_correo",
-  "visitas",
-  "settingsApp"
+  "ventas",
+  "ventasPendiendes",
+  "visitas"
 ];
 
 export const AdminConfiguracion = () => {
