@@ -1,6 +1,6 @@
 import React, { useState, useEffect }  from "react";
 import { Link, NavLink, useLocation, useNavigate }  from "react-router-dom";
-import { AppBar, Avatar, Box, Button, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Menu, MenuItem, Toolbar, Tooltip, Typography, Zoom } from "@mui/material";
+import { AppBar, Avatar, Box, Button, Divider, Drawer, SwipeableDrawer, IconButton, List, ListItem, ListItemButton, ListItemText, Menu, MenuItem, Toolbar, Tooltip, Typography, Zoom } from "@mui/material";
 import LoginRoundedIcon                from "@mui/icons-material/LoginRounded";
 import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuIcon                        from "@mui/icons-material/Menu";
@@ -146,7 +146,7 @@ export const NavBar = (props) => {
   return (
     <>
       <ElevationScroll {...props}>
-        <AppBar>
+        <AppBar sx={{outline: "2px solid", outlineColor: theme.palette.primary.light }}>
           <SimpleBackdrop open={open}/>
           {/* Primer tool */}
           {/* desktop*/}
@@ -175,15 +175,16 @@ export const NavBar = (props) => {
 
           {/* Salida del drawer --- mobile */}
           <Box component="nav">
-            <Drawer
-              disableScrollLock
-              container={container}
-              variant="temporary"
+            <SwipeableDrawer
               open={mobileOpen}
               onClose={handleDrawerToggle}
-              ModalProps={{
-                keepMounted: true, // Better open performance on mobile.
-              }}
+              onOpen={handleDrawerToggle}
+              disableScrollLock
+              // container={container}
+              // variant="temporary"
+              // ModalProps={{
+              //   keepMounted: true, // Better open performance on mobile.
+              // }}
               sx={{
                 display: { xs: "block", sm: "block", md: "none" },
                 "& .MuiDrawer-paper": {
@@ -193,7 +194,7 @@ export const NavBar = (props) => {
               }}
             >
               {drawer}
-            </Drawer>
+            </SwipeableDrawer>
           </Box>
 
           {/* Segundo tool */}
