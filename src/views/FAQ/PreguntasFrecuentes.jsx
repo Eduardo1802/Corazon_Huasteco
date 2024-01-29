@@ -5,10 +5,12 @@ import { AccordionDes } from './AccordionDes';
 import { Bread } from '../../components/customs/Bread';
 import { HomeRounded, LiveHelpRounded } from '@mui/icons-material';
 import { Grid, Paper } from '@mui/material';
+import { HelmetComponent } from '../../components/customs/HelmetComponent';
 
 export const PreguntasFrecuentes = () => {
   return (
     <Box sx={{bgcolor: "background.default"}}>
+      <HelmetComponent/>
         <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "PREGUNTAS FRECUENTES", ruta: "/preguntas-frecuentes", icono: <LiveHelpRounded/>}]}/>
 
         <Paper elevation={0}>

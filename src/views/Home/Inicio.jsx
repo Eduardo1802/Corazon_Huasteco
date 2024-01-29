@@ -10,7 +10,8 @@ import fauna from '../../assets/img/inicio/fauna-02.webp'
 import mapa from '../../assets/img/inicio/mapa-huejutla.webp'
 import styled from '@emotion/styled';
 import { WavyDivider } from '../../components/customs/WavyDivider';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { HelmetComponent } from '../../components/customs/HelmetComponent';
 
 export const Inicio = () => {
   const theme = useTheme();
@@ -19,6 +20,7 @@ export const Inicio = () => {
 
   return (
     <Box sx={{background: theme.palette.background.paper}}>
+      <HelmetComponent/>
       <Paper component="article" elevation={0}>
         {/* SECTION ONE -- CARRUSEL */}
         <Carrusel />

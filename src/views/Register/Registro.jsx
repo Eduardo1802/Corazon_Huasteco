@@ -6,10 +6,12 @@ import { Bread }              from '../../components/customs/Bread';
 import { ImgRegistro }        from './ImgRegistro';
 import { FormRegistro }       from './FormRegistro';
 import { HomeRounded, HowToRegRounded } from '@mui/icons-material';
+import { HelmetComponent } from '../../components/customs/HelmetComponent';
 
 export const Registro = () => {
   return (
     <Box sx={{bgcolor: "background.default"}}>
+      <HelmetComponent/>
       {/* BREADCRUMBS */}
       <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "REGISTRO", ruta: "/registro", icono: <HowToRegRounded/>}]}/>
 

@@ -15,6 +15,7 @@ import { useFormikConfig } from '../Register/useFormikConfig';
 import { db } from '../../config/firebase/firebaseDB'
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { HomeRounded, LoginRounded, RestoreRounded } from '@mui/icons-material';
+import { HelmetComponent } from '../../components/customs/HelmetComponent';
 
 export const RestorePassword = () => {
     //obtener el dato del correo
@@ -176,6 +177,7 @@ export const RestorePassword = () => {
 
     return (
         <Box sx={{bgcolor: "background.default"}}>
+            <HelmetComponent/>
             {/* Breadcrumbs */}
             <Bread migas={[{ miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/> }, { miga: "ACCESO", ruta: "/acceso", icono: <LoginRounded/> }, { miga: "RESTAURAR CONTRASEÑA", ruta: "/acceso/restaurar-pass", icono: <RestoreRounded/> }]} />
 

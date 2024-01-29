@@ -13,6 +13,7 @@ import einar from '../../assets/img/sobre-nosotros/einar.webp'
 import chino from '../../assets/img/sobre-nosotros/chino.webp'
 import imgAus                 from "../../assets/img/sobre-nosotros/imgSobreNosotros.webp"
 import imgMural               from "../../assets/img/inicio/imgMural-01.webp"
+import { HelmetComponent } from '../../components/customs/HelmetComponent';
 
 // import CustomizedTimeline from './CustomizedTimeline';
 
@@ -24,6 +25,7 @@ export const SobreNosotros = () => {
 
   return (
     <Box sx={{bgcolor: "background.default"}}>
+      <HelmetComponent/>
       {/* Breadcrumbs */}
       <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "SOBRE NOSOTROS", ruta: "/sobre-nosotros", icono: <BusinessRounded/>}]}/>
       

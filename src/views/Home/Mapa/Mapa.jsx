@@ -7,6 +7,7 @@ import { ContenedorMapa } from "./ElementsMapa";
 import { Container, Grid, Paper } from "@mui/material";
 import { Bread } from "../../../components/customs/Bread";
 import { HomeRounded, MapOutlined, MapRounded } from "@mui/icons-material";
+import { HelmetComponent } from "../../../components/customs/HelmetComponent";
 
 //TODO LO DE ANALYTICS DE FIREBASE
 // import { analytics } from '../../App/firebase';
@@ -26,6 +27,7 @@ export const Mapa = () => {
 
   return (
     <Box sx={{bgcolor: "background.default"}}>
+      <HelmetComponent/>
       <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "MAPA", ruta: "/mapa", icono: <MapRounded/>}]}/>
       {/* M A P A */}
       <Paper elevation={0}>

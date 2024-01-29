@@ -13,6 +13,7 @@ import { Search, SearchIconWrapper, StyledInputBase } from './elements/Elements.
 import MediaControlCard from './MediaControlCard';
 import FullScreenDialog from './elements/FullScreenDialog';
 import Carrito from './Carrito';
+import { HelmetComponent } from '../../components/customs/HelmetComponent';
 
 export const Tienda = () => {
   // logica para abrir dialog
@@ -91,6 +92,7 @@ export const Tienda = () => {
 
   return (
     <Box sx={{bgcolor: "background.paper"}}> {/**CONTENEDOR GLOBAL */}
+      <HelmetComponent/>
       <Bread migas={[{ miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/> }, { miga: "TIENDA", ruta: "/tienda", icono: <StoreRounded/> }]} />
       <Carrito/>
 

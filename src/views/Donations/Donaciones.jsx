@@ -10,6 +10,7 @@ import { Oxxo } from './Oxxo';
 import { Transferencia } from './Transferencia';
 import { ImgRegistro }        from './ImgRegistro';
 import { HomeRounded, VolunteerActivismRounded } from '@mui/icons-material';
+import { HelmetComponent } from '../../components/customs/HelmetComponent';
 
 
 const pasos = ['Se debe iniciar sesión para poder donar.','Formulario Tarjeta', 'Formulario Paypal', 'Formulario Oxxo', 'Formulario Transferencia'];
@@ -75,7 +76,7 @@ export const Donaciones = () => {
 
   return (
     <Box sx={{bgcolor: "background.default"}}>
-      
+      <HelmetComponent/>
       <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "DONACIONES", ruta: "/donaciones", icono: <VolunteerActivismRounded/>}]}/>
       
 

@@ -4,10 +4,12 @@ import { Bread }              from '../../components/customs/Bread';
 import { FormAcceso }         from './FormAcceso';
 import { ImgAcceso }          from './ImgAcceso';
 import { HomeRounded, LoginRounded } from '@mui/icons-material';
+import { HelmetComponent } from '../../components/customs/HelmetComponent';
 
 export const Acceso = () => {
   return (
     <Box sx={{bgcolor: "background.default"}}>
+      <HelmetComponent/>
       {/* Breadcrumbs */}
       <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "ACCESO", ruta: "/acceso", icono: <LoginRounded/>}]}/>
       
