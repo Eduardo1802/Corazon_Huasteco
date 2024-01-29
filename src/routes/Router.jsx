@@ -47,8 +47,11 @@ import { KeyboardDoubleArrowUp } from '@mui/icons-material'
 import { BtnScrollTop } from '../components/customs/btnScrollTop'
 import { LoaderAnimation } from '../components/customs/LoaderAnimation'
 import { DataProvider } from '../context/DataContext'
+import { HelmetProvider } from 'react-helmet-async';
 
 export const Router = ({isDarkMode, handleThemeChange}, props) => {
+
+  const helmetContext = {}
 
   const [productos, setProductos] = useState(null);
   const [tematicas, setTematicas] = useState(null);
@@ -70,75 +73,77 @@ export const Router = ({isDarkMode, handleThemeChange}, props) => {
 
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <CarritoProvider>
-          <DataProvider>
-            <Box id="back-to-top-anchor" />
-            <NavBar isDarkMode={isDarkMode} handleThemeChange={handleThemeChange} />
-              <ScrollToTop>
-                <Suspense fallback={<LoaderAnimation/>}>
-                  <Routes>
-                    {/*rutasDeAplicacion*/}
-                    <Route path='/'                       element={<Navigate to='/inicio'/>}/>
-                    <Route path='/inicio'                 element={<Inicio/>} />
-                    <Route path='/mapa'                   element={<Mapa/> } />
-                    <Route path='/chatbot'                element={<ChatBot/>} />
-                    <Route path='/sobre-nosotros'         element={<SobreNosotros/>} />
-                    <Route path='/donaciones'             element={<Donaciones/>} />
-                    <Route path='/creadores-de-contenido' element={<CreadoresDeContenido/>} />
-                    <Route path='/tienda'                 element={<Tienda/>} />
-                    <Route path='/tienda/:id'             element={<DetalleProduct productos={productos}/> } />
-                    <Route path='/aviso-de-privacidad'    element={<AvisoDePrivacidad/>} />
-                    <Route path='/preguntas-frecuentes'   element={<PreguntasFrecuentes/>} />
-                    
-                    {/* SubRutas -- tematicas */}
-                    <Route path="/tematicas/" /*AquiSePuedeRenderizarUnNavTematicas*/ >
-                      <Route index element={<PanelTematicas/>}/*yAquiSePuedeRenderizarUnListTematicas*/  />
-                      <Route path="vestimenta"          element={<Vestimenta />} />
-                      <Route path="danza"               element={<Danza/>} />
-                      <Route path="gastronomia"         element={<Gastronomia/>} />
-                      <Route path="musica"              element={<Musica/>} />
-                      <Route path="tradiciones"         element={<Tradiciones/>} />
-                      <Route path="*"                   element={<Error/>} />
-                    </Route>
-                    <Route path='tematicas/:id'     element={<DetalleTematicas tematicas={tematicas}/> } />
+      <HelmetProvider context={helmetContext}>
+        <AuthProvider>
+          <CarritoProvider>
+            <DataProvider>
+              <Box id="back-to-top-anchor" />
+              <NavBar isDarkMode={isDarkMode} handleThemeChange={handleThemeChange} />
+                <ScrollToTop>
+                  <Suspense fallback={<LoaderAnimation/>}>
+                    <Routes>
+                      {/*rutasDeAplicacion*/}
+                      <Route path='/'                       element={<Navigate to='/inicio'/>}/>
+                      <Route path='/inicio'                 element={<Inicio/>} />
+                      <Route path='/mapa'                   element={<Mapa/> } />
+                      <Route path='/chatbot'                element={<ChatBot/>} />
+                      <Route path='/sobre-nosotros'         element={<SobreNosotros/>} />
+                      <Route path='/donaciones'             element={<Donaciones/>} />
+                      <Route path='/creadores-de-contenido' element={<CreadoresDeContenido/>} />
+                      <Route path='/tienda'                 element={<Tienda/>} />
+                      <Route path='/tienda/:id'             element={<DetalleProduct productos={productos}/> } />
+                      <Route path='/aviso-de-privacidad'    element={<AvisoDePrivacidad/>} />
+                      <Route path='/preguntas-frecuentes'   element={<PreguntasFrecuentes/>} />
+                      
+                      {/* SubRutas -- tematicas */}
+                      <Route path="/tematicas/" /*AquiSePuedeRenderizarUnNavTematicas*/ >
+                        <Route index element={<PanelTematicas/>}/*yAquiSePuedeRenderizarUnListTematicas*/  />
+                        <Route path="vestimenta"          element={<Vestimenta />} />
+                        <Route path="danza"               element={<Danza/>} />
+                        <Route path="gastronomia"         element={<Gastronomia/>} />
+                        <Route path="musica"              element={<Musica/>} />
+                        <Route path="tradiciones"         element={<Tradiciones/>} />
+                        <Route path="*"                   element={<Error/>} />
+                      </Route>
+                      <Route path='tematicas/:id'     element={<DetalleTematicas tematicas={tematicas}/> } />
 
-                    {/* Perfiles -- usuarios */}
-                    <Route path='/user/consultor'     element={<ProtectedRoute>       <Consultor/>      </ProtectedRoute>} />
-                    <Route path='/user/colaborador'   element={<ProtecteRoutCol>     <Colaborador/>    </ProtecteRoutCol>  } />
-                    <Route path='/user/supervisor'    element={<ProtectedRoutSuper>   <Supervisor/>   </ProtectedRoutSuper>    } />
-                    <Route path='/user/administrador' element={<ProtecteRoutAdmi>   <Administrador/>    </ProtecteRoutAdmi>   } />
-                    {/* acceso -- registro */}
-                    <Route path='/acceso'               element={<Acceso/>} />
-                    <Route path='/acceso/restaurar-pass'element={<RestorePassword/>} />
-                    <Route path='/registro'             element={<Registro/>} />
-                    <Route path='/registro/colaborador' element={<Solicitud/>} />
-                    {/* vista -- error */}
-                    <Route path="*" element={<Error/>} />
-                  </Routes>
-                </Suspense>
+                      {/* Perfiles -- usuarios */}
+                      <Route path='/user/consultor'     element={<ProtectedRoute>       <Consultor/>      </ProtectedRoute>} />
+                      <Route path='/user/colaborador'   element={<ProtecteRoutCol>     <Colaborador/>    </ProtecteRoutCol>  } />
+                      <Route path='/user/supervisor'    element={<ProtectedRoutSuper>   <Supervisor/>   </ProtectedRoutSuper>    } />
+                      <Route path='/user/administrador' element={<ProtecteRoutAdmi>   <Administrador/>    </ProtecteRoutAdmi>   } />
+                      {/* acceso -- registro */}
+                      <Route path='/acceso'               element={<Acceso/>} />
+                      <Route path='/acceso/restaurar-pass'element={<RestorePassword/>} />
+                      <Route path='/registro'             element={<Registro/>} />
+                      <Route path='/registro/colaborador' element={<Solicitud/>} />
+                      {/* vista -- error */}
+                      <Route path="*" element={<Error/>} />
+                    </Routes>
+                  </Suspense>
 
-                <BtnScrollTop {...props}>
-                  <Fab size="small" aria-label="scroll back to top" 
-                    sx={{
-                      bgcolor: "primary.main", color: "background.paper", 
-                      '&:hover': {
-                        bgcolor: 'background.paper',
-                        color: "primary.main",
-                        border: "1px solid",
-                      },
-                    }}
-                  >
-                      <KeyboardDoubleArrowUp />
-                  </Fab>
-                </BtnScrollTop>
-              </ScrollToTop>
+                  <BtnScrollTop {...props}>
+                    <Fab size="small" aria-label="scroll back to top" 
+                      sx={{
+                        bgcolor: "primary.main", color: "background.paper", 
+                        '&:hover': {
+                          bgcolor: 'background.paper',
+                          color: "primary.main",
+                          border: "1px solid",
+                        },
+                      }}
+                    >
+                        <KeyboardDoubleArrowUp />
+                    </Fab>
+                  </BtnScrollTop>
+                </ScrollToTop>
 
-            <WavyDivider/>
-            <Footer/>
-          </DataProvider>
-        </CarritoProvider>
-      </AuthProvider>
+              <WavyDivider/>
+              <Footer/>
+            </DataProvider>
+          </CarritoProvider>
+        </AuthProvider>
+      </HelmetProvider>
     </BrowserRouter>
   )
 }
