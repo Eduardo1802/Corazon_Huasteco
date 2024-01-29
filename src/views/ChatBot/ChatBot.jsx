@@ -4,6 +4,7 @@ import SendIcon from '@mui/icons-material/Send';
 import { Bread }              from '../../components/customs/Bread';
 import { Delete, Face, HomeRounded, SmartToy} from '@mui/icons-material';
 import { Box, CircularProgress, Container, Grid, IconButton, InputAdornment, Paper, TextField, Typography } from "@mui/material";
+import { HelmetComponent } from "../../components/customs/HelmetComponent";
 
 export const ChatBot = () => {
   const [pregunta, setPregunta] = useState("");
@@ -18,7 +19,7 @@ export const ChatBot = () => {
       setIsEmptyResponse(false);
       const data = { answer: pregunta };
       const response = await axios.post(
-        "https://eduazuara.pythonanywhere.com/api/predict",
+        "http://eduardo1802.pythonanywhere.com/api/predict",
         data
       );      
       console.log("Respuesta del servidor:", response.data);
@@ -39,6 +40,7 @@ export const ChatBot = () => {
 
   return (
     <Box sx={{bgcolor: "background.default"}}>
+      <HelmetComponent/>
       <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "CHATBOT", ruta: "/chatbot", icono: <SmartToy/>}]}/>
 
       <Paper elevation={0}>
