@@ -7,6 +7,7 @@ import { Bread } from '../../components/customs/Bread'
 // import GroupSkeleton from "../Shop/groupSkeleton"
 import { contadorVisitas } from '../../utils/fnCountStatus'
 import { Checkroom, EmojiPeople, FlagRounded, HomeRounded, LabelRounded, MusicNoteRounded, RestaurantRounded } from '@mui/icons-material';
+import { HelmetComponent } from '../../components/customs/HelmetComponent'
 
 export const PanelTematicas = () => {
   // const [isLoading, setIsLoading] = useState(true);
@@ -31,6 +32,7 @@ export const PanelTematicas = () => {
 
   return (
     <Box sx={{bgcolor: "background.default"}}>
+      <HelmetComponent/>
       {/* Breadcrumbs */}
       <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "TEMATICAS", ruta: "/tematicas", icono: <LabelRounded/>},]}/>
 

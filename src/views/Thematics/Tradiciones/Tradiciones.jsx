@@ -7,6 +7,7 @@ import { ItemListCard } from '../../../components/customs/ItemListCard'
 import { Bread } from '../../../components/customs/Bread'
 import GroupSkeleton from "../../Shop/groupSkeleton"
 import { HomeRounded, LabelRounded, FlagRounded } from '@mui/icons-material';
+import { HelmetComponent } from '../../../components/customs/HelmetComponent'
 
 export const Tradiciones = () => {
 
@@ -34,6 +35,7 @@ export const Tradiciones = () => {
 
   return (
     <Box sx={{bgcolor: "background.default"}}>
+      <HelmetComponent/>
       {/* Breadcrumbs */}
       <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "TEMATICAS", ruta: "/tematicas", icono: <LabelRounded/>},{miga: "TRADICIONES", ruta: "/tematicas/tradiciones", icono: <FlagRounded/>}]}/>
 

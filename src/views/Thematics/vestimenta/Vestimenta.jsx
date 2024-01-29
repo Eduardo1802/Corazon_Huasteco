@@ -7,6 +7,7 @@ import { ItemListCard } from '../../../components/customs/ItemListCard'
 import { Bread } from '../../../components/customs/Bread'
 import GroupSkeleton from "../../Shop/groupSkeleton"
 import { HomeRounded, LabelRounded, Checkroom } from '@mui/icons-material';
+import { HelmetComponent } from '../../../components/customs/HelmetComponent'
 
 export const Vestimenta = () => {
 
@@ -34,6 +35,7 @@ export const Vestimenta = () => {
 
   return (
     <Box sx={{bgcolor: "background.default"}}>
+      <HelmetComponent/>
       {/* Breadcrumbs */}
       <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "TEMATICAS", ruta: "/tematicas", icono: <LabelRounded/>},{miga: "VESTIMENTA", ruta: "/tematicas/vestimenta", icono: <Checkroom/>}]}/>
 
