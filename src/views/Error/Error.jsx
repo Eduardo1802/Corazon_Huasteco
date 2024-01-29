@@ -3,10 +3,12 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import React from 'react'
 import { Link } from 'react-router-dom'
 import screenError from "../../assets/img/app/screenError.svg"
+import { HelmetComponent } from '../../components/customs/HelmetComponent';
 
 export const Error = () => {
   return (
     <Box sx={{bgcolor: "background.paper"}}>
+      <HelmetComponent titulo="Error 404 página no encontrada"/>
       <Grid container>
         <Grid item xs>
           <Grid container>
