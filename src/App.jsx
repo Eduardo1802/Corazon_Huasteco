@@ -4,6 +4,7 @@ import { ThemeProvider } from "@mui/material";
 import { lightTheme, darkTheme } from "./styles/ThemeMui";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { CssBaseline } from '@mui/material';
 
 function App() {
   const savedDarkMode = localStorage.getItem("darkMode");
@@ -26,8 +27,9 @@ function App() {
   return (
     <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
       <ToastContainer />
-      <Router isDarkMode={isDarkMode} handleThemeChange={handleThemeChange} />
+      <CssBaseline enableColorScheme />
       <meta name="theme-color" content={themeColor} />
+      <Router isDarkMode={isDarkMode} handleThemeChange={handleThemeChange} />
     </ThemeProvider>
   );
 }
