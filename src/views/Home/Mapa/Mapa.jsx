@@ -1,14 +1,11 @@
-import React from "react";
-import Box from "@mui/material/Box";
 import { TileLayer } from "react-leaflet";
 import { Marker } from "react-leaflet";
 import { Popup } from "react-leaflet";
 import { ContenedorMapa } from "./ElementsMapa";
-import { Container, Grid, Paper } from "@mui/material";
+import { Container, Grid, Paper, Box } from "@mui/material";
 import { Bread } from "../../../components/customs/Bread";
 import { HomeRounded, MapOutlined, MapRounded } from "@mui/icons-material";
 import { HelmetComponent } from "../../../components/customs/HelmetComponent";
-
 //TODO LO DE ANALYTICS DE FIREBASE
 // import { analytics } from '../../App/firebase';
 // import { perf } from '../../App/firebase'
@@ -18,13 +15,9 @@ import { HelmetComponent } from "../../../components/customs/HelmetComponent";
 export const Mapa = () => {
   // useEffect(() => {
   //   logEvent(analytics, 'visitas pagina mapa');
-
   //   const t = trace(perf, "test_trace");
   //   t.putAttribute("experiment", "A");
   // }, []);
-
-  
-
   return (
     <Box sx={{bgcolor: "background.default"}}>
       <HelmetComponent/>
@@ -63,11 +56,8 @@ export const Mapa = () => {
   );
 };
 
-
 export const OnlyMapa = ({altura}) => {
-
   const position = [21.1437, -98.4181];
-
   return(
     <ContenedorMapa center={position} zoom={16} scrollWheelZoom={false} altura={altura}>
       <TileLayer
@@ -103,5 +93,4 @@ export const OnlyMapa = ({altura}) => {
       </Marker>
     </ContenedorMapa>
   )
-  
 }
