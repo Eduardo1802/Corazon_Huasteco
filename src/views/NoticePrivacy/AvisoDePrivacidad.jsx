@@ -1,7 +1,4 @@
-import React from 'react'
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography'
-import { Grid, Paper } from '@mui/material';
+import { Grid, Paper, Box, Typography } from '@mui/material';
 import { Bread } from '../../components/customs/Bread';
 import { HomeRounded, SecurityRounded } from '@mui/icons-material';
 import { TextPrivacy } from './TextPrivacy';
