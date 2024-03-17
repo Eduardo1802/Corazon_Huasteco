@@ -1,4 +1,4 @@
-import React, { useEffect }   from 'react'
+import { useEffect }   from 'react'
 import { Grid,  Typography, Paper, Box, Divider } from '@mui/material';
 import { Bread }              from '../../components/customs/Bread';
 import { contadorVisitas }    from '../../utils/fnCountStatus';
@@ -15,13 +15,8 @@ import imgAus                 from "../../assets/img/sobre-nosotros/imgSobreNoso
 import imgMural               from "../../assets/img/inicio/imgMural-01.webp"
 import { HelmetComponent } from '../../components/customs/HelmetComponent';
 
-// import CustomizedTimeline from './CustomizedTimeline';
-
 export const SobreNosotros = () => {
-
-  useEffect(() => {
-    contadorVisitas("sobre-nosotros");
-  }, [])
+  useEffect(() => { contadorVisitas("sobre-nosotros"); }, [])
 
   return (
     <Box sx={{bgcolor: "background.default"}}>
@@ -56,7 +51,6 @@ export const SobreNosotros = () => {
                 firstcolor={"#617030"} 
                 secondcolor={"#5A6C9F"}
                 enlace='https://facebook.com/eduardo.azuara.5074'
-                data-testid="lalo-link"
               />
             </Grid>
             <Grid item>
@@ -97,10 +91,7 @@ export const SobreNosotros = () => {
             </Grid>
           </Grid>
         </Grid>
-
       </Paper>
-
-
     </Box>
   )
 }

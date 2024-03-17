@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useEffect, useState } from 'react';
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
@@ -6,28 +6,18 @@ import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import { TimelineOppositeContent } from '@mui/lab';
-
 import { Card, CardMedia, Box, Typography, Fade, Grow } from '@mui/material';
 
 export default function TimelineUsLarge({imgAus, imgMural}) {
-  const [componentLoaded, setComponentLoaded] = React.useState(false);
-
-  React.useEffect(() => {
-    setTimeout(() => {
-      setComponentLoaded(true);
-    }, 100);
-  }, []);
+  const [componentLoaded, setComponentLoaded] = useState(false);
+  
+  useEffect(() => { setTimeout(() => { setComponentLoaded(true); }, 100); }, []);
   return (
     <Timeline position="alternate">
       <TimelineItem >
         <TimelineOppositeContent color="text.secondary">
           <Fade in={componentLoaded}>
-            <Card
-              sx={{
-                width: "100%",
-                bgcolor: "background.paper"
-              }}
-            >
+            <Card sx={{ width: "100%", bgcolor: "background.paper" }}>
               <CardMedia
                 component="img"
                 height={"100%"}
@@ -62,12 +52,7 @@ export default function TimelineUsLarge({imgAus, imgMural}) {
       <TimelineItem>
         <TimelineOppositeContent color="text.secondary">
           <Fade in={componentLoaded}>
-            <Card
-              sx={{
-                width: "100%",
-                bgcolor: "background.paper"
-              }}
-            >
+            <Card sx={{ width: "100%", bgcolor: "background.paper" }}>
             <CardMedia
               component="img"
               height={"100%"}
