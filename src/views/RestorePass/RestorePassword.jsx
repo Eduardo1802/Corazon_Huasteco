@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
 import { Bread } from '../../components/customs/Bread';
 import { Button, Container, Grid, Paper, IconButton, InputAdornment, Box, Typography, TextField, Collapse, Divider } from '@mui/material';
@@ -6,8 +6,6 @@ import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { Form } from "semantic-ui-react"
 import imgLogo from "../../assets/img/app/imgLogoHuejutlaLight.webp"
-
-
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 import { usePassword, handleMouseDownPassword } from '../../context/UsePassword';
@@ -31,21 +29,13 @@ export const RestorePassword = () => {
     const [showPassword, handleClickShowPassword] = usePassword(false);
     // captura de errores
     const [error, setError] = useState("");
-
-
-
-    const [user, setUser] = useState({
-        email: "",
-        password: "",
-    });
+    const [user, setUser] = useState({ email: "", password: ""});
     const { resetPassword } = useAuth();
     const [variant, setVariant] = useState("");
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const formik = useFormikConfig({ setError, open, setOpen });
 
-
     const handleButtonClick = async (e) => {
-
         e.preventDefault();
         if (!setTextFieldValue) {
             setVariant("warning");
@@ -81,8 +71,6 @@ export const RestorePassword = () => {
         }
     };
 
-
-
     const validarPregunta = async (e) => {
         e.preventDefault();
         if (!res) {
@@ -100,7 +88,6 @@ export const RestorePassword = () => {
             setVariant("error");
             setError("Respuesta incorrecta");
             setSnackbarOpen(true);
-
         }
 
     };
@@ -113,8 +100,6 @@ export const RestorePassword = () => {
         setRes("");
         setFieldValue("");
     };
-
-
 
     const handleUpdate = async (e) => {
         e.preventDefault();
@@ -144,10 +129,6 @@ export const RestorePassword = () => {
             setSnackbarOpen(true);
         }
     }
-
-
-
-
 
     const handleChange = ({ target: { value, name } }) =>
         setUser({ ...user, [name]: value });
@@ -211,13 +192,8 @@ export const RestorePassword = () => {
                                     </Typography>
                                 </Collapse>
 
-                                <Box
-                                    sx={{
-                                        '& > :not(style)': { my: { md: 1, sm: 0.75, xs: 0.50 } },
-                                    }}
-                                >
+                                <Box sx={{ '& > :not(style)': { my: { md: 1, sm: 0.75, xs: 0.50 }} }}>
                                     <Collapse in={estado}>
-
                                         <TextField
                                             fullWidth
                                             label="Correo electronico"
@@ -235,7 +211,6 @@ export const RestorePassword = () => {
                                     </Collapse>
                                     <Collapse in={validar}>
                                         <Collapse in={!estado}>
-
                                             <TextField
                                                 fullWidth
                                                 label="Correo electronico"
@@ -250,17 +225,10 @@ export const RestorePassword = () => {
                                                 Validar
                                             </Button>
                                         </Collapse>
-
                                     </Collapse>
 
-
-
                                     <Collapse in={pregunta}>
-                                        <Box
-                                            sx={{
-                                                '& > :not(style)': { my: { md: 1, sm: 0.75, xs: 0.50 } },
-                                            }}
-                                        >
+                                        <Box sx={{ '& > :not(style)': { my: { md: 1, sm: 0.75, xs: 0.50 }} }}>
                                             {/* Pregunta secreta */}
                                             <Typography textAlign="center" variant="body2" component="p" gutterBottom color="primary.main" sx={{ mb: 2 }}>
                                                 Introduce tu respuesta a la pregunta secreta
@@ -309,25 +277,13 @@ export const RestorePassword = () => {
                                         </Box>
                                     </Collapse>
                                     <Collapse in={nuevo}>
-                                        <Box
-                                            sx={{
-                                                '& > :not(style)': { my: { md: 1, sm: 0.75, xs: 0.50 } },
-                                            }}
-                                        >
+                                        <Box sx={{ '& > :not(style)': { my: { md: 1, sm: 0.75, xs: 0.50 }} }}>
                                             {/* CONTRASEÑA */}
                                             <Typography textAlign="center" variant="body2" component="p" gutterBottom color="primary.main" sx={{ mb: 2 }}>
                                                 Introduce tu nueva contraseña
                                             </Typography>
 
-
-                                            <Box
-                                                component={Form}
-                                                sx={{
-                                                    "& > :not(style)": { my: { md: 1, sm: 0.75, xs: 0.5 } },
-                                                }}
-                                            >
-
-
+                                            <Box component={Form} sx={{ "& > :not(style)": { my: { md: 1, sm: 0.75, xs: 0.5 }} }}>
                                                 <TextField
                                                     fullWidth
                                                     label="Contraseña"
@@ -383,14 +339,11 @@ export const RestorePassword = () => {
                                                 />
                                             </Box>
 
-                                            <Grid  >
+                                            <Grid>
                                                 <Button aria-label='validar nueva contraseña' type='button' fullWidth variant="contained" onClick={handleUpdate}>
                                                     Validar
                                                 </Button>
                                             </Grid>
-
-
-
                                         </Box>
                                     </Collapse>
 
@@ -401,7 +354,6 @@ export const RestorePassword = () => {
                                     <Button aria-label={estado ? 'pregunta secreta':'correo'} variant="contained" fullWidth onClick={cambiarEstado}>
                                         {estado ? "Pregunta secreta" : "Correo"}
                                     </Button>
-
                                 </Box>
                             </Paper>
                         </Container>
