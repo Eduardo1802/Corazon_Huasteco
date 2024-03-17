@@ -3,7 +3,6 @@ import { messaging } from "../config/firebase/firebaseDB";
 
 export const activarMensajes = async () => {
   let token = null;
-
   // Utiliza un bucle while para realizar verificaciones periódicas
   while (!token) {
     // Intenta obtener el token

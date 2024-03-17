@@ -5,7 +5,6 @@ export const actualizarVisita = async (fieldName, valorActual) => {
   const fecha = new Date();
   const fechaFormateada = formatDate(fecha)
   const ref = doc(db, `visitas/${fechaFormateada}`); //colección de visitas
-
   await updateDoc(ref, {
     [fieldName]: !valorActual ? 1 : valorActual + 1,
   });
@@ -15,12 +14,9 @@ export const crearDocumentoVisitas = async () => {
   const fecha = new Date();
   const fechaFormateada = formatDate(fecha)
   const ref = doc(db, `visitas/${fechaFormateada}`);
-
   try {
     const docSnap = await getDoc(ref);
-    if (!docSnap.exists()) {
-      await setDoc(ref, {});
-    }
+    if (!docSnap.exists()) { await setDoc(ref, {}); }
   } catch (error) {
     console.log("Error creating document:", error);
   }
@@ -28,7 +24,6 @@ export const crearDocumentoVisitas = async () => {
 
 export const contadorVisitas = async (fieldName) => {
   await crearDocumentoVisitas();
-
   const fecha = new Date();
   const fechaFormateada = formatDate(fecha)
   const docRef = doc(db, "visitas", `${fechaFormateada}`);
@@ -46,22 +41,9 @@ export const contadorVisitas = async (fieldName) => {
   }
 };
 
-
-// formato para la fecha
 export function formatDate(date) {
-  let year = date.getFullYear();
-  let month = date.getMonth() + 1;
-  let day = date.getDate();
-  
-  if (month < 10) {
-    month = "0" + month;
-  }
-  
-  if (day < 10) {
-    day = "0" + day;
-  }
-  
+  let year = date.getFullYear();  let month = date.getMonth() + 1;  let day = date.getDate();
+  if (month < 10) { month = "0" + month; }
+  if (day < 10) { day = "0" + day; }
   return year + "-" + month + "-" + day;
 }
-
-
