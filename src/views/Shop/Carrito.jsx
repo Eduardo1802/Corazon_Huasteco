@@ -43,8 +43,6 @@ const Carrito = () => {
     // "Colonia" should only contain letters and spaces and be between 3 and 30 characters long.
     return /^[A-Za-z\s]{3,30}$/.test(value);
   };
-  
-
 
   const validateNumeroExterno = (value) => {
     // "Código Postal" should be exactly 4 digits.
@@ -52,7 +50,6 @@ const Carrito = () => {
   };
 
   const validateNumeroInterno = (value) => {
-    
     return /^(?=\d{1,5}$)|^(?=\D{2}$)/.test(value);
   };
 
@@ -141,7 +138,6 @@ const Carrito = () => {
         data.numeroExterno !== numeroExterno ||
         data.referencias !== referencias;
   
-  
       if (direccionActualizada) {
         await updateDoc(referencia, {
           calle: calle,
@@ -164,10 +160,8 @@ const Carrito = () => {
   const handleFinalizarCompra = () => {
     // Realizar la compra aquí (tus lógicas de compra, actualización de datos, etc.)
     registrarVentas();
-
     // Volver a la etapa 0 (mostrar productos) después de finalizar la compra
     setEtapa(0);
-
     // Cerrar el diálogo después de finalizar la compra
     cerrarDialog();
   };
@@ -203,18 +197,14 @@ const Carrito = () => {
 
   const editarCantidad = async (item, valor) => {
     const valorNumerico = parseInt(valor);
-
     const referencia = doc(db, `carritoUsuario/${user.uid}`);
     // Obtener los datos del carrito del usuario
     const docSnap = await getDoc(referencia);
     const data = docSnap.exists() ? docSnap.data() : null;
-
     // Obtener la cantidad anterior del producto
     const cantidadAnterior = data && data[item] !== undefined ? data[item] : 0;
-
     // Calcular la diferencia entre la cantidad anterior y la nueva cantidad
     const diferenciaCantidad = valorNumerico - cantidadAnterior;
-
     // Actualizar el carrito con la nueva cantidad del producto y el total actualizado
     await updateDoc(referencia, {
       [item]: valorNumerico,
@@ -226,7 +216,6 @@ const Carrito = () => {
     if (user) {
       const ventaRef = collection(db, "ventas");
       const ventaRef2 = collection(db, "ventasPendiendes");
-
       // Loop through each product in the carritoData and create a sale record
       for (const [id, item] of carritoData) {
         if (id !== "total" && productosData[id]) {
@@ -314,7 +303,6 @@ const Carrito = () => {
       const querySnapshot = await getDocs(referenciaProductos);
       const productos = {};
       setNombre(user.email)
-      
 
       querySnapshot.forEach((doc) => {
         const producto = doc.data();
@@ -322,9 +310,6 @@ const Carrito = () => {
       });
 
       setProductosData(productos);
-
-
-
     }
   };
 
@@ -341,13 +326,7 @@ const Carrito = () => {
     }
     setEtapa(3); // Establecemos la etapa en 3 para mostrar el historial y confirmar la compra
   };
-
   
-  
-  
-  
-  
-
   return (
     <>
       <Box
@@ -360,12 +339,8 @@ const Carrito = () => {
           color: 'action.active',
           display: 'flex',
           flexDirection: 'column',
-          '& > *': {
-            marginBottom: 2,
-          },
-          '& .MuiBadge-root': {
-            marginRight: 4,
-          },
+          '& > *': { marginBottom: 2 },
+          '& .MuiBadge-root': { marginRight: 4 },
         }}
       >
         <Paper elevation={0} sx={{ p: 1, border: `3px solid ${theme.palette.primary.main}`, borderRightColor: "transparent" }}>

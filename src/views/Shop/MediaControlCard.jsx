@@ -1,16 +1,10 @@
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { Button, CardActions, useTheme } from '@mui/material';
+import { Button, CardActions, Box, Card, CardContent, CardMedia, Typography, useTheme } from '@mui/material';
 import { ChevronRightRounded, LocalGroceryStoreRounded} from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { CarritoContext } from '../../context/CarritoContext';
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-// firebase component
 import { doc, getDoc, updateDoc, setDoc }from "firebase/firestore";
 import { db } from "../../config/firebase/firebaseDB";
 
@@ -20,9 +14,7 @@ export default function MediaControlCard({proyecto, handleClickOpen}) {
   const { contador, aumentarContador, disminuirContador } = useContext(CarritoContext);
   const theme = useTheme();
   const registrarProducto = async (idProduct) => {
-    if (!user) {
-      return navigate("/acceso");
-    }
+    if (!user) { return navigate("/acceso");}
   
     // Obtener la referencia del documento del carrito del usuario
     const referencia = doc(db, `carritoUsuario/${user.uid}`);
@@ -79,12 +71,9 @@ export default function MediaControlCard({proyecto, handleClickOpen}) {
               <Button aria-label='añadir producto al carrito de compras' variant='outlined' size='small' endIcon={<LocalGroceryStoreRounded />} sx={{ ml: 2 }} onClick={() => registrarProducto(proyecto.id)}>
                 Añadir
               </Button>
-           
-
           </CardActions>
         </Box>
       </Box>
-      
     </Card>
   );
 }

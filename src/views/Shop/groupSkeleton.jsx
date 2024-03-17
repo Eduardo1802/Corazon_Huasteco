@@ -52,7 +52,6 @@ function GroupSkeleton(){
                 </Stack>
             </Grid>
 
-
             {/* fantasmon */}
             <Grid item xs={12} sm={12} md={6} lg={4} xl={3} sx={{display:{md:"none", sm: "block",xs:"none"}}}>
                 <Stack spacing={1} p={1}>
@@ -61,9 +60,6 @@ function GroupSkeleton(){
                 <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
                 </Stack>
             </Grid>
-
-            
-
         </>
     )
 }

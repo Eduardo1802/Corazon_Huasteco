@@ -1,19 +1,10 @@
-import * as React from "react";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
+import { Button, Dialog, Toolbar, IconButton, } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router-dom";
 import { Box, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import { ChevronRightRounded} from '@mui/icons-material';
 
-export default function FullScreenDialog({
-  open,
-  handleClose,
-  Transition,
-  project,
-}) {
+export default function FullScreenDialog({ open, handleClose, project }) {
   console.log(project.id);
 
   return (
@@ -27,9 +18,6 @@ export default function FullScreenDialog({
         aria-labelledby="alert-dialog-title"
       >
           <Toolbar>
-            {/* <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div" color="secondary.light" fontWeight={500}>
-              {project.title}
-            </Typography> */}
             <DialogTitle sx={{flex:1, fontWeight: 900, fontSize: {xs: 25, sm:30, md:35}}} variant="h6" id="alert-dialog-title" color="secondary.light" >
               {project.data().nombre}
             </DialogTitle>
@@ -76,7 +64,6 @@ export default function FullScreenDialog({
           </Button>
         </DialogActions>
       </Dialog>
-      
     </div>
   );
 }
