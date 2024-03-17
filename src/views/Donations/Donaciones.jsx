@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import { useState } from 'react'
 import PropTypes from 'prop-types';
 import { Grid, Paper, Tab, Tabs, AppBar, Typography, Box, Stepper, Step, StepLabel } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -12,19 +12,12 @@ import { ImgRegistro }        from './ImgRegistro';
 import { HomeRounded, VolunteerActivismRounded } from '@mui/icons-material';
 import { HelmetComponent } from '../../components/customs/HelmetComponent';
 
-
 const pasos = ['Se debe iniciar sesión para poder donar.','Formulario Tarjeta', 'Formulario Paypal', 'Formulario Oxxo', 'Formulario Transferencia'];
 
 export const Donaciones = () => {
   const {user} = useAuth();
-  const [proceso, setProceso] = useState(0);
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
   const theme = useTheme();
-
-  const pasos1 = async () => {
-    setProceso(1)
-    console.log(proceso)
-  };
 
   function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -38,16 +31,16 @@ export const Donaciones = () => {
         {...other}
       >
         {value === index && (
-            <Grid container sx={{ p: 3 }}>
-              <Grid item md={5} sm={4} xs={12} order={{md:2, sm:2}}> 
-                <ImgRegistro/>
-              </Grid>
-              
-              {/* FORMULARIO */}
-              <Grid item md={7} sm={8} xs={12} order={{md:1, sm:1}} >
-                {children}
-              </Grid>
+          <Grid container sx={{ p: 3 }}>
+            <Grid item md={5} sm={4} xs={12} order={{md:2, sm:2}}> 
+              <ImgRegistro/>
             </Grid>
+            
+            {/* FORMULARIO */}
+            <Grid item md={7} sm={8} xs={12} order={{md:1, sm:1}} >
+              {children}
+            </Grid>
+          </Grid>
         )} 
       </div>
     );
@@ -59,9 +52,7 @@ export const Donaciones = () => {
     value: PropTypes.number.isRequired,
   };
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  const handleChange = (event, newValue) => { setValue(newValue); };
 
   function a11yProps(index) {
     return {
@@ -70,16 +61,11 @@ export const Donaciones = () => {
     };
   }
 
-  const handleChangeIndex = (index) => {
-    setValue(index);
-  };
-
   return (
     <Box sx={{bgcolor: "background.default"}}>
       <HelmetComponent/>
       <Bread migas={[{miga: "INICIO", ruta: "/inicio", icono: <HomeRounded/>},{miga: "DONACIONES", ruta: "/donaciones", icono: <VolunteerActivismRounded/>}]}/>
       
-
       {/* STEPPER */}
       <Paper elevation={0}>
         <Grid container spacing={1}>
@@ -87,8 +73,6 @@ export const Donaciones = () => {
             <Typography variant="h4" color="primary" textAlign='center'>Donaciones</Typography>
           </Grid>
           <Grid item xs m={2} p={3} sx={{p:3}}>
-            {/* TITULO */}
-
             {/* CONTENIDO */}
             <Paper sx={{bgcolor: "background.paper"}}>
               <Box sx={{ width: '100%', p:5}} value={value} index={0} dir={theme.direction}>
@@ -130,7 +114,6 @@ export const Donaciones = () => {
                     <TabPanel value={value} index={3} dir={theme.direction}>
                       <Transferencia/>
                     </TabPanel>
-
                   </Box>
                 ) : (
                   <Stepper>
@@ -144,9 +127,6 @@ export const Donaciones = () => {
           </Grid>
         </Grid>
       </Paper>
-      
-
-
     </Box>
   )
 }
