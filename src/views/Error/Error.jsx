@@ -41,8 +41,6 @@ export const Error = () => {
           </Grid>
         </Grid>
       </Grid>
-
-        
     </Box>
   )
 }
