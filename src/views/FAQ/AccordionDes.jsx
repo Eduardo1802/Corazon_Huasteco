@@ -1,13 +1,7 @@
-import React from 'react'
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Container from '@mui/material/Container';
+import { Container, Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material';
 
 export const AccordionDes = () => {
-
   return (
     <Container>
         <Accordion>
@@ -182,7 +176,6 @@ export const AccordionDes = () => {
                 </Typography>
             </AccordionDetails>
         </Accordion>
-        
     </Container>
   )
 }

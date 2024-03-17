@@ -1,10 +1,7 @@
-import React from 'react'
-import Typography from '@mui/material/Typography'
-import Box from '@mui/material/Box';
 import { AccordionDes } from './AccordionDes';
 import { Bread } from '../../components/customs/Bread';
 import { HomeRounded, LiveHelpRounded } from '@mui/icons-material';
-import { Grid, Paper } from '@mui/material';
+import { Grid, Paper, Box, Typography } from '@mui/material';
 import { HelmetComponent } from '../../components/customs/HelmetComponent';
 
 export const PreguntasFrecuentes = () => {
@@ -25,7 +22,6 @@ export const PreguntasFrecuentes = () => {
                 </Box>
               </Box>
             </Grid>
-
           </Grid>
         </Paper>
     </Box>
