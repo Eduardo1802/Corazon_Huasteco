@@ -5,15 +5,9 @@ import { useFormik }              from "formik";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { useAuth }                from "../../context/AuthContext";
 import { db }                     from "../../config/firebase/firebaseDB";
-// eslint-disable-next-line
-export const useAccessFom = ({
-  setError,
-  setOpen,
-  setSnackbarOpen,
-  setVariant,
-}) => {
+
+export const useAccessFom = ({ setError, setOpen, setSnackbarOpen, setVariant,}) => {
   const { login } = useAuth();
-  // eslint-disable-next-line
   const [data, setData] = useState([]);
   const navigate = useNavigate();
 

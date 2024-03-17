@@ -1,5 +1,4 @@
-import React                  from 'react'
-import {Box, Grid, Paper}          from '@mui/material';
+import {Box, Grid, Paper}     from '@mui/material';
 import { Bread }              from '../../components/customs/Bread';
 import { FormAcceso }         from './FormAcceso';
 import { ImgAcceso }          from './ImgAcceso';
@@ -27,7 +26,6 @@ export const Acceso = () => {
           </Grid>
         </Grid>
       </Paper>
-      {/* <Link to="cesar">Cifrado cesar</Link> */}
     </Box>
   )
 }
