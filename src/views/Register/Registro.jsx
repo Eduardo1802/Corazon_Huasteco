@@ -1,7 +1,4 @@
-import React from 'react'
-// naterial components
 import {Box, Grid, Paper} from '@mui/material';
-// aditional components
 import { Bread }              from '../../components/customs/Bread';
 import { ImgRegistro }        from './ImgRegistro';
 import { FormRegistro }       from './FormRegistro';
@@ -29,7 +26,6 @@ export const Registro = () => {
           </Grid>
         </Grid>
       </Paper>     
-      
     </Box>
   )
 }

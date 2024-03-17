@@ -1,27 +1,16 @@
-//yup comopnent
 import * as Yup from "yup";
-// formik component
 import { useFormik } from "formik";
-// react-router-dom component
 import { useNavigate } from "react-router-dom";
-// context component
 import { useAuth } from "../../context/AuthContext";
-// firebase component
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../../config/firebase/firebaseDB";
 
-// eslint-disable-next-line
 export const useFormikConfig = ({ setError, open, setOpen }) => {
   const { signup } = useAuth();
   const navigate = useNavigate();
-
   //función que abre y cierra el modal
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleToggle = () => {
-    setOpen(!open);
-  };
+  const handleClose = () => { setOpen(false) };
+  const handleToggle = () => { setOpen(!open) };
 
   //función que registrará al usuario y mandará los datos a firebase
   const handleSubmit = async (email, password, data) => {
