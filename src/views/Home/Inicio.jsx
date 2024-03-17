@@ -1,6 +1,5 @@
-import React, {useEffect} from 'react'
-import Typography from '@mui/material/Typography'
-import { Paper, Button, Box, useMediaQuery, Grid, useTheme, Container, Divider } from '@mui/material';
+import {useEffect} from 'react'
+import { Paper, Button, Box, useMediaQuery, Grid, useTheme, Container, Divider, Typography } from '@mui/material';
 import { contadorVisitas } from '../../utils/fnCountStatus';
 import { Carrusel } from './Carrusel/Carrusel';
 import { ArrowForward, Directions, LocalFlorist, Pets } from '@mui/icons-material';
@@ -17,7 +16,6 @@ export const Inicio = () => {
   const theme = useTheme();
 
   useEffect(() => { contadorVisitas("inicio") }, [])
-
   return (
     <Box sx={{background: theme.palette.background.paper}}>
       <HelmetComponent/>
@@ -152,17 +150,11 @@ export const Inicio = () => {
   );
 }
 
+const Img = styled('img')({ maxWidth: "100%", height: "auto" });
 
-const Img = styled('img')({
-  maxWidth: "100%",
-  height: "auto"
-});
-
-const TransformEffectButton = styled(Button)(({ theme, colorhover }) => ({
+const TransformEffectButton = styled(Button)(({  }) => ({
   borderRadius: 50, 
-  '&:hover svg': {
-    animation: "expand 1.1s /* infinite */"
-  },
+  '&:hover svg': { animation: "expand 1.1s /* infinite */" },
   '@keyframes expand': {
     '0%': { transform: "scale(1)", transformOrigin: "left bottom" },
     '50%': { transform: "scale(1.5)", transformOrigin: "left bottom" },

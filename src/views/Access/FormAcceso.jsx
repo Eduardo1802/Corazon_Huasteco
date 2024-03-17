@@ -74,11 +74,7 @@ export const FormAcceso = () => {
             <Divider sx={{my:1}}>o</Divider>
 
             {/* formulario */}
-            <Box component={Form} onSubmit={formik.handleSubmit} 
-                sx={{
-                    '& > :not(style)': { my:{md:1, sm:0.75, xs:0.50} }
-                }}
-            >       
+            <Box component={Form} onSubmit={formik.handleSubmit} sx={{ '& > :not(style)': { my:{md:1, sm:0.75, xs:0.50} } }}>       
                 {/* CORREO */}
                 <TextField component={Form.Input}
                     fullWidth

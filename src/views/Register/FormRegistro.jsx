@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-// material components
 import { Button, Collapse, Container, Grid, Paper, Box, Typography, TextField, MenuItem, IconButton, InputAdornment, Checkbox, FormControlLabel } from "@mui/material";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
@@ -8,22 +7,12 @@ import LoginIcon from "@mui/icons-material/Login";
 import DeleteIcon from "@mui/icons-material/Delete";
 import MarkEmailReadIcon from '@mui/icons-material/MarkEmailRead';
 import EditIcon from '@mui/icons-material/Edit';
-
-// react router components
 import { Link } from "react-router-dom";
-// semantic ui
 import { Form } from "semantic-ui-react";
-// show pass hook
-import {
-  usePassword,
-  handleMouseDownPassword,
-} from "../../context/UsePassword";
-// form logic  validation
+import { usePassword, handleMouseDownPassword,} from "../../context/UsePassword";
 import { useFormikConfig } from "./useFormikConfig";
-// aditional components
 import BasicAlerts from "../../components/customs/BasicAlerts";
 import SimpleBackdrop from "../../components/customs/SimpleBackDrop";
-// options
 import { sexos, tipos, secreta } from "./optionListRegistro";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
@@ -31,14 +20,12 @@ import AlertDialog from "../../components/customs/AlertDialog";
 
 export const FormRegistro = () => {
   const [email, setEmail] = useState("");
-
   // muestra la contraseña
   const [showPassword, handleClickShowPassword] = usePassword(false);
   // captura de errores
   const [error, setError] = useState("");
   // loading animation
   const [open, setOpen] = useState(false);
-
   //   validaciones               -- con muestra de errores y estado de carga
   const formik = useFormikConfig({ setError, open, setOpen });
   // eslint-disable-next-line
@@ -48,18 +35,14 @@ export const FormRegistro = () => {
   const [estado, setEstado] = useState(false);
   const [mensaje, setMsj] = useState("");
   // eslint-disable-next-line
-  const recibir = (event) => {
-    setEmail(event.target.value);
-  };
+  const recibir = (event) => { setEmail(event.target.value);};
   const [variant, setVariant] = useState("");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [cp, setCp] = useState("");
   const [result, setResult] = useState(" ");
   const [est, setEst] = useState("");
   const [color, setColor] = useState("");
-  const editar = () => {
-    setEstado(false);
-  };
+  const editar = () => { setEstado(false);};
   const validar = async (event) => {
     event.preventDefault();
     if (!email) {
@@ -108,9 +91,7 @@ export const FormRegistro = () => {
   };
 
   useEffect(() => {
-    if (cp) {
-      codigoPostal();
-    }
+    if (cp) { codigoPostal(); }
     if (result && result.state) {
       setEst(result.state);
       setMsj("");
@@ -122,17 +103,12 @@ export const FormRegistro = () => {
       formik.setFieldValue("state", ""); // Restablece el valor de formik.values.state a una cadena vacía
       setColor("error");
     }
-    // eslint-disable-next-line
   }, [cp, result]);
 
   return (
     <Container maxWidth="sm">
       <Paper sx={{ p: 2 }} elevation={0}>
-        <Typography
-          variant="h5"
-          color="primary.dark"
-          sx={{ textAlign: "center", margin: "15px 0" }}
-        >
+        <Typography variant="h5" color="primary.dark" sx={{ textAlign: "center", margin: "15px 0" }}>
           Crea una cuenta nueva
         </Typography>
         <SimpleBackdrop open={open} />
@@ -145,21 +121,11 @@ export const FormRegistro = () => {
           onClose={() => setSnackbarOpen(false)}
           anchorOrigin={{ vertical: "top", horizontal: "center" }}
         >
-          <MuiAlert
-            elevation={20}
-            variant="filled"
-            severity={variant ? variant : "info"}
-          >
+          <MuiAlert elevation={20} variant="filled" severity={variant ? variant : "info"}>
             {error}
           </MuiAlert>
         </Snackbar>
-        <Box
-          component={Form}
-          onSubmit={formik.handleSubmit}
-          sx={{
-            "& > :not(style)": { my: { md: 1, sm: 0.75, xs: 0.5 } },
-          }}
-        >
+        <Box component={Form} onSubmit={formik.handleSubmit} sx={{ "& > :not(style)": { my: { md: 1, sm: 0.75, xs: 0.5 }} }}>
           {/* NOMBRE Y APELLIDOS */}
           <Grid container spacing={1}>
             <Grid item md={6} sm={6} xs={12}>
@@ -305,8 +271,6 @@ export const FormRegistro = () => {
             disabled={true}
           />
 
-
-
           {/* CORREO */}
           <Grid container spacing={1}>
             <Grid item xs={12} md={9}>
@@ -345,11 +309,7 @@ export const FormRegistro = () => {
 
           {/* SUBCONTENEDOR */}
           <Collapse in={estado}>
-            <Box
-              sx={{
-                "& > :not(style)": { my: { md: 1, sm: 0.75, xs: 1 } },
-              }}
-            >
+            <Box sx={{ "& > :not(style)": { my: { md: 1, sm: 0.75, xs: 1 }} }}>
               {/* CONTRASEÑA */}
               <TextField
                 component={Form.Input}

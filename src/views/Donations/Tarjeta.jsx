@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Container, Grid, TextField,IconButton, InputAdornment, Typography, Stepper, Step, StepLabel, Button } from "@mui/material";
 import { usePassword, handleMouseDownPassword } from '../../context/UsePassword';
-import { useTheme } from "@mui/material/styles";
 import { useAuth } from "../../context/AuthContext";
 import { Visibility, VisibilityOff, AccountCircle, AttachMoney, Person, CreditCard, CalendarMonth, Today } from '@mui/icons-material'
 
@@ -22,12 +21,8 @@ export const Tarjeta = () => {
   const [cvv, setCvv] = useState("");
   const [showPassword, handleClickShowPassword] = usePassword(false);
   const [nombre, setNombre] = useState("");
-  const theme = useTheme();
-  const tipo = "Tarjeta";
 
-  const handleSubmit = async (e) => {
-
-  };
+  const handleSubmit = async (e) => { };
 
   return (
     <Container maxWidth="sm">
@@ -75,17 +70,7 @@ export const Tarjeta = () => {
         }}
       />
 
-      <Typography
-        variant="h6"
-        color="primary"
-        sx={{
-          textAlign: "center",
-          marginTop: "15px",
-          marginButtom: "15px",
-          justifyContent: "center",
-          display: "flex",
-        }}
-      >
+      <Typography variant="h6" color="primary">
         Datos de tarjeta
       </Typography>
 

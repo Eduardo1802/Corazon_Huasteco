@@ -1,4 +1,3 @@
-import React from "react";
 import { Container, Grid } from "@mui/material";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
@@ -15,12 +14,7 @@ const pasos = [
 export const Oxxo = () => {
   return (
     <Container maxWidth="sm">
-      <Grid
-        container
-        rowSpacing={1}
-        columnSpacing={1}
-        sx={{ bgcolor: "background.paper", p: 1 }}
-      >
+      <Grid container rowSpacing={1} columnSpacing={1} sx={{ bgcolor: "background.paper", p: 1 }}>
         <Stepper>
           <Step>
             <StepLabel>{pasos[3]}</StepLabel>
@@ -28,6 +22,5 @@ export const Oxxo = () => {
         </Stepper>
       </Grid>
     </Container>
-
   );
 };

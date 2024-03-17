@@ -7,9 +7,6 @@ import { Grid, Paper } from '@mui/material';
 import { HelmetComponent } from '../../components/customs/HelmetComponent';
 
 export const CreadoresDeContenido = () => {
-
-  
-
   return (
     <Box sx={{bgcolor: "background.default"}}>
       <HelmetComponent/>
