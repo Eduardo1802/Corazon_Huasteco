@@ -1,10 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getMessaging, getToken } from "firebase/messaging";
+import { getMessaging } from "firebase/messaging";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
-
 
 // Your web app's Firebase configuration
 const firebaseConfig = {

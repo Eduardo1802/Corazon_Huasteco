@@ -1,4 +1,3 @@
-import React from 'react'
 import {createRoot} from 'react-dom/client'
 import App from './App.jsx'
 import '@fontsource/roboto/300.css';
@@ -13,13 +12,11 @@ const updateSW = registerSW({
   onOfflineReady() {},
 })
 
-console.log("hello from a code space or remote vs code, idk ¯\_(ツ)_/¯ ")
-
 const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(
-    <>
-      <CssBaseline />
-      <App />
-    </>
+  <>
+    <CssBaseline />
+    <App />
+  </>
 );
